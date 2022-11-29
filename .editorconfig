@@ -10,5 +10,5 @@ insert_final_newline = true
 indent_size = 4
 
 # Flutter files use an ident size of 2 by default
-[*.{dart,yaml,iml,metadata,xml}]
+[*.{dart,yaml,iml,yml,metadata,xml}]
 indent_size = 2
