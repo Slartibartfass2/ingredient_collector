@@ -1,0 +1,61 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Effective Dart rules
+    - directives_ordering
+    - lines_longer_than_80_chars
+    - package_api_docs
+    - public_member_api_docs
+    - comment_references
+    - prefer_relative_imports
+    - unnecessary_lambdas
+    - prefer_expression_function_bodies
+    - avoid_catches_without_on_clauses
+    - avoid_catching_errors
+    - use_to_and_as_if_applicable
+    - one_member_abstracts
+    - avoid_classes_with_only_static_members
+    - prefer_mixin
+    - use_setters_to_change_properties
+    - avoid_setters_without_getters
+    - avoid_returning_this
+    - type_annotate_public_apis
+    - omit_local_variable_types
+    - avoid_types_on_closure_parameters
+    - avoid_private_typedef_functions
+    - avoid_positional_boolean_parameters
+    - avoid_equals_and_hash_code_on_mutable_classes
+    - unnecessary_raw_strings
+    - use_if_null_to_convert_nulls_to_bools
+    # Additional rules
+    - always_declare_return_types
+    - avoid_bool_literals_in_conditional_expressions
+    - avoid_returning_null
+    - avoid_returning_null_for_future
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - cascade_invocations
+    - discarded_futures
+    - unawaited_futures
+    - literal_only_boolean_expressions
+    - only_throw_errors
+    - parameter_assignments
+    - prefer_asserts_with_message
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_await_in_return
+    - unnecessary_final
+    - unnecessary_null_aware_operator_on_extension_on_nullable
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - unnecessary_to_list_in_spreads
+    - use_is_even_rather_than_modulo
+    - use_named_constants
+    - use_raw_strings
+    - use_test_throws_matchers
+    - cast_nullable_to_non_nullable
+    - require_trailing_commas
+    - unnecessary_null_checks
+    - use_enums
+    - use_super_parameters
