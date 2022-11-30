@@ -30,14 +30,6 @@ class IngredientCollectorApp extends StatelessWidget {
       );
 }
 
-class SizeHandler {
-  final MediaQueryData _queryData;
-
-  const SizeHandler(this._queryData);
-
-  double getWidth() => _queryData.size.width;
-}
-
 class AppBody extends StatelessWidget {
   const AppBody({super.key});
 
@@ -52,8 +44,8 @@ class AppBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var sizeHandler = SizeHandler(MediaQuery.of(context));
-    var deviceWidth = sizeHandler.getWidth();
+    var queryData = MediaQuery.of(context);
+    var deviceWidth = queryData.size.width;
     var containerWidth = _getContainerWidth(deviceWidth);
 
     return Container(
@@ -76,7 +68,8 @@ class RecipeInputFormState extends State<RecipeInputForm> {
   final _formKey = GlobalKey<FormState>();
 
   int _id = 0;
-  final List<RecipeInputRow> _rowList = [];
+  final _rowList = <RecipeInputRow>[];
+  final _collectionResultController = TextEditingController();
 
   void removeRow(RecipeInputRow row) {
     setState(() {
@@ -136,6 +129,14 @@ class RecipeInputFormState extends State<RecipeInputForm> {
           Padding(
             padding: buttonPadding,
             child: submitButton,
+          ),
+          TextField(
+            controller: _collectionResultController,
+            maxLines: 10,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'The collected ingredients are listed here',
+            ),
           ),
         ],
       ),
