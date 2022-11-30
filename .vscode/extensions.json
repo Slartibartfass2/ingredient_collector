@@ -3,5 +3,7 @@
         "dart-code.dart-code",
         "dart-code.flutter",
         "editorconfig.editorconfig",
+        "blaxou.freezed",
+        "GaetSchwartz.build-runner",
     ]
 }

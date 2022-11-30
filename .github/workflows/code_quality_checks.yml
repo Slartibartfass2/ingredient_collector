@@ -19,8 +19,8 @@ jobs:
 
       - run: flutter --version
 
-      - name: Get dependencies
-        run: flutter pub get
+      - name: Run setup script
+        run: bash setup.ps1
 
       - name: Verify formatting
         run: flutter format . --output none --set-exit-if-changed --fix
