@@ -109,6 +109,3 @@ String _convertIngredientsToString(List<Ingredient> ingredients) {
   }
   return result;
 }
-
-String _formatDouble(double number) =>
-    number.toStringAsFixed(number.truncateToDouble() == number ? 0 : 2);
