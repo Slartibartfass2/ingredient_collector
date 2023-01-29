@@ -39,6 +39,9 @@ jobs:
           flutter-version: '3.3.9'
           channel: 'stable'
 
+      - name: Run setup script
+        run: bash setup.ps1
+
       - name: Build for Windows
         run: flutter build windows
 
