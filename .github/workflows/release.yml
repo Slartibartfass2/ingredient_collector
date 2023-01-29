@@ -45,23 +45,11 @@ jobs:
       - name: Build for Windows
         run: flutter build windows
 
-      - run: |
-          dir
-          cd build
-          dir
-          cd windows
-          dir
-          cd runner
-          dir
-          cd ..
-          cd ..
-          cd ..
-
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: windows-release-artifacts
-          path: './windows/runner/Release/**'
+          path: 'build/windows/runner/Release/**'
           if-no-files-found: error
 
   release:
