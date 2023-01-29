@@ -46,16 +46,11 @@ jobs:
       - name: Build for Windows
         run: flutter build windows
 
-      - name: Zip build files
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r windows-release.zip build/windows/runner/Release
-
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: windows-release-artifacts
-          path: 'windows-release.zip'
+          path: 'build/windows/runner/Release/**'
           if-no-files-found: error
 
   release:
@@ -72,9 +67,22 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: windows-release-artifacts
-          path: release/
+          path: windows-release/
+
+      - name: Zip build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r windows-release.zip windows-release
+
+      - run: |
+          dir
+          cd windows-release
+          dir
+          cd ..
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: release/windows-release.zip
+          tag_name: ${{env.RELEASE_TAG}}
+          name: Release ${{env.RELEASE_TAG}}
+          files: windows-release/windows-release.zip
