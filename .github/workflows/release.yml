@@ -46,16 +46,16 @@ jobs:
         run: flutter build windows
 
       - run: |
-        dir
-        cd build
-        dir
-        cd windows
-        dir
-        cd runner
-        dir
-        cd ..
-        cd ..
-        cd ..
+          dir
+          cd build
+          dir
+          cd windows
+          dir
+          cd runner
+          dir
+          cd ..
+          cd ..
+          cd ..
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
