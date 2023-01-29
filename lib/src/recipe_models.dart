@@ -49,8 +49,8 @@ class Ingredient with _$Ingredient {
   /// Creates [Ingredient] object
   const factory Ingredient({
     /// Amount of ingredient
-    /// e.g. "2", "1-2"
-    required String amount,
+    /// e.g. "2", "3.4"
+    required double amount,
 
     /// Unit of ingredient
     /// e.g. "ml", "g", "oz"
@@ -64,4 +64,14 @@ class Ingredient with _$Ingredient {
   /// Parses [Ingredient] object from json string
   factory Ingredient.fromJson(Map<String, Object?> json) =>
       _$IngredientFromJson(json);
+}
+
+/// Data class which holds different string representations of the recipe
+/// collection result.
+@freezed
+class RecipeCollectionResult with _$RecipeCollectionResult {
+  /// Creates [RecipeCollectionResult] object
+  factory RecipeCollectionResult({
+    required String resultSortedByAmount,
+  }) = _RecipeCollectionResult;
 }
