@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - name: Check for main branch
         id: "check"
         run: |
@@ -45,11 +46,16 @@ jobs:
       - name: Build for Windows
         run: flutter build windows
 
+      - name: Zip build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r windows-release.zip build/windows/runner/Release
+
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: windows-release-artifacts
-          path: 'build/windows/runner/Release/**'
+          path: 'windows-release.zip'
           if-no-files-found: error
 
   release:
@@ -61,12 +67,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Get windows release artifact
         uses: actions/download-artifact@v3
         with:
           name: windows-release-artifacts
-          path: windows-release/
+          path: release/
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: windows-release/**
+          files: release/windows-release.zip
