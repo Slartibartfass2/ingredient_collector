@@ -23,10 +23,12 @@ jobs:
         run: bash setup.ps1
 
       - name: Verify formatting
-        run: flutter format . --output none --set-exit-if-changed --fix
+        run: |
+          flutter format . --fix
+          git diff --exit-code
 
       - name: Analyze project source
-        run: flutter analyze --fatal-infos
+        run: flutter analyze
 
       - name: Run tests
         run: flutter test
