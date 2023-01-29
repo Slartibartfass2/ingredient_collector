@@ -69,4 +69,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: windows-release/
+          files: windows-release/**
