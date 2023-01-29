@@ -74,15 +74,9 @@ jobs:
         with:
           args: zip -qq -r windows-release.zip windows-release
 
-      - run: |
-          dir
-          cd windows-release
-          dir
-          cd ..
-
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{env.RELEASE_TAG}}
           name: Release ${{env.RELEASE_TAG}}
-          files: windows-release/windows-release.zip
+          files: windows-release.zip
