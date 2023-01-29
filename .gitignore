@@ -41,3 +41,6 @@ app.*.map.json
 # Freezed generated files
 *.freezed.dart
 *.g.dart
+
+# Puppeteer
+.local-chromium
