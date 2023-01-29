@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'src/recipe_controller.dart';
+import 'src/recipe_models.dart';
+
 const _title = 'Ingredient Collector';
 const recipeRowsAtBeginning = 4;
 
@@ -95,14 +98,16 @@ class RecipeInputFormState extends State<RecipeInputForm> {
   Widget build(BuildContext context) {
     var submitButton = ElevatedButton(
       child: const Text('Submit'),
-      onPressed: () {
+      onPressed: () async {
         if (_formKey.currentState!.validate() && _rowList.isNotEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Processing Data'),
             ),
           );
-          // TODO: Collect ingredients
+          var recipes = _rowList.map((row) => row.getData()).toList();
+          var result = await collectIngredients(recipes);
+          _collectionResultController.text = result.resultSortedByAmount;
         }
       },
     );
@@ -151,6 +156,12 @@ class RecipeInputRow extends StatelessWidget {
   final TextEditingController servingsController = TextEditingController();
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
+
+  RecipeData getData() {
+    var url = Uri.parse(urlController.text);
+    var servings = int.parse(servingsController.text);
+    return RecipeData(url: url, servings: servings);
+  }
 
   @override
   Widget build(BuildContext context) {

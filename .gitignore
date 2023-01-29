@@ -37,3 +37,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Freezed generated files
+*.freezed.dart
+*.g.dart
+
+# Puppeteer
+.local-chromium
