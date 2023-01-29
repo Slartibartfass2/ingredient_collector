@@ -13,14 +13,14 @@ jobs:
       continue: ${{ steps.check.outputs.continue }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Check for main branch
         id: "check"
         run: |
-          if [[ $(git name-rev --name-only --exclude="tags/*" ${{ github.sha }}) == "remotes/origin/ci/16-feature-add-code-coverage-to-ci" ]]; then
+          if [[ $(git name-rev --name-only --exclude="tags/*" ${{ github.sha }}) == "remotes/origin/main" ]]; then
             echo "continue release process."
             echo "::set-output name=continue::true"
           else
@@ -77,6 +77,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{env.RELEASE_TAG}}
-          name: Release ${{env.RELEASE_TAG}}
           files: windows-release.zip
