@@ -81,7 +81,7 @@ List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
   for (var ingredient in ingredients) {
     var index = mergedIngredients.indexWhere(
       (element) =>
-          ingredient.name == element.name && ingredient.unit == ingredient.unit,
+          ingredient.name == element.name && ingredient.unit == element.unit,
     );
 
     if (index == -1) {
