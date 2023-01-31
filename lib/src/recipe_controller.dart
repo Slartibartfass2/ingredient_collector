@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:puppeteer/puppeteer.dart';
 
@@ -55,7 +56,9 @@ Future<RecipeCollectionResult> collectIngredients(
 RecipeCollectionResult _createCollectionResultFromRecipes(
   List<Recipe> recipes,
 ) {
-  var mergedIngredients = _mergeRecipes(recipes);
+  var mergedIngredients = mergeIngredientLists(
+    recipes.map((recipe) => recipe.ingredients).toList(),
+  );
   var ingredientsSortedByAmount = mergedIngredients
     ..sort((a, b) => b.amount.compareTo(a.amount));
 
@@ -65,11 +68,19 @@ RecipeCollectionResult _createCollectionResultFromRecipes(
   );
 }
 
-List<Ingredient> _mergeRecipes(List<Recipe> recipes) {
+@visibleForTesting
+
+/// Merges the [Ingredient] list to a single list of [Ingredient]s.
+///
+/// [Ingredient]s with the same name and unit are merged so that the amount is
+/// added together e.g. 4 g Sugar and 8 g Sugar results in 12 g Sugar.
+List<Ingredient> mergeIngredientLists(
+  List<List<Ingredient>> recipeIngredients,
+) {
   var mergedIngredients = <Ingredient>[];
 
-  for (var recipe in recipes) {
-    for (var ingredient in recipe.ingredients) {
+  for (var ingredientList in recipeIngredients) {
+    for (var ingredient in ingredientList) {
       var index = mergedIngredients.indexWhere(
         (element) =>
             ingredient.name == element.name &&
