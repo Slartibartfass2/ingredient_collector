@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:puppeteer/puppeteer.dart';
 
@@ -55,7 +56,9 @@ Future<RecipeCollectionResult> collectIngredients(
 RecipeCollectionResult _createCollectionResultFromRecipes(
   List<Recipe> recipes,
 ) {
-  var mergedIngredients = _mergeRecipes(recipes);
+  var mergedIngredients = mergeIngredients(
+    recipes.expand<Ingredient>((recipe) => recipe.ingredients).toList(),
+  );
   var ingredientsSortedByAmount = mergedIngredients
     ..sort((a, b) => b.amount.compareTo(a.amount));
 
@@ -65,27 +68,31 @@ RecipeCollectionResult _createCollectionResultFromRecipes(
   );
 }
 
-List<Ingredient> _mergeRecipes(List<Recipe> recipes) {
+@visibleForTesting
+
+/// Merges the [Ingredient]s in the passed list to a list of unique
+/// [Ingredient]s.
+///
+/// [Ingredient]s with the same name and unit are merged so that the amount is
+/// added together e.g. 4 g Sugar and 8 g Sugar results in 12 g Sugar.
+List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
   var mergedIngredients = <Ingredient>[];
 
-  for (var recipe in recipes) {
-    for (var ingredient in recipe.ingredients) {
-      var index = mergedIngredients.indexWhere(
-        (element) =>
-            ingredient.name == element.name &&
-            ingredient.unit == ingredient.unit,
-      );
+  for (var ingredient in ingredients) {
+    var index = mergedIngredients.indexWhere(
+      (element) =>
+          ingredient.name == element.name && ingredient.unit == element.unit,
+    );
 
-      if (index == -1) {
-        mergedIngredients.add(ingredient);
-      } else {
-        var amount = mergedIngredients[index].amount + ingredient.amount;
-        mergedIngredients[index] = Ingredient(
-          amount: amount,
-          unit: ingredient.unit,
-          name: ingredient.name,
-        );
-      }
+    if (index == -1) {
+      mergedIngredients.add(ingredient);
+    } else {
+      var amount = mergedIngredients[index].amount + ingredient.amount;
+      mergedIngredients[index] = Ingredient(
+        amount: amount,
+        unit: ingredient.unit,
+        name: ingredient.name,
+      );
     }
   }
 
