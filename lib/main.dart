@@ -157,10 +157,10 @@ class RecipeInputRow extends StatelessWidget {
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
 
-  RecipeData getData() {
+  RecipeInfo getData() {
     var url = Uri.parse(urlController.text);
     var servings = int.parse(servingsController.text);
-    return RecipeData(url: url, servings: servings);
+    return RecipeInfo(url: url, servings: servings);
   }
 
   @override

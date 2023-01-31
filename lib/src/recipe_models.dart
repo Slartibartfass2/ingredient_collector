@@ -6,19 +6,19 @@ part 'recipe_models.g.dart';
 
 /// Data class which holds the recipe [url] and the amount of [servings]
 @freezed
-class RecipeData with _$RecipeData {
-  /// Creates [RecipeData] object
-  const factory RecipeData({
+class RecipeInfo with _$RecipeInfo {
+  /// Creates [RecipeInfo] object
+  const factory RecipeInfo({
     /// URL of the recipe
     required Uri url,
 
     /// Amount of servings
     required int servings,
-  }) = _RecipeData;
+  }) = _RecipeInfo;
 
   /// Parses [Recipe] object from json string
-  factory RecipeData.fromJson(Map<String, Object?> json) =>
-      _$RecipeDataFromJson(json);
+  factory RecipeInfo.fromJson(Map<String, Object?> json) =>
+      _$RecipeInfoFromJson(json);
 }
 
 /// Data class which holds information about a single recipe.
