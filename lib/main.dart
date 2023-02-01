@@ -107,7 +107,7 @@ class RecipeInputFormState extends State<RecipeInputForm> {
             ),
           );
           var recipeInfos = _rowList.map((row) => row.getData()).toList();
-          var recipes = await collectRecipes(recipeInfos);
+          var recipes = await collectRecipes(recipeInfos: recipeInfos);
           var collectionResult = createCollectionResultFromRecipes(recipes);
           _collectionResultController.text =
               collectionResult.resultSortedByAmount;
