@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'src/ingredient_output_generator.dart';
 import 'src/recipe_controller.dart';
 import 'src/recipe_models.dart';
 
@@ -105,9 +106,11 @@ class RecipeInputFormState extends State<RecipeInputForm> {
               content: Text('Processing Data'),
             ),
           );
-          var recipes = _rowList.map((row) => row.getData()).toList();
-          var result = await collectIngredients(recipes);
-          _collectionResultController.text = result.resultSortedByAmount;
+          var recipeInfos = _rowList.map((row) => row.getData()).toList();
+          var recipes = await collectRecipes(recipeInfos);
+          var collectionResult = createCollectionResultFromRecipes(recipes);
+          _collectionResultController.text =
+              collectionResult.resultSortedByAmount;
         }
       },
     );
@@ -157,10 +160,10 @@ class RecipeInputRow extends StatelessWidget {
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
 
-  RecipeData getData() {
+  RecipeInfo getData() {
     var url = Uri.parse(urlController.text);
     var servings = int.parse(servingsController.text);
-    return RecipeData(url: url, servings: servings);
+    return RecipeInfo(url: url, servings: servings);
   }
 
   @override

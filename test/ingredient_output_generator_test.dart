@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
+import 'package:ingredient_collector/src/ingredient_output_generator.dart';
 import 'package:ingredient_collector/src/recipe_models.dart';
 
 void main() {
