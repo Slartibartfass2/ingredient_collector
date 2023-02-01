@@ -13,6 +13,8 @@ dependencies:
   http: ^0.13.5
   intl: ^0.18.0
   json_annotation: ^4.7.0
+  optional: ^6.1.0+1
+  universal_io: ^2.0.4
 
 dev_dependencies:
   flutter_test:

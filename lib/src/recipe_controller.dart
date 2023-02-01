@@ -1,13 +1,14 @@
-import 'dart:io' show Platform;
-
 import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:optional/optional.dart';
+import 'package:universal_io/io.dart' show Platform;
 
 import 'recipe-scripts/kptncook.dart';
 import 'recipe_models.dart' show Recipe, RecipeInfo;
 
-final Map<String, Recipe Function(Document, int)> _recipeParseMethodMap = {
+final Map<String, Optional<Recipe> Function(Document, int)>
+    _recipeParseMethodMap = {
   'mobile.kptncook.com': parseKptnCookRecipe,
 };
 
@@ -27,15 +28,16 @@ Future<List<Recipe>> collectRecipes(List<RecipeInfo> recipeInfos) async {
   };
 
   for (var recipe in recipeInfos) {
-    var resultRecipe = await _collectRecipe(client, recipe, headers);
-    results.add(resultRecipe);
+    await _collectRecipe(client, recipe, headers).then(
+      (optionalRecipe) => optionalRecipe.ifPresent(results.add),
+    );
   }
 
   client.close();
   return results;
 }
 
-Future<Recipe> _collectRecipe(
+Future<Optional<Recipe>> _collectRecipe(
   http.Client client,
   RecipeInfo recipe,
   Map<String, String> headers,
