@@ -16,7 +16,7 @@ void main() {
       ),
     ];
 
-    var result = await collectRecipes(recipeInfos: recipeInfos, language: "de");
+    var result = await collectRecipes(recipeInfos, "de");
     expect(result.length, 1);
 
     var recipe = result.first;

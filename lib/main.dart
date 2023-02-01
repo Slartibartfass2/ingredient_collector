@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:universal_io/io.dart' show Platform;
 
 import 'src/ingredient_output_generator.dart';
-import 'src/recipe_controller.dart';
-import 'src/recipe_models.dart';
+import 'src/recipe_controller.dart' show collectRecipes;
+import 'src/recipe_models.dart' show RecipeInfo;
 
 const _title = 'Ingredient Collector';
 const recipeRowsAtBeginning = 4;
@@ -107,7 +108,9 @@ class RecipeInputFormState extends State<RecipeInputForm> {
             ),
           );
           var recipeInfos = _rowList.map((row) => row.getData()).toList();
-          var recipes = await collectRecipes(recipeInfos: recipeInfos);
+          // Get first part of local language e.g. en_US -> en
+          var language = Platform.localeName.split("_")[0];
+          var recipes = await collectRecipes(recipeInfos, language);
           var collectionResult = createCollectionResultFromRecipes(recipes);
           _collectionResultController.text =
               collectionResult.resultSortedByAmount;
