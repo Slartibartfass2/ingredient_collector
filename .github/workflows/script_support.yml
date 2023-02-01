@@ -1,0 +1,25 @@
+on:
+  schedule:
+    # Runs every monday at 12 AM
+    - cron: '0 12 * * 1'
+
+jobs:
+  test-script-support:
+    name: Test if scripts can still parse recipes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.9'
+          channel: 'stable'
+
+      - name: Run setup script
+        run: bash setup.ps1
+
+      - name: Run script support tests
+        run: |
+          flutter test \
+            --tags="parsing-test" \
+            --reporter=expanded

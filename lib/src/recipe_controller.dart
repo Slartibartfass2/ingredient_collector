@@ -2,7 +2,6 @@ import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:optional/optional.dart';
-import 'package:universal_io/io.dart' show Platform;
 
 import 'recipe-scripts/kptncook.dart';
 import 'recipe_models.dart' show Recipe, RecipeInfo;
@@ -17,14 +16,16 @@ final Map<String, Optional<Recipe> Function(Document, int)>
 /// For each [RecipeInfo] a http request is made to the website containing the
 /// recipe. From there the recipe is parsed and adjusted to the amount of
 /// servings. The list of the parsed [Recipe]s is returned.
-Future<List<Recipe>> collectRecipes(List<RecipeInfo> recipeInfos) async {
+/// [language] is set as 'Accept-Language' header in each http request.
+Future<List<Recipe>> collectRecipes(
+  List<RecipeInfo> recipeInfos,
+  String language,
+) async {
   var results = <Recipe>[];
   var client = http.Client();
 
-  // Get first part of local language e.g. en_US -> en
-  var localLanguage = Platform.localeName.split("_")[0];
   var headers = <String, String>{
-    'Accept-Language': localLanguage,
+    'Accept-Language': language,
   };
 
   for (var recipe in recipeInfos) {
