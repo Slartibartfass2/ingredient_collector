@@ -39,6 +39,7 @@ jobs:
         with:
           flutter-version: '3.3.9'
           channel: 'stable'
+          cache: true
 
       - name: Run setup script
         run: bash setup.ps1
@@ -64,6 +65,7 @@ jobs:
         with:
           flutter-version: '3.3.9'
           channel: 'stable'
+          cache: true
 
       - name: Run setup script
         run: bash setup.ps1
