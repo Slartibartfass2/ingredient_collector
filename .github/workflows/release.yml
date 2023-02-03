@@ -53,28 +53,68 @@ jobs:
           path: 'build/windows/runner/Release/**'
           if-no-files-found: error
 
+  build-web-release:
+    name: Build release for Web
+    runs-on: ubuntu-latest
+    needs: ["check-branch"]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.9'
+          channel: 'stable'
+
+      - name: Run setup script
+        run: bash setup.ps1
+
+      - name: Build for Web
+        run: flutter build web
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-release-artifacts
+          path: 'build/web/**'
+          if-no-files-found: error
+
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs: ["build-windows-release"]
+    needs: ["build-windows-release", "build-web-release"]
     permissions:
       contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Windows
       - name: Get windows release artifact
         uses: actions/download-artifact@v3
         with:
           name: windows-release-artifacts
           path: windows-release/
 
-      - name: Zip build files
+      - name: Zip windows build files
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r windows-release.zip windows-release
 
+      # Web
+      - name: Get web release artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: web-release-artifacts
+          path: web-release/
+
+      - name: Zip web build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r web-release.zip web-release
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: windows-release.zip
+          files: |
+            windows-release.zip
+            web-release.zip
