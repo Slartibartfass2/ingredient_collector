@@ -5,29 +5,9 @@ on:
     tags:
       - "v*.*.*"
 
+  workflow_dispatch:
+
 jobs:
-  check-branch:
-    name: Check branch
-    runs-on: ubuntu-latest
-    outputs:
-      continue: ${{ steps.check.outputs.continue }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Check for main branch
-        id: "check"
-        run: |
-          if [[ $(git name-rev --name-only --exclude="tags/*" ${{ github.sha }}) == "remotes/origin/main" ]]; then
-            echo "continue release process."
-            echo "::set-output name=continue::true"
-          else
-            echo "release tag on wrong branch."
-            echo "::set-output name=continue::false"
-          fi
-
   build-windows-release:
     name: Build release for Windows
     runs-on: windows-latest
@@ -113,7 +93,7 @@ jobs:
         with:
           name: android-release-artifacts
           path: |
-            'build/app/outputs/bundle/release/app-release.aab'
+            'build/app/outputs/bundle/release/**'
             'build/app/outputs/flutter-apk/app-release.apk'
           if-no-files-found: error
 
