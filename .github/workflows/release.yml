@@ -93,8 +93,8 @@ jobs:
         with:
           name: android-release-artifacts
           path: |
-            'build/app/outputs/bundle/release/**'
-            'build/app/outputs/flutter-apk/app-release.apk'
+            build/app/outputs/bundle/release/**
+            build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
 
   release:
