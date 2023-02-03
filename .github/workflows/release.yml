@@ -11,7 +11,7 @@ jobs:
   build-windows-release:
     name: Build release for Windows
     runs-on: windows-latest
-    needs: ["check-branch"]
+    needs: []
     steps:
       - uses: actions/checkout@v3
 
@@ -37,7 +37,7 @@ jobs:
   build-web-release:
     name: Build release for Web
     runs-on: ubuntu-latest
-    needs: ["check-branch"]
+    needs: []
     steps:
       - uses: actions/checkout@v3
 
@@ -63,7 +63,7 @@ jobs:
   build-android-release:
     name: Build release for Android
     runs-on: ubuntu-latest
-    needs: ["check-branch"]
+    needs: []
     steps:
       - uses: actions/checkout@v3
 
