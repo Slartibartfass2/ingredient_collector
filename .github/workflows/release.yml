@@ -5,33 +5,13 @@ on:
     tags:
       - "v*.*.*"
 
+  workflow_dispatch:
+
 jobs:
-  check-branch:
-    name: Check branch
-    runs-on: ubuntu-latest
-    outputs:
-      continue: ${{ steps.check.outputs.continue }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Check for main branch
-        id: "check"
-        run: |
-          if [[ $(git name-rev --name-only --exclude="tags/*" ${{ github.sha }}) == "remotes/origin/main" ]]; then
-            echo "continue release process."
-            echo "::set-output name=continue::true"
-          else
-            echo "release tag on wrong branch."
-            echo "::set-output name=continue::false"
-          fi
-
   build-windows-release:
     name: Build release for Windows
     runs-on: windows-latest
-    needs: ["check-branch"]
+    needs: []
     steps:
       - uses: actions/checkout@v3
 
@@ -57,7 +37,7 @@ jobs:
   build-web-release:
     name: Build release for Web
     runs-on: ubuntu-latest
-    needs: ["check-branch"]
+    needs: []
     steps:
       - uses: actions/checkout@v3
 
@@ -80,10 +60,47 @@ jobs:
           path: 'build/web/**'
           if-no-files-found: error
 
+  build-android-release:
+    name: Build release for Android
+    runs-on: ubuntu-latest
+    needs: []
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+          cache: 'gradle'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.9'
+          channel: 'stable'
+          cache: true
+
+      - name: Run setup script
+        run: bash setup.ps1
+
+      - name: Build for Android app bundle
+        run: flutter build appbundle
+
+      - name: Build for Android apk
+        run: flutter build apk
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-release-artifacts
+          path: |
+            build/app/outputs/bundle/release/**
+            build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+
   release:
     name: Release
     runs-on: ubuntu-latest
-    needs: ["build-windows-release", "build-web-release"]
+    needs: ["build-windows-release", "build-web-release", "build-android-release"]
     permissions:
       contents: write
     steps:
@@ -114,9 +131,22 @@ jobs:
         with:
           args: zip -qq -r web-release.zip web-release
 
+      # Android
+      - name: Get android release artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: android-release-artifacts
+          path: android-release/
+
+      - name: Zip android build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r android-release.zip android-release
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             windows-release.zip
             web-release.zip
+            android-release.zip
