@@ -51,7 +51,7 @@ jobs:
         run: bash setup.ps1
 
       - name: Build for Web
-        run: flutter build web
+        run: flutter build web --base-href="/ingredient_collector/"
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
@@ -150,3 +150,36 @@ jobs:
             windows-release.zip
             web-release.zip
             android-release.zip
+
+  deploy-web:
+    name: Deploy web release on GitHub Pages
+    runs-on: ubuntu-latest
+    needs: ["release"]
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Get web release artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: web-release-artifacts
+          path: .
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
