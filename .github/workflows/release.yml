@@ -51,7 +51,7 @@ jobs:
         run: bash setup.ps1
 
       - name: Build for Web
-        run: flutter build web
+        run: flutter build web --base-href="/ingredient_collector/"
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
