@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart' show Platform;
 
 import 'src/ingredient_output_generator.dart';
-import 'src/recipe_controller.dart' show collectRecipes;
+import 'src/recipe_controller.dart' show collectRecipes, isUrlSupported;
 import 'src/recipe_models.dart' show RecipeInfo;
 
 const _title = 'Ingredient Collector';
@@ -211,6 +211,7 @@ class UrlInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
@@ -219,12 +220,20 @@ class UrlInputField extends StatelessWidget {
         keyboardType: TextInputType.url,
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter the recipe url';
+            return null;
           }
-          var isUrl = Uri.tryParse(value)?.hasAbsolutePath ?? false;
+
+          var url = Uri.tryParse(value);
+
+          var isUrl = url?.hasAbsolutePath ?? false;
           if (!isUrl) {
             return 'Please enter a valid url';
           }
+
+          if (url != null && !isUrlSupported(url)) {
+            return 'Url is not supported';
+          }
+
           return null;
         },
       );

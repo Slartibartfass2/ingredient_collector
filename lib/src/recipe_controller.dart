@@ -51,3 +51,9 @@ Future<Optional<Recipe>> _collectRecipe(
 
   return parseMethod!.call(document, recipe.servings);
 }
+
+/// Checks if the passed [Uri] is supported.
+///
+/// Supported means that there's a parsing script available which can be used
+/// to collect the ingredients of the recipe.
+bool isUrlSupported(Uri url) => _recipeParseMethodMap.containsKey(url.host);
