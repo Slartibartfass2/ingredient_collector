@@ -101,13 +101,22 @@ class RecipeInputFormState extends State<RecipeInputForm> {
     var submitButton = ElevatedButton(
       child: const Text('Submit'),
       onPressed: () async {
-        if (_formKey.currentState!.validate() && _rowList.isNotEmpty) {
+        var recipeInfos = _rowList
+            .where(
+              (row) =>
+                  row.urlController.text.isNotEmpty &&
+                  row.servingsController.text.isNotEmpty,
+            )
+            .map((row) => row.getData())
+            .toList();
+
+        if (_formKey.currentState!.validate() && recipeInfos.isNotEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Processing Data'),
             ),
           );
-          var recipeInfos = _rowList.map((row) => row.getData()).toList();
+
           // Get first part of local language e.g. en_US -> en
           var language = Platform.localeName.split("_")[0];
           var recipes = await collectRecipes(recipeInfos, language);
@@ -255,11 +264,5 @@ class ServingsInputField extends StatelessWidget {
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.allow(RegExp('[1-9][0-9]*')),
         ],
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Invalid value';
-          }
-          return null;
-        },
       );
 }
