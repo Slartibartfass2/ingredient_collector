@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart' show Platform;
 
 import 'src/ingredient_output_generator.dart';
+import 'src/models/recipe_parsing_job.dart';
 import 'src/recipe_controller.dart' show collectRecipes, isUrlSupported;
-import 'src/recipe_models.dart' show RecipeInfo;
 
 const _title = 'Ingredient Collector';
 const recipeRowsAtBeginning = 4;
@@ -172,10 +172,10 @@ class RecipeInputRow extends StatelessWidget {
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
 
-  RecipeInfo getData() {
+  RecipeParsingJob getData() {
     var url = Uri.parse(urlController.text);
     var servings = int.parse(servingsController.text);
-    return RecipeInfo(url: url, servings: servings);
+    return RecipeParsingJob(url: url, servings: servings);
   }
 
   @override

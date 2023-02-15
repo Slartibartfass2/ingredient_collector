@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart' show fail;
-import 'package:ingredient_collector/src/recipe_models.dart'
-    show Recipe, Ingredient;
+import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/recipe.dart';
 
 void expectIngredient(
   Recipe recipe,

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/ingredient_output_generator.dart';
-import 'package:ingredient_collector/src/recipe_models.dart';
+import 'package:ingredient_collector/src/models/ingredient.dart';
 
 void main() {
   test('merge ingredients with empty list', () {

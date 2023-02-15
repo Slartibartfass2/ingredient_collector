@@ -1,7 +1,8 @@
 import 'package:html/dom.dart';
 import 'package:optional/optional.dart';
 
-import '../recipe_models.dart';
+import '../models/ingredient.dart';
+import '../models/recipe.dart';
 
 /// Parses a [Document] from the KptnCook website to a recipe.
 Optional<Recipe> parseKptnCookRecipe(Document document, int servings) {
