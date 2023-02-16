@@ -18,5 +18,5 @@ class RecipeParsingJob with _$RecipeParsingJob {
 
   /// Parses [RecipeParsingJob] object from json string.
   factory RecipeParsingJob.fromJson(Map<String, Object?> json) =>
-			_$RecipeParsingJobFromJson(json);
+      _$RecipeParsingJobFromJson(json);
 }

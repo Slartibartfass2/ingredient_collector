@@ -43,11 +43,7 @@ List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
       mergedIngredients.add(ingredient);
     } else {
       var amount = mergedIngredients[index].amount + ingredient.amount;
-      mergedIngredients[index] = Ingredient(
-        amount: amount,
-        unit: ingredient.unit,
-        name: ingredient.name,
-      );
+      mergedIngredients[index] = ingredient.copyWith(amount: amount);
     }
   }
 

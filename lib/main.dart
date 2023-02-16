@@ -119,8 +119,17 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
           // Get first part of local language e.g. en_US -> en
           var language = Platform.localeName.split("_")[0];
-          var recipes = await collectRecipes(recipeInfos, language);
-          var collectionResult = createCollectionResultFromRecipes(recipes);
+          var parsingResults = await collectRecipes(recipeInfos, language);
+          var metaDataLogs = parsingResults
+              .map((result) => result.metaDataLog)
+              .expand((log) => log)
+              .toList();
+          var parsedRecipes = parsingResults
+              .where((result) => result.recipe != null)
+              .map((result) => result.recipe!)
+              .toList();
+          var collectionResult =
+              createCollectionResultFromRecipes(parsedRecipes);
           _collectionResultController.text =
               collectionResult.resultSortedByAmount;
         }

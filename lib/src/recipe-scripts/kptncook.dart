@@ -1,11 +1,16 @@
 import 'package:html/dom.dart';
-import 'package:optional/optional.dart';
 
 import '../models/ingredient.dart';
+import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
+import '../models/recipe_parsing_job.dart';
+import '../models/recipe_parsing_result.dart';
 
 /// Parses a [Document] from the KptnCook website to a recipe.
-Optional<Recipe> parseKptnCookRecipe(Document document, int servings) {
+RecipeParsingResult parseKptnCookRecipe(
+  Document document,
+  RecipeParsingJob recipeParsingJob,
+) {
   var recipeNameElements = document.getElementsByClassName("kptn-recipetitle");
   var servingsElements = document.getElementsByClassName("kptn-person-count");
   var listContainers = document.getElementsByClassName("col-md-offset-3");
@@ -15,7 +20,7 @@ Optional<Recipe> parseKptnCookRecipe(Document document, int servings) {
       servingsElements.isEmpty ||
       listContainers.length < 3 ||
       listContainers[2].children.length < 3) {
-    return const Optional.empty();
+    return createFailedRecipeParsingResult(recipeParsingJob.url);
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -25,10 +30,10 @@ Optional<Recipe> parseKptnCookRecipe(Document document, int servings) {
   var servingsDescriptionText = servingsElements.first.text;
   var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
   if (recipeServingsMatch == null || recipeServingsMatch.group(0) == null) {
-    return const Optional.empty();
+    return createFailedRecipeParsingResult(recipeParsingJob.url);
   }
   var recipeServings = num.parse(recipeServingsMatch.group(0)!);
-  var servingsMultiplier = servings / recipeServings;
+  var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
   var ingredients = <Ingredient>[];
 
@@ -60,11 +65,21 @@ Optional<Recipe> parseKptnCookRecipe(Document document, int servings) {
     ingredients.add(Ingredient(amount: amount, unit: unit, name: name));
   }
 
-  return Optional.of(
-    Recipe(
+  return RecipeParsingResult(
+    recipe: Recipe(
       ingredients: ingredients,
       name: recipeName,
-      servings: servings,
+      servings: recipeParsingJob.servings,
     ),
+    metaDataLog: [
+      const MetaDataLog(
+        type: MetaDataLogType.warning,
+        title: "KptnCook recipe is incomplete",
+        message: 'A KptnCook recipe has two sections: \'You need\' and '
+            '\'You might have this at home\'. The ingredients in the second '
+            'section do not contain quantities and must be completed to get the'
+            ' whole recipe.',
+      ),
+    ],
   );
 }

@@ -1,13 +1,13 @@
 import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
-import 'package:optional/optional.dart';
 
 import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
+import 'models/recipe_parsing_result.dart';
 import 'recipe-scripts/kptncook.dart';
 
-final Map<String, Optional<Recipe> Function(Document, int)>
+final Map<String, RecipeParsingResult Function(Document, RecipeParsingJob)>
     _recipeParseMethodMap = {
   'mobile.kptncook.com': parseKptnCookRecipe,
 };
@@ -18,11 +18,11 @@ final Map<String, Optional<Recipe> Function(Document, int)>
 /// the recipe. From there the recipe is parsed and adjusted to the amount of
 /// servings. The list of the parsed [Recipe]s is returned.
 /// [language] is set as 'Accept-Language' header in each http request.
-Future<List<Recipe>> collectRecipes(
+Future<List<RecipeParsingResult>> collectRecipes(
   List<RecipeParsingJob> recipeParsingJobs,
   String language,
 ) async {
-  var results = <Recipe>[];
+  var results = <RecipeParsingResult>[];
   var client = http.Client();
 
   var headers = <String, String>{
@@ -30,16 +30,15 @@ Future<List<Recipe>> collectRecipes(
   };
 
   for (var recipeParsingJob in recipeParsingJobs) {
-    await _collectRecipe(client, recipeParsingJob, headers).then(
-      (optionalRecipe) => optionalRecipe.ifPresent(results.add),
-    );
+    var result = await _collectRecipe(client, recipeParsingJob, headers);
+    results.add(result);
   }
 
   client.close();
   return results;
 }
 
-Future<Optional<Recipe>> _collectRecipe(
+Future<RecipeParsingResult> _collectRecipe(
   http.Client client,
   RecipeParsingJob recipeParsingJob,
   Map<String, String> headers,
@@ -50,7 +49,7 @@ Future<Optional<Recipe>> _collectRecipe(
 
   var parseMethod = _recipeParseMethodMap[recipeParsingJob.url.host];
 
-  return parseMethod!.call(document, recipeParsingJob.servings);
+  return parseMethod!.call(document, recipeParsingJob);
 }
 
 /// Checks if the passed [Uri] is supported.
