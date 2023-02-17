@@ -65,21 +65,33 @@ RecipeParsingResult parseKptnCookRecipe(
     ingredients.add(Ingredient(amount: amount, unit: unit, name: name));
   }
 
+  var ingredientsWithoutAmount = ingredients
+      .where((ingredient) => ingredient.amount == 0)
+      .map((ingredient) => ingredient.name)
+      .toList();
+  var ingredientsWithoutAmountText = "";
+  var logs = <MetaDataLog>[];
+  if (ingredientsWithoutAmount.isNotEmpty) {
+    ingredientsWithoutAmountText = "'${ingredientsWithoutAmount.join("', '")}'";
+    logs.add(
+      MetaDataLog(
+        type: MetaDataLogType.warning,
+        title: "KptnCook recipe '$recipeName' is incomplete",
+        message: 'A KptnCook recipe has two sections: \'You need\' and '
+            '\'You might have this at home\'.\nThe ingredients in the second '
+            'section do not contain quantities and must be completed to get the'
+            ' whole recipe. The effected ingredients are:\n'
+            '$ingredientsWithoutAmountText',
+      ),
+    );
+  }
+
   return RecipeParsingResult(
     recipe: Recipe(
       ingredients: ingredients,
       name: recipeName,
       servings: recipeParsingJob.servings,
     ),
-    metaDataLog: [
-      const MetaDataLog(
-        type: MetaDataLogType.warning,
-        title: "KptnCook recipe is incomplete",
-        message: 'A KptnCook recipe has two sections: \'You need\' and '
-            '\'You might have this at home\'. The ingredients in the second '
-            'section do not contain quantities and must be completed to get the'
-            ' whole recipe.',
-      ),
-    ],
+    metaDataLog: logs,
   );
 }

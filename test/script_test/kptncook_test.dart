@@ -15,7 +15,7 @@ void main() {
     var result = await collectRecipes([recipeInfo], "de");
     expect(result.length, 1);
 
-    var recipe = result.first;
+    var recipe = result.first.recipe!;
     expect(recipe.servings, 2);
     expect(recipe.ingredients.length, 18);
 
