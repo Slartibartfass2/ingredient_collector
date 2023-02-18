@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:intl/intl.dart' show NumberFormat;
 
-import 'recipe_models.dart' show RecipeCollectionResult, Recipe, Ingredient;
+import 'models/ingredient.dart';
+import 'models/recipe.dart';
+import 'models/recipe_collection_result.dart';
 
 /// Creates different representations of the passed [Recipe]s.
 ///
 /// The [RecipeCollectionResult] contains strings with different representations
-///
 RecipeCollectionResult createCollectionResultFromRecipes(
   List<Recipe> recipes,
 ) {
@@ -42,11 +43,7 @@ List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
       mergedIngredients.add(ingredient);
     } else {
       var amount = mergedIngredients[index].amount + ingredient.amount;
-      mergedIngredients[index] = Ingredient(
-        amount: amount,
-        unit: ingredient.unit,
-        name: ingredient.name,
-      );
+      mergedIngredients[index] = ingredient.copyWith(amount: amount);
     }
   }
 

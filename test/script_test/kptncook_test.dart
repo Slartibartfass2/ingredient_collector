@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart' show test, expect, fail;
+import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller.dart'
     show collectRecipes;
-import 'package:ingredient_collector/src/recipe_models.dart' show RecipeInfo;
 
 import 'script_test_helper.dart' show expectIngredient;
 
 void main() {
   test("collect KptnCook recipe", () async {
-    var recipeInfo = RecipeInfo(
+    var recipeInfo = RecipeParsingJob(
       url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
       servings: 2,
     );
@@ -15,7 +15,7 @@ void main() {
     var result = await collectRecipes([recipeInfo], "de");
     expect(result.length, 1);
 
-    var recipe = result.first;
+    var recipe = result.first.recipe!;
     expect(recipe.servings, 2);
     expect(recipe.ingredients.length, 18);
 
@@ -83,7 +83,7 @@ void main() {
 
       var notWorkingUrls = <String>[];
       for (var url in urls) {
-        var recipeInfo = RecipeInfo(url: Uri.parse(url), servings: 2);
+        var recipeInfo = RecipeParsingJob(url: Uri.parse(url), servings: 2);
         var result = await collectRecipes([recipeInfo], "de");
         if (result.isEmpty) {
           notWorkingUrls.add(url);

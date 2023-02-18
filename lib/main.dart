@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart' show Platform;
 
 import 'src/ingredient_output_generator.dart';
+import 'src/models/meta_data_log.dart';
+import 'src/models/recipe_parsing_job.dart';
 import 'src/recipe_controller.dart' show collectRecipes, isUrlSupported;
-import 'src/recipe_models.dart' show RecipeInfo;
+import 'src/widgets/message_box.dart';
 
 const _title = 'Ingredient Collector';
 const recipeRowsAtBeginning = 4;
@@ -75,23 +77,37 @@ class RecipeInputFormState extends State<RecipeInputForm> {
   int _id = 0;
   final _rowList = <RecipeInputRow>[];
   final _collectionResultController = TextEditingController();
+  List<MessageBox> _messageBoxes = [];
 
-  void removeRow(RecipeInputRow row) {
+  void _removeRow(RecipeInputRow row) {
     setState(() {
       _rowList.remove(row);
     });
   }
 
-  void addRow() {
+  void _addRow() {
     setState(() {
-      _rowList.add(RecipeInputRow(removeRow, _id++));
+      _rowList.add(RecipeInputRow(_removeRow, _id++));
     });
+  }
+
+  MessageBox _createMessageBox(MetaDataLog log) {
+    MessageBox box;
+    switch (log.type) {
+      case MetaDataLogType.error:
+        box = ErrorMessageBox(title: log.title, message: log.message);
+        break;
+      case MetaDataLogType.warning:
+        box = WarningMessageBox(title: log.title, message: log.message);
+        break;
+    }
+    return box;
   }
 
   @override
   void initState() {
     for (var i = 0; i < recipeRowsAtBeginning; i++) {
-      addRow();
+      _addRow();
     }
     super.initState();
   }
@@ -119,8 +135,22 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
           // Get first part of local language e.g. en_US -> en
           var language = Platform.localeName.split("_")[0];
-          var recipes = await collectRecipes(recipeInfos, language);
-          var collectionResult = createCollectionResultFromRecipes(recipes);
+          var parsingResults = await collectRecipes(recipeInfos, language);
+          var metaDataLogs = parsingResults
+              .map((result) => result.metaDataLog)
+              .expand((log) => log)
+              .toList();
+          var parsedRecipes = parsingResults
+              .where((result) => result.recipe != null)
+              .map((result) => result.recipe!)
+              .toList();
+          var collectionResult =
+              createCollectionResultFromRecipes(parsedRecipes);
+
+          setState(() {
+            _messageBoxes = metaDataLogs.map(_createMessageBox).toList();
+          });
+
           _collectionResultController.text =
               collectionResult.resultSortedByAmount;
         }
@@ -128,19 +158,19 @@ class RecipeInputFormState extends State<RecipeInputForm> {
     );
 
     var addRowButton = ElevatedButton(
-      onPressed: addRow,
+      onPressed: _addRow,
       child: const Text('Add recipe'),
     );
 
     var buttonPadding = const EdgeInsets.symmetric(
       vertical: 10,
-      horizontal: 20,
     );
 
     return Form(
       key: _formKey,
       child: ListView(
         children: [
+          ..._messageBoxes,
           ..._rowList,
           Padding(
             padding: buttonPadding,
@@ -166,16 +196,16 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
 class RecipeInputRow extends StatelessWidget {
   final int index;
-  final Function(RecipeInputRow) removeRow;
+  final void Function(RecipeInputRow) removeRow;
   final TextEditingController urlController = TextEditingController();
   final TextEditingController servingsController = TextEditingController();
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
 
-  RecipeInfo getData() {
+  RecipeParsingJob getData() {
     var url = Uri.parse(urlController.text);
     var servings = int.parse(servingsController.text);
-    return RecipeInfo(url: url, servings: servings);
+    return RecipeParsingJob(url: url, servings: servings);
   }
 
   @override
@@ -187,7 +217,7 @@ class RecipeInputRow extends StatelessWidget {
     var servingsField = Padding(
       padding: const EdgeInsets.only(left: 10, right: 2),
       child: SizedBox(
-        width: 120,
+        width: 100,
         child: ServingsInputField(controller: servingsController),
       ),
     );
@@ -195,6 +225,7 @@ class RecipeInputRow extends StatelessWidget {
     var closeButton = IconButton(
       icon: const Icon(Icons.close),
       tooltip: 'Remove recipe URL',
+      splashRadius: 20,
       onPressed: () {
         removeRow(this);
       },
