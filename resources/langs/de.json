@@ -1,0 +1,25 @@
+{
+    "submit_button_text": "Zutaten sammeln",
+    "processing_recipes_text": "Rezepte werden verarbeitet",
+    "add_recipe_button_text": "Rezept hinzufügen",
+    "collection_result_text_hint": "Die gesammelten Zutaten werden hier aufgelistet",
+    "recipe_row_close_button_text": "Rezept URL entfernen",
+    "url_input_field": {
+        "label": "Rezept URL",
+        "invalid_url_text": "Bitte geben Sie eine gültige URL ein",
+        "unsupported_url_text": "URL wird nicht unterstützt"
+    },
+    "servings_field_label": "Portionen",
+    "message_box_title": {
+        "warning": "Warnung",
+        "error": "Fehler"
+    },
+    "kptn_cook_warning": {
+        "title": "KptnCook Rezept '{recipeName}' ist unvollständig",
+        "message": "Ein KptnCook Rezept hat zwei Abschnitte: 'Du brauchst' und 'Du hast du bestimmt zuhause'.\nDie Zutaten im zweiten Abschnitt enthalten keine Mengenangaben und müssen vervollständigt werden, um das gesamte Rezept zu erhalten. Die betroffenen Zutaten sind:\n{ingredientsWithoutAmount}"
+    },
+    "parsing_error_message_box": {
+        "title": "Parsen fehlgeschlagen",
+        "message": "Beim Parsen von {recipeUrl} ist ein Fehler aufgetreten."
+    }
+}

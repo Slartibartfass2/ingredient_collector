@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../l10n/locale_keys.g.dart';
 
 /// Colored box widget with an icon, a title and a message.
 ///
@@ -95,7 +98,7 @@ class MessageBox extends StatelessWidget {
 /// [MessageBox] which represents an error
 class ErrorMessageBox extends MessageBox {
   /// Creates a [ErrorMessageBox].
-  const ErrorMessageBox({
+  ErrorMessageBox({
     super.key,
     required super.title,
     required super.message,
@@ -103,14 +106,14 @@ class ErrorMessageBox extends MessageBox {
           textColor: const Color.fromARGB(255, 255, 82, 82),
           backgroundColor: const Color.fromARGB(255, 253, 234, 236),
           iconData: Icons.error,
-          titleTag: "Error",
+          titleTag: LocaleKeys.message_box_title_error.tr(),
         );
 }
 
 /// [MessageBox] which represents a warning.
 class WarningMessageBox extends MessageBox {
   /// Creates a [WarningMessageBox].
-  const WarningMessageBox({
+  WarningMessageBox({
     super.key,
     required super.title,
     required super.message,
@@ -118,6 +121,6 @@ class WarningMessageBox extends MessageBox {
           textColor: const Color.fromARGB(255, 255, 145, 0),
           backgroundColor: const Color.fromARGB(255, 253, 241, 229),
           iconData: Icons.warning,
-          titleTag: "Warning",
+          titleTag: LocaleKeys.message_box_title_warning.tr(),
         );
 }

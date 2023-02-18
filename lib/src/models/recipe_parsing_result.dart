@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../l10n/locale_keys.g.dart';
 import 'meta_data_log.dart';
 import 'recipe.dart';
 import 'recipe_parsing_job.dart';
@@ -33,8 +35,10 @@ RecipeParsingResult createFailedRecipeParsingResult(Uri url) =>
       metaDataLog: [
         MetaDataLog(
           type: MetaDataLogType.error,
-          title: "Parsing failed",
-          message: "An error occured while parsing ${url.toString()}.",
-        )
+          title: LocaleKeys.parsing_error_message_box_title.tr(),
+          message: LocaleKeys.parsing_error_message_box_message.tr(
+            namedArgs: {'recipeUrl': url.toString()},
+          ),
+        ),
       ],
     );

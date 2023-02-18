@@ -39,8 +39,11 @@ app.*.map.json
 /android/app/release
 
 # Freezed generated files
-*.freezed.dart
-*.g.dart
+/lib/src/models/*.freezed.dart
+/lib/src/models/*.g.dart
+
+# Locale generated files
+/lib/l10n/locale_keys.g.dart
 
 # Puppeteer
 .local-chromium
