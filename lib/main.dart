@@ -1,19 +1,36 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart' show Platform;
 
+import 'l10n/locale_keys.g.dart';
 import 'src/ingredient_output_generator.dart';
 import 'src/models/meta_data_log.dart';
 import 'src/models/recipe_parsing_job.dart';
-import 'src/recipe_controller.dart' show collectRecipes, isUrlSupported;
+import 'src/recipe_controller.dart';
 import 'src/widgets/message_box.dart';
 
 const _title = 'Ingredient Collector';
-const recipeRowsAtBeginning = 4;
+const recipeRowsAtBeginning = 2;
 
-void main() => runApp(const IngredientCollectorApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('de', ''),
+      ],
+      useOnlyLangCode: true,
+      fallbackLocale: const Locale('en', ''),
+      path: 'resources/langs',
+      child: const IngredientCollectorApp(),
+    ),
+  );
+}
 
 class IngredientCollectorApp extends StatelessWidget {
   const IngredientCollectorApp({super.key});
@@ -25,6 +42,9 @@ class IngredientCollectorApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         home: Scaffold(
           appBar: AppBar(
             title: const Text(_title),
@@ -95,10 +115,16 @@ class RecipeInputFormState extends State<RecipeInputForm> {
     MessageBox box;
     switch (log.type) {
       case MetaDataLogType.error:
-        box = ErrorMessageBox(title: log.title, message: log.message);
+        box = ErrorMessageBox(
+          title: log.title,
+          message: log.message,
+        );
         break;
       case MetaDataLogType.warning:
-        box = WarningMessageBox(title: log.title, message: log.message);
+        box = WarningMessageBox(
+          title: log.title,
+          message: log.message,
+        );
         break;
     }
     return box;
@@ -115,7 +141,7 @@ class RecipeInputFormState extends State<RecipeInputForm> {
   @override
   Widget build(BuildContext context) {
     var submitButton = ElevatedButton(
-      child: const Text('Submit'),
+      child: const Text(LocaleKeys.submit_button_text).tr(),
       onPressed: () async {
         var recipeInfos = _rowList
             .where(
@@ -128,8 +154,8 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
         if (_formKey.currentState!.validate() && recipeInfos.isNotEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Processing Data'),
+            SnackBar(
+              content: const Text(LocaleKeys.processing_recipes_text).tr(),
             ),
           );
 
@@ -159,7 +185,7 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
     var addRowButton = ElevatedButton(
       onPressed: _addRow,
-      child: const Text('Add recipe'),
+      child: const Text(LocaleKeys.add_recipe_button_text).tr(),
     );
 
     var buttonPadding = const EdgeInsets.symmetric(
@@ -183,9 +209,9 @@ class RecipeInputFormState extends State<RecipeInputForm> {
           TextField(
             controller: _collectionResultController,
             maxLines: 10,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'The collected ingredients are listed here',
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              hintText: LocaleKeys.collection_result_text_hint.tr(),
             ),
           ),
         ],
@@ -224,7 +250,7 @@ class RecipeInputRow extends StatelessWidget {
 
     var closeButton = IconButton(
       icon: const Icon(Icons.close),
-      tooltip: 'Remove recipe URL',
+      tooltip: LocaleKeys.recipe_row_close_button_text.tr(),
       splashRadius: 20,
       onPressed: () {
         removeRow(this);
@@ -253,9 +279,9 @@ class UrlInputField extends StatelessWidget {
   Widget build(BuildContext context) => TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Recipe URL',
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: LocaleKeys.url_input_field_label.tr(),
         ),
         keyboardType: TextInputType.url,
         validator: (value) {
@@ -267,11 +293,11 @@ class UrlInputField extends StatelessWidget {
 
           var isUrl = url?.hasAbsolutePath ?? false;
           if (!isUrl) {
-            return 'Please enter a valid url';
+            return LocaleKeys.url_input_field_invalid_url_text.tr();
           }
 
           if (url != null && !isUrlSupported(url)) {
-            return 'Url is not supported';
+            return LocaleKeys.url_input_field_unsupported_url_text.tr();
           }
 
           return null;
@@ -287,9 +313,9 @@ class ServingsInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TextFormField(
         controller: controller,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Servings',
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: LocaleKeys.servings_field_label.tr(),
         ),
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[

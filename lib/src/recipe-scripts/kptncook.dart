@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:html/dom.dart';
 
+import '../../l10n/locale_keys.g.dart';
 import '../models/ingredient.dart';
 import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
@@ -76,12 +78,12 @@ RecipeParsingResult parseKptnCookRecipe(
     logs.add(
       MetaDataLog(
         type: MetaDataLogType.warning,
-        title: "KptnCook recipe '$recipeName' is incomplete",
-        message: 'A KptnCook recipe has two sections: \'You need\' and '
-            '\'You might have this at home\'.\nThe ingredients in the second '
-            'section do not contain quantities and must be completed to get the'
-            ' whole recipe. The effected ingredients are:\n'
-            '$ingredientsWithoutAmountText',
+        title: LocaleKeys.kptn_cook_warning_title.tr(
+          namedArgs: {'recipeName': recipeName},
+        ),
+        message: LocaleKeys.kptn_cook_warning_message.tr(
+          namedArgs: {'ingredientsWithoutAmount': ingredientsWithoutAmountText},
+        ),
       ),
     );
   }

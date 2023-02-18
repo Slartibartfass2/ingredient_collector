@@ -1,0 +1,25 @@
+{
+    "submit_button_text": "Collect ingredients",
+    "processing_recipes_text": "Processing recipes",
+    "add_recipe_button_text": "Add recipe",
+    "collection_result_text_hint": "The collected ingredients are listed here",
+    "recipe_row_close_button_text": "Remove recipe URL",
+    "url_input_field": {
+        "label": "Recipe URL",
+        "invalid_url_text": "Please enter a valid url",
+        "unsupported_url_text": "Url is not supported"
+    },
+    "servings_field_label": "Servings",
+    "message_box_title": {
+        "warning": "Warning",
+        "error": "Error"
+    },
+    "kptn_cook_warning": {
+        "title": "KptnCook recipe '{recipeName}' is incomplete",
+        "message": "A KptnCook recipe has two sections: 'You need' and 'You might have this at home'.\nThe ingredients in the second section do not contain quantities and must be completed to get the whole recipe. The effected ingredients are:\n{ingredientsWithoutAmount}"
+    },
+    "parsing_error_message_box": {
+        "title": "Parsing failed",
+        "message": "An error occured while parsing {recipeUrl}."
+    }
+}
