@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2023-02-19
+
+### Fixed
+
+- Fixed mixed content error on Web ([#57](https://github.com/Slartibartfass2/ingredient_collector/pull/57))
+
 ## [0.2.0] - 2023-02-19
 
 ### Added
@@ -23,6 +29,7 @@
 
 _Initial release._
 
+[0.2.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.2.1
 [0.2.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.2.0
 [0.1.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.1.1
 [0.1.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.1.0
