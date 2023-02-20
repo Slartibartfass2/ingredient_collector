@@ -58,8 +58,10 @@ RecipeParsingResult parseKptnCookRecipe(
 
     if (measureElements.isNotEmpty) {
       var amountUnitStrings = measureElements.first.text.trim().split(" ");
-      var amountString = amountUnitStrings.first;
-      amount = getAmountFromString(amountString) * servingsMultiplier;
+      var parsedAmount = tryParseAmountString(amountUnitStrings.first);
+      if (parsedAmount != null) {
+        amount = parsedAmount * servingsMultiplier;
+      }
 
       if (amountUnitStrings.length == 2) {
         unit = amountUnitStrings[1];

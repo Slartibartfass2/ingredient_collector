@@ -23,7 +23,7 @@ const fractions = {
 /// Parses the passed [amountString] to the matching [double] value.
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
-double getAmountFromString(String amountString) {
+double? tryParseAmountString(String amountString) {
   if (double.tryParse(amountString) != null) {
     return double.parse(amountString);
   }
@@ -37,10 +37,26 @@ double getAmountFromString(String amountString) {
   }
 
   if (fractions.containsKey(amountString)) {
-    return fractions[amountString]!;
+    return fractions[amountString];
   }
 
-  return 0;
+  var words = amountString.split(" ");
+  if (words.length > 1) {
+    var parsedWords =
+        words.map(tryParseAmountString).where((element) => element != null);
+
+    // Sum up values
+    if (parsedWords.length == words.length) {
+      return parsedWords.reduce((value1, value2) => value1! + value2!);
+    }
+
+    // Sometimes there's a leading word e.g. approx. or ca.
+    if (parsedWords.length == 1) {
+      return parsedWords.first;
+    }
+  }
+
+  return null;
 }
 
 /// Checks whether the passed [text] represents a range e.g. 1-3.
