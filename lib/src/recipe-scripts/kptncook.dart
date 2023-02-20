@@ -94,6 +94,6 @@ RecipeParsingResult parseKptnCookRecipe(
       name: recipeName,
       servings: recipeParsingJob.servings,
     ),
-    metaDataLog: logs,
+    metaDataLogs: logs,
   );
 }

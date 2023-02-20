@@ -18,7 +18,7 @@ class RecipeParsingResult with _$RecipeParsingResult {
     Recipe? recipe,
 
     /// Additional informations about the parsing.
-    required List<MetaDataLog> metaDataLog,
+    required List<MetaDataLog> metaDataLogs,
   }) = _RecipeParsingResult;
 
   /// Parses [RecipeParsingResult] object from json string.
@@ -32,7 +32,7 @@ class RecipeParsingResult with _$RecipeParsingResult {
 /// The [url] is displayed to the user in the message.
 RecipeParsingResult createFailedRecipeParsingResult(Uri url) =>
     RecipeParsingResult(
-      metaDataLog: [
+      metaDataLogs: [
         MetaDataLog(
           type: MetaDataLogType.error,
           title: LocaleKeys.parsing_error_message_box_title.tr(),

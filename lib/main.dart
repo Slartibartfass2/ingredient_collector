@@ -163,7 +163,7 @@ class RecipeInputFormState extends State<RecipeInputForm> {
           var language = Platform.localeName.split("_")[0];
           var parsingResults = await collectRecipes(recipeInfos, language);
           var metaDataLogs = parsingResults
-              .map((result) => result.metaDataLog)
+              .map((result) => result.metaDataLogs)
               .expand((log) => log)
               .toList();
           var parsedRecipes = parsingResults
