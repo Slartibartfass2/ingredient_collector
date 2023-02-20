@@ -17,9 +17,11 @@ RecipeCollectionResult createCollectionResultFromRecipes(
   var ingredientsSortedByAmount = mergedIngredients
     ..sort((a, b) => b.amount.compareTo(a.amount));
 
+  var resultSortedByAmountText =
+      ingredientsSortedByAmount.map(_formatIngredient).join("\n");
+
   return RecipeCollectionResult(
-    resultSortedByAmount:
-        _convertIngredientsToString(ingredientsSortedByAmount),
+    resultSortedByAmount: resultSortedByAmountText,
   );
 }
 
@@ -50,20 +52,17 @@ List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
   return mergedIngredients;
 }
 
-String _convertIngredientsToString(List<Ingredient> ingredients) {
+String _formatIngredient(Ingredient ingredient) {
   var result = "";
-  for (var ingredient in ingredients) {
-    if (ingredient.amount > 0) {
-      var formatter = NumberFormat()
-        ..minimumFractionDigits = 0
-        ..maximumFractionDigits = 2;
+  if (ingredient.amount > 0) {
+    var formatter = NumberFormat()
+      ..minimumFractionDigits = 0
+      ..maximumFractionDigits = 2;
 
-      result += "${formatter.format(ingredient.amount)} ";
-    }
-    if (ingredient.unit.isNotEmpty) {
-      result += "${ingredient.unit} ";
-    }
-    result += "${ingredient.name}\n";
+    result += "${formatter.format(ingredient.amount)} ";
   }
-  return result;
+  if (ingredient.unit.isNotEmpty) {
+    result += "${ingredient.unit} ";
+  }
+  return result + ingredient.name;
 }
