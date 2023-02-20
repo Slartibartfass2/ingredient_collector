@@ -1,9 +1,9 @@
-import 'package:flutter_test/flutter_test.dart' show test, expect, fail;
+import 'package:flutter_test/flutter_test.dart';
+import 'package:ingredient_collector/src/models/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart'
-    show collectRecipes;
+import 'package:ingredient_collector/src/recipe_controller.dart';
 
-import 'script_test_helper.dart' show expectIngredient;
+import 'script_test_helper.dart';
 
 void main() {
   test("collect KptnCook recipe", () async {
@@ -14,6 +14,9 @@ void main() {
 
     var result = await collectRecipes([recipeInfo], "de");
     expect(result.length, 1);
+    var errorLogs = result.first.metaDataLogs
+        .where((element) => element.type == MetaDataLogType.error);
+    expect(errorLogs, isEmpty);
 
     var recipe = result.first.recipe!;
     expect(recipe.servings, 2);
@@ -84,8 +87,11 @@ void main() {
       var notWorkingUrls = <String>[];
       for (var url in urls) {
         var recipeInfo = RecipeParsingJob(url: Uri.parse(url), servings: 2);
-        var result = await collectRecipes([recipeInfo], "de");
-        if (result.isEmpty) {
+        var results = await collectRecipes([recipeInfo], "de");
+        var result = results.first;
+        var errorLogs = result.metaDataLogs
+            .where((log) => log.type == MetaDataLogType.error);
+        if (result.recipe == null || errorLogs.isNotEmpty) {
           notWorkingUrls.add(url);
         }
       }
