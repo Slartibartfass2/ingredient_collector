@@ -7,6 +7,7 @@ import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
+import 'recipe_scripts_helper.dart';
 
 /// Parses a [Document] from the KptnCook website to a recipe.
 RecipeParsingResult parseKptnCookRecipe(
@@ -57,7 +58,8 @@ RecipeParsingResult parseKptnCookRecipe(
 
     if (measureElements.isNotEmpty) {
       var amountUnitStrings = measureElements.first.text.trim().split(" ");
-      amount = double.parse(amountUnitStrings.first) * servingsMultiplier;
+      var amountString = amountUnitStrings.first;
+      amount = getAmountFromString(amountString) * servingsMultiplier;
 
       if (amountUnitStrings.length == 2) {
         unit = amountUnitStrings[1];
