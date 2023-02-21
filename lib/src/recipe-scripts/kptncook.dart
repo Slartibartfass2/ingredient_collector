@@ -23,7 +23,7 @@ RecipeParsingResult parseKptnCookRecipe(
       servingsElements.isEmpty ||
       listContainers.length < 3 ||
       listContainers[2].children.length < 3) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url);
+    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -33,12 +33,13 @@ RecipeParsingResult parseKptnCookRecipe(
   var servingsDescriptionText = servingsElements.first.text;
   var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
   if (recipeServingsMatch == null || recipeServingsMatch.group(0) == null) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url);
+    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
   var recipeServings = num.parse(recipeServingsMatch.group(0)!);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
   var ingredients = <Ingredient>[];
+  var logs = <MetaDataLog>[];
 
   // Parse each ingredient and store it in the list
   // Skip first two html elements which aren't ingredients
@@ -61,6 +62,14 @@ RecipeParsingResult parseKptnCookRecipe(
       var parsedAmount = tryParseAmountString(amountUnitStrings.first);
       if (parsedAmount != null) {
         amount = parsedAmount * servingsMultiplier;
+      } else {
+        logs.add(
+          createFailedAmountParsingMetaDataLog(
+            recipeParsingJob.url.toString(),
+            amountUnitStrings.first,
+            name,
+          ),
+        );
       }
 
       if (amountUnitStrings.length == 2) {
@@ -76,16 +85,15 @@ RecipeParsingResult parseKptnCookRecipe(
       .map((ingredient) => ingredient.name)
       .toList();
   var ingredientsWithoutAmountText = "";
-  var logs = <MetaDataLog>[];
   if (ingredientsWithoutAmount.isNotEmpty) {
     ingredientsWithoutAmountText = "'${ingredientsWithoutAmount.join("', '")}'";
     logs.add(
       MetaDataLog(
         type: MetaDataLogType.warning,
-        title: LocaleKeys.kptn_cook_warning_title.tr(
+        title: LocaleKeys.parsing_messages_kptn_cook_warning_title.tr(
           namedArgs: {'recipeName': recipeName},
         ),
-        message: LocaleKeys.kptn_cook_warning_message.tr(
+        message: LocaleKeys.parsing_messages_kptn_cook_warning_message.tr(
           namedArgs: {'ingredientsWithoutAmount': ingredientsWithoutAmountText},
         ),
       ),

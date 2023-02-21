@@ -29,16 +29,38 @@ class RecipeParsingResult with _$RecipeParsingResult {
 /// Creates a [RecipeParsingResult] for when a [RecipeParsingJob] fails
 /// completely.
 ///
-/// The [url] is displayed to the user in the message.
-RecipeParsingResult createFailedRecipeParsingResult(Uri url) =>
+/// The [recipeUrl] is displayed to the user in the message.
+RecipeParsingResult createFailedRecipeParsingResult(String recipeUrl) =>
     RecipeParsingResult(
       metaDataLogs: [
         MetaDataLog(
           type: MetaDataLogType.error,
-          title: LocaleKeys.parsing_error_message_box_title.tr(),
-          message: LocaleKeys.parsing_error_message_box_message.tr(
-            namedArgs: {'recipeUrl': url.toString()},
+          title: LocaleKeys.parsing_messages_complete_failure_title.tr(),
+          message: LocaleKeys.parsing_messages_complete_failure_message.tr(
+            namedArgs: {'recipeUrl': recipeUrl},
           ),
         ),
       ],
+    );
+
+/// Creates a [MetaDataLog] for when a [RecipeParsingJob] fails on parsing an
+/// amount string.
+///
+/// The [recipeUrl], [amountString] and [ingredientName] is displayed to the
+/// user in the message.
+MetaDataLog createFailedAmountParsingMetaDataLog(
+  String recipeUrl,
+  String amountString,
+  String ingredientName,
+) =>
+    MetaDataLog(
+      type: MetaDataLogType.error,
+      title: LocaleKeys.parsing_messages_amount_parsing_failure_title.tr(),
+      message: LocaleKeys.parsing_messages_amount_parsing_failure_message.tr(
+        namedArgs: {
+          'recipeUrl': recipeUrl,
+          'amountString': amountString,
+          'ingredientName': ingredientName,
+        },
+      ),
     );
