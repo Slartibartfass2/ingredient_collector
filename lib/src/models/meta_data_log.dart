@@ -21,7 +21,7 @@ class MetaDataLog with _$MetaDataLog {
     required String message,
   }) = _MetaDataLog;
 
-  /// Parses [MetaDataLog] object from json string.
+  /// Parses [MetaDataLog] object from json map.
   factory MetaDataLog.fromJson(Map<String, dynamic> json) =>
       _$MetaDataLogFromJson(json);
 }

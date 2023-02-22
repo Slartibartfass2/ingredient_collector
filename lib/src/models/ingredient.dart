@@ -26,7 +26,7 @@ class Ingredient with _$Ingredient {
     required String name,
   }) = _Ingredient;
 
-  /// Parses [Ingredient] object from json string.
+  /// Parses [Ingredient] object from json map.
   factory Ingredient.fromJson(Map<String, Object?> json) =>
       _$IngredientFromJson(json);
 }

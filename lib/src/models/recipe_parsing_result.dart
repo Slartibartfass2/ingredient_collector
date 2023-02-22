@@ -21,7 +21,7 @@ class RecipeParsingResult with _$RecipeParsingResult {
     required List<MetaDataLog> metaDataLogs,
   }) = _RecipeParsingResult;
 
-  /// Parses [RecipeParsingResult] object from json string.
+  /// Parses [RecipeParsingResult] object from json map.
   factory RecipeParsingResult.fromJson(Map<String, dynamic> json) =>
       _$RecipeParsingResultFromJson(json);
 }

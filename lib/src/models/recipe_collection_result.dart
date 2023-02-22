@@ -13,7 +13,7 @@ class RecipeCollectionResult with _$RecipeCollectionResult {
     required String resultSortedByAmount,
   }) = _RecipeCollectionResult;
 
-  /// Parses [RecipeCollectionResult] object from json string.
+  /// Parses [RecipeCollectionResult] object from json map.
   factory RecipeCollectionResult.fromJson(Map<String, Object?> json) =>
       _$RecipeCollectionResultFromJson(json);
 }

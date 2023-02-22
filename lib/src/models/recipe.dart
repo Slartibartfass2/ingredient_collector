@@ -23,6 +23,6 @@ class Recipe with _$Recipe {
     required int servings,
   }) = _Recipe;
 
-  /// Parses [Recipe] object from json string.
+  /// Parses [Recipe] object from json map.
   factory Recipe.fromJson(Map<String, Object?> json) => _$RecipeFromJson(json);
 }
