@@ -19,9 +19,13 @@
             "title": "Parsing failed",
             "message": "An error occured while parsing {recipeUrl}."
         },
-        "amount_parsing_failure": {
+        "amount_failure": {
             "title": "Failed to parse the amount of an ingredient",
             "message": "An error occured while parsing {recipeUrl}.\nThe amount '{amountString}' of the ingredient '{ingredientName}' couldn't be parsed to a number."
+        },
+        "ingredient_failure": {
+            "title": "Failed to parse an ingredient",
+            "message": "An error occured while parsing {recipeUrl}. An ingredient couldn't be parsed."
         },
         "kptn_cook_warning": {
             "title": "KptnCook recipe '{recipeName}' is incomplete",
