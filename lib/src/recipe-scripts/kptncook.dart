@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../models/ingredient.dart';
+import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
@@ -38,47 +40,27 @@ RecipeParsingResult parseKptnCookRecipe(
   var recipeServings = num.parse(recipeServingsMatch.group(0)!);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
-  var ingredients = <Ingredient>[];
-  var logs = <MetaDataLog>[];
-
-  // Parse each ingredient and store it in the list
   // Skip first two html elements which aren't ingredients
-  for (var ingredient in listContainers[2].children.sublist(2)) {
-    var amount = 0.0;
-    var unit = "";
-    var name = "";
+  var ingredientElements = listContainers[2].children.sublist(2);
+  var ingredientParsingResults = ingredientElements
+      .map(
+        (element) => parseIngredient(
+          element,
+          servingsMultiplier,
+          recipeParsingJob.url.toString(),
+        ),
+      )
+      .toList();
 
-    var nameElements = ingredient.getElementsByClassName("kptn-ingredient");
+  var logs = ingredientParsingResults
+      .map((result) => result.metaDataLogs)
+      .expand((metaDataLogs) => metaDataLogs)
+      .toList();
 
-    if (nameElements.isNotEmpty) {
-      name = nameElements.first.text.trim();
-    }
-
-    var measureElements =
-        ingredient.getElementsByClassName("kptn-ingredient-measure");
-
-    if (measureElements.isNotEmpty) {
-      var amountUnitStrings = measureElements.first.text.trim().split(" ");
-      var parsedAmount = tryParseAmountString(amountUnitStrings.first);
-      if (parsedAmount != null) {
-        amount = parsedAmount * servingsMultiplier;
-      } else {
-        logs.add(
-          createFailedAmountParsingMetaDataLog(
-            recipeParsingJob.url.toString(),
-            amountUnitStrings.first,
-            name,
-          ),
-        );
-      }
-
-      if (amountUnitStrings.length == 2) {
-        unit = amountUnitStrings[1];
-      }
-    }
-
-    ingredients.add(Ingredient(amount: amount, unit: unit, name: name));
-  }
+  var ingredients = ingredientParsingResults
+      .map((result) => result.ingredient)
+      .whereType<Ingredient>()
+      .toList();
 
   var ingredientsWithoutAmount = ingredients
       .where((ingredient) => ingredient.amount == 0)
@@ -106,6 +88,60 @@ RecipeParsingResult parseKptnCookRecipe(
       name: recipeName,
       servings: recipeParsingJob.servings,
     ),
+    metaDataLogs: logs,
+  );
+}
+
+@visibleForTesting
+
+/// Parses an html [Element] representing an [Ingredient].
+///
+/// If the parsing fails the ingredient in [IngredientParsingResult] will be
+/// null and a suitable log will be returned.
+IngredientParsingResult parseIngredient(
+  Element ingredientElement,
+  double servingsMultiplier,
+  String recipeUrl,
+) {
+  var amount = 0.0;
+  var unit = "";
+  var name = "";
+
+  var nameElements =
+      ingredientElement.getElementsByClassName("kptn-ingredient");
+  if (nameElements.isNotEmpty) {
+    name = nameElements.first.text.trim();
+  } else {
+    return createFailedIngredientParsingResult(recipeUrl);
+  }
+
+  var logs = <MetaDataLog>[];
+
+  var measureElements =
+      ingredientElement.getElementsByClassName("kptn-ingredient-measure");
+  if (measureElements.isNotEmpty) {
+    var amountUnitStrings = measureElements.first.text.trim().split(" ");
+    var amountString = amountUnitStrings.first;
+    var parsedAmount = tryParseAmountString(amountString);
+    if (parsedAmount != null) {
+      amount = parsedAmount * servingsMultiplier;
+    } else {
+      logs.add(
+        createFailedAmountParsingMetaDataLog(
+          recipeUrl,
+          amountString,
+          name,
+        ),
+      );
+    }
+
+    if (amountUnitStrings.length == 2) {
+      unit = amountUnitStrings[1];
+    }
+  }
+
+  return IngredientParsingResult(
+    ingredient: Ingredient(amount: amount, unit: unit, name: name),
     metaDataLogs: logs,
   );
 }
