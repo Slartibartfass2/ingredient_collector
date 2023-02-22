@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
+import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
@@ -28,56 +30,25 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
   var recipeServings = int.parse(servingsElements.first.text);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
-  var ingredients = <Ingredient>[];
-  var logs = <MetaDataLog>[];
+  var ingredientParsingResults = ingredientContainers
+      .map(
+        (element) => parseIngredient(
+          element,
+          servingsMultiplier,
+          recipeParsingJob.url.toString(),
+        ),
+      )
+      .toList();
 
-  // Parse each ingredient and store it in the list
-  for (var ingredient in ingredientContainers) {
-    var amount = 0.0;
-    var unit = "";
-    var name = "";
+  var logs = ingredientParsingResults
+      .map((result) => result.metaDataLogs)
+      .expand((metaDataLogs) => metaDataLogs)
+      .toList();
 
-    var nameElements =
-        ingredient.getElementsByClassName("wprm-recipe-ingredient-name");
-
-    if (nameElements.isNotEmpty) {
-      var nameElement = nameElements.first;
-      // Sometimes the name has a url reference in a <a> tag
-      if (nameElement.children.isNotEmpty) {
-        nameElement = nameElement.children.first;
-      }
-      name = nameElement.text.trim();
-    }
-
-    var amountElements =
-        ingredient.getElementsByClassName("wprm-recipe-ingredient-amount");
-
-    if (amountElements.isNotEmpty) {
-      var amountElement = amountElements.first;
-      var parsedAmount = tryParseAmountString(amountElement.text.trim());
-      if (parsedAmount != null) {
-        amount = parsedAmount * servingsMultiplier;
-      } else {
-        logs.add(
-          createFailedAmountParsingMetaDataLog(
-            recipeParsingJob.url.toString(),
-            amountElement.text.trim(),
-            name,
-          ),
-        );
-      }
-    }
-
-    var unitElements =
-        ingredient.getElementsByClassName("wprm-recipe-ingredient-unit");
-
-    if (unitElements.isNotEmpty) {
-      var unitElement = unitElements.first;
-      unit = unitElement.text.trim();
-    }
-
-    ingredients.add(Ingredient(amount: amount, unit: unit, name: name));
-  }
+  var ingredients = ingredientParsingResults
+      .map((result) => result.ingredient)
+      .whereType<Ingredient>()
+      .toList();
 
   return RecipeParsingResult(
     recipe: Recipe(
@@ -85,6 +56,66 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
       name: recipeName,
       servings: recipeParsingJob.servings,
     ),
+    metaDataLogs: logs,
+  );
+}
+
+@visibleForTesting
+
+/// Parses an html [Element] representing an [Ingredient].
+///
+/// If the parsing fails the ingredient in [IngredientParsingResult] will be
+/// null and a suitable log will be returned.
+IngredientParsingResult parseIngredient(
+  Element ingredientElement,
+  double servingsMultiplier,
+  String recipeUrl,
+) {
+  var amount = 0.0;
+  var unit = "";
+  var name = "";
+
+  var nameElements =
+      ingredientElement.getElementsByClassName("wprm-recipe-ingredient-name");
+  if (nameElements.isNotEmpty) {
+    var nameElement = nameElements.first;
+    // Sometimes the name has a url reference in a <a> tag
+    if (nameElement.children.isNotEmpty) {
+      nameElement = nameElement.children.first;
+    }
+    name = nameElement.text.trim();
+  }
+
+  var logs = <MetaDataLog>[];
+
+  var amountElements =
+      ingredientElement.getElementsByClassName("wprm-recipe-ingredient-amount");
+  if (amountElements.isNotEmpty) {
+    var amountElement = amountElements.first;
+    var amountString = amountElement.text.trim();
+    var parsedAmount = tryParseAmountString(amountString);
+    if (parsedAmount != null) {
+      amount = parsedAmount * servingsMultiplier;
+    } else {
+      logs.add(
+        createFailedAmountParsingMetaDataLog(
+          recipeUrl,
+          amountString,
+          name,
+        ),
+      );
+    }
+  }
+
+  var unitElements =
+      ingredientElement.getElementsByClassName("wprm-recipe-ingredient-unit");
+  if (unitElements.isNotEmpty) {
+    var unitElement = unitElements.first;
+    unit = unitElement.text.trim();
+  }
+
+  return IngredientParsingResult(
+    ingredient: Ingredient(amount: amount, unit: unit, name: name),
     metaDataLogs: logs,
   );
 }
