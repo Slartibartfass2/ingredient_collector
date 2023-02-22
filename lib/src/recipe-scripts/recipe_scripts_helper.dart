@@ -1,3 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../l10n/locale_keys.g.dart';
+import '../models/meta_data_log.dart';
+import '../models/recipe_parsing_job.dart';
+import '../models/recipe_parsing_result.dart';
+
 /// Mapping of fraction characters and there [double] values.
 const fractions = {
   "¼": 0.25,
@@ -64,3 +71,42 @@ bool isRange(String text) {
   var pattern = RegExp(r"^[1-9][0-9]*-[1-9][0-9]*$");
   return pattern.hasMatch(text);
 }
+
+/// Creates a [RecipeParsingResult] for when a [RecipeParsingJob] fails
+/// completely.
+///
+/// The [recipeUrl] is displayed to the user in the message.
+RecipeParsingResult createFailedRecipeParsingResult(String recipeUrl) =>
+    RecipeParsingResult(
+      metaDataLogs: [
+        MetaDataLog(
+          type: MetaDataLogType.error,
+          title: LocaleKeys.parsing_messages_complete_failure_title.tr(),
+          message: LocaleKeys.parsing_messages_complete_failure_message.tr(
+            namedArgs: {'recipeUrl': recipeUrl},
+          ),
+        ),
+      ],
+    );
+
+/// Creates a [MetaDataLog] for when a [RecipeParsingJob] fails on parsing an
+/// amount string.
+///
+/// The [recipeUrl], [amountString] and [ingredientName] is displayed to the
+/// user in the message.
+MetaDataLog createFailedAmountParsingMetaDataLog(
+  String recipeUrl,
+  String amountString,
+  String ingredientName,
+) =>
+    MetaDataLog(
+      type: MetaDataLogType.error,
+      title: LocaleKeys.parsing_messages_amount_parsing_failure_title.tr(),
+      message: LocaleKeys.parsing_messages_amount_parsing_failure_message.tr(
+        namedArgs: {
+          'recipeUrl': recipeUrl,
+          'amountString': amountString,
+          'ingredientName': ingredientName,
+        },
+      ),
+    );
