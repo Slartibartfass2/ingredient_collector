@@ -1,3 +1,5 @@
+name: Script Support Tests
+
 on:
   schedule:
     # Runs every monday at 12 AM

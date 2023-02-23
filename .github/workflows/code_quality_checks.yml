@@ -58,7 +58,7 @@ jobs:
         run: bash setup.ps1
 
       - name: Run tests
-        run: flutter test --coverage --exclude-tags=explicit --reporter=expanded
+        run: flutter test --coverage --reporter=expanded
 
       - name: Upload code coverage
         uses: codecov/codecov-action@v3

@@ -5,39 +5,43 @@ import 'package:ingredient_collector/src/recipe_controller.dart';
 import 'script_test_helper.dart';
 
 void main() {
-  test("collect KptnCook recipe", () async {
-    var recipeInfo = RecipeParsingJob(
-      url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
-      servings: 2,
-    );
+  test(
+    "collect KptnCook recipe",
+    () async {
+      var recipeInfo = RecipeParsingJob(
+        url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
+        servings: 2,
+      );
 
-    var result = await collectRecipes([recipeInfo], "de");
-    expect(result.length, 1);
-    expect(hasParsingErrors(result.first), isFalse);
+      var result = await collectRecipes([recipeInfo], "de");
+      expect(result.length, 1);
+      expect(hasParsingErrors(result.first), isFalse);
 
-    var recipe = result.first.recipe!;
-    expect(recipe.servings, 2);
-    expect(recipe.ingredients.length, 18);
+      var recipe = result.first.recipe!;
+      expect(recipe.servings, 2);
+      expect(recipe.ingredients.length, 18);
 
-    expectIngredient(recipe, "Limette", amount: 1);
-    expectIngredient(recipe, "Ingwer", amount: 10, unit: "g");
-    expectIngredient(recipe, "Kokosmilch", amount: 150, unit: "ml");
-    expectIngredient(recipe, "Brokkoli", amount: 0.5);
-    expectIngredient(recipe, "Koriander, frisch", amount: 10, unit: "g");
-    expectIngredient(recipe, "Basmati-Reis", amount: 120, unit: "g");
-    expectIngredient(recipe, "Räuchertofu", amount: 200, unit: "g");
-    expectIngredient(recipe, "Sesamsaat", amount: 10, unit: "g");
-    expectIngredient(recipe, "Sonnenblumenöl");
-    expectIngredient(recipe, "Sojasauce");
-    expectIngredient(recipe, "Knoblauch");
-    expectIngredient(recipe, "Sesamöl");
-    expectIngredient(recipe, "Weißweinessig");
-    expectIngredient(recipe, "Salz");
-    expectIngredient(recipe, "Agavendicksaft");
-    expectIngredient(recipe, "Wasser");
-    expectIngredient(recipe, "Chiliflocken");
-    expectIngredient(recipe, "Speisestärke");
-  });
+      expectIngredient(recipe, "Limette", amount: 1);
+      expectIngredient(recipe, "Ingwer", amount: 10, unit: "g");
+      expectIngredient(recipe, "Kokosmilch", amount: 150, unit: "ml");
+      expectIngredient(recipe, "Brokkoli", amount: 0.5);
+      expectIngredient(recipe, "Koriander, frisch", amount: 10, unit: "g");
+      expectIngredient(recipe, "Basmati-Reis", amount: 120, unit: "g");
+      expectIngredient(recipe, "Räuchertofu", amount: 200, unit: "g");
+      expectIngredient(recipe, "Sesamsaat", amount: 10, unit: "g");
+      expectIngredient(recipe, "Sonnenblumenöl");
+      expectIngredient(recipe, "Sojasauce");
+      expectIngredient(recipe, "Knoblauch");
+      expectIngredient(recipe, "Sesamöl");
+      expectIngredient(recipe, "Weißweinessig");
+      expectIngredient(recipe, "Salz");
+      expectIngredient(recipe, "Agavendicksaft");
+      expectIngredient(recipe, "Wasser");
+      expectIngredient(recipe, "Chiliflocken");
+      expectIngredient(recipe, "Speisestärke");
+    },
+    tags: ["parsing-test"],
+  );
 
   test(
     "collect many KptnCook recipes",
@@ -96,6 +100,6 @@ void main() {
         fail(output);
       }
     },
-    tags: ["explicit", "parsing-test"],
+    tags: ["parsing-test"],
   );
 }
