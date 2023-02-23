@@ -33,8 +33,12 @@ const fractions = {
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
 double? tryParseAmountString(String amountString) {
-  if (double.tryParse(amountString) != null) {
-    return double.parse(amountString);
+  try {
+    return NumberFormat().parse(amountString).toDouble();
+
+    // ignore: avoid_catches_without_on_clauses
+  } catch (e) {
+    // When the string can't be parsed, try other parsing methods
   }
 
   // When string is range return middle

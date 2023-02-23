@@ -11,12 +11,12 @@ void main() {
   test(
     "collect KptnCook recipe",
     () async {
-      var recipeInfo = RecipeParsingJob(
+      var recipeJob = RecipeParsingJob(
         url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
         servings: 2,
       );
 
-      var result = await collectRecipes([recipeInfo], "de");
+      var result = await collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -88,32 +88,19 @@ void main() {
         "http://mobile.kptncook.com/recipe/pinterest/15e9a06f",
       ];
 
-      var jobs = urls
-          .map((url) => RecipeParsingJob(url: Uri.parse(url), servings: 2))
-          .toList();
-      var results = await collectRecipes(jobs, "de");
-      var notWorkingUrls = results.where(
-        (result) => hasRecipeParsingErrors(result) || result.recipe == null,
-      );
-
-      if (notWorkingUrls.isNotEmpty) {
-        var output = notWorkingUrls.fold(
-          "The following recipes couldn't be parsed:\n",
-          (string, url) => string += "- $url\n",
-        );
-        fail(output);
-      }
+      await testParsingRecipes(urls);
     },
     tags: ["parsing-test"],
+    timeout: const Timeout(Duration(minutes: 5)),
   );
 
-  test('Parse empty ingredient element', () {
+  test('parse empty ingredient element', () {
     var ingredientElement = Element.html("<a></a>");
     var result = parseIngredient(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
-  test('Parse ingredient element with amount and unit', () {
+  test('parse ingredient element with amount and unit', () {
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -132,7 +119,7 @@ void main() {
     );
   });
 
-  test('Parse ingredient element with amount and no unit', () {
+  test('parse ingredient element with amount and no unit', () {
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
