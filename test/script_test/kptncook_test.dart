@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/models/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller.dart';
 
@@ -14,9 +13,7 @@ void main() {
 
     var result = await collectRecipes([recipeInfo], "de");
     expect(result.length, 1);
-    var errorLogs = result.first.metaDataLogs
-        .where((element) => element.type == MetaDataLogType.error);
-    expect(errorLogs, isEmpty);
+    expect(hasParsingErrors(result.first), isFalse);
 
     var recipe = result.first.recipe!;
     expect(recipe.servings, 2);
@@ -84,17 +81,12 @@ void main() {
         "http://mobile.kptncook.com/recipe/pinterest/15e9a06f",
       ];
 
-      var notWorkingUrls = <String>[];
-      for (var url in urls) {
-        var recipeInfo = RecipeParsingJob(url: Uri.parse(url), servings: 2);
-        var results = await collectRecipes([recipeInfo], "de");
-        var result = results.first;
-        var errorLogs = result.metaDataLogs
-            .where((log) => log.type == MetaDataLogType.error);
-        if (result.recipe == null || errorLogs.isNotEmpty) {
-          notWorkingUrls.add(url);
-        }
-      }
+      var jobs = urls
+          .map((url) => RecipeParsingJob(url: Uri.parse(url), servings: 2))
+          .toList();
+      var results = await collectRecipes(jobs, "de");
+      var notWorkingUrls = results
+          .where((result) => hasParsingErrors(result) || result.recipe == null);
 
       if (notWorkingUrls.isNotEmpty) {
         var output = notWorkingUrls.fold(
