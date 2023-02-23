@@ -7,6 +7,7 @@ import '../models/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
+import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
 
 /// Parses a [Document] from the Bianca Zapatka website to a recipe.
