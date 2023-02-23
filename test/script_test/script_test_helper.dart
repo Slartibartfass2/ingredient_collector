@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart' show fail;
 import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/models/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
@@ -17,6 +18,11 @@ void expectIngredient(
   }
 }
 
-bool hasParsingErrors(RecipeParsingResult result) => result.metaDataLogs
+bool hasRecipeParsingErrors(RecipeParsingResult result) => result.metaDataLogs
     .where((element) => element.type == MetaDataLogType.error)
     .isNotEmpty;
+
+bool hasIngredientParsingErrors(IngredientParsingResult result) =>
+    result.metaDataLogs
+        .where((element) => element.type == MetaDataLogType.error)
+        .isNotEmpty;
