@@ -84,6 +84,8 @@ IngredientParsingResult parseIngredient(
       nameElement = nameElement.children.first;
     }
     name = nameElement.text.trim();
+  } else {
+    return createFailedIngredientParsingResult(recipeUrl);
   }
 
   var logs = <MetaDataLog>[];
