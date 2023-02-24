@@ -49,6 +49,7 @@ RecipeParsingResult parseKptnCookRecipe(
           element,
           servingsMultiplier,
           recipeParsingJob.url.toString(),
+          language: recipeParsingJob.language,
         ),
       )
       .toList();
@@ -102,8 +103,9 @@ RecipeParsingResult parseKptnCookRecipe(
 IngredientParsingResult parseIngredient(
   Element ingredientElement,
   double servingsMultiplier,
-  String recipeUrl,
-) {
+  String recipeUrl, {
+  String? language,
+}) {
   var amount = 0.0;
   var unit = "";
   var name = "";
@@ -123,7 +125,7 @@ IngredientParsingResult parseIngredient(
   if (measureElements.isNotEmpty) {
     var amountUnitStrings = measureElements.first.text.trim().split(" ");
     var amountString = amountUnitStrings.first;
-    var parsedAmount = tryParseAmountString(amountString);
+    var parsedAmount = tryParseAmountString(amountString, language: language);
     if (parsedAmount != null) {
       amount = parsedAmount * servingsMultiplier;
     } else {

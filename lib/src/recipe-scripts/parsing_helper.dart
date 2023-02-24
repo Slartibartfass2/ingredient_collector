@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:universal_io/io.dart' show Platform;
 
 /// Mapping of fraction characters and there [double] values.
 const fractions = {
@@ -25,9 +26,14 @@ const fractions = {
 /// Parses the passed [amountString] to the matching [double] value.
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
-double? tryParseAmountString(String amountString) {
+/// The [amountString] is parsed according to the [language].
+double? tryParseAmountString(
+  String amountString, {
+  String? language,
+}) {
   try {
-    return NumberFormat().parse(amountString).toDouble();
+    language ??= Platform.localeName.split("_")[0];
+    return NumberFormat.decimalPattern(language).parse(amountString).toDouble();
 
     // ignore: avoid_catches_without_on_clauses
   } catch (e) {
@@ -35,7 +41,7 @@ double? tryParseAmountString(String amountString) {
   }
 
   // When string is range return middle
-  if (isRange(amountString)) {
+  if (_isRange(amountString)) {
     var parts = amountString.split("-");
     var lower = double.parse(parts[0].trim());
     var upper = double.parse(parts[1].trim());
@@ -48,12 +54,13 @@ double? tryParseAmountString(String amountString) {
 
   var words = amountString.split(" ");
   if (words.length > 1) {
-    var parsedWords =
-        words.map(tryParseAmountString).where((element) => element != null);
+    var parsedWords = words
+        .map((word) => tryParseAmountString(word, language: language))
+        .whereType<double>();
 
     // Sum up values
     if (parsedWords.length == words.length) {
-      return parsedWords.reduce((value1, value2) => value1! + value2!);
+      return parsedWords.reduce((value1, value2) => value1 + value2);
     }
 
     // Sometimes there's a leading word e.g. approx. or ca.
@@ -66,7 +73,7 @@ double? tryParseAmountString(String amountString) {
 }
 
 /// Checks whether the passed [text] represents a range e.g. 1-3.
-bool isRange(String text) {
+bool _isRange(String text) {
   var pattern = RegExp(r"^[1-9][0-9]*-[1-9][0-9]*$");
   return pattern.hasMatch(text);
 }

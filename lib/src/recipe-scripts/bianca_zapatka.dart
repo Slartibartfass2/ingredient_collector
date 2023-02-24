@@ -37,6 +37,7 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
           element,
           servingsMultiplier,
           recipeParsingJob.url.toString(),
+          language: recipeParsingJob.language,
         ),
       )
       .toList();
@@ -70,8 +71,9 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
 IngredientParsingResult parseIngredient(
   Element ingredientElement,
   double servingsMultiplier,
-  String recipeUrl,
-) {
+  String recipeUrl, {
+  String? language,
+}) {
   var amount = 0.0;
   var unit = "";
   var name = "";
@@ -82,9 +84,10 @@ IngredientParsingResult parseIngredient(
     var nameElement = nameElements.first;
     // Sometimes the name has a url reference in a <a> tag
     if (nameElement.children.isNotEmpty) {
-      nameElement = nameElement.children.first;
+      name = nameElement.children.map((e) => e.text).join();
+    } else {
+      name = nameElement.text.trim();
     }
-    name = nameElement.text.trim();
   } else {
     return createFailedIngredientParsingResult(recipeUrl);
   }
@@ -96,7 +99,7 @@ IngredientParsingResult parseIngredient(
   if (amountElements.isNotEmpty) {
     var amountElement = amountElements.first;
     var amountString = amountElement.text.trim();
-    var parsedAmount = tryParseAmountString(amountString);
+    var parsedAmount = tryParseAmountString(amountString, language: language);
     if (parsedAmount != null) {
       amount = parsedAmount * servingsMultiplier;
     } else {

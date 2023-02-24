@@ -9,7 +9,7 @@ import 'script_test_helper.dart';
 
 void main() {
   test(
-    'collect Bianca Zapatka recipe',
+    'collect Bianca Zapatka recipe with ranges and fractions',
     () async {
       var recipeJob = RecipeParsingJob(
         url: Uri.parse("https://biancazapatka.com/de/blumenkohl-tikka-masala"),
@@ -63,6 +63,56 @@ void main() {
       expectIngredient(recipe, "geröstete Cashewnüsse");
       expectIngredient(recipe, "Sesam");
       expectIngredient(recipe, "frische Petersilie");
+    },
+    tags: ["parsing-test"],
+  );
+
+  test(
+    'collect Bianca Zapatka recipe with fractions and doubles',
+    () async {
+      var recipeJob = RecipeParsingJob(
+        url: Uri.parse(
+          "https://biancazapatka.com/de/veganes-schlemmerfilet-bordelaise",
+        ),
+        servings: 2,
+        language: "de",
+      );
+
+      var result = await collectRecipes([recipeJob], "de");
+      expect(result.length, 1);
+      expect(hasRecipeParsingErrors(result.first), isFalse);
+
+      var recipe = result.first.recipe!;
+      expect(recipe.servings, 2);
+      expect(recipe.ingredients.length, 17);
+
+      expectIngredient(recipe, "Tofu", amount: 200, unit: "g");
+      expectIngredient(recipe, "Noriblatt", amount: 0.5);
+      expectIngredient(recipe, "vegane Butter", amount: 60, unit: "g");
+      expectIngredient(recipe, "Zwiebel", amount: 1);
+      expectIngredient(recipe, "Knoblauchzehen", amount: 2);
+      expectIngredient(recipe, "Paprikapulver", amount: 1.5, unit: "TL");
+      expectIngredient(recipe, "Hefeflocken", amount: 2, unit: "EL");
+      expectIngredient(recipe, "Panko Semmelbrösel", amount: 60, unit: "g");
+      expectIngredient(
+        recipe,
+        "Petersilie und Dill",
+        amount: 0.5,
+        unit: "Bund",
+      );
+      expectIngredient(recipe, "Zitrone", amount: 0.5);
+      expectIngredient(recipe, "Salz und Pfeffer");
+      expectIngredient(recipe, "Kartoffelpüree");
+      expectIngredient(recipe, "Rahmspinat");
+      expectIngredient(recipe, "Vegane Hollandaise");
+      expectIngredient(recipe, "Zitronenscheiben");
+      expectIngredient(recipe, "Petersilie und Dill");
+      expectIngredient(
+        recipe,
+        "NORSAN Omega-3 Vegan Öl",
+        amount: 1,
+        unit: "TL",
+      );
     },
     tags: ["parsing-test"],
   );
@@ -124,16 +174,16 @@ void main() {
   test('parse ingredient element with amount and unit', () {
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
-      <span class="wprm-recipe-ingredient-amount">ca. 240</span>
+      <span class="wprm-recipe-ingredient-amount">ca. 24,5</span>
       <span class="wprm-recipe-ingredient-unit">ml</span>
       <span class="wprm-recipe-ingredient-name">Gemüsebrühe</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", language: "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredient,
-      equals(const Ingredient(amount: 240, unit: "ml", name: "Gemüsebrühe")),
+      equals(const Ingredient(amount: 24.5, unit: "ml", name: "Gemüsebrühe")),
     );
   });
 
