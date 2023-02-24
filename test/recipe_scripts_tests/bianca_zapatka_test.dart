@@ -201,4 +201,15 @@ void main() {
       equals(const Ingredient(amount: 0.5, unit: "", name: "Blumenkohl")),
     );
   });
+
+  test('provide feedback when amount parsing fails', () {
+    var ingredientElement = Element.html("""
+    <li class="wprm-recipe-ingredient">
+      <span class="wprm-recipe-ingredient-amount">amount</span>
+      <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
+    </li>
+    """);
+    var result = parseIngredient(ingredientElement, 1, "");
+    expect(hasIngredientParsingErrors(result), isTrue);
+  });
 }

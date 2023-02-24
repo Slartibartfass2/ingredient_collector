@@ -137,4 +137,19 @@ void main() {
       equals(const Ingredient(amount: 2, unit: "", name: "Walnüsse")),
     );
   });
+
+  test('provide feedback when amount parsing fails', () {
+    var ingredientElement = Element.html("""
+    <div>
+      <div class="kptn-ingredient-measure">
+        measure
+      </div>
+      <div class="kptn-ingredient">
+        Walnüsse
+      </div>
+    </div>
+    """);
+    var result = parseIngredient(ingredientElement, 1, "");
+    expect(hasIngredientParsingErrors(result), isTrue);
+  });
 }
