@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/recipe-scripts/parsing_helper.dart';
+import 'package:ingredient_collector/src/recipe_scripts/parsing_helper.dart';
 
 void main() {
   test('parse amount string with double', () {
