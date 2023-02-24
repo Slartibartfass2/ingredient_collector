@@ -5,7 +5,6 @@ import 'recipe.dart';
 import 'recipe_parsing_job.dart';
 
 part 'recipe_parsing_result.freezed.dart';
-part 'recipe_parsing_result.g.dart';
 
 /// Data class which represents the result of a [RecipeParsingJob].
 @freezed
@@ -18,8 +17,4 @@ class RecipeParsingResult with _$RecipeParsingResult {
     /// Additional informations about the parsing.
     required List<MetaDataLog> metaDataLogs,
   }) = _RecipeParsingResult;
-
-  /// Parses [RecipeParsingResult] object from json map.
-  factory RecipeParsingResult.fromJson(Map<String, dynamic> json) =>
-      _$RecipeParsingResultFromJson(json);
 }
