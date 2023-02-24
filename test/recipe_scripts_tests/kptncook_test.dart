@@ -3,7 +3,7 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/kptnCook.dart';
+import 'package:ingredient_collector/src/recipe_scripts/kptncook.dart';
 
 import 'script_test_helper.dart';
 
