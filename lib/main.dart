@@ -143,27 +143,28 @@ class RecipeInputFormState extends State<RecipeInputForm> {
     var submitButton = ElevatedButton(
       child: const Text(LocaleKeys.submit_button_text).tr(),
       onPressed: () async {
-        var recipeInfos = _rowList
+        // Get first part of local language e.g. en_US -> en
+        var language = Platform.localeName.split("_")[0];
+
+        var recipeJobs = _rowList
             .where(
               (row) =>
                   row.urlController.text.isNotEmpty &&
                   row.servingsController.text.isNotEmpty,
             )
-            .map((row) => row.getData())
+            .map((row) => row.getData(language: language))
             .toList();
 
-        if (_formKey.currentState!.validate() && recipeInfos.isNotEmpty) {
+        if (_formKey.currentState!.validate() && recipeJobs.isNotEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: const Text(LocaleKeys.processing_recipes_text).tr(),
             ),
           );
 
-          // Get first part of local language e.g. en_US -> en
-          var language = Platform.localeName.split("_")[0];
-          var parsingResults = await collectRecipes(recipeInfos, language);
+          var parsingResults = await collectRecipes(recipeJobs, language);
           var metaDataLogs = parsingResults
-              .map((result) => result.metaDataLog)
+              .map((result) => result.metaDataLogs)
               .expand((log) => log)
               .toList();
           var parsedRecipes = parsingResults
@@ -228,10 +229,10 @@ class RecipeInputRow extends StatelessWidget {
 
   RecipeInputRow(this.removeRow, this.index, {super.key});
 
-  RecipeParsingJob getData() {
+  RecipeParsingJob getData({String? language}) {
     var url = Uri.parse(urlController.text);
     var servings = int.parse(servingsController.text);
-    return RecipeParsingJob(url: url, servings: servings);
+    return RecipeParsingJob(url: url, servings: servings, language: language);
   }
 
   @override

@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ingredient.freezed.dart';
-part 'ingredient.g.dart';
 
 /// Data class which holds information about a single ingredient.
 ///
@@ -25,8 +24,4 @@ class Ingredient with _$Ingredient {
     /// e.g. "Carrot", "Apple"
     required String name,
   }) = _Ingredient;
-
-  /// Parses [Ingredient] object from json string.
-  factory Ingredient.fromJson(Map<String, Object?> json) =>
-      _$IngredientFromJson(json);
 }

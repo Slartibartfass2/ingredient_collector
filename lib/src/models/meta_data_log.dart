@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'recipe_parsing_job.dart';
 
 part 'meta_data_log.freezed.dart';
-part 'meta_data_log.g.dart';
 
 /// Data class which represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.
@@ -20,10 +19,6 @@ class MetaDataLog with _$MetaDataLog {
     /// Message of log.
     required String message,
   }) = _MetaDataLog;
-
-  /// Parses [MetaDataLog] object from json string.
-  factory MetaDataLog.fromJson(Map<String, dynamic> json) =>
-      _$MetaDataLogFromJson(json);
 }
 
 /// Type of [MetaDataLog].
