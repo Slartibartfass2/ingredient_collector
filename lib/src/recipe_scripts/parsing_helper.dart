@@ -34,7 +34,6 @@ double? tryParseAmountString(
   try {
     language ??= Platform.localeName.split("_")[0];
     return NumberFormat.decimalPattern(language).parse(amountString).toDouble();
-
   } on FormatException {
     // When the string can't be parsed, try other parsing methods
   }
