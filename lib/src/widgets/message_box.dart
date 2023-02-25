@@ -55,7 +55,7 @@ class MessageBox extends StatelessWidget {
             ),
           ),
           Flexible(
-            child: Text(
+            child: SelectableText(
               "$_titleTag: $_title",
               textScaleFactor: 1.05,
               style: TextStyle(
@@ -83,7 +83,7 @@ class MessageBox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               titleRow,
-              Text(
+              SelectableText(
                 _message,
                 style: TextStyle(color: _textColor),
               ),
