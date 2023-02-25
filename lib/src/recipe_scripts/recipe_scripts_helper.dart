@@ -24,6 +24,23 @@ RecipeParsingResult createFailedRecipeParsingResult(String recipeUrl) =>
       ],
     );
 
+/// Creates a [RecipeParsingResult] for when the user misses a CORS plugin on
+/// web, which results in an exception when making a request.
+///
+/// The [recipeUrl] is displayed to the user in the message.
+RecipeParsingResult createMissingCorsPluginResult(String recipeUrl) =>
+    RecipeParsingResult(
+      metaDataLogs: [
+        MetaDataLog(
+          type: MetaDataLogType.error,
+          title: LocaleKeys.missing_cors_plugin_title.tr(),
+          message: LocaleKeys.missing_cors_plugin_message.tr(
+            namedArgs: {'recipeUrl': recipeUrl},
+          ),
+        ),
+      ],
+    );
+
 /// Creates a [MetaDataLog] for when a [RecipeParsingJob] fails on parsing an
 /// amount string.
 ///
