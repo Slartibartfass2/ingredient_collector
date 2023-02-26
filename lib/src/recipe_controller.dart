@@ -7,6 +7,7 @@ import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
 import 'models/recipe_parsing_result.dart';
 import 'recipe_scripts/bianca_zapatka.dart';
+import 'recipe_scripts/eat_this.dart';
 import 'recipe_scripts/kptncook.dart';
 import 'recipe_scripts/recipe_scripts_helper.dart';
 
@@ -14,6 +15,7 @@ final Map<String, RecipeParsingResult Function(Document, RecipeParsingJob)>
     _recipeParseMethodMap = {
   'http://mobile.kptncook.com': parseKptnCookRecipe,
   'https://biancazapatka.com': parseBiancaZapatkaRecipe,
+  'https://www.eat-this.org': parseEatThisRecipe,
 };
 
 /// Collects recipes from the websites in the passed [recipeParsingJobs].
