@@ -175,10 +175,10 @@ Don't forget to give the project a star! Thanks again!
 
 ### Adding support for a recipe website
 
-1. Add a recipe script file in `./lib/src/recipe-scripts`.
+1. Add a recipe script file in `./lib/src/recipe_scripts`.
 2. Add a parsing method which takes a `Document` and a `RecipeParsingJob` and returns a `RecipeParsingResult`.
 3. Register the url host and the parsing method in the `_recipeParseMethodMap` map in `./lib/src/recipe_controller.dart`.
-4. Add tests in `./test/script_test` to ensure the parsing works.
+4. Add tests in `./test/recipe_scripts_tests` to ensure the parsing works.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
