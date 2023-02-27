@@ -180,6 +180,30 @@ IngredientParsingResult parseIngredientOldDesign(
   String? language,
 }) {
   var ingredientText = ingredientElement.text.trim();
+
+  // Are there two ingredients
+  if (ingredientText.contains("+")) {
+    var ingredients = ingredientText.split("+").map(
+          (ingredient) => parseIngredientOldDesign(
+            Element.html("<li>${ingredient.trim()}</li>"),
+            servingsMultiplier,
+            recipeUrl,
+          ),
+        );
+    if (ingredients.every((ingredient) => ingredient.ingredients.isNotEmpty)) {
+      return IngredientParsingResult(
+        ingredients: ingredients
+            .map((result) => result.ingredients)
+            .expand((ingredient) => ingredient)
+            .toList(),
+        metaDataLogs: ingredients
+            .map((result) => result.metaDataLogs)
+            .expand((log) => log)
+            .toList(),
+      );
+    }
+  }
+
   var parts = ingredientText.split(RegExp(r"\s"));
   // If first part is not already a number, check whether the amount and unit
   // are concatenated
