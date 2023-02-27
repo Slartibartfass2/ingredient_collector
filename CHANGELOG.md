@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0] - 2023-02-28
+
+### Added
+
+- Added support for Eat this! ([#65](https://github.com/Slartibartfass2/ingredient_collector/pull/65))
+- Added support for Bianca Zapatka ([#63](https://github.com/Slartibartfass2/ingredient_collector/pull/63))
+- Added feedback for missing CORS plugin on web ([#64](https://github.com/Slartibartfass2/ingredient_collector/pull/64))
+
 ## [0.2.1] - 2023-02-19
 
 ### Fixed
@@ -29,6 +37,7 @@
 
 _Initial release._
 
+[0.3.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.3.0
 [0.2.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.2.1
 [0.2.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.2.0
 [0.1.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.1.1
