@@ -10,6 +10,14 @@ import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
 
+List<String> _notSupportedUrls = [
+  "https://www.eat-this.org/wie-man-eine-vegane-kaeseplatte-zusammenstellt/",
+  "https://www.eat-this.org/veganes-raclette/",
+  "https://www.eat-this.org/genial-einfacher-veganer-milchschaum-caffe-latte-mit-coffee-circle/",
+  "https://www.eat-this.org/herbstlicher-zwetschgenkuchen/",
+  "https://www.eat-this.org/scharfe-mie-nudeln-thai-style/",
+];
+
 /// Pattern for the amount information of an ingredient.
 const _servingsPattern = "([0-9]+|einen|eine)";
 const _uePattern = "(\u00FC|\u0075\u0308)";
@@ -23,6 +31,12 @@ RecipeParsingResult parseEatThisRecipe(
   Document document,
   RecipeParsingJob recipeParsingJob,
 ) {
+  if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
+    return createDeliberatelyNotSupportedUrlParsingResult(
+      recipeParsingJob.url.toString(),
+    );
+  }
+
   var recipeNameElements = document.getElementsByClassName("entry-title");
   var recipeContainerElementsOldDesign =
       document.getElementsByClassName("zutaten");
