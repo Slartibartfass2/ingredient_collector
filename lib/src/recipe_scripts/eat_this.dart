@@ -157,7 +157,7 @@ IngredientParsingResult parseIngredientOldDesign(
   var name = "";
 
   var ingredientText = ingredientElement.text.trim();
-  var parts = ingredientText.split(" ");
+  var parts = ingredientText.split(RegExp(r"\s"));
   var parsedParts =
       parts.map((part) => tryParseAmountString(part, language: language));
 
