@@ -11,7 +11,7 @@
     <a href="https://github.com/Slartibartfass2/ingredient_collector">
         <img src="https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png" alt="Logo" width="80" height="80">
     </a>
-    <h3 align="center">ingredient_collector</h3>
+    <h3 align="center">ingredient_collector - 0.3.0</h3>
     <p align="center">
         An app that collects ingredients from recipe websites and combines them into a shopping list.
     </p>
@@ -151,10 +151,11 @@
 ## Roadmap
 
 - [x] Add support for [KptnCook](https://www.kptncook.com/)
+- [x] Add support for [Eat This](https://www.eat-this.org/)
+- [x] Add support for [Bianca Zapatka](https://biancazapatka.com/de/)
 - [ ] Add support for [Nora Cooks](https://www.noracooks.com/)
-- [ ] Add support for [Eat This](https://www.eat-this.org/)
-- [ ] Add support for [Bianca Zapatka](https://biancazapatka.com/de/)
 - [ ] Add support for [Chefkoch](https://www.chefkoch.de/)
+- [ ] Add support for [BBC Good Food](https://www.bbcgoodfood.com/)
 
 See the [open issues](https://github.com/Slartibartfass2/ingredient_collector/issues) for a full list of proposed features (and known issues).
 
@@ -175,10 +176,10 @@ Don't forget to give the project a star! Thanks again!
 
 ### Adding support for a recipe website
 
-1. Add a recipe script file in `./lib/src/recipe_scripts`.
+1. Add a recipe script file in [./lib/src/recipe_scripts](./lib/src/recipe_scripts/).
 2. Add a parsing method which takes a `Document` and a `RecipeParsingJob` and returns a `RecipeParsingResult`.
-3. Register the url host and the parsing method in the `_recipeParseMethodMap` map in `./lib/src/recipe_controller.dart`.
-4. Add tests in `./test/recipe_scripts_tests` to ensure the parsing works.
+3. Register the url origin and the parsing method in the `_recipeParseMethodMap` map in [./lib/src/recipe_controller.dart](./lib/src/recipe_controller.dart).
+4. Add tests in [./test/recipe_scripts_tests](./test/recipe_scripts_tests/) to ensure the parsing works.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

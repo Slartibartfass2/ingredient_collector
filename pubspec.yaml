@@ -1,6 +1,6 @@
 name: ingredient_collector
 description: An app that collects ingredients from recipe websites and combines them into a shopping list.
-version: 0.2.1
+version: 0.3.0
 
 environment:
   sdk: '>=2.18.5 <3.0.0'
