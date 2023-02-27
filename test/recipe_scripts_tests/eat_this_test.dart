@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
+import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller.dart';
@@ -87,6 +88,32 @@ void main() {
       expectIngredient(recipe, "Knoblauchzehe", amount: 1);
       expectIngredient(recipe, "Salz");
       expectIngredient(recipe, "Pfeffer, wie immer");
+    },
+    tags: ["parsing-test"],
+  );
+
+  test(
+    'collect unsupported Eat this! recipe',
+    () async {
+      var recipeJob = RecipeParsingJob(
+        url: Uri.parse(
+          "https://www.eat-this.org/veganes-raclette/",
+        ),
+        servings: 4,
+        language: "de",
+      );
+
+      var result = await collectRecipes([recipeJob], "de");
+      expect(result.length, 1);
+      expect(hasRecipeParsingErrors(result.first), isTrue);
+      expect(
+        result.first.metaDataLogs.any(
+          (log) =>
+              log.title ==
+              LocaleKeys.parsing_messages_deliberately_unsupported_url_title,
+        ),
+        isTrue,
+      );
     },
     tags: ["parsing-test"],
   );
