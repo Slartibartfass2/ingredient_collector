@@ -27,6 +27,33 @@ final _servingsTextPatterns = [
   RegExp("F${_uePattern}r\\s$_servingsPattern\\s"),
 ];
 
+/// Known unit strings.
+const units = [
+  "mg",
+  "g",
+  "kg",
+  "el",
+  "tl",
+  "ml",
+  "cl",
+  "dl",
+  "l",
+  "liter",
+  "pkg.",
+  "pkg",
+  "prise",
+  "stangen",
+  "bund",
+  "portionen",
+  "cm",
+  "dm",
+  "m",
+  "handvoll",
+  "päckchen",
+  "stück",
+  "zweige",
+];
+
 /// Parses a [Document] from the Eat This website to a recipe.
 RecipeParsingResult parseEatThisRecipe(
   Document document,
@@ -158,6 +185,12 @@ IngredientParsingResult parseIngredientOldDesign(
 
   var ingredientText = ingredientElement.text.trim();
   var parts = ingredientText.split(RegExp(r"\s"));
+  // If first part is not already a number, check whether the amount and unit
+  // are concatenated
+  if (tryParseAmountString(parts[0]) == null) {
+    var splittedFirstPart = _breakUpNumberAndText(parts[0]);
+    parts = splittedFirstPart + parts.skip(1).toList();
+  }
   var parsedParts =
       parts.map((part) => tryParseAmountString(part, language: language));
 
@@ -303,29 +336,26 @@ IngredientParsingResult parseIngredientNewDesign(
   );
 }
 
-/// Known unit strings.
-const units = [
-  "mg",
-  "g",
-  "kg",
-  "el",
-  "tl",
-  "ml",
-  "cl",
-  "dl",
-  "l",
-  "liter",
-  "pkg.",
-  "pkg",
-  "prise",
-  "stangen",
-  "bund",
-  "portionen",
-  "cm",
-  "dm",
-  "m",
-  "handvoll",
-  "päckchen",
-  "stück",
-  "zweige",
-];
+List<String> _breakUpNumberAndText(String numberAndTextString) {
+  var result = <String>[
+    "",
+  ];
+  var unitIndex = 0;
+  for (var i = 0; i < numberAndTextString.length; i++) {
+    var number = num.tryParse(numberAndTextString[i]);
+    if (number != null) {
+      result[0] += number.toString();
+    } else {
+      unitIndex = i;
+      break;
+    }
+  }
+
+  if (unitIndex > 0) {
+    result.add(numberAndTextString.substring(unitIndex));
+  } else {
+    result[0] = numberAndTextString;
+  }
+
+  return result;
+}
