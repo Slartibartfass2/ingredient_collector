@@ -16,6 +16,7 @@ List<String> _notSupportedUrls = [
   "https://www.eat-this.org/genial-einfacher-veganer-milchschaum-caffe-latte-mit-coffee-circle/",
   "https://www.eat-this.org/herbstlicher-zwetschgenkuchen/",
   "https://www.eat-this.org/scharfe-mie-nudeln-thai-style/",
+  "https://www.eat-this.org/artischocken-vinaigrette/",
 ];
 
 /// Pattern for the amount information of an ingredient.
@@ -155,7 +156,7 @@ IngredientParsingResult parseIngredientOldDesign(
   var unit = "";
   var name = "";
 
-  var ingredientText = ingredientElement.text;
+  var ingredientText = ingredientElement.text.trim();
   var parts = ingredientText.split(" ");
   var parsedParts =
       parts.map((part) => tryParseAmountString(part, language: language));
@@ -310,6 +311,21 @@ const units = [
   "el",
   "tl",
   "ml",
+  "cl",
   "dl",
   "l",
+  "liter",
+  "pkg.",
+  "pkg",
+  "prise",
+  "stangen",
+  "bund",
+  "portionen",
+  "cm",
+  "dm",
+  "m",
+  "handvoll",
+  "päckchen",
+  "stück",
+  "zweige",
 ];
