@@ -39,18 +39,21 @@ double? tryParseAmountString(
   }
 
   // When string is range return middle
-  if (_isRange(amountString)) {
-    var parts = amountString.split("-");
-    var lower = double.parse(parts[0].trim());
-    var upper = double.parse(parts[1].trim());
-    return (upper + lower) / 2;
+  var range = _tryGetRange(amountString);
+  if (range != null) {
+    return range;
+  }
+
+  var fractionWithSlash = _tryGetFractionWithSlash(amountString);
+  if (fractionWithSlash != null) {
+    return fractionWithSlash;
   }
 
   if (fractions.containsKey(amountString)) {
     return fractions[amountString];
   }
 
-  var words = amountString.split(" ");
+  var words = amountString.split(RegExp(r"\s+"));
   if (words.length > 1) {
     var parsedWords = words
         .map((word) => tryParseAmountString(word, language: language))
@@ -70,8 +73,38 @@ double? tryParseAmountString(
   return null;
 }
 
-/// Checks whether the passed [text] represents a range e.g. 1-3.
-bool _isRange(String text) {
-  var pattern = RegExp(r"^[1-9][0-9]*-[1-9][0-9]*$");
-  return pattern.hasMatch(text);
+/// Tries to parse a range from the passed [text] e.g. 1-3.
+double? _tryGetRange(String text) {
+  var parts = text.split("-");
+
+  if (parts.length != 2) {
+    return null;
+  }
+
+  var start = tryParseAmountString(parts[0].trim());
+  var end = tryParseAmountString(parts[1].trim());
+
+  if (start == null || end == null) {
+    return null;
+  }
+
+  return (end + start) / 2;
+}
+
+/// Tries to parse a fraction with '/' from the passed [text] e.g. 1/3.
+double? _tryGetFractionWithSlash(String text) {
+  var parts = text.split("/");
+
+  if (parts.length != 2) {
+    return null;
+  }
+
+  var numerator = tryParseAmountString(parts[0].trim());
+  var denominator = tryParseAmountString(parts[1].trim());
+
+  if (numerator == null || denominator == null) {
+    return null;
+  }
+
+  return numerator / denominator;
 }
