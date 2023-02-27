@@ -182,7 +182,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", language: "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 24.5, unit: "ml", name: "Gemüsebrühe")),
     );
   });
@@ -197,7 +197,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 0.5, unit: "", name: "Blumenkohl")),
     );
   });

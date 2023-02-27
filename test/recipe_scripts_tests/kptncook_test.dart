@@ -114,7 +114,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
     );
   });
@@ -133,7 +133,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 2, unit: "", name: "Walnüsse")),
     );
   });

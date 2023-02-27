@@ -60,8 +60,8 @@ RecipeParsingResult parseKptnCookRecipe(
       .toList();
 
   var ingredients = ingredientParsingResults
-      .map((result) => result.ingredient)
-      .whereType<Ingredient>()
+      .map((result) => result.ingredients)
+      .expand((ingredient) => ingredient)
       .toList();
 
   var ingredientsWithoutAmount = ingredients
@@ -106,10 +106,7 @@ IngredientParsingResult parseIngredient(
   String recipeUrl, {
   String? language,
 }) {
-  var amount = 0.0;
-  var unit = "";
   var name = "";
-
   var nameElements =
       ingredientElement.getElementsByClassName("kptn-ingredient");
   if (nameElements.isNotEmpty) {
@@ -120,6 +117,8 @@ IngredientParsingResult parseIngredient(
 
   var logs = <MetaDataLog>[];
 
+  var amount = 0.0;
+  var unit = "";
   var measureElements =
       ingredientElement.getElementsByClassName("kptn-ingredient-measure");
   if (measureElements.isNotEmpty) {
@@ -145,7 +144,9 @@ IngredientParsingResult parseIngredient(
   }
 
   return IngredientParsingResult(
-    ingredient: Ingredient(amount: amount, unit: unit, name: name),
+    ingredients: [
+      Ingredient(amount: amount, unit: unit, name: name),
+    ],
     metaDataLogs: logs,
   );
 }

@@ -48,8 +48,8 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
       .toList();
 
   var ingredients = ingredientParsingResults
-      .map((result) => result.ingredient)
-      .whereType<Ingredient>()
+      .map((result) => result.ingredients)
+      .expand((ingredient) => ingredient)
       .toList();
 
   return RecipeParsingResult(
@@ -74,10 +74,7 @@ IngredientParsingResult parseIngredient(
   String recipeUrl, {
   String? language,
 }) {
-  var amount = 0.0;
-  var unit = "";
   var name = "";
-
   var nameElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-name");
   if (nameElements.isNotEmpty) {
@@ -94,6 +91,7 @@ IngredientParsingResult parseIngredient(
 
   var logs = <MetaDataLog>[];
 
+  var amount = 0.0;
   var amountElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-amount");
   if (amountElements.isNotEmpty) {
@@ -113,6 +111,7 @@ IngredientParsingResult parseIngredient(
     }
   }
 
+  var unit = "";
   var unitElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-unit");
   if (unitElements.isNotEmpty) {
@@ -121,7 +120,9 @@ IngredientParsingResult parseIngredient(
   }
 
   return IngredientParsingResult(
-    ingredient: Ingredient(amount: amount, unit: unit, name: name),
+    ingredients: [
+      Ingredient(amount: amount, unit: unit, name: name),
+    ],
     metaDataLogs: logs,
   );
 }

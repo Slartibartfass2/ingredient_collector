@@ -131,7 +131,7 @@ void main() {
     var result = parseIngredientNewDesign(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(
         const Ingredient(
           amount: 0.5,
@@ -151,7 +151,7 @@ void main() {
     var result = parseIngredientOldDesign(ingredientElement, 1, "");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(
         const Ingredient(
           amount: 1.5,

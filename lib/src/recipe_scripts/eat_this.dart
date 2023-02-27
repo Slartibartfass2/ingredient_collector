@@ -153,8 +153,8 @@ RecipeParsingResult _parseRecipeOldDesign(
       .toList();
 
   var ingredients = ingredientParsingResults
-      .map((result) => result.ingredient)
-      .whereType<Ingredient>()
+      .map((result) => result.ingredients)
+      .expand((ingredient) => ingredient)
       .toList();
 
   return RecipeParsingResult(
@@ -179,10 +179,6 @@ IngredientParsingResult parseIngredientOldDesign(
   String recipeUrl, {
   String? language,
 }) {
-  var amount = 0.0;
-  var unit = "";
-  var name = "";
-
   var ingredientText = ingredientElement.text.trim();
   var parts = ingredientText.split(RegExp(r"\s"));
   // If first part is not already a number, check whether the amount and unit
@@ -194,7 +190,7 @@ IngredientParsingResult parseIngredientOldDesign(
   var parsedParts =
       parts.map((part) => tryParseAmountString(part, language: language));
 
-  // Check for amount first
+  var amount = 0.0;
   var checkIndex = -1;
   for (var parsedPart in parsedParts) {
     if (parsedPart == null) {
@@ -205,26 +201,26 @@ IngredientParsingResult parseIngredientOldDesign(
     }
   }
 
-  // Unit comes second
+  var unit = "";
   if (checkIndex + 1 < parts.length &&
       units.contains(parts[checkIndex + 1].toLowerCase())) {
     unit = parts[checkIndex + 1];
     checkIndex++;
   }
 
-  name = parts.skip(checkIndex + 1).join(" ");
-
+  var name = parts.skip(checkIndex + 1).join(" ");
   if (name.isEmpty) {
     return createFailedIngredientParsingResult(recipeUrl);
   }
 
   return IngredientParsingResult(
-    ingredient: Ingredient(
-      amount: amount * servingsMultiplier,
-      unit: unit,
-      name: name,
-    ),
-    metaDataLogs: [],
+    ingredients: [
+      Ingredient(
+        amount: amount * servingsMultiplier,
+        unit: unit,
+        name: name,
+      ),
+    ],
   );
 }
 
@@ -258,8 +254,8 @@ RecipeParsingResult _parseRecipeNewDesign(
       .toList();
 
   var ingredients = ingredientParsingResults
-      .map((result) => result.ingredient)
-      .whereType<Ingredient>()
+      .map((result) => result.ingredients)
+      .expand((ingredient) => ingredient)
       .toList();
 
   return RecipeParsingResult(
@@ -284,10 +280,7 @@ IngredientParsingResult parseIngredientNewDesign(
   String recipeUrl, {
   String? language,
 }) {
-  var amount = 0.0;
-  var unit = "";
   var name = "";
-
   var nameElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-name");
   if (nameElements.isNotEmpty) {
@@ -304,6 +297,7 @@ IngredientParsingResult parseIngredientNewDesign(
 
   var logs = <MetaDataLog>[];
 
+  var amount = 0.0;
   var amountElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-amount");
   if (amountElements.isNotEmpty) {
@@ -323,6 +317,7 @@ IngredientParsingResult parseIngredientNewDesign(
     }
   }
 
+  var unit = "";
   var unitElements =
       ingredientElement.getElementsByClassName("wprm-recipe-ingredient-unit");
   if (unitElements.isNotEmpty) {
@@ -331,7 +326,9 @@ IngredientParsingResult parseIngredientNewDesign(
   }
 
   return IngredientParsingResult(
-    ingredient: Ingredient(amount: amount, unit: unit, name: name),
+    ingredients: [
+      Ingredient(amount: amount, unit: unit, name: name),
+    ],
     metaDataLogs: logs,
   );
 }
