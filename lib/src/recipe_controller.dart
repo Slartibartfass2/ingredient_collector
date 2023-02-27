@@ -7,13 +7,15 @@ import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
 import 'models/recipe_parsing_result.dart';
 import 'recipe_scripts/bianca_zapatka.dart';
+import 'recipe_scripts/eat_this.dart';
 import 'recipe_scripts/kptncook.dart';
 import 'recipe_scripts/recipe_scripts_helper.dart';
 
 final Map<String, RecipeParsingResult Function(Document, RecipeParsingJob)>
     _recipeParseMethodMap = {
-  'mobile.kptncook.com': parseKptnCookRecipe,
-  'biancazapatka.com': parseBiancaZapatkaRecipe,
+  'http://mobile.kptncook.com': parseKptnCookRecipe,
+  'https://biancazapatka.com': parseBiancaZapatkaRecipe,
+  'https://www.eat-this.org': parseEatThisRecipe,
 };
 
 /// Collects recipes from the websites in the passed [recipeParsingJobs].
@@ -56,7 +58,7 @@ Future<RecipeParsingResult> _collectRecipe(
 
   var document = parse(response.body);
 
-  var parseMethod = _recipeParseMethodMap[recipeParsingJob.url.host];
+  var parseMethod = _recipeParseMethodMap[recipeParsingJob.url.origin];
 
   return parseMethod!.call(document, recipeParsingJob);
 }
@@ -65,4 +67,4 @@ Future<RecipeParsingResult> _collectRecipe(
 ///
 /// Supported means that there's a parsing script available which can be used
 /// to collect the ingredients of the recipe.
-bool isUrlSupported(Uri url) => _recipeParseMethodMap.containsKey(url.host);
+bool isUrlSupported(Uri url) => _recipeParseMethodMap.containsKey(url.origin);

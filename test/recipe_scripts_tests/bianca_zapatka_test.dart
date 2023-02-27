@@ -167,7 +167,7 @@ void main() {
 
   test('parse empty ingredient element', () {
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -179,10 +179,10 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Gemüsebrühe</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", language: "de");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 24.5, unit: "ml", name: "Gemüsebrühe")),
     );
   });
@@ -194,10 +194,10 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 0.5, unit: "", name: "Blumenkohl")),
     );
   });
@@ -209,7 +209,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

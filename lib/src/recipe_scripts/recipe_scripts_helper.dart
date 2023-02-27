@@ -41,6 +41,28 @@ RecipeParsingResult createMissingCorsPluginResult(String recipeUrl) =>
       ],
     );
 
+/// Creates a [RecipeParsingResult] for when a [RecipeParsingJob] fails
+/// because the recipe website is deliberately not supported.
+///
+/// The [recipeUrl] is displayed to the user in the message.
+RecipeParsingResult createDeliberatelyNotSupportedUrlParsingResult(
+  String recipeUrl,
+) =>
+    RecipeParsingResult(
+      metaDataLogs: [
+        MetaDataLog(
+          type: MetaDataLogType.error,
+          title: LocaleKeys.parsing_messages_deliberately_unsupported_url_title
+              .tr(),
+          message: LocaleKeys
+              .parsing_messages_deliberately_unsupported_url_message
+              .tr(
+            namedArgs: {'recipeUrl': recipeUrl},
+          ),
+        ),
+      ],
+    );
+
 /// Creates a [MetaDataLog] for when a [RecipeParsingJob] fails on parsing an
 /// amount string.
 ///

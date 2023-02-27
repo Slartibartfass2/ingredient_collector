@@ -11,9 +11,9 @@ class IngredientParsingResult with _$IngredientParsingResult {
   /// Creates [IngredientParsingResult] object.
   const factory IngredientParsingResult({
     /// Optionally parsed ingredient.
-    Ingredient? ingredient,
+    @Default([]) List<Ingredient> ingredients,
 
     /// Additional informations about the parsing.
-    required List<MetaDataLog> metaDataLogs,
+    @Default([]) List<MetaDataLog> metaDataLogs,
   }) = _IngredientParsingResult;
 }

@@ -96,7 +96,7 @@ void main() {
 
   test('parse empty ingredient element', () {
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -111,10 +111,10 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
     );
   });
@@ -130,10 +130,10 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredient,
+      result.ingredients[0],
       equals(const Ingredient(amount: 2, unit: "", name: "Walnüsse")),
     );
   });
@@ -149,7 +149,7 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "");
+    var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

@@ -23,6 +23,10 @@
             "title": "Parsing failed",
             "message": "An error occured while parsing {recipeUrl}."
         },
+        "deliberately_unsupported_url": {
+            "title": "Url is not supported",
+            "message": "Parsing {recipeUrl} is deliberately not supported. This may be because the html structure is different from most other recipes, or because there is no recipe on that site."
+        },
         "amount_failure": {
             "title": "Failed to parse the amount of an ingredient",
             "message": "An error occured while parsing {recipeUrl}.\nThe amount '{amountString}' of the ingredient '{ingredientName}' couldn't be parsed to a number."
@@ -30,10 +34,6 @@
         "ingredient_failure": {
             "title": "Failed to parse an ingredient",
             "message": "An error occured while parsing {recipeUrl}. An ingredient couldn't be parsed."
-        },
-        "kptn_cook_warning": {
-            "title": "KptnCook recipe '{recipeName}' is incomplete",
-            "message": "A KptnCook recipe has two sections: 'You need' and 'You might have this at home'.\nThe ingredients in the second section do not contain quantities and may need to be completed to get the whole recipe. The effected ingredients are:\n{ingredientsWithoutAmount}"
         }
     }
 }
