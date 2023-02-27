@@ -13,9 +13,9 @@ import 'recipe_scripts_helper.dart';
 IngredientParsingResult parseWordPressIngredient(
   Element element,
   double servingsMultiplier,
-  String recipeUrl, {
+  String recipeUrl,
   String? language,
-}) {
+) {
   var name = "";
   var nameElements =
       element.getElementsByClassName("wprm-recipe-ingredient-name");

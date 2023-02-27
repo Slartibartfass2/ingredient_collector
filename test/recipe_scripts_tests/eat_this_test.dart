@@ -138,13 +138,13 @@ void main() {
 
   test('parse empty ingredient element new design', () {
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredientNewDesign(ingredientElement, 1, "");
+    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse empty ingredient element old design', () {
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredientOldDesign(ingredientElement, 1, "");
+    var result = parseIngredientOldDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -156,7 +156,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Zucker</span>
     </li>
     """);
-    var result = parseIngredientNewDesign(ingredientElement, 1, "");
+    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients[0],
@@ -176,7 +176,7 @@ void main() {
       1 1/2 EL Reis- oder Ahornsirup
     </li>
     """);
-    var result = parseIngredientOldDesign(ingredientElement, 1, "");
+    var result = parseIngredientOldDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients[0],
@@ -197,7 +197,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredientNewDesign(ingredientElement, 1, "");
+    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

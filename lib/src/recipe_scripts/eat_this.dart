@@ -3,7 +3,6 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
@@ -136,34 +135,12 @@ RecipeParsingResult _parseRecipeOldDesign(
 
   var ingredientElements = recipeElement.getElementsByTagName("li");
 
-  var ingredientParsingResults = ingredientElements
-      .map(
-        (element) => parseIngredientOldDesign(
-          element,
-          servingsMultiplier,
-          recipeParsingJob.url.toString(),
-          language: recipeParsingJob.language,
-        ),
-      )
-      .toList();
-
-  var logs = ingredientParsingResults
-      .map((result) => result.metaDataLogs)
-      .expand((metaDataLogs) => metaDataLogs)
-      .toList();
-
-  var ingredients = ingredientParsingResults
-      .map((result) => result.ingredients)
-      .expand((ingredient) => ingredient)
-      .toList();
-
-  return RecipeParsingResult(
-    recipe: Recipe(
-      ingredients: ingredients,
-      name: recipeName,
-      servings: recipeParsingJob.servings,
-    ),
-    metaDataLogs: logs,
+  return createResultFromIngredientParsing(
+    ingredientElements,
+    recipeParsingJob,
+    servingsMultiplier,
+    recipeName,
+    parseIngredientOldDesign,
   );
 }
 
@@ -176,9 +153,9 @@ RecipeParsingResult _parseRecipeOldDesign(
 IngredientParsingResult parseIngredientOldDesign(
   Element element,
   double servingsMultiplier,
-  String recipeUrl, {
+  String recipeUrl,
   String? language,
-}) {
+) {
   var ingredientText = element.text.trim();
 
   // Are there two ingredients
@@ -188,6 +165,7 @@ IngredientParsingResult parseIngredientOldDesign(
             Element.html("<li>${ingredient.trim()}</li>"),
             servingsMultiplier,
             recipeUrl,
+            null,
           ),
         );
     if (ingredients.every((ingredient) => ingredient.ingredients.isNotEmpty)) {
@@ -261,34 +239,12 @@ RecipeParsingResult _parseRecipeNewDesign(
   var ingredientElements =
       recipeElement.getElementsByClassName("wprm-recipe-ingredient");
 
-  var ingredientParsingResults = ingredientElements
-      .map(
-        (element) => parseIngredientNewDesign(
-          element,
-          servingsMultiplier,
-          recipeParsingJob.url.toString(),
-          language: recipeParsingJob.language,
-        ),
-      )
-      .toList();
-
-  var logs = ingredientParsingResults
-      .map((result) => result.metaDataLogs)
-      .expand((metaDataLogs) => metaDataLogs)
-      .toList();
-
-  var ingredients = ingredientParsingResults
-      .map((result) => result.ingredients)
-      .expand((ingredient) => ingredient)
-      .toList();
-
-  return RecipeParsingResult(
-    recipe: Recipe(
-      ingredients: ingredients,
-      name: recipeName,
-      servings: recipeParsingJob.servings,
-    ),
-    metaDataLogs: logs,
+  return createResultFromIngredientParsing(
+    ingredientElements,
+    recipeParsingJob,
+    servingsMultiplier,
+    recipeName,
+    parseIngredientNewDesign,
   );
 }
 
@@ -301,14 +257,14 @@ RecipeParsingResult _parseRecipeNewDesign(
 IngredientParsingResult parseIngredientNewDesign(
   Element element,
   double servingsMultiplier,
-  String recipeUrl, {
+  String recipeUrl,
   String? language,
-}) =>
+) =>
     parseWordPressIngredient(
       element,
       servingsMultiplier,
       recipeUrl,
-      language: language,
+      language,
     );
 
 List<String> _breakUpNumberAndText(String numberAndTextString) {

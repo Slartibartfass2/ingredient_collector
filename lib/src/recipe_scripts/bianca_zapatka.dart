@@ -3,9 +3,9 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
+import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
 import 'wordpress_ingredient_parsing.dart';
 
@@ -30,34 +30,12 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
   var recipeServings = int.parse(servingsElements.first.text);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
-  var ingredientParsingResults = ingredientContainers
-      .map(
-        (element) => parseIngredient(
-          element,
-          servingsMultiplier,
-          recipeParsingJob.url.toString(),
-          language: recipeParsingJob.language,
-        ),
-      )
-      .toList();
-
-  var logs = ingredientParsingResults
-      .map((result) => result.metaDataLogs)
-      .expand((metaDataLogs) => metaDataLogs)
-      .toList();
-
-  var ingredients = ingredientParsingResults
-      .map((result) => result.ingredients)
-      .expand((ingredient) => ingredient)
-      .toList();
-
-  return RecipeParsingResult(
-    recipe: Recipe(
-      ingredients: ingredients,
-      name: recipeName,
-      servings: recipeParsingJob.servings,
-    ),
-    metaDataLogs: logs,
+  return createResultFromIngredientParsing(
+    ingredientContainers,
+    recipeParsingJob,
+    servingsMultiplier,
+    recipeName,
+    parseIngredient,
   );
 }
 
@@ -70,12 +48,12 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
 IngredientParsingResult parseIngredient(
   Element element,
   double servingsMultiplier,
-  String recipeUrl, {
+  String recipeUrl,
   String? language,
-}) =>
+) =>
     parseWordPressIngredient(
       element,
       servingsMultiplier,
       recipeUrl,
-      language: language,
+      language,
     );

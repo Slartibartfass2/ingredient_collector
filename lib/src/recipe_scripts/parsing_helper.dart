@@ -1,5 +1,11 @@
+import 'package:html/dom.dart';
 import 'package:intl/intl.dart';
 import 'package:universal_io/io.dart' show Platform;
+
+import '../models/ingredient_parsing_result.dart';
+import '../models/recipe.dart';
+import '../models/recipe_parsing_job.dart';
+import '../models/recipe_parsing_result.dart';
 
 /// Mapping of fraction characters and there [double] values.
 const fractions = {
@@ -107,4 +113,44 @@ double? _tryGetFractionWithSlash(String text) {
   }
 
   return numerator / denominator;
+}
+
+/// Parses the passed [elements] using the [parseIngredientMethod].
+RecipeParsingResult createResultFromIngredientParsing(
+  List<Element> elements,
+  RecipeParsingJob job,
+  double servingsMultiplier,
+  String recipeName,
+  IngredientParsingResult Function(Element, double, String, String?)
+      parseIngredientMethod,
+) {
+  var ingredientParsingResults = elements
+      .map(
+        (element) => parseIngredientMethod(
+          element,
+          servingsMultiplier,
+          job.url.toString(),
+          job.language,
+        ),
+      )
+      .toList();
+
+  var logs = ingredientParsingResults
+      .map((result) => result.metaDataLogs)
+      .expand((metaDataLogs) => metaDataLogs)
+      .toList();
+
+  var ingredients = ingredientParsingResults
+      .map((result) => result.ingredients)
+      .expand((ingredient) => ingredient)
+      .toList();
+
+  return RecipeParsingResult(
+    recipe: Recipe(
+      ingredients: ingredients,
+      name: recipeName,
+      servings: job.servings,
+    ),
+    metaDataLogs: logs,
+  );
 }
