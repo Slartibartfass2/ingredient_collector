@@ -160,25 +160,14 @@ IngredientParsingResult parseIngredientOldDesign(
 
   // Are there two ingredients
   if (ingredientText.contains("+")) {
-    var ingredients = ingredientText.split("+").map(
-          (ingredient) => parseIngredientOldDesign(
-            Element.html("<li>${ingredient.trim()}</li>"),
-            servingsMultiplier,
-            recipeUrl,
-            null,
-          ),
-        );
-    if (ingredients.every((ingredient) => ingredient.ingredients.isNotEmpty)) {
-      return IngredientParsingResult(
-        ingredients: ingredients
-            .map((result) => result.ingredients)
-            .expand((ingredient) => ingredient)
-            .toList(),
-        metaDataLogs: ingredients
-            .map((result) => result.metaDataLogs)
-            .expand((log) => log)
-            .toList(),
-      );
+    var result = _tryParsePlusConcatenatedIngredients(
+      ingredientText,
+      servingsMultiplier,
+      recipeUrl,
+      language,
+    );
+    if (result != null) {
+      return result;
     }
   }
 
@@ -224,6 +213,35 @@ IngredientParsingResult parseIngredientOldDesign(
       ),
     ],
   );
+}
+
+IngredientParsingResult? _tryParsePlusConcatenatedIngredients(
+  String ingredientText,
+  double servingsMultiplier,
+  String recipeUrl,
+  String? language,
+) {
+  var ingredients = ingredientText.split("+").map(
+        (ingredient) => parseIngredientOldDesign(
+          Element.html("<li>${ingredient.trim()}</li>"),
+          servingsMultiplier,
+          recipeUrl,
+          language,
+        ),
+      );
+  if (ingredients.every((ingredient) => ingredient.ingredients.isNotEmpty)) {
+    return IngredientParsingResult(
+      ingredients: ingredients
+          .map((result) => result.ingredients)
+          .expand((ingredient) => ingredient)
+          .toList(),
+      metaDataLogs: ingredients
+          .map((result) => result.metaDataLogs)
+          .expand((log) => log)
+          .toList(),
+    );
+  }
+  return null;
 }
 
 RecipeParsingResult _parseRecipeNewDesign(
