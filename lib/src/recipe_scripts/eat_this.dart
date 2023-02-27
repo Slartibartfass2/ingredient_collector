@@ -10,6 +10,14 @@ import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
 
+/// Pattern for the amount information of an ingredient.
+const _servingsPattern = "([0-9]+|einen|eine)";
+const _uePattern = "(\u00FC|\u0075\u0308)";
+final _servingsTextPatterns = [
+  RegExp("Zutaten\\sf${_uePattern}r(\\sca.){0,1}\\s$_servingsPattern\\s"),
+  RegExp("F${_uePattern}r\\s$_servingsPattern\\s"),
+];
+
 /// Parses a [Document] from the Eat This website to a recipe.
 RecipeParsingResult parseEatThisRecipe(
   Document document,
@@ -30,15 +38,15 @@ RecipeParsingResult parseEatThisRecipe(
   var recipeName = recipeNameElements.first.text.trim();
 
   RecipeParsingResult recipeParsingResult;
-  if (recipeContainerElementsOldDesign.isNotEmpty) {
-    recipeParsingResult = _parseRecipeOldDesign(
-      recipeContainerElementsOldDesign.first,
+  if (recipeContainerElementsNewDesign.isNotEmpty) {
+    recipeParsingResult = _parseRecipeNewDesign(
+      recipeContainerElementsNewDesign.first,
       recipeName,
       recipeParsingJob,
     );
-  } else if (recipeContainerElementsNewDesign.isNotEmpty) {
-    recipeParsingResult = _parseRecipeNewDesign(
-      recipeContainerElementsNewDesign.first,
+  } else if (recipeContainerElementsOldDesign.isNotEmpty) {
+    recipeParsingResult = _parseRecipeOldDesign(
+      recipeContainerElementsOldDesign.first,
       recipeName,
       recipeParsingJob,
     );
@@ -54,17 +62,37 @@ RecipeParsingResult _parseRecipeOldDesign(
   String recipeName,
   RecipeParsingJob recipeParsingJob,
 ) {
-  var servingsElements = recipeElement.getElementsByTagName("p");
+  var possibleServingsElements = recipeElement.getElementsByTagName("p") +
+      recipeElement.getElementsByTagName("h3") +
+      recipeElement.getElementsByTagName("h2") +
+      recipeElement.getElementsByTagName("h4");
+  var servingsElements = possibleServingsElements.where(
+    (element) => _servingsTextPatterns.any(
+      (pattern) => element.text.startsWith(pattern),
+    ),
+  );
+
+  if (servingsElements.isEmpty) {
+    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+  }
+
+  var servingsElement = servingsElements.first;
 
   // Retrieve amount of servings
-  var servingsPattern = RegExp("[0-9]+");
-  var servingsDescriptionText = servingsElements[1].text;
-  var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
+  var servingsDescriptionText = servingsElement.text;
+  var recipeServingsMatch =
+      RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
   if (recipeServingsMatch == null || recipeServingsMatch.group(0) == null) {
     return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
 
-  var recipeServings = num.parse(recipeServingsMatch.group(0)!);
+  num recipeServings;
+  try {
+    recipeServings = num.parse(recipeServingsMatch.group(0)!);
+  } on FormatException {
+    // When it can't be parsed to a number it's a word for 1 e.g. 'eine'/'einen'
+    recipeServings = 1;
+  }
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
   var ingredientElements = recipeElement.getElementsByTagName("li");
