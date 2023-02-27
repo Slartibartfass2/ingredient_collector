@@ -64,26 +64,6 @@ RecipeParsingResult parseKptnCookRecipe(
       .expand((ingredient) => ingredient)
       .toList();
 
-  var ingredientsWithoutAmount = ingredients
-      .where((ingredient) => ingredient.amount == 0)
-      .map((ingredient) => ingredient.name)
-      .toList();
-  var ingredientsWithoutAmountText = "";
-  if (ingredientsWithoutAmount.isNotEmpty) {
-    ingredientsWithoutAmountText = "'${ingredientsWithoutAmount.join("', '")}'";
-    logs.add(
-      MetaDataLog(
-        type: MetaDataLogType.warning,
-        title: LocaleKeys.parsing_messages_kptn_cook_warning_title.tr(
-          namedArgs: {'recipeName': recipeName},
-        ),
-        message: LocaleKeys.parsing_messages_kptn_cook_warning_message.tr(
-          namedArgs: {'ingredientsWithoutAmount': ingredientsWithoutAmountText},
-        ),
-      ),
-    );
-  }
-
   return RecipeParsingResult(
     recipe: Recipe(
       ingredients: ingredients,

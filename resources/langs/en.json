@@ -34,10 +34,6 @@
         "ingredient_failure": {
             "title": "Failed to parse an ingredient",
             "message": "An error occured while parsing {recipeUrl}. An ingredient couldn't be parsed."
-        },
-        "kptn_cook_warning": {
-            "title": "KptnCook recipe '{recipeName}' is incomplete",
-            "message": "A KptnCook recipe has two sections: 'You need' and 'You might have this at home'.\nThe ingredients in the second section do not contain quantities and may need to be completed to get the whole recipe. The effected ingredients are:\n{ingredientsWithoutAmount}"
         }
     }
 }

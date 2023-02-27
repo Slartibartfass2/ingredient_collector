@@ -34,10 +34,6 @@
         "ingredient_failure": {
             "title": "Parsen einer Zutat fehlgeschlagen",
             "message": "Beim Parsen von {recipeUrl} ist ein Fehler aufgetreten. Eine Zutat konnte nicht geparst werden."
-        },
-        "kptn_cook_warning": {
-            "title": "KptnCook Rezept '{recipeName}' ist unvollständig",
-            "message": "Ein KptnCook Rezept hat zwei Abschnitte: 'Du brauchst' und 'Du hast du bestimmt zuhause'.\nDie Zutaten im zweiten Abschnitt enthalten keine Mengenangaben und müssen eventuell vervollständigt werden, um das gesamte Rezept zu erhalten. Die betroffenen Zutaten sind:\n{ingredientsWithoutAmount}"
         }
     }
 }
