@@ -19,10 +19,10 @@ List<String> _notSupportedUrls = [
 ];
 
 /// Pattern for the amount information of an ingredient.
-const _servingsPattern = "([0-9]+|einen|eine)";
+const _servingsPattern = "(?<servings>[0-9]+(-[0-9]+)?|einen|eine|ein)";
 const _uePattern = "(\u00FC|\u0075\u0308)";
 final _servingsTextPatterns = [
-  RegExp("Zutaten\\sf${_uePattern}r(\\sca.){0,1}\\s$_servingsPattern\\s"),
+  RegExp("Zutaten\\sf${_uePattern}r(\\s(ca\\.|etwa))?\\s$_servingsPattern\\s"),
   RegExp("F${_uePattern}r\\s$_servingsPattern\\s"),
 ];
 
@@ -96,17 +96,14 @@ RecipeParsingResult _parseRecipeOldDesign(
   var servingsDescriptionText = servingsElement.text;
   var recipeServingsMatch =
       RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
-  if (recipeServingsMatch == null || recipeServingsMatch.group(0) == null) {
+  if (recipeServingsMatch == null ||
+      recipeServingsMatch.namedGroup("servings") == null) {
     return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
 
-  num recipeServings;
-  try {
-    recipeServings = num.parse(recipeServingsMatch.group(0)!);
-  } on FormatException {
-    // When it can't be parsed to a number it's a word for 1 e.g. 'eine'/'einen'
-    recipeServings = 1;
-  }
+  var recipeServings =
+      tryParseAmountString(recipeServingsMatch.namedGroup("servings")!);
+  recipeServings ??= 1;
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
   var ingredientElements = recipeElement.getElementsByTagName("li");
@@ -182,6 +179,10 @@ IngredientParsingResult parseIngredientOldDesign(
   }
 
   name = parts.skip(checkIndex + 1).join(" ");
+
+  if (name.isEmpty) {
+    return createFailedIngredientParsingResult(recipeUrl);
+  }
 
   return IngredientParsingResult(
     ingredient: Ingredient(
