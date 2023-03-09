@@ -1,6 +1,5 @@
 import 'package:html/dom.dart';
 import 'package:intl/intl.dart';
-import 'package:universal_io/io.dart' show Platform;
 
 import '../models/ingredient_parsing_result.dart';
 import '../models/recipe.dart';
@@ -33,13 +32,19 @@ const fractions = {
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
 /// The [amountString] is parsed according to the [language].
+/// [decimalSeperatorLocale] is the local to which the [amountString] is parsed
+/// to. If it's null [language] will be used instead.
 double? tryParseAmountString(
   String amountString, {
   String? language,
+  String? decimalSeperatorLocale,
 }) {
+  decimalSeperatorLocale ??= language;
+
   try {
-    language ??= Platform.localeName.split("_")[0];
-    return NumberFormat.decimalPattern(language).parse(amountString).toDouble();
+    return NumberFormat.decimalPattern(decimalSeperatorLocale)
+        .parse(amountString)
+        .toDouble();
   } on FormatException {
     // When the string can't be parsed, try other parsing methods
   }

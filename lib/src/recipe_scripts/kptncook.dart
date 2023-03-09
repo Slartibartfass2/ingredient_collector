@@ -50,12 +50,11 @@ RecipeParsingResult parseKptnCookRecipe(
   );
 }
 
-@visibleForTesting
-
 /// Parses an html [Element] representing an [Ingredient].
 ///
 /// If the parsing fails the ingredient in [IngredientParsingResult] will be
 /// null and a suitable log will be returned.
+@visibleForTesting
 IngredientParsingResult parseIngredient(
   Element element,
   double servingsMultiplier,
@@ -80,7 +79,11 @@ IngredientParsingResult parseIngredient(
     var amountUnitStrings =
         measureElements.first.text.trim().split(RegExp(r"\s"));
     var amountString = amountUnitStrings.first;
-    var parsedAmount = tryParseAmountString(amountString, language: language);
+    var parsedAmount = tryParseAmountString(
+      amountString,
+      language: language,
+      decimalSeperatorLocale: "en",
+    );
     if (parsedAmount != null) {
       amount = parsedAmount * servingsMultiplier;
     } else {
