@@ -121,7 +121,7 @@ void main() {
   test(
     'collect many new Eat this! recipes',
     () async {
-      await testParsingRecipes(_testUrlsNewRecipes);
+      await testParsingRecipes(_testUrlsNewRecipes, language: "de");
     },
     tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
@@ -130,7 +130,7 @@ void main() {
   test(
     'collect many old Eat this! recipes',
     () async {
-      await testParsingRecipes(_testUrlsOldRecipes);
+      await testParsingRecipes(_testUrlsOldRecipes, language: "de");
     },
     tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),

@@ -14,6 +14,7 @@ void main() {
       var recipeJob = RecipeParsingJob(
         url: Uri.parse("https://biancazapatka.com/de/blumenkohl-tikka-masala"),
         servings: 4,
+        language: "de",
       );
 
       var result = await collectRecipes([recipeJob], "de");
@@ -159,7 +160,7 @@ void main() {
         "https://biancazapatka.com/de/gelbes-gemuese-curry-mit-kichererbsen",
       ];
 
-      await testParsingRecipes(urls);
+      await testParsingRecipes(urls, language: "de");
     },
     tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),

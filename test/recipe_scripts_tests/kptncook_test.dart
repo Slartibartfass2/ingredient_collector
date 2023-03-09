@@ -14,6 +14,7 @@ void main() {
       var recipeJob = RecipeParsingJob(
         url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
         servings: 2,
+        language: "de",
       );
 
       var result = await collectRecipes([recipeJob], "de");
@@ -88,7 +89,7 @@ void main() {
         "http://mobile.kptncook.com/recipe/pinterest/15e9a06f",
       ];
 
-      await testParsingRecipes(urls);
+      await testParsingRecipes(urls, language: "de");
     },
     tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
@@ -151,5 +152,24 @@ void main() {
     """);
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
+  });
+
+  test('parse ingredient element with decimal amount', () {
+    var ingredientElement = Element.html("""
+    <div>
+      <div class="kptn-ingredient-measure">
+        0.5
+      </div>
+      <div class="kptn-ingredient">
+        Brokkoli
+      </div>
+    </div>
+    """);
+    var result = parseIngredient(ingredientElement, 1, "", "de");
+    expect(hasIngredientParsingErrors(result), isFalse);
+    expect(
+      result.ingredients[0],
+      equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
+    );
   });
 }
