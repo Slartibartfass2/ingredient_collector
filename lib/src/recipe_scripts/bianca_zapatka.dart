@@ -39,12 +39,11 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
   );
 }
 
-@visibleForTesting
-
 /// Parses an html [Element] representing an [Ingredient].
 ///
 /// If the parsing fails the ingredient in [IngredientParsingResult] will be
 /// null and a suitable log will be returned.
+@visibleForTesting
 IngredientParsingResult parseIngredient(
   Element element,
   double servingsMultiplier,

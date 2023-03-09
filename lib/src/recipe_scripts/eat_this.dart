@@ -144,12 +144,11 @@ RecipeParsingResult _parseRecipeOldDesign(
   );
 }
 
-@visibleForTesting
-
 /// Parses an html [Element] representing an [Ingredient] in the old design.
 ///
 /// If the parsing fails the ingredient in [IngredientParsingResult] will be
 /// null and a suitable log will be returned.
+@visibleForTesting
 IngredientParsingResult parseIngredientOldDesign(
   Element element,
   double servingsMultiplier,
@@ -266,12 +265,11 @@ RecipeParsingResult _parseRecipeNewDesign(
   );
 }
 
-@visibleForTesting
-
 /// Parses an html [Element] representing an [Ingredient] in the new design.
 ///
 /// If the parsing fails the ingredient in [IngredientParsingResult] will be
 /// null and a suitable log will be returned.
+@visibleForTesting
 IngredientParsingResult parseIngredientNewDesign(
   Element element,
   double servingsMultiplier,

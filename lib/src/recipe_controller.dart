@@ -1,7 +1,6 @@
 import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
@@ -49,7 +48,7 @@ Future<RecipeParsingResult> _collectRecipe(
   RecipeParsingJob recipeParsingJob,
   Map<String, String> headers,
 ) async {
-  Response response;
+  http.Response response;
   try {
     response = await client.get(recipeParsingJob.url, headers: headers);
   } on http.ClientException {

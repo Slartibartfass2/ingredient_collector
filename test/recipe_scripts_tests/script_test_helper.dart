@@ -29,14 +29,21 @@ bool hasIngredientParsingErrors(IngredientParsingResult result) =>
         .where((log) => log.type == MetaDataLogType.error)
         .isNotEmpty;
 
-Future testParsingRecipes(List<String> urls) async {
+Future testParsingRecipes(List<String> urls, {String? language}) async {
   var jobs = urls
-      .map((url) => RecipeParsingJob(url: Uri.parse(url), servings: 2))
+      .map(
+        (url) => RecipeParsingJob(
+          url: Uri.parse(url),
+          servings: 2,
+          language: language,
+        ),
+      )
       .toList();
 
   var notWorkingUrls = <String>[];
   for (var job in jobs) {
-    var result = await collectRecipes([job], "de").then((value) => value.first);
+    var result = await collectRecipes([job], job.language ?? "de")
+        .then((value) => value.first);
     if (hasRecipeParsingErrors(result) || result.recipe == null) {
       notWorkingUrls.add(job.url.toString());
     }
