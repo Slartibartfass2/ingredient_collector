@@ -46,6 +46,23 @@ jobs:
       - name: Analyze project source
         run: flutter analyze
 
+  spell-checking:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          channel: 'stable'
+          cache: true
+
+      - name: Run setup script
+        run: bash setup.ps1
+
+      - name: Check spelling
+        uses: crate-ci/typos@v1.0.4
+
   test:
     runs-on: ubuntu-latest
     steps:
