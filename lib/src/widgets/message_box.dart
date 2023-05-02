@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
+import '../models/meta_data_log.dart';
 
 /// Colored box widget with an icon, a title and a message.
 ///
@@ -92,6 +93,16 @@ class MessageBox extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Creates a [MessageBox] from a [MetaDataLog].
+  factory MessageBox.fromMetaDataLog(MetaDataLog log) {
+    switch (log.type) {
+      case MetaDataLogType.error:
+        return ErrorMessageBox(title: log.title, message: log.message);
+      case MetaDataLogType.warning:
+        return WarningMessageBox(title: log.title, message: log.message);
+    }
   }
 }
 

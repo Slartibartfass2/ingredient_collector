@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
-import '../../main.dart';
+import 'recipe_input_form.dart';
 import 'servings_input_field.dart';
 import 'url_input_field.dart';
 
