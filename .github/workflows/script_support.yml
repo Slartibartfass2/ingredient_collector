@@ -25,4 +25,4 @@ jobs:
         run: bash setup.ps1
 
       - name: Run script support tests
-        run: flutter test --tags="parsing-test" --reporter=github
+        run: flutter test --tags="parsing-test" --reporter=github --test-randomize-ordering-seed random
