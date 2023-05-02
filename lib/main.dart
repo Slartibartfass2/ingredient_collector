@@ -305,22 +305,3 @@ class UrlInputField extends StatelessWidget {
         },
       );
 }
-
-class ServingsInputField extends StatelessWidget {
-  final TextEditingController controller;
-
-  const ServingsInputField({super.key, required this.controller});
-
-  @override
-  Widget build(BuildContext context) => TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelText: LocaleKeys.servings_field_label.tr(),
-        ),
-        keyboardType: TextInputType.number,
-        inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.allow(RegExp('[1-9][0-9]*')),
-        ],
-      );
-}
