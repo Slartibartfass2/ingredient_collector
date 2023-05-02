@@ -271,37 +271,4 @@ class RecipeInputRow extends StatelessWidget {
   }
 }
 
-class UrlInputField extends StatelessWidget {
-  final TextEditingController controller;
-
-  const UrlInputField({super.key, required this.controller});
-
-  @override
-  Widget build(BuildContext context) => TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        controller: controller,
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelText: LocaleKeys.url_input_field_label.tr(),
-        ),
-        keyboardType: TextInputType.url,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return null;
-          }
-
-          var url = Uri.tryParse(value);
-
-          var isUrl = url?.hasAbsolutePath ?? false;
-          if (!isUrl) {
-            return LocaleKeys.url_input_field_invalid_url_text.tr();
-          }
-
-          if (url != null && !isUrlSupported(url)) {
-            return LocaleKeys.url_input_field_unsupported_url_text.tr();
-          }
-
-          return null;
-        },
-      );
 }
