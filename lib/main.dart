@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'src/widgets/recipe_input_form.dart';
 
+/// The title of this app.
 const appTitle = 'Ingredient Collector';
 
 void main() async {
@@ -51,7 +52,9 @@ class IngredientCollectorApp extends StatelessWidget {
       );
 }
 
+/// The body of this app.
 class AppBody extends StatelessWidget {
+  /// Creates a new [AppBody].
   const AppBody({super.key});
 
   double _getContainerWidth(double width) {
@@ -71,7 +74,7 @@ class AppBody extends StatelessWidget {
 
     return Container(
       width: containerWidth,
-      margin: const EdgeInsets.only(top: 30, bottom: 30),
+      margin: const EdgeInsets.symmetric(vertical: 30),
       child: const RecipeInputForm(),
     );
   }

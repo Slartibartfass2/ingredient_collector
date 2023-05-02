@@ -61,30 +61,30 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   @override
   Widget build(BuildContext context) => Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          ..._messageBoxes,
-          ...recipeInputRows,
-          FormButton(
-            buttonText: LocaleKeys.add_recipe_button_text.tr(),
-            onPressed: _addRow,
-          ),
-          FormButton(
-            buttonText: LocaleKeys.submit_button_text.tr(),
-            onPressed: _submitForm,
-          ),
-          TextField(
-            controller: collectionResultController,
-            maxLines: 10,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              hintText: LocaleKeys.collection_result_text_hint.tr(),
+        key: _formKey,
+        child: Column(
+          children: [
+            ..._messageBoxes,
+            ...recipeInputRows,
+            FormButton(
+              buttonText: LocaleKeys.add_recipe_button_text.tr(),
+              onPressed: _addRow,
             ),
-          ),
-        ],
-      ),
-    );
+            FormButton(
+              buttonText: LocaleKeys.submit_button_text.tr(),
+              onPressed: _submitForm,
+            ),
+            TextField(
+              controller: collectionResultController,
+              maxLines: 10,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: LocaleKeys.collection_result_text_hint.tr(),
+              ),
+            ),
+          ],
+        ),
+      );
 
   Future<void> _submitForm() async {
     // Get first part of local language e.g. en_US -> en
