@@ -8,7 +8,7 @@ import '../../l10n/locale_keys.g.dart';
 ///
 /// The input is restricted to positive integers.
 class ServingsInputField extends TextFormField {
-  /// Creates a new [ServingsInputField] object.
+  /// Creates a new [ServingsInputField].
   ServingsInputField({super.key, required super.controller})
       : super(
           decoration: InputDecoration(

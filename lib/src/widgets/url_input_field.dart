@@ -9,7 +9,7 @@ import '../recipe_controller.dart';
 /// The input is validated to be a valid URL and to be supported by the app.
 /// See [isUrlSupported] for details.
 class UrlInputField extends TextFormField {
-  /// Creates a new [UrlInputField] object.
+  /// Creates a new [UrlInputField].
   UrlInputField({super.key, required super.controller})
       : super(
           autovalidateMode: AutovalidateMode.onUserInteraction,

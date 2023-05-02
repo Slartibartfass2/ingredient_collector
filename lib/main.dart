@@ -11,6 +11,7 @@ import 'src/models/meta_data_log.dart';
 import 'src/models/recipe_parsing_job.dart';
 import 'src/recipe_controller.dart';
 import 'src/widgets/message_box.dart';
+import 'src/widgets/recipe_input_row.dart';
 
 const _title = 'Ingredient Collector';
 const recipeRowsAtBeginning = 2;
@@ -94,7 +95,6 @@ class RecipeInputForm extends StatefulWidget {
 class RecipeInputFormState extends State<RecipeInputForm> {
   final _formKey = GlobalKey<FormState>();
 
-  int _id = 0;
   final _rowList = <RecipeInputRow>[];
   final _collectionResultController = TextEditingController();
   List<MessageBox> _messageBoxes = [];
@@ -107,7 +107,7 @@ class RecipeInputFormState extends State<RecipeInputForm> {
 
   void _addRow() {
     setState(() {
-      _rowList.add(RecipeInputRow(_removeRow, _id++));
+      _rowList.add(RecipeInputRow(_removeRow));
     });
   }
 
@@ -152,7 +152,13 @@ class RecipeInputFormState extends State<RecipeInputForm> {
                   row.urlController.text.isNotEmpty &&
                   row.servingsController.text.isNotEmpty,
             )
-            .map((row) => row.getData(language: language))
+            .map(
+              (row) => RecipeParsingJob(
+                url: Uri.parse(row.urlController.text),
+                servings: int.parse(row.servingsController.text),
+                language: language,
+              ),
+            )
             .toList();
 
         if (_formKey.currentState!.validate() && recipeJobs.isNotEmpty) {
@@ -219,56 +225,4 @@ class RecipeInputFormState extends State<RecipeInputForm> {
       ),
     );
   }
-}
-
-class RecipeInputRow extends StatelessWidget {
-  final int index;
-  final void Function(RecipeInputRow) removeRow;
-  final TextEditingController urlController = TextEditingController();
-  final TextEditingController servingsController = TextEditingController();
-
-  RecipeInputRow(this.removeRow, this.index, {super.key});
-
-  RecipeParsingJob getData({String? language}) {
-    var url = Uri.parse(urlController.text);
-    var servings = int.parse(servingsController.text);
-    return RecipeParsingJob(url: url, servings: servings, language: language);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var urlField = Expanded(
-      child: UrlInputField(controller: urlController),
-    );
-
-    var servingsField = Padding(
-      padding: const EdgeInsets.only(left: 10, right: 2),
-      child: SizedBox(
-        width: 100,
-        child: ServingsInputField(controller: servingsController),
-      ),
-    );
-
-    var closeButton = IconButton(
-      icon: const Icon(Icons.close),
-      tooltip: LocaleKeys.recipe_row_close_button_text.tr(),
-      splashRadius: 20,
-      onPressed: () {
-        removeRow(this);
-      },
-    );
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        children: [
-          urlField,
-          servingsField,
-          closeButton,
-        ],
-      ),
-    );
-  }
-}
-
 }
