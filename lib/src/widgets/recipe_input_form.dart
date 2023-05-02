@@ -6,6 +6,7 @@ import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
 import '../models/recipe_parsing_job.dart';
 import '../recipe_controller.dart';
+import 'form_button.dart';
 import 'message_box.dart';
 import 'recipe_input_row.dart';
 
@@ -52,43 +53,26 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   @override
   void initState() {
+    super.initState();
     for (var i = 0; i < recipeRowsAtBeginning; i++) {
       _addRow();
     }
-    super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    var submitButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        fixedSize: const Size(double.maxFinite, 0),
-      ),
-      onPressed: _submitForm,
-      child: const Text(LocaleKeys.submit_button_text).tr(),
-    );
-
-    var addRowButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        fixedSize: const Size(double.maxFinite, 0),
-      ),
-      onPressed: _addRow,
-      child: const Text(LocaleKeys.add_recipe_button_text).tr(),
-    );
-
-    return Form(
+  Widget build(BuildContext context) => Form(
       key: _formKey,
       child: Column(
         children: [
           ..._messageBoxes,
           ...recipeInputRows,
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: addRowButton,
+          FormButton(
+            buttonText: LocaleKeys.add_recipe_button_text.tr(),
+            onPressed: _addRow,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: submitButton,
+          FormButton(
+            buttonText: LocaleKeys.submit_button_text.tr(),
+            onPressed: _submitForm,
           ),
           TextField(
             controller: collectionResultController,
@@ -101,7 +85,6 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         ],
       ),
     );
-  }
 
   Future<void> _submitForm() async {
     // Get first part of local language e.g. en_US -> en
