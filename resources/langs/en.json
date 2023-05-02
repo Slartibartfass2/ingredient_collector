@@ -21,7 +21,7 @@
     "parsing_messages": {
         "complete_failure": {
             "title": "Parsing failed",
-            "message": "An error occured while parsing {recipeUrl}."
+            "message": "An error occurred while parsing {recipeUrl}."
         },
         "deliberately_unsupported_url": {
             "title": "Url is not supported",
@@ -29,11 +29,11 @@
         },
         "amount_failure": {
             "title": "Failed to parse the amount of an ingredient",
-            "message": "An error occured while parsing {recipeUrl}.\nThe amount '{amountString}' of the ingredient '{ingredientName}' couldn't be parsed to a number."
+            "message": "An error occurred while parsing {recipeUrl}.\nThe amount '{amountString}' of the ingredient '{ingredientName}' couldn't be parsed to a number."
         },
         "ingredient_failure": {
             "title": "Failed to parse an ingredient",
-            "message": "An error occured while parsing {recipeUrl}. An ingredient couldn't be parsed."
+            "message": "An error occurred while parsing {recipeUrl}. An ingredient couldn't be parsed."
         }
     }
 }

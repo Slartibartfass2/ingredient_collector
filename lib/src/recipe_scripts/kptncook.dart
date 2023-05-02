@@ -82,7 +82,7 @@ IngredientParsingResult parseIngredient(
     var parsedAmount = tryParseAmountString(
       amountString,
       language: language,
-      decimalSeperatorLocale: "en",
+      decimalSeparatorLocale: "en",
     );
     if (parsedAmount != null) {
       amount = parsedAmount * servingsMultiplier;

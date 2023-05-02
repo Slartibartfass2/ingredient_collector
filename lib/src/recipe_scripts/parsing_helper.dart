@@ -32,17 +32,17 @@ const fractions = {
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
 /// The [amountString] is parsed according to the [language].
-/// [decimalSeperatorLocale] is the local to which the [amountString] is parsed
+/// [decimalSeparatorLocale] is the local to which the [amountString] is parsed
 /// to. If it's null [language] will be used instead.
 double? tryParseAmountString(
   String amountString, {
   String? language,
-  String? decimalSeperatorLocale,
+  String? decimalSeparatorLocale,
 }) {
-  decimalSeperatorLocale ??= language;
+  decimalSeparatorLocale ??= language;
 
   try {
-    return NumberFormat.decimalPattern(decimalSeperatorLocale)
+    return NumberFormat.decimalPattern(decimalSeparatorLocale)
         .parse(amountString)
         .toDouble();
   } on FormatException {
