@@ -98,27 +98,31 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         )
         .toList();
 
-    if (_formKey.currentState!.validate() && recipeJobs.isNotEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
-      );
-
-      var parsingResults = await collectRecipes(recipeJobs, language);
-      var metaDataLogs = parsingResults
-          .map((result) => result.metaDataLogs)
-          .expand((log) => log)
-          .toList();
-      var parsedRecipes = parsingResults
-          .where((result) => result.recipe != null)
-          .map((result) => result.recipe!)
-          .toList();
-      var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
-
-      _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
-
-      textArea.controller.text = collectionResult.resultSortedByAmount;
-
-      setState(() {});
+    if (_formKey.currentState == null ||
+        !_formKey.currentState!.validate() ||
+        recipeJobs.isEmpty) {
+      return;
     }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
+    );
+
+    var parsingResults = await collectRecipes(recipeJobs, language);
+    var metaDataLogs = parsingResults
+        .map((result) => result.metaDataLogs)
+        .expand((log) => log)
+        .toList();
+    var parsedRecipes = parsingResults
+        .where((result) => result.recipe != null)
+        .map((result) => result.recipe!)
+        .toList();
+    var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
+
+    _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
+
+    textArea.controller.text = collectionResult.resultSortedByAmount;
+
+    setState(() {});
   }
 }
