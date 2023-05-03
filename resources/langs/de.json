@@ -2,7 +2,10 @@
     "submit_button_text": "Zutaten sammeln",
     "processing_recipes_text": "Rezepte werden verarbeitet",
     "add_recipe_button_text": "Rezept hinzufügen",
-    "collection_result_text_hint": "Die gesammelten Zutaten werden hier aufgelistet",
+    "collection_result": {
+        "text_hint": "Die gesammelten Zutaten werden hier aufgelistet",
+        "copy_tooltip": "In Zwischenablage kopieren"
+    },
     "recipe_row_close_button_text": "Rezept URL entfernen",
     "url_input_field": {
         "label": "Rezept URL",

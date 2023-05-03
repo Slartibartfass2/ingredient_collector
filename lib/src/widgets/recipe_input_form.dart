@@ -6,6 +6,7 @@ import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
 import '../models/recipe_parsing_job.dart';
 import '../recipe_controller.dart';
+import 'collection_output_textarea.dart';
 import 'form_button.dart';
 import 'message_box.dart';
 import 'recipe_input_row.dart';
@@ -33,11 +34,10 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   /// The list of [RecipeInputRow]s.
   final recipeInputRows = <RecipeInputRow>[];
 
-  /// The controller for the text area to display the collected ingredients.
-  final collectionResultController = TextEditingController();
-
   /// The list of [MessageBox]es to display.
   List<MessageBox> _messageBoxes = [];
+
+  final textArea = CollectionOutputTextArea();
 
   void _addRow() {
     setState(() {
@@ -74,14 +74,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
               buttonText: LocaleKeys.submit_button_text.tr(),
               onPressed: _submitForm,
             ),
-            TextField(
-              controller: collectionResultController,
-              maxLines: 10,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                hintText: LocaleKeys.collection_result_text_hint.tr(),
-              ),
-            ),
+            textArea,
           ],
         ),
       );
@@ -107,9 +100,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
     if (_formKey.currentState!.validate() && recipeJobs.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text(LocaleKeys.processing_recipes_text).tr(),
-        ),
+        SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
       );
 
       var parsingResults = await collectRecipes(recipeJobs, language);
@@ -125,7 +116,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
       _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
 
-      collectionResultController.text = collectionResult.resultSortedByAmount;
+      textArea.controller.text = collectionResult.resultSortedByAmount;
 
       setState(() {});
     }
