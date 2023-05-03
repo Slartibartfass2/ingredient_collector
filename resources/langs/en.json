@@ -2,7 +2,11 @@
     "submit_button_text": "Collect ingredients",
     "processing_recipes_text": "Processing recipes",
     "add_recipe_button_text": "Add recipe",
-    "collection_result_text_hint": "The collected ingredients are listed here",
+    "collection_result": {
+        "text_hint": "The collected ingredients are listed here",
+        "copy_tooltip": "Copy to clipboard",
+        "copy_snackbar": "Ingredients copied to clipboard"
+    },
     "recipe_row_close_button_text": "Remove recipe URL",
     "url_input_field": {
         "label": "Recipe URL",
