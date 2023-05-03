@@ -123,6 +123,10 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
     textArea.controller.text = collectionResult.resultSortedByAmount;
 
-    setState(() {});
+    // If context is still valid, update the state.
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      setState(() {});
+    }
   }
 }
