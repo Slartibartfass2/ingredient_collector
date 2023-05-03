@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../supported_locals.dart';
+import '../supported_locale.dart';
 
 /// A [DropdownButton] for selecting a [SupportedLocale].
 ///

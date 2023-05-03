@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import 'src/supported_locals.dart';
+import 'src/supported_locale.dart';
 import 'src/widgets/locale_dropdown_button.dart';
 import 'src/widgets/recipe_input_form.dart';
 
