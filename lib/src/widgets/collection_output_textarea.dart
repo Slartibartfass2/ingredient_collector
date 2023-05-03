@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../l10n/locale_keys.g.dart';
 
@@ -20,8 +21,16 @@ class CollectionOutputTextArea extends StatelessWidget {
       icon: const Icon(Icons.copy),
       tooltip: LocaleKeys.collection_result_copy_tooltip.tr(),
       splashRadius: 20,
-      onPressed: () {
-        print("copy");
+      onPressed: () async {
+        await Clipboard.setData(ClipboardData(text: controller.text))
+            .then((value) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content:
+                  const Text(LocaleKeys.collection_result_copy_snackbar).tr(),
+            ),
+          );
+        });
       },
     );
 

@@ -4,7 +4,8 @@
     "add_recipe_button_text": "Add recipe",
     "collection_result": {
         "text_hint": "The collected ingredients are listed here",
-        "copy_tooltip": "Copy to clipboard"
+        "copy_tooltip": "Copy to clipboard",
+        "copy_snackbar": "Ingredients copied to clipboard"
     },
     "recipe_row_close_button_text": "Remove recipe URL",
     "url_input_field": {

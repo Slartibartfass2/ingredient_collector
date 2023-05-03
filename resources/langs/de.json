@@ -4,7 +4,8 @@
     "add_recipe_button_text": "Rezept hinzufügen",
     "collection_result": {
         "text_hint": "Die gesammelten Zutaten werden hier aufgelistet",
-        "copy_tooltip": "In Zwischenablage kopieren"
+        "copy_tooltip": "In Zwischenablage kopieren",
+        "copy_snackbar": "Zutaten in Zwischenablage kopiert"
     },
     "recipe_row_close_button_text": "Rezept URL entfernen",
     "url_input_field": {
