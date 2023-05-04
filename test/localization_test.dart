@@ -36,11 +36,12 @@ void main() {
         var isLocalizationFileAvailable = localizationFileNames
             .any((fileName) => fileName == supportedLocale.locale.languageCode);
 
+        var languageCode = supportedLocale.locale.languageCode;
         expect(
           isLocalizationFileAvailable,
           isTrue,
-          reason: 'There must be a localization file for each SupportedLocale'
-              ' enum value',
+          reason: 'There must be a localization file '
+              '"./resources/langs/$languageCode.json" for $supportedLocale.',
         );
       }
     },
