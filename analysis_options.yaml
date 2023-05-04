@@ -20,6 +20,7 @@ dart_code_metrics:
     - avoid-double-slash-imports
     - avoid-duplicate-exports
     - avoid-dynamic
+    - avoid-global-state
 linter:
   rules:
     # Effective Dart rules
