@@ -14,6 +14,7 @@ dart_code_metrics:
   rules:
     - arguments-ordering:
         child-last: true
+    - avoid-cascade-after-if-null
 linter:
   rules:
     # Effective Dart rules
