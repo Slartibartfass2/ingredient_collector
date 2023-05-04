@@ -18,6 +18,7 @@ dart_code_metrics:
     - avoid-collection-methods-with-unrelated-types:
         strict: true
     - avoid-double-slash-imports
+    - avoid-duplicate-exports
 linter:
   rules:
     # Effective Dart rules
