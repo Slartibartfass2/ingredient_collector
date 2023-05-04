@@ -21,6 +21,8 @@ dart_code_metrics:
     - avoid-duplicate-exports
     - avoid-dynamic
     - avoid-global-state
+    - avoid-late-keyword:
+        allow-initialized: true
 linter:
   rules:
     # Effective Dart rules
