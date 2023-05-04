@@ -23,6 +23,7 @@ dart_code_metrics:
     - avoid-global-state
     - avoid-late-keyword:
         allow-initialized: true
+    - avoid-missing-enum-constant-in-map
 linter:
   rules:
     # Effective Dart rules
