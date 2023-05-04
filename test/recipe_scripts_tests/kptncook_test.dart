@@ -91,8 +91,8 @@ void main() {
 
       await testParsingRecipes(urls, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test('parse empty ingredient element', () {

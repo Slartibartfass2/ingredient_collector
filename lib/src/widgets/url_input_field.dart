@@ -14,8 +14,8 @@ class UrlInputField extends TextFormField {
       : super(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             labelText: LocaleKeys.url_input_field_label.tr(),
+            border: const OutlineInputBorder(),
           ),
           keyboardType: TextInputType.url,
           validator: (value) {

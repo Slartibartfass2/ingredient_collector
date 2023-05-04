@@ -58,11 +58,11 @@ class MessageBox extends StatelessWidget {
           Flexible(
             child: SelectableText(
               "$_titleTag: $_title",
-              textScaleFactor: 1.05,
               style: TextStyle(
                 color: _textColor,
                 fontWeight: FontWeight.bold,
               ),
+              textScaleFactor: 1.05,
             ),
           ),
         ],

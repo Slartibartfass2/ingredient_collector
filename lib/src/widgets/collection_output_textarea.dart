@@ -18,8 +18,6 @@ class CollectionOutputTextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var copyButton = IconButton(
-      icon: const Icon(Icons.copy),
-      tooltip: LocaleKeys.collection_result_copy_tooltip.tr(),
       splashRadius: 20,
       onPressed: () async {
         await Clipboard.setData(ClipboardData(text: controller.text))
@@ -32,15 +30,17 @@ class CollectionOutputTextArea extends StatelessWidget {
           );
         });
       },
+      tooltip: LocaleKeys.collection_result_copy_tooltip.tr(),
+      icon: const Icon(Icons.copy),
     );
 
     var textArea = TextField(
       controller: controller,
-      maxLines: 10,
       decoration: InputDecoration(
-        border: const OutlineInputBorder(),
         hintText: LocaleKeys.collection_result_text_hint.tr(),
+        border: const OutlineInputBorder(),
       ),
+      maxLines: 10,
     );
 
     return Stack(

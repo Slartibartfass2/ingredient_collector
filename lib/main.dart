@@ -16,9 +16,9 @@ void main() async {
       supportedLocales: SupportedLocale.values
           .map((supportedLocale) => supportedLocale.locale)
           .toList(),
-      useOnlyLangCode: true,
-      fallbackLocale: SupportedLocale.en.locale,
       path: 'resources/langs',
+      fallbackLocale: SupportedLocale.en.locale,
+      useOnlyLangCode: true,
       child: const IngredientCollectorApp(),
     ),
   );
@@ -44,14 +44,6 @@ class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
     );
 
     return MaterialApp(
-      title: appTitle,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
       home: Scaffold(
         key: ValueKey(context.locale.languageCode),
         appBar: AppBar(
@@ -65,6 +57,14 @@ class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
           ),
         ),
       ),
+      title: appTitle,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      locale: context.locale,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

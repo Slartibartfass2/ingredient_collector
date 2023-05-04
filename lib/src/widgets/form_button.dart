@@ -18,10 +18,10 @@ class FormButton extends Padding {
   }) : super(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: ElevatedButton(
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(double.maxFinite, 0),
             ),
-            onPressed: onPressed,
             child: Text(buttonText),
           ),
         );

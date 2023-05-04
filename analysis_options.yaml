@@ -12,6 +12,8 @@ analyzer:
 
 dart_code_metrics:
   rules:
+    - arguments-ordering:
+        child-last: true
 linter:
   rules:
     # Effective Dart rules

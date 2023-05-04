@@ -123,8 +123,8 @@ void main() {
     () async {
       await testParsingRecipes(_testUrlsNewRecipes, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test(
@@ -132,8 +132,8 @@ void main() {
     () async {
       await testParsingRecipes(_testUrlsOldRecipes, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test('parse empty ingredient element new design', () {

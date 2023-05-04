@@ -12,8 +12,8 @@ class ServingsInputField extends TextFormField {
   ServingsInputField({super.key, required super.controller})
       : super(
           decoration: InputDecoration(
-            border: const OutlineInputBorder(),
             labelText: LocaleKeys.servings_field_label.tr(),
+            border: const OutlineInputBorder(),
           ),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
