@@ -17,6 +17,7 @@ dart_code_metrics:
     - avoid-cascade-after-if-null
     - avoid-collection-methods-with-unrelated-types:
         strict: true
+    - avoid-double-slash-imports
 linter:
   rules:
     # Effective Dart rules
