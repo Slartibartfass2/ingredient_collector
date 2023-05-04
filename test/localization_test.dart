@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/supported_locale.dart';
+import 'package:path/path.dart' as path;
 
 void main() {
   test('Localization files must have same keys', () async {
@@ -30,7 +31,7 @@ void main() {
     () {
       var localizationFileNames = io.Directory('resources/langs')
           .listSync()
-          .map((file) => file.path.split(r'\').last.split(".").first);
+          .map((file) => path.basenameWithoutExtension(file.path));
 
       for (var supportedLocale in SupportedLocale.values) {
         var isLocalizationFileAvailable = localizationFileNames
