@@ -24,6 +24,8 @@ dart_code_metrics:
     - avoid-late-keyword:
         allow-initialized: true
     - avoid-missing-enum-constant-in-map
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 1
 linter:
   rules:
     # Effective Dart rules
