@@ -4,9 +4,11 @@ import 'dart:io' as io;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ingredient_collector/src/supported_locale.dart';
+import 'package:path/path.dart' as path;
 
 void main() {
-  test('test localization', () async {
+  test('Localization files must have same keys', () async {
     WidgetsFlutterBinding.ensureInitialized();
 
     var json = await readJsonFile('resources/langs/en.json');
@@ -23,6 +25,28 @@ void main() {
       validateJsonEqualty(json, jsonToValidate, filePath);
     }
   });
+
+  test(
+    'For each SupportedLocale enum value, there must be a localization file',
+    () {
+      var localizationFileNames = io.Directory('resources/langs')
+          .listSync()
+          .map((file) => path.basenameWithoutExtension(file.path));
+
+      for (var supportedLocale in SupportedLocale.values) {
+        var isLocalizationFileAvailable = localizationFileNames
+            .any((fileName) => fileName == supportedLocale.locale.languageCode);
+
+        var languageCode = supportedLocale.locale.languageCode;
+        expect(
+          isLocalizationFileAvailable,
+          isTrue,
+          reason: 'There must be a localization file '
+              '"./resources/langs/$languageCode.json" for $supportedLocale.',
+        );
+      }
+    },
+  );
 }
 
 Future<Map> readJsonFile(String path) async {

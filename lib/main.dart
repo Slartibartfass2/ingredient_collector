@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import 'src/supported_locale.dart';
+import 'src/widgets/locale_dropdown_button.dart';
 import 'src/widgets/recipe_input_form.dart';
 
 /// The title of this app.
@@ -11,12 +13,11 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('de', ''),
-      ],
+      supportedLocales: SupportedLocale.values
+          .map((supportedLocale) => supportedLocale.locale)
+          .toList(),
       useOnlyLangCode: true,
-      fallbackLocale: const Locale('en', ''),
+      fallbackLocale: SupportedLocale.en.locale,
       path: 'resources/langs',
       child: const IngredientCollectorApp(),
     ),
@@ -24,32 +25,48 @@ void main() async {
 }
 
 /// The [IngredientCollectorApp].
-class IngredientCollectorApp extends StatelessWidget {
+class IngredientCollectorApp extends StatefulWidget {
   /// Creates a new [IngredientCollectorApp].
   const IngredientCollectorApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: appTitle,
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+  State<IngredientCollectorApp> createState() => _IngredientCollectorAppState();
+}
+
+class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
+  @override
+  Widget build(BuildContext context) {
+    var localeDropdownButton = LocaleDropdownButton(
+      onChanged: (newValue) async {
+        await context.setLocale(newValue.locale);
+        setState(() {});
+      },
+    );
+
+    return MaterialApp(
+      title: appTitle,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      home: Scaffold(
+        key: ValueKey(context.locale.languageCode),
+        appBar: AppBar(
+          title: const Text(appTitle),
+          actions: [localeDropdownButton],
         ),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text(appTitle),
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: const AppBody(),
-            ),
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.topCenter,
+            child: const AppBody(),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 /// The body of this app.

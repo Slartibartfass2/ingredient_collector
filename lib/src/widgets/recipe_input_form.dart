@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_io/io.dart' show Platform;
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
@@ -80,8 +79,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       );
 
   Future<void> _submitForm() async {
-    // Get first part of local language e.g. en_US -> en
-    var language = Platform.localeName.split("_")[0];
+    var language = context.locale.languageCode;
 
     var recipeJobs = recipeInputRows
         .where(
