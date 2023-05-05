@@ -28,6 +28,9 @@ dart_code_metrics:
         acceptable-level: 1
     - avoid-redundant-async
     - avoid-throw-in-catch-block
+    - avoid-non-null-assertion:
+        exclude:
+          - test/**.dart
 linter:
   rules:
     # Effective Dart rules

@@ -32,10 +32,11 @@ RecipeParsingResult parseKptnCookRecipe(
   var servingsPattern = RegExp("[0-9]+");
   var servingsDescriptionText = servingsElements.first.text;
   var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
-  if (recipeServingsMatch == null || recipeServingsMatch.group(0) == null) {
+  var matchGroup = recipeServingsMatch?.group(0);
+  if (matchGroup == null) {
     return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
-  var recipeServings = num.parse(recipeServingsMatch.group(0)!);
+  var recipeServings = num.parse(matchGroup);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
   // Skip first two html elements which aren't ingredients

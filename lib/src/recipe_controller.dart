@@ -59,7 +59,14 @@ Future<RecipeParsingResult> _collectRecipe(
 
   var parseMethod = _recipeParseMethodMap[recipeParsingJob.url.origin];
 
-  return parseMethod!.call(document, recipeParsingJob);
+  if (parseMethod == null) {
+    // TODO: make this cleaner
+    throw Exception(
+      'No parse method found for url ${recipeParsingJob.url.toString()}',
+    );
+  }
+
+  return parseMethod.call(document, recipeParsingJob);
 }
 
 /// Checks if the passed [Uri] is supported.

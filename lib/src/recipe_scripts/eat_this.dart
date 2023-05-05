@@ -123,13 +123,12 @@ RecipeParsingResult _parseRecipeOldDesign(
   var servingsDescriptionText = servingsElement.text;
   var recipeServingsMatch =
       RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
-  if (recipeServingsMatch == null ||
-      recipeServingsMatch.namedGroup("servings") == null) {
+  var matchGroup = recipeServingsMatch?.namedGroup("servings");
+  if (matchGroup == null) {
     return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
   }
 
-  var recipeServings =
-      tryParseAmountString(recipeServingsMatch.namedGroup("servings")!);
+  var recipeServings = tryParseAmountString(matchGroup);
   recipeServings ??= 1;
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
