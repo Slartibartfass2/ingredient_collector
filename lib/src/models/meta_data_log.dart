@@ -28,11 +28,11 @@ enum MetaDataLogType {
   /// The result of the [RecipeParsingJob] isn't complete and the user may need
   /// to fetch missing information.
   ///
-  /// e.g. information is missing
+  /// For example information is missing.
   warning,
 
   /// There was an error while executing the [RecipeParsingJob].
   ///
-  /// e.g. information can't be fetched, the html structure changed
+  /// For example information can't be fetched, the html structure changed.
   error,
 }

@@ -106,7 +106,7 @@ class MessageBox extends StatelessWidget {
   }
 }
 
-/// [MessageBox] which represents an error
+/// [MessageBox] which represents an error.
 class ErrorMessageBox extends MessageBox {
   /// Creates a [ErrorMessageBox].
   ErrorMessageBox({
