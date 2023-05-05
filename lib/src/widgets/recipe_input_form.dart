@@ -39,6 +39,14 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   final textArea = CollectionOutputTextArea();
 
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < recipeRowsAtBeginning; i++) {
+      _addRow();
+    }
+  }
+
   void _addRow() {
     setState(() {
       recipeInputRows.add(
@@ -50,34 +58,6 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       );
     });
   }
-
-  @override
-  void initState() {
-    super.initState();
-    for (var i = 0; i < recipeRowsAtBeginning; i++) {
-      _addRow();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            ..._messageBoxes,
-            ...recipeInputRows,
-            FormButton(
-              buttonText: LocaleKeys.add_recipe_button_text.tr(),
-              onPressed: _addRow,
-            ),
-            FormButton(
-              buttonText: LocaleKeys.submit_button_text.tr(),
-              onPressed: _submitForm,
-            ),
-            textArea,
-          ],
-        ),
-      );
 
   Future<void> _submitForm() async {
     var language = context.locale.languageCode;
@@ -128,4 +108,24 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       setState(() {});
     }
   }
+
+  @override
+  Widget build(BuildContext context) => Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            ..._messageBoxes,
+            ...recipeInputRows,
+            FormButton(
+              buttonText: LocaleKeys.add_recipe_button_text.tr(),
+              onPressed: _addRow,
+            ),
+            FormButton(
+              buttonText: LocaleKeys.submit_button_text.tr(),
+              onPressed: _submitForm,
+            ),
+            textArea,
+          ],
+        ),
+      );
 }

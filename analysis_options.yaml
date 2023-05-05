@@ -40,6 +40,7 @@ dart_code_metrics:
     - double-literal-format
     - format-comment:
         only-doc-comments: true
+    - member-ordering
 linter:
   rules:
     # Effective Dart rules
