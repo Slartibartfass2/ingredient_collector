@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
+import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../recipe_controller.dart';
 import 'collection_output_textarea.dart';
@@ -112,8 +113,8 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         .expand((log) => log)
         .toList();
     var parsedRecipes = parsingResults
-        .where((result) => result.recipe != null)
-        .map((result) => result.recipe!)
+        .map((result) => result.recipe)
+        .whereType<Recipe>()
         .toList();
     var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
 
