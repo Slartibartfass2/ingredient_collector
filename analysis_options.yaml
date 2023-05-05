@@ -36,6 +36,7 @@ dart_code_metrics:
     - avoid-unnecessary-type-casts
     - avoid-unrelated-type-assertions
     - avoid-unused-parameters
+    - binary-expression-operand-order
 linter:
   rules:
     # Effective Dart rules
