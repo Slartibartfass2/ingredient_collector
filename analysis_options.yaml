@@ -27,6 +27,7 @@ dart_code_metrics:
     - avoid-nested-conditional-expressions:
         acceptable-level: 1
     - avoid-redundant-async
+    - avoid-throw-in-catch-block
 linter:
   rules:
     # Effective Dart rules
