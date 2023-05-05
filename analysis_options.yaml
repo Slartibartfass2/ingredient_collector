@@ -32,6 +32,7 @@ dart_code_metrics:
         exclude:
           - test/**.dart
     - avoid-unnecessary-conditionals
+    - avoid-unnecessary-type-assertions
 linter:
   rules:
     # Effective Dart rules
