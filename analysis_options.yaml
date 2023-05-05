@@ -34,6 +34,7 @@ dart_code_metrics:
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
 linter:
   rules:
     # Effective Dart rules
