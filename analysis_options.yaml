@@ -57,6 +57,7 @@ dart_code_metrics:
     - prefer-correct-test-file-name
     - prefer-correct-type-name
     - prefer-first
+    - prefer-immediate-return
 linter:
   rules:
     # Effective Dart rules
