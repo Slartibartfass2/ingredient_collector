@@ -78,8 +78,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         .toList();
 
     var formState = _formKey.currentState;
-    if (formState == null || !formState.validate() ||
-        recipeJobs.isEmpty) {
+    if (formState == null || !formState.validate() || recipeJobs.isEmpty) {
       return;
     }
 
