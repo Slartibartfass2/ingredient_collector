@@ -60,6 +60,10 @@ dart_code_metrics:
     - prefer-immediate-return
     - prefer-iterable-of
     - prefer-last
+    - prefer-match-file-name:
+        exclude:
+          - test/**
+          - lib/main.dart
 linter:
   rules:
     # Effective Dart rules
