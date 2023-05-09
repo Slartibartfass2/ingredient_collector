@@ -42,6 +42,7 @@ dart_code_metrics:
         only-doc-comments: true
     - member-ordering
     - no-boolean-literal-compare
+    - no-empty-block
 linter:
   rules:
     # Effective Dart rules

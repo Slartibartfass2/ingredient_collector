@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +41,9 @@ class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
     var localeDropdownButton = LocaleDropdownButton(
       onChanged: (newValue) async {
         await context.setLocale(newValue.locale);
-        setState(() {});
+        setState(() {
+          log("Locale changed to ${newValue.locale.languageCode}.");
+        });
       },
     );
 

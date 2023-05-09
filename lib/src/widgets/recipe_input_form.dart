@@ -97,14 +97,13 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         .toList();
     var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
 
-    _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
-
-    textArea.controller.text = collectionResult.resultSortedByAmount;
-
     // If context is still valid, update the state.
     if (context.mounted) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      setState(() {});
+      setState(() {
+        _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
+        textArea.controller.text = collectionResult.resultSortedByAmount;
+      });
     }
   }
 
