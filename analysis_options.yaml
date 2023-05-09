@@ -64,6 +64,7 @@ dart_code_metrics:
         exclude:
           - test/**
           - lib/main.dart
+    - prefer-moving-to-variable
 linter:
   rules:
     # Effective Dart rules
