@@ -48,15 +48,13 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   }
 
   void _addRow() {
-    setState(() {
-      recipeInputRows.add(
-        RecipeInputRow((row) {
-          setState(() {
-            recipeInputRows.remove(row);
-          });
-        }),
-      );
-    });
+    recipeInputRows.add(
+      RecipeInputRow((row) {
+        setState(() {
+          recipeInputRows.remove(row);
+        });
+      }),
+    );
   }
 
   Future<void> _submitForm() async {
@@ -116,7 +114,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
             ...recipeInputRows,
             FormButton(
               buttonText: LocaleKeys.add_recipe_button_text.tr(),
-              onPressed: _addRow,
+              onPressed: () => setState(_addRow),
             ),
             FormButton(
               buttonText: LocaleKeys.submit_button_text.tr(),

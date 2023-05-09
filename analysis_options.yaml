@@ -71,6 +71,7 @@ dart_code_metrics:
     - avoid-expanded-as-spacer
     - avoid-returning-widgets
     - avoid-shrink-wrap-in-lists
+    - avoid-unnecessary-setstate
 linter:
   rules:
     # Effective Dart rules
