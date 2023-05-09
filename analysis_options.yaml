@@ -54,6 +54,7 @@ dart_code_metrics:
     - prefer-conditional-expressions
     - prefer-correct-identifier-length:
         exceptions: ['i']
+    - prefer-correct-test-file-name
 linter:
   rules:
     # Effective Dart rules
