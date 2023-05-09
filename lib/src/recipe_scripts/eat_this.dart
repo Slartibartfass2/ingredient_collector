@@ -172,8 +172,8 @@ IngredientParsingResult parseIngredientOldDesign(
   var parts = ingredientText.split(RegExp(r"\s"));
   // If first part is not already a number, check whether the amount and unit
   // are concatenated
-  if (tryParseAmountString(parts[0]) == null) {
-    var splittedFirstPart = _breakUpNumberAndText(parts[0]);
+  if (tryParseAmountString(parts.first) == null) {
+    var splittedFirstPart = _breakUpNumberAndText(parts.first);
     parts = splittedFirstPart + parts.skip(1).toList();
   }
   var parsedParts =
@@ -290,7 +290,7 @@ List<String> _breakUpNumberAndText(String numberAndTextString) {
   for (var i = 0; i < numberAndTextString.length; i++) {
     var number = num.tryParse(numberAndTextString[i]);
     if (number != null) {
-      result[0] += number.toString();
+      result.first += number.toString();
     } else {
       unitIndex = i;
       break;
@@ -300,7 +300,7 @@ List<String> _breakUpNumberAndText(String numberAndTextString) {
   if (unitIndex > 0) {
     result.add(numberAndTextString.substring(unitIndex));
   } else {
-    result[0] = numberAndTextString;
+    result.first = numberAndTextString;
   }
 
   return result;

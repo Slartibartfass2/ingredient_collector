@@ -92,7 +92,7 @@ double? _tryGetRange(String text) {
     return null;
   }
 
-  var start = tryParseAmountString(parts[0].trim());
+  var start = tryParseAmountString(parts.first.trim());
   var end = tryParseAmountString(parts[1].trim());
 
   if (start == null || end == null) {
@@ -110,7 +110,7 @@ double? _tryGetFractionWithSlash(String text) {
     return null;
   }
 
-  var numerator = tryParseAmountString(parts[0].trim());
+  var numerator = tryParseAmountString(parts.first.trim());
   var denominator = tryParseAmountString(parts[1].trim());
 
   if (numerator == null || denominator == null) {

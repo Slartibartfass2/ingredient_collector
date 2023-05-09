@@ -17,7 +17,7 @@ void main() {
 
     var mergedIngredients = mergeIngredients(ingredients);
     expect(mergedIngredients.length, 2);
-    expect(mergedIngredients.contains(ingredients[0]), isTrue);
+    expect(mergedIngredients.contains(ingredients.first), isTrue);
     expect(mergedIngredients.contains(ingredients[1]), isTrue);
   });
 
@@ -29,7 +29,7 @@ void main() {
 
     var mergedIngredients = mergeIngredients(ingredients);
     expect(mergedIngredients.length, 2);
-    expect(mergedIngredients.contains(ingredients[0]), isTrue);
+    expect(mergedIngredients.contains(ingredients.first), isTrue);
     expect(mergedIngredients.contains(ingredients[1]), isTrue);
   });
 
@@ -41,7 +41,7 @@ void main() {
 
     var mergedIngredients = mergeIngredients(ingredients);
     expect(mergedIngredients.length, 2);
-    expect(mergedIngredients.contains(ingredients[0]), isTrue);
+    expect(mergedIngredients.contains(ingredients.first), isTrue);
     expect(mergedIngredients.contains(ingredients[1]), isTrue);
   });
 
@@ -53,14 +53,14 @@ void main() {
 
     var mergedIngredients = mergeIngredients(ingredients);
     expect(mergedIngredients.length, 1);
-    expect(mergedIngredients.contains(ingredients[0]), isFalse);
+    expect(mergedIngredients.contains(ingredients.first), isFalse);
     expect(mergedIngredients.contains(ingredients[1]), isFalse);
     const expectedIngredient = Ingredient(
       amount: 600,
       unit: "g",
       name: "Sugar",
     );
-    expect(mergedIngredients[0], equals(expectedIngredient));
+    expect(mergedIngredients.first, equals(expectedIngredient));
   });
 
   test('create collection result with empty list of recipes', () {

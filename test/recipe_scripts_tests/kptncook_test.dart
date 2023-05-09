@@ -115,7 +115,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
     );
   });
@@ -134,7 +134,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(const Ingredient(amount: 2, unit: "", name: "Walnüsse")),
     );
   });
@@ -168,7 +168,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
     );
   });
