@@ -19,7 +19,7 @@ void main() async {
           .map((supportedLocale) => supportedLocale.locale)
           .toList(),
       path: 'resources/langs',
-      fallbackLocale: SupportedLocale.en.locale,
+      fallbackLocale: SupportedLocale.english.locale,
       useOnlyLangCode: true,
       child: const IngredientCollectorApp(),
     ),
