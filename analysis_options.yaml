@@ -18,6 +18,14 @@ dart_code_metrics:
     number-of-methods: 10
     number-of-parameters: 5
     source-lines-of-code: 200
+    technical-debt:
+      threshold: 600
+      todo-cost: 161
+      ignore-cost: 320
+      ignore-for-file-cost: 396
+      as-dynamic-cost: 322
+      deprecated-annotations-cost: 37
+      file-nullsafety-migration-cost: 41
   rules:
     - arguments-ordering:
         child-last: true
