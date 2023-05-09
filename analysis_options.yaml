@@ -67,6 +67,7 @@ dart_code_metrics:
     - prefer-moving-to-variable
     - prefer-trailing-comma
     - always-remove-listener
+    - avoid-border-all
 linter:
   rules:
     # Effective Dart rules
