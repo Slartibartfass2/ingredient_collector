@@ -80,6 +80,10 @@ dart_code_metrics:
     - prefer-define-hero-tag
     - prefer-extracting-callbacks:
         allowed-line-count: 4
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
+        exclude:
+          - lib/main.dart
 linter:
   rules:
     # Effective Dart rules

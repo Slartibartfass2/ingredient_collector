@@ -8,7 +8,7 @@ import '../models/recipe_parsing_job.dart';
 import '../recipe_controller.dart';
 import 'collection_output_textarea.dart';
 import 'form_button.dart';
-import 'message_box.dart';
+import 'message_boxes.dart/message_box.dart';
 import 'recipe_input_row.dart';
 
 /// Number of [RecipeInputRow]s that are created on startup.
