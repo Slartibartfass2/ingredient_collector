@@ -123,8 +123,8 @@ void main() {
     () async {
       await testParsingRecipes(_testUrlsNewRecipes, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test(
@@ -132,8 +132,8 @@ void main() {
     () async {
       await testParsingRecipes(_testUrlsOldRecipes, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test('parse empty ingredient element new design', () {
@@ -159,7 +159,7 @@ void main() {
     var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(
         const Ingredient(
           amount: 0.5,
@@ -179,7 +179,7 @@ void main() {
     var result = parseIngredientOldDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(
         const Ingredient(
           amount: 1.5,

@@ -162,8 +162,8 @@ void main() {
 
       await testParsingRecipes(urls, language: "de");
     },
-    tags: ["parsing-test"],
     timeout: const Timeout(Duration(minutes: 5)),
+    tags: ["parsing-test"],
   );
 
   test('parse empty ingredient element', () {
@@ -183,7 +183,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(const Ingredient(amount: 24.5, unit: "ml", name: "Gemüsebrühe")),
     );
   });
@@ -198,7 +198,7 @@ void main() {
     var result = parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
-      result.ingredients[0],
+      result.ingredients.first,
       equals(const Ingredient(amount: 0.5, unit: "", name: "Blumenkohl")),
     );
   });

@@ -49,12 +49,17 @@ void main() {
   );
 }
 
-Future<Map> readJsonFile(String path) async {
+Future<Map<dynamic, dynamic>> readJsonFile(String path) async {
   var response = await rootBundle.loadString(path);
+
   return await json.decode(response);
 }
 
-void validateJsonEqualty(Map json, Map jsonToValidate, String validateFile) {
+void validateJsonEqualty(
+  Map<dynamic, dynamic> json,
+  Map<dynamic, dynamic> jsonToValidate,
+  String validateFile,
+) {
   expect(
     json.length,
     equals(jsonToValidate.length),

@@ -22,11 +22,9 @@ IngredientParsingResult parseWordPressIngredient(
   if (nameElements.isNotEmpty) {
     var nameElement = nameElements.first;
     // Sometimes the name has a url reference in a <a> tag
-    if (nameElement.children.isNotEmpty) {
-      name = nameElement.children.map((element) => element.text).join();
-    } else {
-      name = nameElement.text.trim();
-    }
+    name = nameElement.children.isNotEmpty
+        ? nameElement.children.map((element) => element.text).join()
+        : nameElement.text.trim();
   } else {
     return createFailedIngredientParsingResult(recipeUrl);
   }

@@ -33,24 +33,24 @@ class LocaleDropdownButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 20),
         child: DropdownButton(
-          icon: const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: Colors.white,
-          ),
-          underline: const SizedBox.shrink(),
-          value: value,
           items: items,
-          dropdownColor: Theme.of(context).primaryColor,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-          ),
+          value: value,
           onChanged: (newValue) async {
             if (newValue == null) {
               return;
             }
             onChanged.call(newValue);
           },
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+          underline: const SizedBox.shrink(),
+          icon: const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: Colors.white,
+          ),
+          dropdownColor: Theme.of(context).primaryColor,
         ),
       ),
     );

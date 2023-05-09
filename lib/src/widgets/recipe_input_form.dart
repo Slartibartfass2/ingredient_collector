@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
+import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../recipe_controller.dart';
 import 'collection_output_textarea.dart';
 import 'form_button.dart';
-import 'message_box.dart';
+import 'message_boxes.dart/message_box.dart';
 import 'recipe_input_row.dart';
 
 /// Number of [RecipeInputRow]s that are created on startup.
@@ -38,18 +39,6 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   final textArea = CollectionOutputTextArea();
 
-  void _addRow() {
-    setState(() {
-      recipeInputRows.add(
-        RecipeInputRow((row) {
-          setState(() {
-            recipeInputRows.remove(row);
-          });
-        }),
-      );
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -58,25 +47,15 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) => Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            ..._messageBoxes,
-            ...recipeInputRows,
-            FormButton(
-              buttonText: LocaleKeys.add_recipe_button_text.tr(),
-              onPressed: _addRow,
-            ),
-            FormButton(
-              buttonText: LocaleKeys.submit_button_text.tr(),
-              onPressed: _submitForm,
-            ),
-            textArea,
-          ],
-        ),
-      );
+  void _addRow() {
+    recipeInputRows.add(
+      RecipeInputRow((row) {
+        setState(() {
+          recipeInputRows.remove(row);
+        });
+      }),
+    );
+  }
 
   Future<void> _submitForm() async {
     var language = context.locale.languageCode;
@@ -96,9 +75,8 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         )
         .toList();
 
-    if (_formKey.currentState == null ||
-        !_formKey.currentState!.validate() ||
-        recipeJobs.isEmpty) {
+    var formState = _formKey.currentState;
+    if (formState == null || !formState.validate() || recipeJobs.isEmpty) {
       return;
     }
 
@@ -112,19 +90,38 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         .expand((log) => log)
         .toList();
     var parsedRecipes = parsingResults
-        .where((result) => result.recipe != null)
-        .map((result) => result.recipe!)
+        .map((result) => result.recipe)
+        .whereType<Recipe>()
         .toList();
     var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
-
-    _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
-
-    textArea.controller.text = collectionResult.resultSortedByAmount;
 
     // If context is still valid, update the state.
     if (context.mounted) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      setState(() {});
+      setState(() {
+        _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
+        textArea.controller.text = collectionResult.resultSortedByAmount;
+      });
     }
   }
+
+  @override
+  Widget build(BuildContext context) => Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            ..._messageBoxes,
+            ...recipeInputRows,
+            FormButton(
+              buttonText: LocaleKeys.add_recipe_button_text.tr(),
+              onPressed: () => setState(_addRow),
+            ),
+            FormButton(
+              buttonText: LocaleKeys.submit_button_text.tr(),
+              onPressed: _submitForm,
+            ),
+            textArea,
+          ],
+        ),
+      );
 }

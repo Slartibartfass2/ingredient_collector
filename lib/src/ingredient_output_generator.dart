@@ -7,7 +7,8 @@ import 'models/recipe_collection_result.dart';
 
 /// Creates different representations of the passed [Recipe]s.
 ///
-/// The [RecipeCollectionResult] contains strings with different representations
+/// The [RecipeCollectionResult] contains strings with different
+/// representations.
 RecipeCollectionResult createCollectionResultFromRecipes(
   List<Recipe> recipes,
 ) {

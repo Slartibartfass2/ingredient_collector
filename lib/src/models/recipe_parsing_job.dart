@@ -14,7 +14,7 @@ class RecipeParsingJob with _$RecipeParsingJob {
     /// Amount of servings.
     required int servings,
 
-    /// Language
-    String? language,
+    /// The language that should be used to parse the recipe.
+    required String language,
   }) = _RecipeParsingJob;
 }

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 /// A supported locale.
 enum SupportedLocale {
-  /// English.
-  en._(Locale('en', ''), 'English'),
+  /// English locale.
+  english._(Locale('en', ''), 'English'),
 
-  /// German.
-  de._(Locale('de', ''), 'Deutsch');
+  /// German locale.
+  german._(Locale('de', ''), 'Deutsch');
 
   /// The locale.
   final Locale locale;

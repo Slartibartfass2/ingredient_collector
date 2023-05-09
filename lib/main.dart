@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +18,9 @@ void main() async {
       supportedLocales: SupportedLocale.values
           .map((supportedLocale) => supportedLocale.locale)
           .toList(),
-      useOnlyLangCode: true,
-      fallbackLocale: SupportedLocale.en.locale,
       path: 'resources/langs',
+      fallbackLocale: SupportedLocale.english.locale,
+      useOnlyLangCode: true,
       child: const IngredientCollectorApp(),
     ),
   );
@@ -34,24 +36,22 @@ class IngredientCollectorApp extends StatefulWidget {
 }
 
 class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
+  Future<void> _onLocaleChanged(Locale locale) async {
+    await context.setLocale(locale);
+    if (!mounted) return;
+    setState(() {
+      log("Locale changed to ${locale.languageCode}.");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var localeDropdownButton = LocaleDropdownButton(
-      onChanged: (newValue) async {
-        await context.setLocale(newValue.locale);
-        setState(() {});
-      },
+      // ignore: avoid-redundant-async, async is still necessary here
+      onChanged: (newValue) async => _onLocaleChanged(newValue.locale),
     );
 
     return MaterialApp(
-      title: appTitle,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
       home: Scaffold(
         key: ValueKey(context.locale.languageCode),
         appBar: AppBar(
@@ -65,6 +65,14 @@ class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
           ),
         ),
       ),
+      title: appTitle,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      locale: context.locale,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

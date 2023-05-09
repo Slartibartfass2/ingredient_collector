@@ -39,10 +39,10 @@ class RecipeInputRow extends StatelessWidget {
     );
 
     var closeButton = IconButton(
-      icon: const Icon(Icons.close),
-      tooltip: LocaleKeys.recipe_row_close_button_text.tr(),
       splashRadius: 20,
       onPressed: () => onRemove(this),
+      tooltip: LocaleKeys.recipe_row_close_button_text.tr(),
+      icon: const Icon(Icons.close),
     );
 
     return Padding(
