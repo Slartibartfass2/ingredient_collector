@@ -15,6 +15,7 @@ dart_code_metrics:
     cyclomatic-complexity: 20
     lines-of-code: 300
     maximum-nesting-level: 4
+    number-of-methods: 10
   rules:
     - arguments-ordering:
         child-last: true
