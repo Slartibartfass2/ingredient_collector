@@ -13,6 +13,7 @@ analyzer:
 dart_code_metrics:
   metrics:
     cyclomatic-complexity: 20
+    lines-of-code: 300
   rules:
     - arguments-ordering:
         child-last: true
