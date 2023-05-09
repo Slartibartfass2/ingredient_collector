@@ -29,7 +29,10 @@ bool hasIngredientParsingErrors(IngredientParsingResult result) =>
         .where((log) => log.type == MetaDataLogType.error)
         .isNotEmpty;
 
-Future<void> testParsingRecipes(List<String> urls, {String? language}) async {
+Future<void> testParsingRecipes(
+  List<String> urls, {
+  required String language,
+}) async {
   var jobs = urls
       .map(
         (url) => RecipeParsingJob(
