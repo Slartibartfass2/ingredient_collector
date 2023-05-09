@@ -49,6 +49,7 @@ dart_code_metrics:
         allow-only-once: true
         exclude:
           - test/**
+    - no-object-declaration
 linter:
   rules:
     # Effective Dart rules
