@@ -69,27 +69,25 @@ class MessageBox extends StatelessWidget {
       ),
     );
 
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: _backgroundColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12.0),
-          ),
+      decoration: BoxDecoration(
+        color: _backgroundColor,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(12.0),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              titleRow,
-              SelectableText(
-                _message,
-                style: TextStyle(color: _textColor),
-              ),
-            ],
-          ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            titleRow,
+            SelectableText(
+              _message,
+              style: TextStyle(color: _textColor),
+            ),
+          ],
         ),
       ),
     );
