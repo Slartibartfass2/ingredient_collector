@@ -1,5 +1,5 @@
 import 'package:html/dom.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' show NumberFormat;
 
 import '../models/ingredient_parsing_result.dart';
 import '../models/recipe.dart';
