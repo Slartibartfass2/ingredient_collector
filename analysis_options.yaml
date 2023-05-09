@@ -59,6 +59,7 @@ dart_code_metrics:
     - prefer-first
     - prefer-immediate-return
     - prefer-iterable-of
+    - prefer-last
 linter:
   rules:
     # Effective Dart rules
