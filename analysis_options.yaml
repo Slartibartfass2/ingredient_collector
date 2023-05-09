@@ -51,6 +51,7 @@ dart_code_metrics:
           - test/**
     - no-object-declaration
     - prefer-commenting-analyzer-ignores
+    - prefer-conditional-expressions
 linter:
   rules:
     # Effective Dart rules
