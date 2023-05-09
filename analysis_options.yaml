@@ -70,6 +70,7 @@ dart_code_metrics:
     - avoid-border-all
     - avoid-expanded-as-spacer
     - avoid-returning-widgets
+    - avoid-shrink-wrap-in-lists
 linter:
   rules:
     # Effective Dart rules
