@@ -43,6 +43,7 @@ dart_code_metrics:
     - member-ordering
     - no-boolean-literal-compare
     - no-empty-block
+    - no-equal-then-else
 linter:
   rules:
     # Effective Dart rules
