@@ -85,6 +85,7 @@ dart_code_metrics:
         exclude:
           - lib/main.dart
     - prefer-using-list-view
+    - use-setstate-synchronously
 linter:
   rules:
     # Effective Dart rules

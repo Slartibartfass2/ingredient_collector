@@ -36,15 +36,19 @@ class IngredientCollectorApp extends StatefulWidget {
 }
 
 class _IngredientCollectorAppState extends State<IngredientCollectorApp> {
+  Future<void> _onLocaleChanged(Locale locale) async {
+    await context.setLocale(locale);
+    if (!mounted) return;
+    setState(() {
+      log("Locale changed to ${locale.languageCode}.");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var localeDropdownButton = LocaleDropdownButton(
-      onChanged: (newValue) async {
-        await context.setLocale(newValue.locale);
-        setState(() {
-          log("Locale changed to ${newValue.locale.languageCode}.");
-        });
-      },
+      // ignore: avoid-redundant-async, async is still necessary here
+      onChanged: (newValue) async => _onLocaleChanged(newValue.locale),
     );
 
     return MaterialApp(
