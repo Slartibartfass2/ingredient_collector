@@ -84,6 +84,7 @@ dart_code_metrics:
         ignore-private-widgets: true
         exclude:
           - lib/main.dart
+    - prefer-using-list-view
 linter:
   rules:
     # Effective Dart rules
