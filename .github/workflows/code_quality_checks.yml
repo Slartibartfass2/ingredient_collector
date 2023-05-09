@@ -47,6 +47,7 @@ jobs:
         run: |
           flutter analyze --suggestions
           flutter pub run dart_code_metrics:metrics analyze lib test --reporter=github
+          flutter pub run dart_code_metrics:metrics check-unused-files lib
 
   spell-checking:
     runs-on: ubuntu-latest
