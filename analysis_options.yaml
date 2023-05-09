@@ -78,6 +78,8 @@ dart_code_metrics:
     - prefer-const-border-radius
     - prefer-correct-edge-insets-constructor
     - prefer-define-hero-tag
+    - prefer-extracting-callbacks:
+        allowed-line-count: 4
 linter:
   rules:
     # Effective Dart rules

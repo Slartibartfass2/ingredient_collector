@@ -15,21 +15,24 @@ class CollectionOutputTextArea extends StatelessWidget {
   /// Creates a new [CollectionOutputTextArea].
   CollectionOutputTextArea({super.key});
 
+  Future<void> _onCopyButtonPressed(BuildContext context) async {
+    await Clipboard.setData(ClipboardData(text: controller.text))
+        .then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              const Text(LocaleKeys.collection_result_copy_snackbar).tr(),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var copyButton = IconButton(
       splashRadius: 20,
-      onPressed: () async {
-        await Clipboard.setData(ClipboardData(text: controller.text))
-            .then((value) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content:
-                  const Text(LocaleKeys.collection_result_copy_snackbar).tr(),
-            ),
-          );
-        });
-      },
+      // ignore: avoid-redundant-async, async is still necessary here
+      onPressed: () async => _onCopyButtonPressed(context),
       tooltip: LocaleKeys.collection_result_copy_tooltip.tr(),
       icon: const Icon(Icons.copy),
     );
