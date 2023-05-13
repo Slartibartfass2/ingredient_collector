@@ -4,6 +4,7 @@ import 'package:html/dom.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
+import '../models/meta_data_logs/deliberately_not_supported_url_meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
@@ -60,8 +61,10 @@ RecipeParsingResult parseEatThisRecipe(
   RecipeParsingJob recipeParsingJob,
 ) {
   if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
-    return createDeliberatelyNotSupportedUrlParsingResult(
-      recipeParsingJob.url.toString(),
+    return RecipeParsingResult(
+      metaDataLogs: [
+        DeliberatelyNotSupportedUrlMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
     );
   }
 
