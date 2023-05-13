@@ -2,6 +2,7 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
+import '../models/meta_data_logs/amount_parsing_failure_meta_data_log.dart';
 import '../models/meta_data_logs/meta_data_log.dart';
 import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
@@ -42,10 +43,10 @@ IngredientParsingResult parseWordPressIngredient(
       amount = parsedAmount * servingsMultiplier;
     } else {
       logs.add(
-        createFailedAmountParsingMetaDataLog(
-          recipeUrl,
-          amountString,
-          name,
+        AmountParsingFailureMetaDataLog(
+          recipeUrl: recipeUrl,
+          amountString: amountString,
+          ingredientName: name,
         ),
       );
     }

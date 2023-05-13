@@ -3,6 +3,7 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
+import '../models/meta_data_logs/amount_parsing_failure_meta_data_log.dart';
 import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
 import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
@@ -98,10 +99,10 @@ IngredientParsingResult parseIngredient(
       amount = parsedAmount * servingsMultiplier;
     } else {
       logs.add(
-        createFailedAmountParsingMetaDataLog(
-          recipeUrl,
-          amountString,
-          name,
+        AmountParsingFailureMetaDataLog(
+          recipeUrl: recipeUrl,
+          amountString: amountString,
+          ingredientName: name,
         ),
       );
     }
