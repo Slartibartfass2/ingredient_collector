@@ -1,4 +1,3 @@
-import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
@@ -6,15 +5,12 @@ import 'meta_data_logs/meta_data_log.dart';
 import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
 import 'models/recipe_parsing_result.dart';
-import 'recipe_scripts/bianca_zapatka.dart';
-import 'recipe_scripts/eat_this.dart';
-import 'recipe_scripts/kptncook.dart';
+import 'recipe_scripts/recipe_parser.dart';
 
-final Map<String, RecipeParsingResult Function(Document, RecipeParsingJob)>
-    _recipeParseMethodMap = {
-  'http://mobile.kptncook.com': parseKptnCookRecipe,
-  'https://biancazapatka.com': parseBiancaZapatkaRecipe,
-  'https://www.eat-this.org': parseEatThisRecipe,
+final Map<String, RecipeParser> _urlToRecipeParser = {
+  'http://mobile.kptncook.com': KptnCookParser(),
+  'https://biancazapatka.com': BiancaZapatkaParser(),
+  'https://www.eat-this.org': EatThisParser(),
 };
 
 /// Collects recipes from the websites in the passed [recipeParsingJobs].
@@ -61,20 +57,20 @@ Future<RecipeParsingResult> _collectRecipe(
 
   var document = parse(response.body);
 
-  var parseMethod = _recipeParseMethodMap[recipeParsingJob.url.origin];
+  var parser = _urlToRecipeParser[recipeParsingJob.url.origin];
 
-  if (parseMethod == null) {
+  if (parser == null) {
     // TODO: make this cleaner
     throw Exception(
-      'No parse method found for url ${recipeParsingJob.url.toString()}',
+      'No parser found for url ${recipeParsingJob.url.toString()}',
     );
   }
 
-  return parseMethod.call(document, recipeParsingJob);
+  return parser.parseRecipe(document, recipeParsingJob);
 }
 
 /// Checks if the passed [Uri] is supported.
 ///
 /// Supported means that there's a parsing script available which can be used
 /// to collect the ingredients of the recipe.
-bool isUrlSupported(Uri url) => _recipeParseMethodMap.containsKey(url.origin);
+bool isUrlSupported(Uri url) => _urlToRecipeParser.containsKey(url.origin);
