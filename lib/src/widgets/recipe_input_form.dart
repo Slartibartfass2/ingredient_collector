@@ -11,9 +11,6 @@ import 'form_button.dart';
 import 'message_boxes.dart/message_box.dart';
 import 'recipe_input_row.dart';
 
-/// Number of [RecipeInputRow]s that are created on startup.
-const recipeRowsAtBeginning = 2;
-
 /// The form to input recipes.
 ///
 /// The form contains a list of [RecipeInputRow]s, a button to add a new
@@ -28,6 +25,9 @@ class RecipeInputForm extends StatefulWidget {
 }
 
 class _RecipeInputFormState extends State<RecipeInputForm> {
+  /// Number of [RecipeInputRow]s that are created on startup.
+  static const recipeRowsAtBeginning = 2;
+
   /// The key to identify the form.
   final _formKey = GlobalKey<FormState>();
 
@@ -84,7 +84,8 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
     );
 
-    var parsingResults = await collectRecipes(recipeJobs, language);
+    var parsingResults =
+        await RecipeController().collectRecipes(recipeJobs, language);
     var metaDataLogs = parsingResults
         .map((result) => result.metaDataLogs)
         .expand((log) => log)

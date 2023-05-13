@@ -20,7 +20,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 

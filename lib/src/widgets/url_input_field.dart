@@ -7,7 +7,7 @@ import '../recipe_controller.dart';
 /// A text input field for the URL.
 ///
 /// The input is validated to be a valid URL and to be supported by the app.
-/// See [isUrlSupported] for details.
+/// See [RecipeController.isUrlSupported] for details.
 class UrlInputField extends TextFormField {
   /// Creates a new [UrlInputField].
   UrlInputField({super.key, required super.controller})
@@ -30,7 +30,7 @@ class UrlInputField extends TextFormField {
               return LocaleKeys.url_input_field_invalid_url_text.tr();
             }
 
-            if (url != null && !isUrlSupported(url)) {
+            if (url != null && !RecipeController().isUrlSupported(url)) {
               return LocaleKeys.url_input_field_unsupported_url_text.tr();
             }
 

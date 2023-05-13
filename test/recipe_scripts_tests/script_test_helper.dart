@@ -45,8 +45,8 @@ Future<void> testParsingRecipes(
 
   var notWorkingUrls = <String>[];
   for (var job in jobs) {
-    var result =
-        await collectRecipes([job], job.language).then((value) => value.first);
+    var result = await RecipeController()
+        .collectRecipes([job], job.language).then((value) => value.first);
     if (hasRecipeParsingErrors(result) || result.recipe == null) {
       notWorkingUrls.add(job.url.toString());
     }
