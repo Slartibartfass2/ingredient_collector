@@ -2,7 +2,7 @@ import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
-import 'models/meta_data_logs/meta_data_log.dart';
+import 'meta_data_logs/meta_data_log.dart';
 import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
 import 'models/recipe_parsing_result.dart';

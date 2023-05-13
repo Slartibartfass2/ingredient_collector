@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'meta_data_logs/meta_data_log.dart';
+import '../meta_data_logs/meta_data_log.dart';
 import 'recipe.dart';
 import 'recipe_parsing_job.dart';
 

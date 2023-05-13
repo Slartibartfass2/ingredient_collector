@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
+import '../meta_data_logs/meta_data_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart' show fail;
+import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
-import 'package:ingredient_collector/src/models/meta_data_logs/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
