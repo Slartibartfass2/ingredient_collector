@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
+import '../meta_data_logs/meta_data_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 import 'wordpress_ingredient_parsing.dart';
 
 List<String> _notSupportedUrls = [
@@ -59,8 +59,10 @@ RecipeParsingResult parseEatThisRecipe(
   RecipeParsingJob recipeParsingJob,
 ) {
   if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
-    return createDeliberatelyNotSupportedUrlParsingResult(
-      recipeParsingJob.url.toString(),
+    return RecipeParsingResult(
+      metaDataLogs: [
+        DeliberatelyNotSupportedUrlMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
     );
   }
 
@@ -73,7 +75,11 @@ RecipeParsingResult parseEatThisRecipe(
   if (recipeNameElements.isEmpty ||
       (recipeContainerElementsOldDesign.isEmpty &&
           recipeContainerElementsNewDesign.isEmpty)) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -92,7 +98,11 @@ RecipeParsingResult parseEatThisRecipe(
       recipeParsingJob,
     );
   } else {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   return recipeParsingResult;
@@ -114,7 +124,11 @@ RecipeParsingResult _parseRecipeOldDesign(
   );
 
   if (servingsElements.isEmpty) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var servingsElement = servingsElements.first;
@@ -125,7 +139,11 @@ RecipeParsingResult _parseRecipeOldDesign(
       RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
   var matchGroup = recipeServingsMatch?.namedGroup("servings");
   if (matchGroup == null) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeServings = tryParseAmountString(matchGroup);
@@ -199,7 +217,11 @@ IngredientParsingResult parseIngredientOldDesign(
 
   var name = parts.skip(checkIndex + 1).join(" ");
   if (name.isEmpty) {
-    return createFailedIngredientParsingResult(recipeUrl);
+    return IngredientParsingResult(
+      metaDataLogs: [
+        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      ],
+    );
   }
 
   return IngredientParsingResult(

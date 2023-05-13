@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
+import '../meta_data_logs/meta_data_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 import 'wordpress_ingredient_parsing.dart';
 
 /// Parses a [Document] from the Bianca Zapatka website to a recipe.
@@ -23,7 +23,11 @@ RecipeParsingResult parseBiancaZapatkaRecipe(
   if (recipeNameElements.isEmpty ||
       servingsElements.isEmpty ||
       ingredientContainers.isEmpty) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeName = recipeNameElements.first.text.trim();

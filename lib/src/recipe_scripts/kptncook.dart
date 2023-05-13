@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart' show visibleForTesting;
 import 'package:html/dom.dart';
 
+import '../meta_data_logs/meta_data_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 
 /// Parses a [Document] from the KptnCook website to a recipe.
 RecipeParsingResult parseKptnCookRecipe(
@@ -23,7 +22,11 @@ RecipeParsingResult parseKptnCookRecipe(
       servingsElements.isEmpty ||
       listContainers.length < 3 ||
       listContainers[2].children.length < 3) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -34,7 +37,11 @@ RecipeParsingResult parseKptnCookRecipe(
   var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
   var matchGroup = recipeServingsMatch?.group(0);
   if (matchGroup == null) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
   var recipeServings = num.parse(matchGroup);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;
@@ -67,7 +74,11 @@ IngredientParsingResult parseIngredient(
   if (nameElements.isNotEmpty) {
     name = nameElements.first.text.trim();
   } else {
-    return createFailedIngredientParsingResult(recipeUrl);
+    return IngredientParsingResult(
+      metaDataLogs: [
+        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      ],
+    );
   }
 
   var logs = <MetaDataLog>[];
@@ -89,10 +100,10 @@ IngredientParsingResult parseIngredient(
       amount = parsedAmount * servingsMultiplier;
     } else {
       logs.add(
-        createFailedAmountParsingMetaDataLog(
-          recipeUrl,
-          amountString,
-          name,
+        AmountParsingFailureMetaDataLog(
+          recipeUrl: recipeUrl,
+          amountString: amountString,
+          ingredientName: name,
         ),
       );
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/meta_data_log.dart';
+import '../../meta_data_logs/meta_data_log.dart';
 import 'error_message_box.dart';
 import 'warning_message_box.dart';
 
