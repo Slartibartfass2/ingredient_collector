@@ -5,10 +5,10 @@ import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
 import '../models/meta_data_logs/deliberately_not_supported_url_meta_data_log.dart';
+import '../models/meta_data_logs/ingredient_parsing_failure_meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 import 'wordpress_ingredient_parsing.dart';
 
 List<String> _notSupportedUrls = [
@@ -219,7 +219,11 @@ IngredientParsingResult parseIngredientOldDesign(
 
   var name = parts.skip(checkIndex + 1).join(" ");
   if (name.isEmpty) {
-    return createFailedIngredientParsingResult(recipeUrl);
+    return IngredientParsingResult(
+      metaDataLogs: [
+        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      ],
+    );
   }
 
   return IngredientParsingResult(

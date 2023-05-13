@@ -3,9 +3,9 @@ import 'package:html/dom.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_logs/amount_parsing_failure_meta_data_log.dart';
+import '../models/meta_data_logs/ingredient_parsing_failure_meta_data_log.dart';
 import '../models/meta_data_logs/meta_data_log.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 
 /// Parses an html [Element] representing an [Ingredient].
 ///
@@ -27,7 +27,11 @@ IngredientParsingResult parseWordPressIngredient(
         ? nameElement.children.map((element) => element.text).join()
         : nameElement.text.trim();
   } else {
-    return createFailedIngredientParsingResult(recipeUrl);
+    return IngredientParsingResult(
+      metaDataLogs: [
+        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      ],
+    );
   }
 
   var logs = <MetaDataLog>[];

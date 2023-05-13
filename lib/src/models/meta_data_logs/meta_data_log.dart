@@ -1,8 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../recipe_parsing_job.dart';
-
-part 'meta_data_log.freezed.dart';
 
 /// Data class which represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.

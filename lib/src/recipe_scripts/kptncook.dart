@@ -5,11 +5,11 @@ import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/meta_data_logs/amount_parsing_failure_meta_data_log.dart';
 import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
+import '../models/meta_data_logs/ingredient_parsing_failure_meta_data_log.dart';
 import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'recipe_scripts_helper.dart';
 
 /// Parses a [Document] from the KptnCook website to a recipe.
 RecipeParsingResult parseKptnCookRecipe(
@@ -77,7 +77,11 @@ IngredientParsingResult parseIngredient(
   if (nameElements.isNotEmpty) {
     name = nameElements.first.text.trim();
   } else {
-    return createFailedIngredientParsingResult(recipeUrl);
+    return IngredientParsingResult(
+      metaDataLogs: [
+        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      ],
+    );
   }
 
   var logs = <MetaDataLog>[];
