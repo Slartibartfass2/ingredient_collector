@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'ingredient.dart';
-import 'meta_data_log.dart';
+import 'meta_data_logs/meta_data_log.dart';
 
 part 'ingredient_parsing_result.freezed.dart';
 

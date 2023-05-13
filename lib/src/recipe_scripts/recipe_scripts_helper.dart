@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../l10n/locale_keys.g.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/meta_data_log.dart';
+import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 

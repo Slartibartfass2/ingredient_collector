@@ -2,7 +2,7 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
-import '../models/meta_data_log.dart';
+import '../models/meta_data_logs/meta_data_log.dart';
 import 'parsing_helper.dart';
 import 'recipe_scripts_helper.dart';
 
