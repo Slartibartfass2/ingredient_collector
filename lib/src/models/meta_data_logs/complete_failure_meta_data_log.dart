@@ -1,8 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-
-import '../../../l10n/locale_keys.g.dart';
-import '../recipe_parsing_job.dart';
-import 'meta_data_log.dart';
+part of meta_data_log;
 
 /// [MetaDataLog] for when a [RecipeParsingJob] fails completely.
 class CompleteFailureMetaDataLog extends MetaDataLog {

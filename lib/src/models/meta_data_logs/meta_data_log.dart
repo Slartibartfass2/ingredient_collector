@@ -1,4 +1,15 @@
+library meta_data_log;
+
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../../l10n/locale_keys.g.dart';
 import '../recipe_parsing_job.dart';
+
+part 'amount_parsing_failure_meta_data_log.dart';
+part 'complete_failure_meta_data_log.dart';
+part 'deliberately_not_supported_url_meta_data_log.dart';
+part 'ingredient_parsing_failure_meta_data_log.dart';
+part 'missing_cors_plugin_meta_data_log.dart';
 
 /// Data class which represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.

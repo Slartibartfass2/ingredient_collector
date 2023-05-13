@@ -1,7 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-
-import '../../../l10n/locale_keys.g.dart';
-import 'meta_data_log.dart';
+part of meta_data_log;
 
 /// [MetaDataLog] for when a recipe url is deliberately not supported.
 class DeliberatelyNotSupportedUrlMetaDataLog extends MetaDataLog {
