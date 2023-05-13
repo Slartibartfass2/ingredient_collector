@@ -3,6 +3,7 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
+import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
@@ -73,7 +74,11 @@ RecipeParsingResult parseEatThisRecipe(
   if (recipeNameElements.isEmpty ||
       (recipeContainerElementsOldDesign.isEmpty &&
           recipeContainerElementsNewDesign.isEmpty)) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -92,7 +97,11 @@ RecipeParsingResult parseEatThisRecipe(
       recipeParsingJob,
     );
   } else {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   return recipeParsingResult;
@@ -114,7 +123,11 @@ RecipeParsingResult _parseRecipeOldDesign(
   );
 
   if (servingsElements.isEmpty) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var servingsElement = servingsElements.first;
@@ -125,7 +138,11 @@ RecipeParsingResult _parseRecipeOldDesign(
       RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
   var matchGroup = recipeServingsMatch?.namedGroup("servings");
   if (matchGroup == null) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeServings = tryParseAmountString(matchGroup);

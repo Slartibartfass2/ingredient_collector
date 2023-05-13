@@ -3,6 +3,7 @@ import 'package:html/dom.dart';
 
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
+import '../models/meta_data_logs/complete_failure_meta_data_log.dart';
 import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
@@ -23,7 +24,11 @@ RecipeParsingResult parseKptnCookRecipe(
       servingsElements.isEmpty ||
       listContainers.length < 3 ||
       listContainers[2].children.length < 3) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var recipeName = recipeNameElements.first.text.trim();
@@ -34,7 +39,11 @@ RecipeParsingResult parseKptnCookRecipe(
   var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
   var matchGroup = recipeServingsMatch?.group(0);
   if (matchGroup == null) {
-    return createFailedRecipeParsingResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
   var recipeServings = num.parse(matchGroup);
   var servingsMultiplier = recipeParsingJob.servings / recipeServings;

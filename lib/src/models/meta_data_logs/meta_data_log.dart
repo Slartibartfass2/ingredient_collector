@@ -6,19 +6,22 @@ part 'meta_data_log.freezed.dart';
 
 /// Data class which represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.
-@freezed
-class MetaDataLog with _$MetaDataLog {
-  /// Creates [MetaDataLog] object.
-  const factory MetaDataLog({
-    /// Type of log.
-    required MetaDataLogType type,
+class MetaDataLog {
+  /// Type of log.
+  final MetaDataLogType type;
 
-    /// Title of log.
-    required String title,
+  /// Title of log.
+  final String title;
 
-    /// Message of log.
-    required String message,
-  }) = _MetaDataLog;
+  /// Message of log.
+  final String message;
+
+  /// Creates a [MetaDataLog] object.
+  const MetaDataLog({
+    required this.type,
+    required this.title,
+    required this.message,
+  });
 }
 
 /// Type of [MetaDataLog].

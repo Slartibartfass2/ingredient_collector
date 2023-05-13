@@ -7,23 +7,6 @@ import '../models/meta_data_logs/meta_data_log.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 
-/// Creates a [RecipeParsingResult] for when a [RecipeParsingJob] fails
-/// completely.
-///
-/// The [recipeUrl] is displayed to the user in the message.
-RecipeParsingResult createFailedRecipeParsingResult(String recipeUrl) =>
-    RecipeParsingResult(
-      metaDataLogs: [
-        MetaDataLog(
-          type: MetaDataLogType.error,
-          title: LocaleKeys.parsing_messages_complete_failure_title.tr(),
-          message: LocaleKeys.parsing_messages_complete_failure_message.tr(
-            namedArgs: {'recipeUrl': recipeUrl},
-          ),
-        ),
-      ],
-    );
-
 /// Creates a [RecipeParsingResult] for when the user misses a CORS plugin on
 /// web, which results in an exception when making a request.
 ///
