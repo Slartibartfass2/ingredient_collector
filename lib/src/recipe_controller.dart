@@ -2,13 +2,13 @@ import 'package:html/dom.dart' show Document;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
+import 'models/meta_data_logs/missing_cors_plugin_meta_data_log.dart';
 import 'models/recipe.dart';
 import 'models/recipe_parsing_job.dart';
 import 'models/recipe_parsing_result.dart';
 import 'recipe_scripts/bianca_zapatka.dart';
 import 'recipe_scripts/eat_this.dart';
 import 'recipe_scripts/kptncook.dart';
-import 'recipe_scripts/recipe_scripts_helper.dart';
 
 final Map<String, RecipeParsingResult Function(Document, RecipeParsingJob)>
     _recipeParseMethodMap = {
@@ -52,7 +52,11 @@ Future<RecipeParsingResult> _collectRecipe(
   try {
     response = await client.get(recipeParsingJob.url, headers: headers);
   } on http.ClientException {
-    return createMissingCorsPluginResult(recipeParsingJob.url.toString());
+    return RecipeParsingResult(
+      metaDataLogs: [
+        MissingCorsPluginMetaDataLog(recipeUrl: recipeParsingJob.url),
+      ],
+    );
   }
 
   var document = parse(response.body);
