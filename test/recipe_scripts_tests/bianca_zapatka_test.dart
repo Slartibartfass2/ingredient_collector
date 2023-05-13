@@ -3,11 +3,14 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/bianca_zapatka.dart';
+import 'package:ingredient_collector/src/recipe_scripts/recipe_parser.dart'
+    show BiancaZapatkaParser;
 
 import 'script_test_helper.dart';
 
 void main() {
+  var parser = BiancaZapatkaParser();
+
   test(
     'collect Bianca Zapatka recipe with ranges and fractions',
     () async {
@@ -168,7 +171,7 @@ void main() {
 
   test('parse empty ingredient element', () {
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -180,7 +183,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Gemüsebrühe</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -195,7 +198,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -210,7 +213,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }
