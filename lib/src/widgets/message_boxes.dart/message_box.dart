@@ -94,12 +94,10 @@ class MessageBox extends StatelessWidget {
   }
 
   /// Creates a [MessageBox] from a [MetaDataLog].
-  factory MessageBox.fromMetaDataLog(MetaDataLog log) {
-    switch (log.type) {
-      case MetaDataLogType.error:
-        return ErrorMessageBox(title: log.title, message: log.message);
-      case MetaDataLogType.warning:
-        return WarningMessageBox(title: log.title, message: log.message);
-    }
-  }
+  factory MessageBox.fromMetaDataLog(MetaDataLog log) => switch (log.type) {
+        MetaDataLogType.error =>
+          ErrorMessageBox(title: log.title, message: log.message),
+        MetaDataLogType.warning =>
+          WarningMessageBox(title: log.title, message: log.message),
+      };
 }
