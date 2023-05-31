@@ -50,7 +50,7 @@ class EatThisParser extends RecipeParser {
   ];
 
   /// Creates a new [EatThisParser].
-  const EatThisParser() : super();
+  const EatThisParser();
 
   @override
   RecipeParsingResult parseRecipe(
