@@ -2,6 +2,9 @@ part of recipe_parser;
 
 /// [RecipeParser] implementation for `biancazapatka.com`.
 class BiancaZapatkaParser extends RecipeParser {
+  /// Creates a new [BiancaZapatkaParser].
+  const BiancaZapatkaParser() : super();
+
   @override
   RecipeParsingResult parseRecipe(
     Document document,

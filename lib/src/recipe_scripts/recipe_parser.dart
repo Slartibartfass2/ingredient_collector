@@ -18,6 +18,9 @@ part 'kptncook_parser.dart';
 /// Interface for all recipe parsers.
 // ignore: one_member_abstracts, we define a common interface for all recipe parsers
 abstract class RecipeParser {
+  /// Creates a new [RecipeParser].
+  const RecipeParser();
+
   /// Parses a [Document] from a website to a recipe using the passed
   /// [RecipeParsingJob].
   ///

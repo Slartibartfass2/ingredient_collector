@@ -10,7 +10,7 @@ import 'package:ingredient_collector/src/recipe_scripts/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
-  var parser = EatThisParser();
+  var parser = const EatThisParser();
 
   test(
     'collect new Eat this! recipe',

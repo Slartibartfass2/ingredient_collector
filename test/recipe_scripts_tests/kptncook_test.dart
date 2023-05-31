@@ -9,7 +9,7 @@ import 'package:ingredient_collector/src/recipe_scripts/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
-  var parser = KptnCookParser();
+  var parser = const KptnCookParser();
 
   test(
     "collect KptnCook recipe",

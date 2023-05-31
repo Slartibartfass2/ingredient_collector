@@ -49,6 +49,9 @@ class EatThisParser extends RecipeParser {
     "zweige",
   ];
 
+  /// Creates a new [EatThisParser].
+  const EatThisParser() : super();
+
   @override
   RecipeParsingResult parseRecipe(
     Document document,

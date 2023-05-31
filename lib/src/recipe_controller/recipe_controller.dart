@@ -5,17 +5,11 @@ import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
-import '../recipe_scripts/recipe_parser.dart';
+import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {
   static final RecipeController _singleton = RecipeController._internal();
-
-  final Map<String, RecipeParser> _urlToRecipeParser = {
-    'http://mobile.kptncook.com': KptnCookParser(),
-    'https://biancazapatka.com': BiancaZapatkaParser(),
-    'https://www.eat-this.org': EatThisParser(),
-  };
 
   /// Get Sensor Manager singleton instance.
   factory RecipeController() => _singleton;
@@ -52,7 +46,7 @@ class RecipeController {
   ///
   /// Supported means that there's a parsing script available which can be used
   /// to collect the ingredients of the recipe.
-  bool isUrlSupported(Uri url) => _urlToRecipeParser.containsKey(url.origin);
+  bool isUrlSupported(Uri url) => RecipeWebsite.fromUrl(url) != null;
 
   Future<RecipeParsingResult> _collectRecipe(
     http.Client client,
@@ -72,15 +66,15 @@ class RecipeController {
 
     var document = parse(response.body);
 
-    var parser = _urlToRecipeParser[recipeParsingJob.url.origin];
+    var recipeWebsite = RecipeWebsite.fromUrl(recipeParsingJob.url);
 
-    if (parser == null) {
+    if (recipeWebsite == null) {
       // TODO: make this cleaner
       throw Exception(
         'No parser found for url ${recipeParsingJob.url.toString()}',
       );
     }
 
-    return parser.parseRecipe(document, recipeParsingJob);
+    return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
   }
 }

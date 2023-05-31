@@ -2,6 +2,9 @@ part of recipe_parser;
 
 /// [RecipeParser] implementation for `mobile.kptncook.com`.
 class KptnCookParser extends RecipeParser {
+  /// Creates a new [KptnCookParser].
+  const KptnCookParser() : super();
+
   @override
   RecipeParsingResult parseRecipe(
     Document document,
