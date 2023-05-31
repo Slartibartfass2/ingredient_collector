@@ -9,8 +9,6 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
-  var parser = const BiancaZapatkaParser();
-
   test(
     'collect Bianca Zapatka recipe with ranges and fractions',
     () async {
@@ -170,12 +168,14 @@ void main() {
   );
 
   test('parse empty ingredient element', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("<a></a>");
     var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element with amount and unit', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">ca. 24,5</span>
@@ -192,6 +192,7 @@ void main() {
   });
 
   test('parse ingredient element with amount and no unit', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">½</span>
@@ -207,6 +208,7 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">amount</span>

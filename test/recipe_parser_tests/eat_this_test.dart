@@ -10,8 +10,6 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
-  var parser = const EatThisParser();
-
   test(
     'collect new Eat this! recipe',
     () async {
@@ -140,6 +138,7 @@ void main() {
   );
 
   test('parse empty ingredient element new design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
     var result =
         parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
@@ -147,6 +146,7 @@ void main() {
   });
 
   test('parse empty ingredient element old design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
     var result =
         parser.parseIngredientOldDesign(ingredientElement, 1, "", "de");
@@ -154,6 +154,7 @@ void main() {
   });
 
   test('parse ingredient element new design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">½</span>
@@ -177,6 +178,7 @@ void main() {
   });
 
   test('parse ingredient element old design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li>
       1 1/2 EL Reis- oder Ahornsirup
@@ -198,6 +200,7 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">amount</span>

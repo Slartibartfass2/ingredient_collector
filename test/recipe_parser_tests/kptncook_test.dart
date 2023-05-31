@@ -9,8 +9,6 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
-  var parser = const KptnCookParser();
-
   test(
     "collect KptnCook recipe",
     () async {
@@ -99,12 +97,14 @@ void main() {
   );
 
   test('parse empty ingredient element', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("<a></a>");
     var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element with amount and unit', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -124,6 +124,7 @@ void main() {
   });
 
   test('parse ingredient element with amount and no unit', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -143,6 +144,7 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -158,6 +160,7 @@ void main() {
   });
 
   test('parse ingredient element with decimal amount', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
