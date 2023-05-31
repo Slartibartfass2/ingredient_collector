@@ -4,7 +4,7 @@ import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/recipe_parser.dart'
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show EatThisParser;
 
 import 'script_test_helper.dart';

@@ -1,4 +1,4 @@
-import '../recipe_scripts/recipe_parser.dart';
+import '../recipe_parser/recipe_parser.dart';
 
 /// Enum for the supported recipe websites.
 enum RecipeWebsite {
