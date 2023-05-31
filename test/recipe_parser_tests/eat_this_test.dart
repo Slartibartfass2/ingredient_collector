@@ -3,8 +3,9 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/eat_this.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
+    show EatThisParser;
 
 import 'script_test_helper.dart';
 
@@ -20,7 +21,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -66,7 +67,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -103,7 +104,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isTrue);
       expect(
@@ -137,18 +138,23 @@ void main() {
   );
 
   test('parse empty ingredient element new design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result =
+        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse empty ingredient element old design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredientOldDesign(ingredientElement, 1, "", "de");
+    var result =
+        parser.parseIngredientOldDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element new design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">½</span>
@@ -156,7 +162,8 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Zucker</span>
     </li>
     """);
-    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result =
+        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -171,12 +178,14 @@ void main() {
   });
 
   test('parse ingredient element old design', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li>
       1 1/2 EL Reis- oder Ahornsirup
     </li>
     """);
-    var result = parseIngredientOldDesign(ingredientElement, 1, "", "de");
+    var result =
+        parser.parseIngredientOldDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -191,13 +200,15 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const EatThisParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">amount</span>
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result =
+        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

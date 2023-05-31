@@ -2,8 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/bianca_zapatka.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
+    show BiancaZapatkaParser;
 
 import 'script_test_helper.dart';
 
@@ -17,7 +18,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -79,7 +80,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -167,12 +168,14 @@ void main() {
   );
 
   test('parse empty ingredient element', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element with amount and unit', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">ca. 24,5</span>
@@ -180,7 +183,7 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Gemüsebrühe</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -189,13 +192,14 @@ void main() {
   });
 
   test('parse ingredient element with amount and no unit', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">½</span>
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -204,13 +208,14 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("""
     <li class="wprm-recipe-ingredient">
       <span class="wprm-recipe-ingredient-amount">amount</span>
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

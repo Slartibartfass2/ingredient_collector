@@ -2,8 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_scripts/kptncook.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
+    show KptnCookParser;
 
 import 'script_test_helper.dart';
 
@@ -17,7 +18,7 @@ void main() {
         language: "de",
       );
 
-      var result = await collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes([recipeJob], "de");
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -96,12 +97,14 @@ void main() {
   );
 
   test('parse empty ingredient element', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element with amount and unit', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -112,7 +115,7 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -121,6 +124,7 @@ void main() {
   });
 
   test('parse ingredient element with amount and no unit', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -131,7 +135,7 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -140,6 +144,7 @@ void main() {
   });
 
   test('provide feedback when amount parsing fails', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -150,11 +155,12 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse ingredient element with decimal amount', () {
+    var parser = const KptnCookParser();
     var ingredientElement = Element.html("""
     <div>
       <div class="kptn-ingredient-measure">
@@ -165,7 +171,7 @@ void main() {
       </div>
     </div>
     """);
-    var result = parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
