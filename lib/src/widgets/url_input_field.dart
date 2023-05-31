@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
-import '../recipe_controller.dart';
+import '../recipe_controller/recipe_controller.dart';
 
 /// A text input field for the URL.
 ///

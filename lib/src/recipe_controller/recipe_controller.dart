@@ -1,11 +1,11 @@
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
-import 'meta_data_logs/meta_data_log.dart';
-import 'models/recipe.dart';
-import 'models/recipe_parsing_job.dart';
-import 'models/recipe_parsing_result.dart';
-import 'recipe_scripts/recipe_parser.dart';
+import '../meta_data_logs/meta_data_log.dart';
+import '../models/recipe.dart';
+import '../models/recipe_parsing_job.dart';
+import '../models/recipe_parsing_result.dart';
+import '../recipe_scripts/recipe_parser.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {

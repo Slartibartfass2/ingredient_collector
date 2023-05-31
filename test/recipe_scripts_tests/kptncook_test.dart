@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_scripts/recipe_parser.dart'
     show KptnCookParser;
 

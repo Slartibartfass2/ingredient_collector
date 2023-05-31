@@ -5,7 +5,7 @@ import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
-import '../recipe_controller.dart';
+import '../recipe_controller/recipe_controller.dart';
 import 'collection_output_textarea.dart';
 import 'form_button.dart';
 import 'message_boxes.dart/message_box.dart';

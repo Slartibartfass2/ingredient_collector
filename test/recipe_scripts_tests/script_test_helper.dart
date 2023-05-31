@@ -5,7 +5,7 @@ import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
-import 'package:ingredient_collector/src/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 
 void expectIngredient(
   Recipe recipe,
