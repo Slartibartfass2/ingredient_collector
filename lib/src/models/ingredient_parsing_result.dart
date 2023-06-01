@@ -5,7 +5,7 @@ import 'ingredient.dart';
 
 part 'ingredient_parsing_result.freezed.dart';
 
-/// Data class which represents the result of parsing a ingredient html element.
+/// Data class that represents the result of parsing a ingredient html element.
 @freezed
 class IngredientParsingResult with _$IngredientParsingResult {
   /// Creates [IngredientParsingResult] object.

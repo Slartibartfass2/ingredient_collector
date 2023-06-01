@@ -6,7 +6,7 @@ import 'recipe_parsing_job.dart';
 
 part 'recipe_parsing_result.freezed.dart';
 
-/// Data class which represents the result of a [RecipeParsingJob].
+/// Data class that represents the result of a [RecipeParsingJob].
 @freezed
 class RecipeParsingResult with _$RecipeParsingResult {
   /// Creates [RecipeParsingResult] object.

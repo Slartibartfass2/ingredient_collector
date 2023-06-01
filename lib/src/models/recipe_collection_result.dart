@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recipe_collection_result.freezed.dart';
 
-/// Data class which holds different string representations of the recipe
+/// Data class that holds different string representations of the recipe
 /// collection result.
 @freezed
 class RecipeCollectionResult with _$RecipeCollectionResult {

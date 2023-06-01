@@ -11,7 +11,7 @@ part 'deliberately_not_supported_url_meta_data_log.dart';
 part 'ingredient_parsing_failure_meta_data_log.dart';
 part 'missing_cors_plugin_meta_data_log.dart';
 
-/// Data class which represents additional information which is generated when a
+/// Data class that represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.
 class MetaDataLog {
   /// Type of log.

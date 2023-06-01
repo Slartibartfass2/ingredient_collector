@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ingredient.freezed.dart';
 
-/// Data class which holds information about a single ingredient.
+/// Data class that holds information about a single ingredient.
 ///
 /// The information consists of the [amount], the [unit] and the [name].
 @freezed
