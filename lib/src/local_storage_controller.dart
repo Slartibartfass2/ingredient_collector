@@ -9,7 +9,7 @@ import 'models/additional_recipe_information.dart';
 /// The local storage is used to save [AdditionalRecipeInformation]s.
 class LocalStorageController {
   /// Returns the [AdditionalRecipeInformation] for the recipe with the given
-  /// [recipeUrlOrigin].
+  /// [recipeUrlOrigin] and [recipeName].
   ///
   /// Returns null if no [AdditionalRecipeInformation] is found.
   ///
@@ -17,6 +17,7 @@ class LocalStorageController {
   /// returned.
   Future<AdditionalRecipeInformation?> getAdditionalRecipeInformation(
     String recipeUrlOrigin,
+    String recipeName,
   ) async {
     var store = await SharedPreferences.getInstance();
     var jsonList = store.getStringList("additional_recipe_informations");
@@ -33,7 +34,9 @@ class LocalStorageController {
     );
 
     var matches = additionalRecipeInformations.where(
-      (element) => element.recipeUrlOrigin == recipeUrlOrigin,
+      (element) =>
+          element.recipeUrlOrigin == recipeUrlOrigin &&
+          element.recipeName == recipeName,
     );
 
     return matches.isEmpty ? null : matches.first;
@@ -70,7 +73,8 @@ class LocalStorageController {
     var matches = additionalRecipeInformations.where(
       (element) =>
           element.recipeUrlOrigin ==
-          additionalRecipeInformation.recipeUrlOrigin,
+              additionalRecipeInformation.recipeUrlOrigin &&
+          element.recipeName == additionalRecipeInformation.recipeName,
     );
 
     // Overwrite the saved additional recipe information if it already exists.

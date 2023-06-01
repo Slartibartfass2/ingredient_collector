@@ -18,7 +18,7 @@ void main() {
         SharedPreferences.setMockInitialValues({});
 
         var result = await LocalStorageController()
-            .getAdditionalRecipeInformation("test");
+            .getAdditionalRecipeInformation("test", "test name");
 
         expect(result, isNull);
       },
@@ -33,7 +33,7 @@ void main() {
         });
 
         var result = await LocalStorageController()
-            .getAdditionalRecipeInformation("test");
+            .getAdditionalRecipeInformation("test", "test name");
 
         expect(result, isNull);
       },
@@ -49,6 +49,7 @@ void main() {
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
+                "recipeName": "test name",
                 "note": "test note",
                 "recipeModification": null,
               },
@@ -57,7 +58,7 @@ void main() {
         });
 
         var result = await LocalStorageController()
-            .getAdditionalRecipeInformation("test2");
+            .getAdditionalRecipeInformation("test2", "test name2");
 
         expect(result, isNull);
       },
@@ -73,6 +74,7 @@ void main() {
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
+                "recipeName": "test name",
                 "note": "test note",
                 "recipeModification": const RecipeModification(
                   servings: 2,
@@ -90,10 +92,11 @@ void main() {
         });
 
         var result = await LocalStorageController()
-            .getAdditionalRecipeInformation("test");
+            .getAdditionalRecipeInformation("test", "test name");
 
         expect(result, isNotNull);
         expect(result!.recipeUrlOrigin, "test");
+        expect(result.recipeName, "test name");
         expect(result.note, "test note");
         var modification = result.recipeModification!;
         expect(modification, isNotNull);
@@ -116,7 +119,7 @@ void main() {
         });
 
         var result = await LocalStorageController()
-            .getAdditionalRecipeInformation("test");
+            .getAdditionalRecipeInformation("test", "test name");
 
         expect(result, isNull);
         var store = await SharedPreferences.getInstance();
@@ -161,6 +164,7 @@ void main() {
             jsonEncode(
               {
                 "recipeUrlOrigin": "test0",
+                "recipeName": "test name0",
                 "note": "test note0",
                 "recipeModification": null,
               },
@@ -183,6 +187,7 @@ void main() {
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
+                "recipeName": "test name",
                 "note": "different test note",
                 "recipeModification": const RecipeModification(
                   servings: 2,
@@ -218,6 +223,7 @@ Future<void> _addTestAdditionalRecipeInformation({String suffix = ""}) async {
   await LocalStorageController().setAdditionalRecipeInformation(
     AdditionalRecipeInformation(
       recipeUrlOrigin: "test$suffix",
+      recipeName: "test name$suffix",
       note: "test note$suffix",
       recipeModification: null,
     ),
@@ -235,6 +241,7 @@ Future<void> _expectTestAdditionalRecipeInformation({int amount = 1}) async {
     expect(json, isNotNull);
     var suffix = amount == 1 ? "" : "$i";
     expect(additionalRecipeInformation.recipeUrlOrigin, "test$suffix");
+    expect(additionalRecipeInformation.recipeName, "test name$suffix");
     expect(additionalRecipeInformation.note, "test note$suffix");
     expect(additionalRecipeInformation.recipeModification, isNull);
   }

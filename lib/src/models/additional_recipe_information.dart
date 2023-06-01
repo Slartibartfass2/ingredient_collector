@@ -10,7 +10,7 @@ part 'additional_recipe_information.g.dart';
 /// The information consists of a [note] and a [recipeModification].
 /// The [note] can contain additional information that is not related to the
 /// ingredients of the recipe e.g. "4 servings is not enough for two people,
-/// use 8!".
+/// use 8 instead!".
 ///
 /// The [recipeModification] can contain information
 /// about a modification to the recipe.
@@ -20,12 +20,15 @@ part 'additional_recipe_information.g.dart';
 class AdditionalRecipeInformation with _$AdditionalRecipeInformation {
   /// Creates [AdditionalRecipeInformation] object.
   const factory AdditionalRecipeInformation({
-    /// URL of the recipe this additional information belongs to.
+    /// URL of the recipe website this additional information belongs to.
     required String recipeUrlOrigin,
+
+    /// Name of the recipe this additional information belongs to.
+    required String recipeName,
 
     /// The note.
     ///
-    /// For example "4 servings is not enough for two people, use 8!".
+    /// For example "4 servings is not enough for two people, use 8 instead!".
     @Default("") String note,
 
     /// The recipe modification.
