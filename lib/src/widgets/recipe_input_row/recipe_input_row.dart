@@ -74,11 +74,25 @@ class RecipeInputRow extends StatelessWidget {
       ),
     );
 
-    var closeButton = IconButton(
-      splashRadius: 20,
-      onPressed: () => onRemove(this),
-      tooltip: LocaleKeys.recipe_row_close_button_text.tr(),
-      icon: const Icon(Icons.close),
+    var settingsButton = PopupMenuButton(
+      itemBuilder: (context) => [
+        PopupMenuItem<void>(
+          onTap: () => onRemove(this),
+          child: const Text(LocaleKeys.recipe_row_remove_recipe_text).tr(),
+        ),
+        PopupMenuItem<void>(
+          onTap: () => print("Notiz hinzufügen"),
+          child: const Text(LocaleKeys.recipe_row_add_note_text).tr(),
+        ),
+        PopupMenuItem<void>(
+          onTap: () => print("Änderung hinzufügen"),
+          child: const Text(
+            LocaleKeys.recipe_row_add_recipe_modification_text,
+          ).tr(),
+        ),
+      ],
+      offset: const Offset(0, 40),
+      child: const Icon(Icons.more_vert),
     );
 
     return Padding(
@@ -90,7 +104,7 @@ class RecipeInputRow extends StatelessWidget {
           Row(
             children: [
               servingsField,
-              closeButton,
+              settingsButton,
             ],
           ),
         ],

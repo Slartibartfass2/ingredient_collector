@@ -8,7 +8,9 @@
         "copy_snackbar": "Zutaten in Zwischenablage kopiert"
     },
     "recipe_row": {
-        "close_button_text": "Rezept URL entfernen",
+        "remove_recipe_text": "Rezept entfernen",
+        "add_note_text": "Notiz hinzufügen",
+        "add_recipe_modification_text": "Rezeptänderung hinzufügen",
         "helper_text": {
             "in_progress": "Rezept wird verarbeitet ...",
             "failed": "Rezept konnte nicht verarbeitet werden"

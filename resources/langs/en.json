@@ -8,7 +8,9 @@
         "copy_snackbar": "Ingredients copied to clipboard"
     },
     "recipe_row": {
-        "close_button_text": "Remove recipe URL",
+        "remove_recipe_text": "Remove recipe",
+        "add_note_text": "Add note",
+        "add_recipe_modification_text": "Add recipe modification",
         "helper_text": {
             "in_progress": "Recipe is being processed ...",
             "failed": "Recipe couldn't be processed"
