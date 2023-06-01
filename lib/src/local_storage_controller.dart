@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/additional_recipe_information.dart';
@@ -8,6 +9,45 @@ import 'models/additional_recipe_information.dart';
 ///
 /// The local storage is used to save [AdditionalRecipeInformation]s.
 class LocalStorageController {
+  /// Returns the note for the recipe with the given [recipeUrlOrigin] and
+  /// [recipeName].
+  ///
+  /// Returns an empty string if no note is found.
+  /// If the content of the local storage is invalid, it is cleared and an empty
+  /// string is returned.
+  Future<String> getRecipeNote(
+    String recipeUrlOrigin,
+    String recipeName,
+  ) async {
+    var additionalRecipeInformation =
+        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+    return additionalRecipeInformation?.note ?? "";
+  }
+
+  /// Saves the given [note] for the recipe with the given [recipeUrlOrigin] and
+  /// [recipeName] to the local storage.
+  ///
+  /// If the given [note] is empty, nothing is saved, otherwise it is saved.
+  /// If there is already a note saved for the given recipe, it is overwritten.
+  Future<void> setRecipeNote(
+    String recipeUrlOrigin,
+    String recipeName,
+    String note,
+  ) async {
+    var additionalRecipeInformation =
+        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+
+    additionalRecipeInformation = additionalRecipeInformation == null
+        ? AdditionalRecipeInformation(
+            recipeUrlOrigin: recipeUrlOrigin,
+            recipeName: recipeName,
+            note: note,
+          )
+        : additionalRecipeInformation.copyWith(note: note);
+
+    await setAdditionalRecipeInformation(additionalRecipeInformation);
+  }
+
   /// Returns the [AdditionalRecipeInformation] for the recipe with the given
   /// [recipeUrlOrigin] and [recipeName].
   ///
@@ -15,6 +55,7 @@ class LocalStorageController {
   ///
   /// If the content of the local storage is invalid, it is cleared and null is
   /// returned.
+  @visibleForTesting
   Future<AdditionalRecipeInformation?> getAdditionalRecipeInformation(
     String recipeUrlOrigin,
     String recipeName,
@@ -47,6 +88,7 @@ class LocalStorageController {
   /// If the content of the local store is invalid, it is cleared.
   /// If the given [additionalRecipeInformation] is already saved, it is
   /// overwritten, otherwise it is added.
+  @visibleForTesting
   Future<void> setAdditionalRecipeInformation(
     AdditionalRecipeInformation additionalRecipeInformation,
   ) async {
