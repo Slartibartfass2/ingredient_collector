@@ -3,6 +3,7 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show EatThisParser;
@@ -10,6 +11,8 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
 import 'script_test_helper.dart';
 
 void main() {
+  setUp(() => RecipeCache().cache.clear());
+
   test(
     'collect new Eat this! recipe',
     () async {
