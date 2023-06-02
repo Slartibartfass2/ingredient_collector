@@ -5,13 +5,14 @@ import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
+import 'recipe_cache.dart';
 import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {
   static final RecipeController _singleton = RecipeController._internal();
 
-  /// Get Sensor Manager singleton instance.
+  /// Get Recipe Controller singleton instance.
   factory RecipeController() => _singleton;
 
   RecipeController._internal();
@@ -34,7 +35,22 @@ class RecipeController {
     };
 
     for (var recipeParsingJob in recipeParsingJobs) {
-      var result = await _collectRecipe(client, recipeParsingJob, headers);
+      var cachedRecipe = RecipeCache().getRecipe(recipeParsingJob.url);
+
+      RecipeParsingResult result;
+      if (cachedRecipe == null) {
+        result = await _collectRecipe(client, recipeParsingJob, headers);
+        var recipe = result.recipe;
+        if (recipe != null) {
+          RecipeCache().addRecipe(recipeParsingJob.url, recipe);
+        }
+      } else {
+        result = RecipeParsingResult(
+          recipe: Recipe.withServings(cachedRecipe, recipeParsingJob.servings),
+          metaDataLogs: [],
+        );
+      }
+
       results.add(result);
     }
 
