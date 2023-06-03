@@ -21,7 +21,10 @@ void main() {
         language: "de",
       );
 
-      var result = await RecipeController().collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -83,7 +86,10 @@ void main() {
         language: "de",
       );
 
-      var result = await RecipeController().collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 

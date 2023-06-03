@@ -60,20 +60,23 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   Future<void> _submitForm() async {
     var language = context.locale.languageCode;
 
-    var recipeJobs = recipeInputRows
-        .where(
-          (row) =>
-              row.urlController.text.isNotEmpty &&
-              row.servingsController.text.isNotEmpty,
-        )
-        .map(
-          (row) => RecipeParsingJob(
-            url: Uri.parse(row.urlController.text),
-            servings: int.parse(row.servingsController.text),
-            language: language,
-          ),
-        )
-        .toList();
+    var validRows = recipeInputRows.where(
+      (row) =>
+          row.urlController.text.isNotEmpty &&
+          row.servingsController.text.isNotEmpty,
+    );
+
+    var jobsToRows = <RecipeParsingJob, RecipeInputRow>{};
+    for (var row in validRows) {
+      var recipeParsingJob = RecipeParsingJob(
+        url: Uri.parse(row.urlController.text),
+        servings: int.parse(row.servingsController.text),
+        language: language,
+      );
+
+      jobsToRows[recipeParsingJob] = row;
+    }
+    var recipeJobs = jobsToRows.keys.toList();
 
     var formState = _formKey.currentState;
     if (formState == null || !formState.validate() || recipeJobs.isEmpty) {
@@ -84,8 +87,17 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
     );
 
-    var parsingResults =
-        await RecipeController().collectRecipes(recipeJobs, language);
+    var parsingResults = await RecipeController().collectRecipes(
+      recipeParsingJobs: recipeJobs,
+      language: language,
+      onSuccessfullyParsedRecipe: (job, recipeName) {
+        jobsToRows[job]!.onSuccessfulParsing(recipeName);
+      },
+      onFailedParsedRecipe: (job) {
+        jobsToRows[job]!.onFailedParsing();
+      },
+    );
+
     var metaDataLogs = parsingResults
         .map((result) => result.metaDataLogs)
         .expand((log) => log)
