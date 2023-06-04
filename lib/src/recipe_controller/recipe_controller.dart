@@ -107,10 +107,7 @@ class RecipeController {
     var recipeWebsite = RecipeWebsite.fromUrl(recipeParsingJob.url);
 
     if (recipeWebsite == null) {
-      // TODO: make this cleaner
-      throw Exception(
-        'No parser found for url ${recipeParsingJob.url.toString()}',
-      );
+      return const RecipeParsingResult(metaDataLogs: []);
     }
 
     return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
