@@ -7,7 +7,13 @@
         "copy_tooltip": "In Zwischenablage kopieren",
         "copy_snackbar": "Zutaten in Zwischenablage kopiert"
     },
-    "recipe_row_close_button_text": "Rezept URL entfernen",
+    "recipe_row": {
+        "close_button_text": "Rezept URL entfernen",
+        "helper_text": {
+            "in_progress": "Rezept wird verarbeitet ...",
+            "failed": "Rezept konnte nicht verarbeitet werden"
+        }
+    },
     "url_input_field": {
         "label": "Rezept URL",
         "invalid_url_text": "Bitte geben Sie eine gültige URL ein",

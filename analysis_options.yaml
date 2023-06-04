@@ -71,7 +71,7 @@ dart_code_metrics:
     - prefer-commenting-analyzer-ignores
     - prefer-conditional-expressions
     - prefer-correct-identifier-length:
-        exceptions: ['i']
+        exceptions: ['i', 'id']
     - prefer-correct-test-file-name
     - prefer-correct-type-name
     - prefer-first

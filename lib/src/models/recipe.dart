@@ -21,4 +21,20 @@ class Recipe with _$Recipe {
     /// Amount of servings.
     required int servings,
   }) = _Recipe;
+
+  /// Creates a copy of this recipe with the passed [servings].
+  ///
+  /// The ingredients are adjusted to the new amount of servings.
+  factory Recipe.withServings(Recipe recipe, int servings) {
+    var ratio = servings / recipe.servings;
+    return recipe.copyWith(
+      ingredients: recipe.ingredients
+          .map(
+            (ingredient) =>
+                ingredient.copyWith(amount: ingredient.amount * ratio),
+          )
+          .toList(),
+      servings: servings,
+    );
+  }
 }

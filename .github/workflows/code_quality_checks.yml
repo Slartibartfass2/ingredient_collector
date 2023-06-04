@@ -46,9 +46,9 @@ jobs:
       - name: Analyze project source
         run: |
           flutter analyze --suggestions
-          flutter pub run dart_code_metrics:metrics analyze lib test --reporter=github
-          flutter pub run dart_code_metrics:metrics check-unused-files lib --monorepo
-          flutter pub run dart_code_metrics:metrics check-unused-code lib --monorepo
+          dart run dart_code_metrics:metrics analyze lib test --reporter=github
+          dart run dart_code_metrics:metrics check-unused-files lib
+          dart run dart_code_metrics:metrics check-unused-code lib
 
   spell-checking:
     runs-on: ubuntu-latest
@@ -82,7 +82,9 @@ jobs:
         run: bash setup.ps1
 
       - name: Run tests
-        run: flutter test --coverage --branch-coverage --reporter=github --test-randomize-ordering-seed random
+        run: |
+          flutter test --coverage --branch-coverage --reporter=github --test-randomize-ordering-seed random
+          dart run test_cov_console -e lib/l10n/locale_keys.g.dart
 
       - name: Upload code coverage
         uses: codecov/codecov-action@v3

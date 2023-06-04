@@ -3,13 +3,16 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
+import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show EatThisParser;
 
-import 'script_test_helper.dart';
+import 'parser_test_helper.dart';
 
 void main() {
+  setUp(() => RecipeCache().cache.clear());
+
   test(
     'collect new Eat this! recipe',
     () async {
@@ -21,7 +24,10 @@ void main() {
         language: "de",
       );
 
-      var result = await RecipeController().collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -67,7 +73,10 @@ void main() {
         language: "de",
       );
 
-      var result = await RecipeController().collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isFalse);
 
@@ -104,7 +113,10 @@ void main() {
         language: "de",
       );
 
-      var result = await RecipeController().collectRecipes([recipeJob], "de");
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isTrue);
       expect(

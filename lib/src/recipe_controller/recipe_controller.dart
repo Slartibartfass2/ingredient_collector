@@ -5,13 +5,14 @@ import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
+import 'recipe_cache.dart';
 import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {
   static final RecipeController _singleton = RecipeController._internal();
 
-  /// Get Sensor Manager singleton instance.
+  /// Get Recipe Controller singleton instance.
   factory RecipeController() => _singleton;
 
   RecipeController._internal();
@@ -22,10 +23,21 @@ class RecipeController {
   /// containing the recipe. From there the recipe is parsed and adjusted to the
   /// amount of servings. The list of the parsed [Recipe]s is returned.
   /// [language] is set as 'Accept-Language' header in each http request.
-  Future<List<RecipeParsingResult>> collectRecipes(
-    List<RecipeParsingJob> recipeParsingJobs,
-    String language,
-  ) async {
+  ///
+  /// If the recipe is successfully parsed, [onSuccessfullyParsedRecipe] is
+  /// called with the [RecipeParsingJob] as argument.
+  /// If the recipe couldn't be
+  /// parsed, [onFailedParsedRecipe] is called with the [RecipeParsingJob] as
+  /// argument.
+  /// [onRecipeParsingStarted] is called with the [RecipeParsingJob] as argument
+  /// when the parsing of the recipe starts.
+  Future<List<RecipeParsingResult>> collectRecipes({
+    required List<RecipeParsingJob> recipeParsingJobs,
+    required String language,
+    void Function(RecipeParsingJob, String)? onSuccessfullyParsedRecipe,
+    void Function(RecipeParsingJob)? onFailedParsedRecipe,
+    void Function(RecipeParsingJob)? onRecipeParsingStarted,
+  }) async {
     var results = <RecipeParsingResult>[];
     var client = http.Client();
 
@@ -34,7 +46,33 @@ class RecipeController {
     };
 
     for (var recipeParsingJob in recipeParsingJobs) {
-      var result = await _collectRecipe(client, recipeParsingJob, headers);
+      if (onRecipeParsingStarted != null) {
+        onRecipeParsingStarted(recipeParsingJob);
+      }
+
+      var cachedRecipe = RecipeCache().getRecipe(recipeParsingJob.url);
+
+      RecipeParsingResult result;
+      if (cachedRecipe == null) {
+        result = await _collectRecipe(client, recipeParsingJob, headers);
+        var recipe = result.recipe;
+        if (recipe != null) {
+          RecipeCache().addRecipe(recipeParsingJob.url, recipe);
+        }
+      } else {
+        result = RecipeParsingResult(
+          recipe: Recipe.withServings(cachedRecipe, recipeParsingJob.servings),
+          metaDataLogs: [],
+        );
+      }
+
+      // Call callbacks
+      if (result.recipe == null && onFailedParsedRecipe != null) {
+        onFailedParsedRecipe(recipeParsingJob);
+      } else if (result.recipe != null && onSuccessfullyParsedRecipe != null) {
+        onSuccessfullyParsedRecipe(recipeParsingJob, result.recipe?.name ?? "");
+      }
+
       results.add(result);
     }
 
@@ -69,10 +107,7 @@ class RecipeController {
     var recipeWebsite = RecipeWebsite.fromUrl(recipeParsingJob.url);
 
     if (recipeWebsite == null) {
-      // TODO: make this cleaner
-      throw Exception(
-        'No parser found for url ${recipeParsingJob.url.toString()}',
-      );
+      return const RecipeParsingResult(metaDataLogs: []);
     }
 
     return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
