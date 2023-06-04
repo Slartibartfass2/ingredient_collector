@@ -7,7 +7,7 @@ import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dar
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show BiancaZapatkaParser;
 
-import 'script_test_helper.dart';
+import 'parser_test_helper.dart';
 
 void main() {
   setUp(() => RecipeCache().cache.clear());
