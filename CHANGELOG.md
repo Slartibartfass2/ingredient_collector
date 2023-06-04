@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0] - 2023-06-04
+
+### Added
+
+- Added copy button to recipe parsing output ([#77](https://github.com/Slartibartfass2/ingredient_collector/pull/77))
+- Added dropdown button to select the used locale ([#79](https://github.com/Slartibartfass2/ingredient_collector/pull/79))
+- Added recipe caching and textual feedback for each recipe ([#91](https://github.com/Slartibartfass2/ingredient_collector/pull/91))
+
 ## [0.3.1] - 2023-03-09
 
 ### Fixed
@@ -43,6 +51,7 @@
 
 _Initial release._
 
+[0.4.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.4.0
 [0.3.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.3.1
 [0.3.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.3.0
 [0.2.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.2.1
