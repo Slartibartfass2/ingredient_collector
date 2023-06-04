@@ -11,7 +11,7 @@
     <a href="https://github.com/Slartibartfass2/ingredient_collector">
         <img src="https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png" alt="Logo" width="80" height="80">
     </a>
-    <h3 align="center">ingredient_collector - 0.3.1</h3>
+    <h3 align="center">ingredient_collector - 0.4.0</h3>
     <p align="center">
         An app that collects ingredients from recipe websites and combines them into a shopping list.
     </p>
@@ -46,6 +46,7 @@
                 <li><a href="#adding-support-for-a-recipe-website">Adding support for a recipe website</a></li>
             </ul>
         </li>
+        <li><a href="#releasing">Releasing</a></li>
         <li><a href="#license">License</a></li>
     </ol>
 </details>
@@ -180,7 +181,7 @@ Don't forget to give the project a star! Thanks again!
 
     ```dart
     class ExampleParser extends RecipeParser {
-      const ExampleParser() : super();
+      const ExampleParser();
 
       @override
       RecipeParsingResult parseRecipe(
@@ -201,6 +202,12 @@ Don't forget to give the project a star! Thanks again!
 3. Add tests in [./test/recipe_parser_tests/](./test/recipe_parser_tests/) to ensure the parsing works.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Releasing
+
+1. Change version in [pubspec.yaml](pubspec.yaml)
+2. Change version in [README.md](README.md)
+3. Add changelog entry in [CHANGELOG.md](CHANGELOG.md)
 
 ## License
 
