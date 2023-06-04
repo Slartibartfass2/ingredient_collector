@@ -38,13 +38,6 @@ class RecipeController {
     void Function(RecipeParsingJob)? onFailedParsedRecipe,
     void Function(RecipeParsingJob)? onRecipeParsingStarted,
   }) async {
-    // ignore: no-empty-block, intentional empty block
-    onSuccessfullyParsedRecipe ??= (_, __) {};
-    // ignore: no-empty-block, intentional empty block
-    onFailedParsedRecipe ??= (_) {};
-    // ignore: no-empty-block, intentional empty block
-    onRecipeParsingStarted ??= (_) {};
-
     var results = <RecipeParsingResult>[];
     var client = http.Client();
 
@@ -53,7 +46,9 @@ class RecipeController {
     };
 
     for (var recipeParsingJob in recipeParsingJobs) {
-      onRecipeParsingStarted(recipeParsingJob);
+      if (onRecipeParsingStarted != null) {
+        onRecipeParsingStarted(recipeParsingJob);
+      }
 
       var cachedRecipe = RecipeCache().getRecipe(recipeParsingJob.url);
 
@@ -71,9 +66,10 @@ class RecipeController {
         );
       }
 
-      if (result.recipe == null) {
+      // Call callbacks
+      if (result.recipe == null && onFailedParsedRecipe != null) {
         onFailedParsedRecipe(recipeParsingJob);
-      } else {
+      } else if (result.recipe != null && onSuccessfullyParsedRecipe != null) {
         onSuccessfullyParsedRecipe(recipeParsingJob, result.recipe?.name ?? "");
       }
 
