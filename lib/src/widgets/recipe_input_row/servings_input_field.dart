@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../l10n/locale_keys.g.dart';
+import '../../../l10n/locale_keys.g.dart';
 
 /// A text input field for the number of servings.
 ///

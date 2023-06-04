@@ -25,19 +25,25 @@ class RecipeController {
   /// [language] is set as 'Accept-Language' header in each http request.
   ///
   /// If the recipe is successfully parsed, [onSuccessfullyParsedRecipe] is
-  /// called with the [RecipeParsingJob] as argument. If the recipe couldn't be
+  /// called with the [RecipeParsingJob] as argument.
+  /// If the recipe couldn't be
   /// parsed, [onFailedParsedRecipe] is called with the [RecipeParsingJob] as
   /// argument.
+  /// [onRecipeParsingStarted] is called with the [RecipeParsingJob] as argument
+  /// when the parsing of the recipe starts.
   Future<List<RecipeParsingResult>> collectRecipes({
     required List<RecipeParsingJob> recipeParsingJobs,
     required String language,
     void Function(RecipeParsingJob, String)? onSuccessfullyParsedRecipe,
     void Function(RecipeParsingJob)? onFailedParsedRecipe,
+    void Function(RecipeParsingJob)? onRecipeParsingStarted,
   }) async {
     // ignore: no-empty-block, intentional empty block
     onSuccessfullyParsedRecipe ??= (_, __) {};
     // ignore: no-empty-block, intentional empty block
     onFailedParsedRecipe ??= (_) {};
+    // ignore: no-empty-block, intentional empty block
+    onRecipeParsingStarted ??= (_) {};
 
     var results = <RecipeParsingResult>[];
     var client = http.Client();
@@ -47,6 +53,8 @@ class RecipeController {
     };
 
     for (var recipeParsingJob in recipeParsingJobs) {
+      onRecipeParsingStarted(recipeParsingJob);
+
       var cachedRecipe = RecipeCache().getRecipe(recipeParsingJob.url);
 
       RecipeParsingResult result;

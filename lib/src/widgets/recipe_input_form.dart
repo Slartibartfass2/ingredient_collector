@@ -9,7 +9,9 @@ import '../recipe_controller/recipe_controller.dart';
 import 'collection_output_textarea.dart';
 import 'form_button.dart';
 import 'message_boxes.dart/message_box.dart';
-import 'recipe_input_row.dart';
+import 'recipe_input_row/recipe_input_row.dart';
+import 'recipe_input_row/recipe_parsing_state.dart';
+import 'recipe_input_row/recipe_parsing_state_wrapper.dart';
 
 /// The form to input recipes.
 ///
@@ -39,6 +41,8 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   final textArea = CollectionOutputTextArea();
 
+  int _nextRowId = 0;
+
   @override
   void initState() {
     super.initState();
@@ -47,13 +51,59 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     }
   }
 
+  void _removeRow(RecipeInputRow row) {
+    setState(() {
+      recipeInputRows.remove(row);
+    });
+  }
+
   void _addRow() {
     recipeInputRows.add(
-      RecipeInputRow((row) {
-        setState(() {
-          recipeInputRows.remove(row);
-        });
-      }),
+      RecipeInputRow(
+        id: _nextRowId++,
+        onRemove: _removeRow,
+        recipeParsingStateWrapper:
+            RecipeParsingStateWrapper(state: RecipeParsingState.notStarted),
+        urlController: TextEditingController(),
+        servingsController: TextEditingController(),
+      ),
+    );
+  }
+
+  void _updateRowState(RecipeInputRow row, RecipeParsingStateWrapper wrapper) {
+    setState(() {
+      var index = recipeInputRows.indexWhere((element) => element.id == row.id);
+      recipeInputRows[index] = RecipeInputRow(
+        id: row.id,
+        onRemove: _removeRow,
+        recipeParsingStateWrapper: wrapper,
+        urlController: row.urlController,
+        servingsController: row.servingsController,
+      );
+    });
+  }
+
+  void _onSuccessfullyParsedRecipe(RecipeInputRow row, String recipeName) {
+    _updateRowState(
+      row,
+      RecipeParsingStateWrapper(
+        state: RecipeParsingState.successful,
+        recipeName: recipeName,
+      ),
+    );
+  }
+
+  void _onFailedParsedRecipe(RecipeInputRow row) {
+    _updateRowState(
+      row,
+      RecipeParsingStateWrapper(state: RecipeParsingState.failed),
+    );
+  }
+
+  void _onRecipeParsingStarted(RecipeInputRow row) {
+    _updateRowState(
+      row,
+      RecipeParsingStateWrapper(state: RecipeParsingState.inProgress),
     );
   }
 
@@ -90,12 +140,11 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var parsingResults = await RecipeController().collectRecipes(
       recipeParsingJobs: recipeJobs,
       language: language,
-      onSuccessfullyParsedRecipe: (job, recipeName) {
-        jobsToRows[job]!.onSuccessfulParsing(recipeName);
-      },
-      onFailedParsedRecipe: (job) {
-        jobsToRows[job]!.onFailedParsing();
-      },
+      onSuccessfullyParsedRecipe: (job, recipeName) =>
+          _onSuccessfullyParsedRecipe(jobsToRows[job]!, recipeName),
+      onFailedParsedRecipe: (job) => _onFailedParsedRecipe(jobsToRows[job]!),
+      onRecipeParsingStarted: (job) =>
+          _onRecipeParsingStarted(jobsToRows[job]!),
     );
 
     var metaDataLogs = parsingResults
