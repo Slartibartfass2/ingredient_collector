@@ -50,10 +50,12 @@ class RecipeInputRow extends StatelessWidget {
         controller: urlController,
         helperText: switch (parsingState) {
           RecipeParsingState.notStarted => null,
-          RecipeParsingState.inProgress => "Parsing ...",
+          RecipeParsingState.inProgress =>
+            LocaleKeys.recipe_row_helper_text_in_progress.tr(),
           RecipeParsingState.successful =>
             recipeName.isEmpty ? null : recipeName,
-          RecipeParsingState.failed => "Failed to parse recipe",
+          RecipeParsingState.failed =>
+            LocaleKeys.recipe_row_helper_text_failed.tr(),
         },
         helperColor: switch (parsingState) {
           RecipeParsingState.notStarted => const Color(0xFF0DCAF0),
