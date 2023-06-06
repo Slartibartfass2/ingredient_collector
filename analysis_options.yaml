@@ -44,7 +44,6 @@ dart_code_metrics:
     - avoid-missing-enum-constant-in-map
     - avoid-nested-conditional-expressions:
         acceptable-level: 1
-    - avoid-redundant-async
     - avoid-throw-in-catch-block
     - avoid-non-null-assertion:
         exclude:
@@ -82,7 +81,8 @@ dart_code_metrics:
         exclude:
           - test/**
           - lib/main.dart
-    - prefer-moving-to-variable
+    - prefer-moving-to-variable:
+        allowed-duplicated-chains: 3
     - prefer-trailing-comma
     - always-remove-listener
     - avoid-border-all

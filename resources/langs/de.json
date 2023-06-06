@@ -10,11 +10,14 @@
     "recipe_row": {
         "remove_recipe_text": "Rezept entfernen",
         "add_note_text": "Notiz hinzufügen",
-        "add_recipe_modification_text": "Rezeptänderung hinzufügen",
+        "modify_recipe_text": "Rezept ändern",
         "helper_text": {
             "in_progress": "Rezept wird verarbeitet ...",
             "failed": "Rezept konnte nicht verarbeitet werden"
-        }
+        },
+        "add_note_disabled_tooltip" : "Geben Sie eine URL ein, um eine Notiz hinzuzufügen",
+        "modify_recipe_disabled_tooltip" : "Geben Sie eine URL ein, um das Rezept zu ändern",
+        "parsing_snackbar": "Rezept wird verarbeitet ..."
     },
     "url_input_field": {
         "label": "Rezept URL",

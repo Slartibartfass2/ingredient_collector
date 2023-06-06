@@ -10,11 +10,14 @@
     "recipe_row": {
         "remove_recipe_text": "Remove recipe",
         "add_note_text": "Add note",
-        "add_recipe_modification_text": "Add recipe modification",
+        "modify_recipe_text": "Modify recipe",
         "helper_text": {
             "in_progress": "Recipe is being processed ...",
             "failed": "Recipe couldn't be processed"
-        }
+        },
+        "add_note_disabled_tooltip" : "Enter a URL to add a note",
+        "modify_recipe_disabled_tooltip" : "Enter a URL to modify the recipe",
+        "parsing_snackbar": "Recipe is being processed ..."
     },
     "url_input_field": {
         "label": "Recipe URL",

@@ -2,6 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../l10n/locale_keys.g.dart';
+import '../../models/recipe.dart';
+import '../../models/recipe_parsing_job.dart';
+import '../../pages/recipe_modification_page.dart';
+import '../../recipe_controller/recipe_cache.dart';
+import '../../recipe_controller/recipe_controller.dart';
+import '../dialogs/recipe_note_dialog.dart';
 import '../recipe_input_form.dart';
 import 'recipe_parsing_state.dart';
 import 'recipe_parsing_state_wrapper.dart';
@@ -13,7 +19,7 @@ import 'url_input_field.dart';
 /// The row contains a [UrlInputField] and a [ServingsInputField].
 /// It also contains a close button to remove the row.
 /// The row is used in [RecipeInputForm].
-class RecipeInputRow extends StatelessWidget {
+class RecipeInputRow extends StatefulWidget {
   /// ID to identify this row.
   final int id;
 
@@ -30,8 +36,11 @@ class RecipeInputRow extends StatelessWidget {
   /// parsing.
   final RecipeParsingStateWrapper recipeParsingStateWrapper;
 
+  final _ModificationWrapper _modificationEnabledWrapper =
+      _ModificationWrapper(isEnabled: false);
+
   /// Creates a new [RecipeInputRow].
-  const RecipeInputRow({
+  RecipeInputRow({
     required this.id,
     required this.onRemove,
     required this.recipeParsingStateWrapper,
@@ -41,13 +50,105 @@ class RecipeInputRow extends StatelessWidget {
   });
 
   @override
+  State<RecipeInputRow> createState() => _RecipeInputRowState();
+}
+
+class _RecipeInputRowState extends State<RecipeInputRow> {
+  Future<void> _onAddNote(BuildContext context) async {
+    var url = Uri.tryParse(widget.urlController.text);
+    if (url == null) {
+      return;
+    }
+
+    var recipe = await _getRecipe(context, url);
+    if (recipe == null) {
+      return;
+    }
+    // There needs to be a delay to prevent the dialog from being closed by the
+    // popup menu.
+    await Future<void>.delayed(const Duration(milliseconds: 1));
+    if (context.mounted) {
+      await showDialog<void>(
+        context: context,
+        builder: (context) => RecipeNoteDialog(
+          recipeUrlOrigin: url.origin,
+          recipeName: recipe.name,
+        ),
+      );
+    }
+  }
+
+  Future<void> _onModifyRecipe(BuildContext context) async {
+    var url = Uri.tryParse(widget.urlController.text);
+    if (url == null) {
+      return;
+    }
+
+    var recipe = await _getRecipe(context, url);
+    if (recipe == null) {
+      return;
+    }
+
+    // There needs to be a delay to prevent the dialog from being closed by the
+    // popup menu.
+    await Future<void>.delayed(const Duration(milliseconds: 1));
+    if (context.mounted) {
+      await showDialog<void>(
+        context: context,
+        builder: (context) => RecipeModificationPage(
+          recipe: recipe,
+          recipeUrlOrigin: url.origin,
+        ),
+      );
+    }
+  }
+
+  Future<Recipe?> _getRecipe(BuildContext context, Uri url) async {
+    var cachedRecipe = RecipeCache().getRecipe(url);
+    if (cachedRecipe != null) {
+      return cachedRecipe;
+    }
+
+    var language = context.locale.languageCode;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text(LocaleKeys.recipe_row_parsing_snackbar).tr(),
+      ),
+    );
+    var result = await RecipeController().collectRecipes(
+      recipeParsingJobs: [
+        RecipeParsingJob(
+          url: url,
+          servings: int.tryParse(widget.servingsController.text) ?? 1,
+          language: language,
+        ),
+      ],
+      language: language,
+    );
+
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    }
+    if (result.isEmpty || result.first.recipe == null) {
+      return null;
+    }
+    return result.first.recipe;
+  }
+
+  // ignore: use_setters_to_change_properties, used for callback
+  void _onValidated({required bool isValid}) =>
+      widget._modificationEnabledWrapper.isEnabled = isValid;
+
+  @override
   Widget build(BuildContext context) {
-    var parsingState = recipeParsingStateWrapper.state;
-    var recipeName = recipeParsingStateWrapper.recipeName;
+    var parsingState = widget.recipeParsingStateWrapper.state;
+    var recipeName = widget.recipeParsingStateWrapper.recipeName;
+    var modificationEnabledWrapper = widget._modificationEnabledWrapper;
 
     var urlField = Expanded(
       child: UrlInputField(
-        controller: urlController,
+        controller: widget.urlController,
+        onValidated: _onValidated,
         helperText: switch (parsingState) {
           RecipeParsingState.notStarted => null,
           RecipeParsingState.inProgress =>
@@ -70,25 +171,35 @@ class RecipeInputRow extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 2),
       child: SizedBox(
         width: 95,
-        child: ServingsInputField(controller: servingsController),
+        child: ServingsInputField(controller: widget.servingsController),
       ),
     );
 
     var settingsButton = PopupMenuButton(
       itemBuilder: (context) => [
         PopupMenuItem<void>(
-          onTap: () => onRemove(this),
+          onTap: () => widget.onRemove(widget),
           child: const Text(LocaleKeys.recipe_row_remove_recipe_text).tr(),
         ),
         PopupMenuItem<void>(
-          onTap: () => print("Notiz hinzufügen"),
-          child: const Text(LocaleKeys.recipe_row_add_note_text).tr(),
+          onTap: () async => _onAddNote(context),
+          enabled: modificationEnabledWrapper.isEnabled,
+          child: Tooltip(
+            message: modificationEnabledWrapper.isEnabled
+                ? ""
+                : LocaleKeys.recipe_row_add_note_disabled_tooltip.tr(),
+            child: const Text(LocaleKeys.recipe_row_add_note_text).tr(),
+          ),
         ),
         PopupMenuItem<void>(
-          onTap: () => print("Änderung hinzufügen"),
-          child: const Text(
-            LocaleKeys.recipe_row_add_recipe_modification_text,
-          ).tr(),
+          onTap: () async => _onModifyRecipe(context),
+          enabled: modificationEnabledWrapper.isEnabled,
+          child: Tooltip(
+            message: modificationEnabledWrapper.isEnabled
+                ? ""
+                : LocaleKeys.recipe_row_modify_recipe_disabled_tooltip.tr(),
+            child: const Text(LocaleKeys.recipe_row_modify_recipe_text).tr(),
+          ),
         ),
       ],
       offset: const Offset(0, 40),
@@ -111,4 +222,9 @@ class RecipeInputRow extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ModificationWrapper {
+  bool isEnabled;
+  _ModificationWrapper({required this.isEnabled});
 }
