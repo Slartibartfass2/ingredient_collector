@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../l10n/locale_keys.g.dart';
 import '../../models/recipe.dart';
 import '../../models/recipe_parsing_job.dart';
-import '../../pages/recipe_modification_page.dart';
+import '../../pages/recipe_modification_page/recipe_modification_page.dart';
 import '../../recipe_controller/recipe_cache.dart';
 import '../../recipe_controller/recipe_controller.dart';
 import '../dialogs/recipe_note_dialog.dart';
@@ -89,15 +89,13 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
       return;
     }
 
-    // There needs to be a delay to prevent the dialog from being closed by the
-    // popup menu.
-    await Future<void>.delayed(const Duration(milliseconds: 1));
     if (context.mounted) {
-      await showDialog<void>(
-        context: context,
-        builder: (context) => RecipeModificationPage(
-          recipe: recipe,
-          recipeUrlOrigin: url.origin,
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => RecipeModificationPage(
+            recipe: recipe,
+            recipeUrlOrigin: url.origin,
+          ),
         ),
       );
     }
