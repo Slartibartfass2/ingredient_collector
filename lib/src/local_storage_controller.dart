@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/additional_recipe_information.dart';
+import 'models/recipe_modification.dart';
 
 /// Controller for the local storage.
 ///
@@ -46,6 +47,47 @@ class LocalStorageController {
         : additionalRecipeInformation.copyWith(note: note);
 
     await setAdditionalRecipeInformation(additionalRecipeInformation);
+  }
+
+  /// Returns the [RecipeModification] for the recipe with the given
+  /// [recipeUrlOrigin] and [recipeName].
+  ///
+  /// Returns null if no [RecipeModification] is found.
+  /// If the content of the local storage is invalid, it is cleared and null is
+  /// returned.
+  Future<RecipeModification?> getRecipeModification(
+    String recipeUrlOrigin,
+    String recipeName,
+  ) async {
+    var additionalRecipeInformation =
+        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+    return additionalRecipeInformation?.recipeModification;
+  }
+
+  /// Saves the given [modification] for the recipe with the given
+  /// [recipeUrlOrigin] and [recipeName] to the local storage.
+  ///
+  /// If the given [modification] is null, nothing is saved, otherwise it is
+  /// saved.
+  /// If there is already a modification saved for the given recipe, it is
+  /// overwritten.
+  Future<void> setRecipeModificaiton(
+    String recipeUrlOrigin,
+    String recipeName,
+    RecipeModification modification,
+  ) async {
+    var additionalRecipeInformation =
+        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+
+    additionalRecipeInformation = additionalRecipeInformation == null
+        ? AdditionalRecipeInformation(
+            recipeUrlOrigin: recipeUrlOrigin,
+            recipeName: recipeName,
+            recipeModification: modification,
+          )
+        : additionalRecipeInformation.copyWith(
+            recipeModification: modification,
+          );
   }
 
   /// Returns the [AdditionalRecipeInformation] for the recipe with the given
