@@ -21,7 +21,7 @@ class RecipeController {
   ///
   /// For each [RecipeParsingJob] a http request is made to the website
   /// containing the recipe. From there the recipe is parsed and adjusted to the
-  /// amount of servings. The list of the parsed [Recipe]s is returned.
+  /// amount of servings. The iterable of the parsed [Recipe]s is returned.
   /// [language] is set as 'Accept-Language' header in each http request.
   ///
   /// If the recipe is successfully parsed, [onSuccessfullyParsedRecipe] is
@@ -31,8 +31,8 @@ class RecipeController {
   /// argument.
   /// [onRecipeParsingStarted] is called with the [RecipeParsingJob] as argument
   /// when the parsing of the recipe starts.
-  Future<List<RecipeParsingResult>> collectRecipes({
-    required List<RecipeParsingJob> recipeParsingJobs,
+  Future<Iterable<RecipeParsingResult>> collectRecipes({
+    required Iterable<RecipeParsingJob> recipeParsingJobs,
     required String language,
     void Function(RecipeParsingJob, String)? onSuccessfullyParsedRecipe,
     void Function(RecipeParsingJob)? onFailedParsedRecipe,

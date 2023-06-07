@@ -6,6 +6,7 @@ import '../ingredient_output_generator.dart';
 import '../models/recipe.dart';
 import '../models/recipe_parsing_job.dart';
 import '../recipe_controller/recipe_controller.dart';
+import '../recipe_controller/recipe_tools.dart';
 import 'collection_output_textarea.dart';
 import 'form_button.dart';
 import 'message_boxes.dart/message_box.dart';
@@ -116,17 +117,23 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
           row.servingsController.text.isNotEmpty,
     );
 
-    var jobsToRows = <RecipeParsingJob, RecipeInputRow>{};
-    for (var row in validRows) {
-      var recipeParsingJob = RecipeParsingJob(
-        url: Uri.parse(row.urlController.text),
-        servings: int.parse(row.servingsController.text),
-        language: language,
-      );
+    // Create recipe parsing jobs from the valid rows.
+    var recipeJobs = mergeRecipeParsingJobs(
+      validRows.map(
+        (row) => RecipeParsingJob(
+          url: Uri.parse(row.urlController.text),
+          servings: int.parse(row.servingsController.text),
+          language: language,
+        ),
+      ),
+    );
 
-      jobsToRows[recipeParsingJob] = row;
-    }
-    var recipeJobs = jobsToRows.keys.toList();
+    var recipeJobToRows = {
+      for (var job in recipeJobs)
+        job: validRows.where(
+          (row) => row.urlController.text == job.url.toString(),
+        ),
+    };
 
     var formState = _formKey.currentState;
     if (formState == null || !formState.validate() || recipeJobs.isEmpty) {
@@ -140,11 +147,13 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var parsingResults = await RecipeController().collectRecipes(
       recipeParsingJobs: recipeJobs,
       language: language,
-      onSuccessfullyParsedRecipe: (job, recipeName) =>
-          _onSuccessfullyParsedRecipe(jobsToRows[job]!, recipeName),
-      onFailedParsedRecipe: (job) => _onFailedParsedRecipe(jobsToRows[job]!),
+      onSuccessfullyParsedRecipe: (job, recipeName) => recipeJobToRows[job]!
+          // ignore: avoid_function_literals_in_foreach_calls, makes sense here
+          .forEach((row) => _onSuccessfullyParsedRecipe(row, recipeName)),
+      onFailedParsedRecipe: (job) =>
+          recipeJobToRows[job]!.forEach(_onFailedParsedRecipe),
       onRecipeParsingStarted: (job) =>
-          _onRecipeParsingStarted(jobsToRows[job]!),
+          recipeJobToRows[job]!.forEach(_onRecipeParsingStarted),
     );
 
     var metaDataLogs = parsingResults

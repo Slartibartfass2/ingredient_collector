@@ -6,7 +6,10 @@ import '../models/recipe_parsing_job.dart';
 /// [RecipeParsingJob] with the sum of the servings.
 /// The merged [RecipeParsingJob]s are returned.
 /// The order of the [RecipeParsingJob]s is preserved.
-List<RecipeParsingJob> mergeRecipeParsingJobs(List<RecipeParsingJob> jobs) {
+/// If [jobs] is empty, an empty [Iterable] is returned.
+Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
+  Iterable<RecipeParsingJob> jobs,
+) {
   var mergedJobs = <RecipeParsingJob>[];
   for (var job in jobs) {
     var existingJobIndex = mergedJobs.indexWhere(
