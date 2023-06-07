@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
+import '../widgets/adaptive_container.dart';
 import '../widgets/locale_dropdown_button.dart';
 import '../widgets/recipe_input_form.dart';
 
@@ -25,24 +26,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  double _getContainerWidth(double width) {
-    if (width >= 1400) return 1320;
-    if (width >= 1200) return 1140;
-    if (width >= 992) return 960;
-    if (width >= 768) return 720;
-    if (width >= 576) return 540;
-    return width - 20;
-  }
-
   @override
   Widget build(BuildContext context) {
     var localeDropdownButton = LocaleDropdownButton(
       onChanged: (newValue) async => _onLocaleChanged(newValue.locale),
     );
-
-    var queryData = MediaQuery.of(context);
-    var deviceWidth = queryData.size.width;
-    var containerWidth = _getContainerWidth(deviceWidth);
 
     return Scaffold(
       key: ValueKey(context.locale.languageCode),
@@ -53,10 +41,8 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topCenter,
-          child: Container(
-            width: containerWidth,
-            margin: const EdgeInsets.symmetric(vertical: 30),
-            child: const RecipeInputForm(),
+          child: const AdaptiveContainer(
+            child: RecipeInputForm(),
           ),
         ),
       ),
