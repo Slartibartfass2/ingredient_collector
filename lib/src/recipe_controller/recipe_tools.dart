@@ -47,10 +47,12 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
   Iterable<RecipeParsingJob> jobs,
 ) {
   var mergedJobs = <RecipeParsingJob>[];
+
   for (var job in jobs) {
     var existingJobIndex = mergedJobs.indexWhere(
       (mergedJob) => mergedJob.url == job.url,
     );
+
     if (existingJobIndex == -1) {
       mergedJobs.add(job);
     } else {
@@ -167,12 +169,25 @@ Recipe modifyRecipe({
 Ingredient _multiplyIngredient(Ingredient ingredient, double factor) =>
     ingredient.copyWith(amount: ingredient.amount * factor);
 
-/// Merges the [Ingredient]s in the passed list to a list of unique
-/// [Ingredient]s.
+/// Merges the passed [Ingredient]s.
 ///
 /// [Ingredient]s with the same name and unit are merged so that the amount is
-/// added together e.g. 4 g Sugar and 8 g Sugar results in 12 g Sugar.
-List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
+/// added together.
+///
+/// Example:
+/// ```dart
+/// var ingredients = [
+///   Ingredient(amount: 4, unit: "g", name: "Sugar"),
+///   Ingredient(amount: 8, unit: "g", name: "Sugar"),
+/// ];
+/// var mergedIngredients = mergeIngredients(ingredients);
+/// ```
+/// The merged ingredients will be:
+/// ```dart
+/// [
+///   Ingredient(amount: 12, unit: "g", name: "Sugar"),
+/// ];
+Iterable<Ingredient> mergeIngredients(Iterable<Ingredient> ingredients) {
   var mergedIngredients = <Ingredient>[];
 
   for (var ingredient in ingredients) {
@@ -184,8 +199,10 @@ List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
     if (index == -1) {
       mergedIngredients.add(ingredient);
     } else {
-      var amount = mergedIngredients[index].amount + ingredient.amount;
-      mergedIngredients[index] = ingredient.copyWith(amount: amount);
+      var existingIngredient = mergedIngredients[index];
+      mergedIngredients[index] = existingIngredient.copyWith(
+        amount: existingIngredient.amount + ingredient.amount,
+      );
     }
   }
 

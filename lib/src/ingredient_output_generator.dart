@@ -14,7 +14,7 @@ RecipeCollectionResult createCollectionResultFromRecipes(
 ) {
   var mergedIngredients = mergeIngredients(
     recipes.expand<Ingredient>((recipe) => recipe.ingredients).toList(),
-  );
+  ).toList();
   var ingredientsSortedByAmount = mergedIngredients
     ..sort((a, b) => b.amount.compareTo(a.amount));
 
