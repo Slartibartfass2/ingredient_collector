@@ -71,7 +71,7 @@ class LocalStorageController {
   /// saved.
   /// If there is already a modification saved for the given recipe, it is
   /// overwritten.
-  Future<void> setRecipeModificaiton(
+  Future<void> setRecipeModification(
     String recipeUrlOrigin,
     String recipeName,
     RecipeModification modification,
@@ -88,6 +88,7 @@ class LocalStorageController {
         : additionalRecipeInformation.copyWith(
             recipeModification: modification,
           );
+    await setAdditionalRecipeInformation(additionalRecipeInformation);
   }
 
   /// Returns the [AdditionalRecipeInformation] for the recipe with the given
