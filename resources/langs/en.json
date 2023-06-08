@@ -50,5 +50,9 @@
             "title": "Failed to parse an ingredient",
             "message": "An error occurred while parsing {recipeUrl}. An ingredient couldn't be parsed."
         }
+    },
+    "recipe_modification": {
+        "loading": "Loading recipe modification ...",
+        "page_title": "Recipe modification of '{recipeName}'"
     }
 }

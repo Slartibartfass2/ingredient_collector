@@ -50,5 +50,9 @@
             "title": "Parsen einer Zutat fehlgeschlagen",
             "message": "Beim Parsen von {recipeUrl} ist ein Fehler aufgetreten. Eine Zutat konnte nicht geparst werden."
         }
+    },
+    "recipe_modification": {
+        "loading": "Rezeptänderung wird geladen ...",
+        "page_title": "Rezeptänderung für '{recipeName}'"
     }
 }
