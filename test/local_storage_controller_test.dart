@@ -220,7 +220,7 @@ void main() {
 
   group('Test getRecipeNote', () {
     test(
-      'When there\'s no information stored, then an emtpy string is returned',
+      'When there\'s no information stored, then an empty string is returned',
       () async {
         SharedPreferences.setMockInitialValues({});
 
@@ -273,7 +273,7 @@ void main() {
     );
 
     test(
-      'When ther\'s information stored, then the note is overwritten',
+      'When there\'s information stored, then the note is overwritten',
       () async {
         SharedPreferences.setMockInitialValues({
           "additional_recipe_informations": [
