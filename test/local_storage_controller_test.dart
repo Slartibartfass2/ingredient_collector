@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   setUpAll(TestWidgetsFlutterBinding.ensureInitialized);
 
-  group('test getAdditionalRecipeInformation', () {
+  group('Test getAdditionalRecipeInformation', () {
     test(
       'When local storage is empty and getAdditionalRecipeInformation is called'
       ', then null is returned',
@@ -128,7 +128,7 @@ void main() {
     );
   });
 
-  group('test setAdditionalRecipeInformation', () {
+  group('Test setAdditionalRecipeInformation', () {
     test(
       'When local storage is empty and setAdditionalRecipeInformation is called'
       ', then the additional recipe information is saved',
@@ -217,6 +217,199 @@ void main() {
       },
     );
   });
+
+  group('Test getRecipeNote', () {
+    test(
+      'When there\'s no information stored, then an emtpy string is returned',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+
+        var result =
+            await LocalStorageController().getRecipeNote("test", "test name");
+
+        expect(result, "");
+      },
+    );
+
+    test(
+      'When there\'s information stored, then the note is returned',
+      () async {
+        SharedPreferences.setMockInitialValues({
+          "additional_recipe_informations": [
+            jsonEncode(
+              {
+                "recipeUrlOrigin": "test",
+                "recipeName": "test name",
+                "note": "test note",
+                "recipeModification": null,
+              },
+            ),
+          ],
+        });
+
+        var result =
+            await LocalStorageController().getRecipeNote("test", "test name");
+
+        expect(result, "test note");
+      },
+    );
+  });
+
+  group('Test setRecipeNote', () {
+    test(
+      'When there\'s no information stored, then new information is added with '
+      'the given note',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+
+        await LocalStorageController().setRecipeNote(
+          "test",
+          "test name",
+          "test note",
+        );
+
+        await _expectTestAdditionalRecipeInformation();
+      },
+    );
+
+    test(
+      'When ther\'s information stored, then the note is overwritten',
+      () async {
+        SharedPreferences.setMockInitialValues({
+          "additional_recipe_informations": [
+            jsonEncode(
+              {
+                "recipeUrlOrigin": "test",
+                "recipeName": "test name",
+                "note": "different test note",
+                "recipeModification": null,
+              },
+            ),
+          ],
+        });
+
+        await LocalStorageController().setRecipeNote(
+          "test",
+          "test name",
+          "test note",
+        );
+
+        await _expectTestAdditionalRecipeInformation();
+      },
+    );
+  });
+
+  group('Test getRecipeModification', () {
+    test(
+      'When there\'s no information stored, then null is returned',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+
+        var result = await LocalStorageController()
+            .getRecipeModification("test", "test name");
+
+        expect(result, isNull);
+      },
+    );
+
+    test(
+      'When there\'s information stored, then the modification is returned',
+      () async {
+        SharedPreferences.setMockInitialValues({
+          "additional_recipe_informations": [
+            jsonEncode(
+              {
+                "recipeUrlOrigin": "test",
+                "recipeName": "test name",
+                "note": "test note",
+                "recipeModification": const RecipeModification(
+                  servings: 2,
+                  modifiedIngredients: [],
+                ),
+              },
+            ),
+          ],
+        });
+
+        var result = await LocalStorageController()
+            .getRecipeModification("test", "test name");
+
+        expect(result, isNotNull);
+        expect(result!.servings, 2);
+        expect(result.modifiedIngredients, isEmpty);
+      },
+    );
+  });
+
+  group('Test setRecipeModification', () {
+    test(
+      'When there\'s no information stored, then new information is added with '
+      'the given modification',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+
+        await LocalStorageController().setRecipeModification(
+          "test",
+          "test name",
+          const RecipeModification(
+            servings: 2,
+            modifiedIngredients: [],
+          ),
+        );
+
+        await _expectTestAdditionalRecipeInformation(
+          expectedRecipeModification: const RecipeModification(
+            servings: 2,
+            modifiedIngredients: [],
+          ),
+          isNoteEmpty: true,
+        );
+      },
+    );
+
+    test(
+      'When there\'s information stored, then the modification is overwritten',
+      () async {
+        SharedPreferences.setMockInitialValues({
+          "additional_recipe_informations": [
+            jsonEncode(
+              {
+                "recipeUrlOrigin": "test",
+                "recipeName": "test name",
+                "note": "test note",
+                "recipeModification": const RecipeModification(
+                  servings: 4,
+                  modifiedIngredients: [
+                    Ingredient(
+                      amount: 1,
+                      unit: "test unit",
+                      name: "test ingredient",
+                    ),
+                  ],
+                ),
+              },
+            ),
+          ],
+        });
+
+        await LocalStorageController().setRecipeModification(
+          "test",
+          "test name",
+          const RecipeModification(
+            servings: 2,
+            modifiedIngredients: [],
+          ),
+        );
+
+        await _expectTestAdditionalRecipeInformation(
+          expectedRecipeModification: const RecipeModification(
+            servings: 2,
+            modifiedIngredients: [],
+          ),
+        );
+      },
+    );
+  });
 }
 
 Future<void> _addTestAdditionalRecipeInformation({String suffix = ""}) async {
@@ -230,7 +423,11 @@ Future<void> _addTestAdditionalRecipeInformation({String suffix = ""}) async {
   );
 }
 
-Future<void> _expectTestAdditionalRecipeInformation({int amount = 1}) async {
+Future<void> _expectTestAdditionalRecipeInformation({
+  int amount = 1,
+  RecipeModification? expectedRecipeModification,
+  bool isNoteEmpty = false,
+}) async {
   var store = await SharedPreferences.getInstance();
   var jsonList = store.getStringList("additional_recipe_informations");
   expect(jsonList, isNotNull);
@@ -242,7 +439,13 @@ Future<void> _expectTestAdditionalRecipeInformation({int amount = 1}) async {
     var suffix = amount == 1 ? "" : "$i";
     expect(additionalRecipeInformation.recipeUrlOrigin, "test$suffix");
     expect(additionalRecipeInformation.recipeName, "test name$suffix");
-    expect(additionalRecipeInformation.note, "test note$suffix");
-    expect(additionalRecipeInformation.recipeModification, isNull);
+    expect(
+      additionalRecipeInformation.note,
+      isNoteEmpty ? "" : "test note$suffix",
+    );
+    expect(
+      additionalRecipeInformation.recipeModification,
+      equals(expectedRecipeModification),
+    );
   }
 }
