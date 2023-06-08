@@ -65,6 +65,8 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 
 /// Modifies the passed [recipe] with the passed [modification].
 ///
+/// It is assumed that the ingredient names are unique in both
+/// [Recipe.ingredients] and [RecipeModification.modifiedIngredients].
 /// The [modification] is applied to the [recipe] and the modified recipe is
 /// returned.
 /// The [modification] is applied to an ingredient with the same name.
@@ -74,6 +76,8 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 /// each ingredient to the new amount of servings.
 /// The modified recipe has the same name and amount of servings as the
 /// [recipe].
+/// If the [modification] contains an ingredient with a negative amount, the
+/// ingredient is removed from the [recipe].
 ///
 /// Example:
 /// ```dart
@@ -114,15 +118,33 @@ Recipe modifyRecipe({
   var ratio = recipe.servings / modification.servings;
 
   var modifiedIngredients = modification.modifiedIngredients;
-  var newIngredients = recipe.ingredients
+
+  // First remove ingredients that are deleted in the modification (amount < 0).
+  var newIngredients = recipe.ingredients.where(
+    (ingredient) => modifiedIngredients.any(
+      (modifiedIngredient) =>
+          modifiedIngredient.name == ingredient.name &&
+          modifiedIngredient.amount >= 0,
+    ),
+  );
+  modifiedIngredients = modifiedIngredients
+      .where((modifiedIngredient) => modifiedIngredient.amount >= 0)
+      .toList();
+
+  // Then modify the remaining ingredients.
+  newIngredients = newIngredients
       .map(
         (ingredient) => modifiedIngredients.firstWhere(
-          (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
+          (modifiedIngredient) =>
+              modifiedIngredient.name == ingredient.name &&
+              modifiedIngredient.amount >= 0,
           orElse: () => ingredient.copyWith(amount: ingredient.amount / ratio),
         ),
       )
       .map((ingredient) => _multiplyIngredient(ingredient, ratio))
       .toList()
+
+    // Finally add all ingredients that are new in the modification.
     ..addAll(
       modifiedIngredients
           .where(
@@ -134,7 +156,7 @@ Recipe modifyRecipe({
     );
 
   return recipe.copyWith(
-    ingredients: newIngredients,
+    ingredients: newIngredients.toList(),
   );
 }
 
