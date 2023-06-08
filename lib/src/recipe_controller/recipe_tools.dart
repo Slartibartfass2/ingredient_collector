@@ -65,11 +65,12 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 
 /// Modifies the passed [recipe] with the passed [modification].
 ///
-/// It is assumed that the ingredient names are unique in both
-/// [Recipe.ingredients] and [RecipeModification.modifiedIngredients].
+/// It is assumed that the ingredients are unique in both [Recipe.ingredients]
+/// and [RecipeModification.modifiedIngredients], meaing that there are not
+/// two ingredients with the same name and unit.
 /// The [modification] is applied to the [recipe] and the modified recipe is
 /// returned.
-/// The [modification] is applied to an ingredient with the same name.
+/// The [modification] is applied to an ingredient with the same name and unit.
 /// If the [modification] contains an ingredient that is not in the [recipe],
 /// the ingredient is added to the [recipe].
 /// The [modification] is applied to the [recipe] by adjusting the amount of
@@ -92,7 +93,7 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 /// var modification = const RecipeModification(
 ///   servings: 4,
 ///   modifiedIngredients: [
-///     Ingredient(amount: 10, unit: "kg", name: "Test Ingredient"),
+///     Ingredient(amount: 10, unit: "g", name: "Test Ingredient"),
 ///   ],
 /// );
 ///
@@ -105,7 +106,7 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 /// ```dart
 /// Recipe(
 ///   ingredients: [
-///     Ingredient(amount: 5, unit: "kg", name: "Test Ingredient"),
+///     Ingredient(amount: 5, unit: "g", name: "Test Ingredient"),
 ///   ],
 ///   name: "Test Recipe",
 ///   servings: 2,
@@ -124,6 +125,7 @@ Recipe modifyRecipe({
     (ingredient) => modifiedIngredients.any(
       (modifiedIngredient) =>
           modifiedIngredient.name == ingredient.name &&
+          modifiedIngredient.unit == ingredient.unit &&
           modifiedIngredient.amount >= 0,
     ),
   );
@@ -137,7 +139,7 @@ Recipe modifyRecipe({
         (ingredient) => modifiedIngredients.firstWhere(
           (modifiedIngredient) =>
               modifiedIngredient.name == ingredient.name &&
-              modifiedIngredient.amount >= 0,
+              modifiedIngredient.unit == ingredient.unit,
           orElse: () => ingredient.copyWith(amount: ingredient.amount / ratio),
         ),
       )
@@ -149,7 +151,9 @@ Recipe modifyRecipe({
       modifiedIngredients
           .where(
             (modifiedIngredient) => !recipe.ingredients.any(
-              (ingredient) => ingredient.name == modifiedIngredient.name,
+              (ingredient) =>
+                  ingredient.name == modifiedIngredient.name &&
+                  ingredient.unit == modifiedIngredient.unit,
             ),
           )
           .map((ingredient) => _multiplyIngredient(ingredient, ratio)),
@@ -162,3 +166,28 @@ Recipe modifyRecipe({
 
 Ingredient _multiplyIngredient(Ingredient ingredient, double factor) =>
     ingredient.copyWith(amount: ingredient.amount * factor);
+
+/// Merges the [Ingredient]s in the passed list to a list of unique
+/// [Ingredient]s.
+///
+/// [Ingredient]s with the same name and unit are merged so that the amount is
+/// added together e.g. 4 g Sugar and 8 g Sugar results in 12 g Sugar.
+List<Ingredient> mergeIngredients(List<Ingredient> ingredients) {
+  var mergedIngredients = <Ingredient>[];
+
+  for (var ingredient in ingredients) {
+    var index = mergedIngredients.indexWhere(
+      (element) =>
+          ingredient.name == element.name && ingredient.unit == element.unit,
+    );
+
+    if (index == -1) {
+      mergedIngredients.add(ingredient);
+    } else {
+      var amount = mergedIngredients[index].amount + ingredient.amount;
+      mergedIngredients[index] = ingredient.copyWith(amount: amount);
+    }
+  }
+
+  return mergedIngredients;
+}
