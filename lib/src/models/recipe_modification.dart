@@ -16,7 +16,7 @@ class RecipeModification with _$RecipeModification {
     /// The modified ingredients.
     ///
     /// A modification is applied to an ingredient with the same name.
-    required List<Ingredient> modifiedIngredients,
+    required Iterable<Ingredient> modifiedIngredients,
   }) = _RecipeModification;
 
   /// Creates [RecipeModification] object from JSON.

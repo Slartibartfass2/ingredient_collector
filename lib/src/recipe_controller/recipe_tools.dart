@@ -122,7 +122,6 @@ Recipe modifyRecipe({
 
   var modifiedIngredients = modification.modifiedIngredients;
 
-  // First remove ingredients that are deleted in the modification (amount < 0).
   var newIngredients = recipe.ingredients.where(
     (ingredient) => modifiedIngredients.any(
       (modifiedIngredient) =>
@@ -207,4 +206,20 @@ Iterable<Ingredient> mergeIngredients(Iterable<Ingredient> ingredients) {
   }
 
   return mergedIngredients;
+}
+
+RecipeModification getModification({
+  required Recipe originalRecipe,
+  required Iterable<Ingredient> modifiedIngredients,
+  required Iterable<Ingredient> removedIngredient,
+}) {
+  var ingredients = modifiedIngredients.toList()
+    ..addAll(
+      removedIngredient.map((ingredient) => ingredient.copyWith(amount: -1)),
+    );
+
+  return RecipeModification(
+    servings: originalRecipe.servings,
+    modifiedIngredients: ingredients,
+  );
 }

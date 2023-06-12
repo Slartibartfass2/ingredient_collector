@@ -28,7 +28,10 @@ class RecipeModificationPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(LocaleKeys.recipe_modification_page_title).tr(
-            namedArgs: {"recipeName": recipe.name},
+            namedArgs: {
+              "recipeName": recipe.name,
+              "servings": recipe.servings.toString(),
+            },
           ),
         ),
         body: _PageBody(recipe: recipe, recipeUrlOrigin: recipeUrlOrigin),
@@ -56,6 +59,7 @@ class _PageBody extends StatelessWidget {
 
       return RecipeModificationForm(
         originalRecipe: recipe,
+        recipeUrlOrigin: recipeUrlOrigin,
         modifiedRecipe: modifiedRecipe,
       );
     }
