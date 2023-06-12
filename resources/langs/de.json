@@ -53,6 +53,6 @@
     },
     "recipe_modification": {
         "loading": "Rezeptänderung wird geladen ...",
-        "page_title": "Rezeptänderung für '{recipeName}'"
+        "page_title": "Rezeptänderung für {servings} Portionen '{recipeName}'"
     }
 }

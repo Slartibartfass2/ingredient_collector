@@ -166,7 +166,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     );
 
     var servingsField = Padding(
-      padding: const EdgeInsets.only(left: 10, right: 2),
+      padding: const EdgeInsets.only(left: 8, right: 2),
       child: SizedBox(
         width: 95,
         child: ServingsInputField(controller: widget.servingsController),

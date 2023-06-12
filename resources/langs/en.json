@@ -53,6 +53,6 @@
     },
     "recipe_modification": {
         "loading": "Loading recipe modification ...",
-        "page_title": "Recipe modification of '{recipeName}'"
+        "page_title": "Recipe modification for {servings} servings of '{recipeName}'"
     }
 }
