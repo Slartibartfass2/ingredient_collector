@@ -48,14 +48,12 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     var ingredients = widget.modifiedRecipe.ingredients;
     var originalIngredients = widget.originalRecipe.ingredients;
     modifiedRows = ingredients
-        .where((ingredient) => ingredient.amount >= 0)
         .map(
           (ingredient) => _createRow(
             ingredient,
             originalIngredients.firstWhere(
               (originalIngredient) =>
-                  originalIngredient.name == ingredient.name &&
-                  originalIngredient.unit == ingredient.unit,
+                  originalIngredient.name == ingredient.name,
               orElse: () => const Ingredient(amount: 0, unit: "", name: ""),
             ),
             true,
@@ -63,8 +61,12 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
           ),
         )
         .toList();
-    removedRows = ingredients
-        .where((ingredient) => ingredient.amount < 0)
+    removedRows = originalIngredients
+        .where(
+          (ingredient) => !ingredients.any(
+            (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
+          ),
+        )
         .map(
           (ingredient) => _createRow(ingredient, ingredient, false, _onRestore),
         )
@@ -135,12 +137,12 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
 
   Future<void> _onSave(BuildContext context) async {
     var modification = getModification(
-      originalRecipe: widget.originalRecipe,
+      servings: widget.originalRecipe.servings,
       modifiedIngredients: modifiedRows
           .where((row) => row.nameController.text.isNotEmpty)
           .where(_isRowChanged)
           .map((row) => row.modifiedIngredient),
-      removedIngredient: removedRows.map((row) => row.modifiedIngredient),
+      removedIngredients: removedRows.map((row) => row.modifiedIngredient),
     );
 
     await LocalStorageController().setRecipeModification(
