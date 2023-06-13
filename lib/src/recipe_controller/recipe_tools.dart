@@ -206,18 +206,50 @@ Iterable<Ingredient> mergeIngredients(Iterable<Ingredient> ingredients) {
   return mergedIngredients;
 }
 
+/// Returns a [RecipeModification] from the passed [servings],
+/// [modifiedIngredients] and [removedIngredients].
+///
+/// The [modifiedIngredients] are the ingredients that are modified in the
+/// original recipe and the [removedIngredients] are the ingredients that are
+/// removed from the original recipe.
+/// The [servings] are the amount of servings of the original recipe.
+///
+/// Example:
+/// ```dart
+/// var modifiedIngredients = [
+///   Ingredient(amount: 6, unit: "", name: "Apples"),
+/// ];
+/// var removedIngredients = [
+///   Ingredient(amount: -1, unit: "g", name: "Salt"),
+/// ];
+/// var modification = getModification(
+///   servings: 2,
+///   modifiedIngredients: modifiedIngredients,
+///   removedIngredients: removedIngredients,
+/// );
+/// ```
+/// The returned [RecipeModification] will be:
+/// ```dart
+/// RecipeModification(
+///   servings: 2,
+///   modifiedIngredients: [
+///     Ingredient(amount: 6, unit: "", name: "Apples"),
+///     Ingredient(amount: -1, unit: "g", name: "Salt"),
+///   ],
+/// );
+/// ```
 RecipeModification getModification({
-  required Recipe originalRecipe,
+  required int servings,
   required Iterable<Ingredient> modifiedIngredients,
-  required Iterable<Ingredient> removedIngredient,
+  required Iterable<Ingredient> removedIngredients,
 }) {
   var ingredients = modifiedIngredients.toList()
     ..addAll(
-      removedIngredient.map((ingredient) => ingredient.copyWith(amount: -1)),
+      removedIngredients.map((ingredient) => ingredient.copyWith(amount: -1)),
     );
 
   return RecipeModification(
-    servings: originalRecipe.servings,
+    servings: servings,
     modifiedIngredients: ingredients,
   );
 }
