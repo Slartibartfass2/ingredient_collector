@@ -220,4 +220,42 @@ void main() {
       expect(mergedIngredients.first, equals(expectedIngredient));
     });
   });
+
+  group('Test getModification', () {
+    test(
+      'When getModification is called, then a correct RecipeModification is '
+      'created',
+      () {
+        var modifiedIngredients = [
+          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
+          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
+        ];
+
+        var removedIngredients = [
+          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient 3"),
+          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 4"),
+        ];
+
+        var modification = getModification(
+          servings: 4,
+          modifiedIngredients: modifiedIngredients,
+          removedIngredients: removedIngredients,
+        );
+
+        expect(modification.servings, 4);
+        expect(modification.modifiedIngredients.length, 4);
+
+        var expectedIngredients = [
+          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
+          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
+          const Ingredient(amount: -1, unit: "g", name: "Test Ingredient 3"),
+          const Ingredient(amount: -1, unit: "kg", name: "Test Ingredient 4"),
+        ];
+
+        for (var ingredient in modification.modifiedIngredients) {
+          expect(expectedIngredients.contains(ingredient), isTrue);
+        }
+      },
+    );
+  });
 }
