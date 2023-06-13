@@ -15,8 +15,8 @@
             "in_progress": "Recipe is being processed ...",
             "failed": "Recipe couldn't be processed"
         },
-        "add_note_disabled_tooltip" : "Enter a URL to add a note",
-        "modify_recipe_disabled_tooltip" : "Enter a URL to modify the recipe",
+        "add_note_disabled_tooltip": "Enter a URL to add a note",
+        "modify_recipe_disabled_tooltip": "Enter a URL to modify the recipe",
         "parsing_snackbar": "Recipe is being processed ..."
     },
     "url_input_field": {
@@ -53,6 +53,9 @@
     },
     "recipe_modification": {
         "loading": "Loading recipe modification ...",
-        "page_title": "Recipe modification for {servings} servings of '{recipeName}'"
+        "page_title": "Recipe modification for {servings} servings of '{recipeName}'",
+        "duplicate_name_text": "'{name}' already exists",
+        "empty_name_text": "Ingredient name can't be empty",
+        "saved_snackbar": "Recipe modification saved"
     }
 }

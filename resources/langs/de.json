@@ -15,8 +15,8 @@
             "in_progress": "Rezept wird verarbeitet ...",
             "failed": "Rezept konnte nicht verarbeitet werden"
         },
-        "add_note_disabled_tooltip" : "Geben Sie eine URL ein, um eine Notiz hinzuzufügen",
-        "modify_recipe_disabled_tooltip" : "Geben Sie eine URL ein, um das Rezept zu ändern",
+        "add_note_disabled_tooltip": "Geben Sie eine URL ein, um eine Notiz hinzuzufügen",
+        "modify_recipe_disabled_tooltip": "Geben Sie eine URL ein, um das Rezept zu ändern",
         "parsing_snackbar": "Rezept wird verarbeitet ..."
     },
     "url_input_field": {
@@ -53,6 +53,9 @@
     },
     "recipe_modification": {
         "loading": "Rezeptänderung wird geladen ...",
-        "page_title": "Rezeptänderung für {servings} Portionen '{recipeName}'"
+        "page_title": "Rezeptänderung für {servings} Portionen '{recipeName}'",
+        "duplicate_name_text": "'{name}' existiert bereits",
+        "empty_name_text": "Zutat muss einen Namen haben",
+        "saved_snackbar": "Rezeptänderung gespeichert"
     }
 }

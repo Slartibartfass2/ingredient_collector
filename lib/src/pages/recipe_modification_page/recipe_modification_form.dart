@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../l10n/locale_keys.g.dart';
 import '../../local_storage_controller.dart';
 import '../../models/ingredient.dart';
 import '../../models/recipe.dart';
@@ -37,6 +39,9 @@ class RecipeModificationForm extends StatefulWidget {
 }
 
 class _RecipeModificationFormState extends State<RecipeModificationForm> {
+  // The key to identify the form.
+  final _formKey = GlobalKey<FormState>();
+
   List<IngredientRow> modifiedRows = [];
   List<IngredientRow> removedRows = [];
 
@@ -86,6 +91,7 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
         isEnabled: isEnabled,
         isNew: !widget.originalIngredientNames.contains(ingredient.name),
         onPressed: onPressed,
+        onNameValidation: _onNameValidation,
       );
 
   void _onDelete(IngredientRow row) {
@@ -136,6 +142,11 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
       row.isNew || row.originalIngredient != row.modifiedIngredient;
 
   Future<void> _onSave(BuildContext context) async {
+    var formState = _formKey.currentState;
+    if (formState == null || !formState.validate()) {
+      return;
+    }
+
     var modification = getModification(
       servings: widget.originalRecipe.servings,
       modifiedIngredients: modifiedRows
@@ -152,8 +163,33 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     );
 
     if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              const Text(LocaleKeys.recipe_modification_saved_snackbar).tr(),
+        ),
+      );
       Navigator.pop(context);
     }
+  }
+
+  String? _onNameValidation(String name) {
+    var trimmedName = name.trim();
+    var duplicateRows = modifiedRows
+            .where((row) => row.modifiedIngredient.name == trimmedName)
+            .toList() +
+        removedRows
+            .where((row) => row.modifiedIngredient.name == trimmedName)
+            .toList();
+
+    var isDuplicate = duplicateRows.length >= 2;
+    return isDuplicate
+        ? LocaleKeys.recipe_modification_duplicate_name_text.tr(
+            namedArgs: {
+              "name": trimmedName,
+            },
+          )
+        : null;
   }
 
   @override
@@ -186,6 +222,7 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     );
 
     return Form(
+      key: _formKey,
       child: Center(
         child: SizedBox(
           width: 600,

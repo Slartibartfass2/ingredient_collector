@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../l10n/locale_keys.g.dart';
 import '../../models/ingredient.dart';
 
 /// A row to display the properties of an ingredient.
@@ -26,6 +28,9 @@ class IngredientRow extends StatefulWidget {
   /// The function to call when the delete button is pressed.
   final void Function(IngredientRow row) onPressed;
 
+  /// The function to call when the name field is validated.
+  final String? Function(String) onNameValidation;
+
   /// Creates a new [IngredientRow].
   IngredientRow({
     super.key,
@@ -34,6 +39,7 @@ class IngredientRow extends StatefulWidget {
     required this.isEnabled,
     required this.isNew,
     required this.onPressed,
+    required this.onNameValidation,
   }) {
     amountController.text = ingredient.amount.toString();
     unitController.text = ingredient.unit;
@@ -82,6 +88,18 @@ class _IngredientRowState extends State<IngredientRow> {
     });
   }
 
+  String? _onNameValidation(String? newName) {
+    if (!widget.isEnabled) {
+      return null;
+    }
+
+    if (newName == null || newName.isEmpty) {
+      return LocaleKeys.recipe_modification_empty_name_text.tr();
+    }
+
+    return widget.onNameValidation(newName);
+  }
+
   @override
   Widget build(BuildContext context) {
     var color = widget.isNew ? Colors.green : null;
@@ -123,20 +141,25 @@ class _IngredientRowState extends State<IngredientRow> {
         isEnabled: widget.isEnabled,
         isReadOnly: !widget.isNew,
         color: color,
+        validator: _onNameValidation,
       ),
     );
 
-    var deleteButton = IconButton(
-      onPressed: () => widget.onPressed(widget),
-      icon: widget.isEnabled
-          ? const Icon(Icons.delete)
-          : const Icon(Icons.restore_from_trash),
+    var deleteButton = Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: IconButton(
+        onPressed: () => widget.onPressed(widget),
+        icon: widget.isEnabled
+            ? const Icon(Icons.delete)
+            : const Icon(Icons.restore_from_trash),
+      ),
     );
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           amountField,
           unitField,
@@ -157,6 +180,7 @@ class _CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final Color? color;
+  final String? Function(String?)? validator;
 
   const _CustomTextFormField({
     required this.controller,
@@ -167,6 +191,7 @@ class _CustomTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.color,
     this.onChanged,
+    this.validator,
   });
 
   @override
@@ -174,27 +199,26 @@ class _CustomTextFormField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           labelText: labelText,
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
-              width: 2,
-            ),
+            borderSide: BorderSide(color: Colors.blue, width: 2),
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2),
           ),
           disabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xFFCBCBCB),
-              width: 2,
-            ),
+            borderSide: BorderSide(color: Color(0xFFCBCBCB), width: 2),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: color ?? Colors.grey,
-            ),
+            borderSide: BorderSide(color: color ?? Colors.grey),
           ),
         ),
         keyboardType: keyboardType,
         readOnly: isReadOnly,
         onChanged: onChanged,
+        validator: validator,
         inputFormatters: inputFormatters,
         enabled: isEnabled,
       );
