@@ -43,8 +43,8 @@ class IngredientRow extends StatefulWidget {
   /// The modified ingredient.
   Ingredient get modifiedIngredient => Ingredient(
         amount: double.tryParse(amountController.text) ?? 0,
-        unit: unitController.text,
-        name: nameController.text,
+        unit: unitController.text.trim(),
+        name: nameController.text.trim(),
       );
 
   @override
