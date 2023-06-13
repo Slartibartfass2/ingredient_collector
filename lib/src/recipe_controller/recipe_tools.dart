@@ -69,10 +69,10 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 ///
 /// It is assumed that the ingredients are unique in both [Recipe.ingredients]
 /// and [RecipeModification.modifiedIngredients], meaing that there are not
-/// two ingredients with the same name and unit.
+/// two ingredients with the same name.
 /// The [modification] is applied to the [recipe] and the modified recipe is
 /// returned.
-/// The [modification] is applied to an ingredient with the same name and unit.
+/// The [modification] is applied to an ingredient with the same name.
 /// If the [modification] contains an ingredient that is not in the [recipe],
 /// the ingredient is added to the [recipe].
 /// The [modification] is applied to the [recipe] by adjusting the amount of
@@ -120,49 +120,47 @@ Recipe modifyRecipe({
 }) {
   var ratio = recipe.servings / modification.servings;
 
+  var recipeIngredients = recipe.ingredients.toList();
   var modifiedIngredients = modification.modifiedIngredients;
 
-  var newIngredients = recipe.ingredients.where(
+  // First remove all ingredients that are in the modification and have a
+  // negative amount.
+  recipeIngredients.removeWhere(
     (ingredient) => modifiedIngredients.any(
       (modifiedIngredient) =>
           modifiedIngredient.name == ingredient.name &&
-          modifiedIngredient.unit == ingredient.unit &&
-          modifiedIngredient.amount >= 0,
+          modifiedIngredient.amount < 0,
     ),
   );
-  modifiedIngredients = modifiedIngredients
-      .where((modifiedIngredient) => modifiedIngredient.amount >= 0)
-      .toList();
 
-  // Then modify the remaining ingredients.
-  newIngredients = newIngredients
+  // Fetch all ingredients from the recipe and multiply them with the ratio or
+  // replace them with the modified ingredient if available.
+  var ingredients = recipeIngredients
       .map(
         (ingredient) => modifiedIngredients.firstWhere(
-          (modifiedIngredient) =>
-              modifiedIngredient.name == ingredient.name &&
-              modifiedIngredient.unit == ingredient.unit,
+          (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
           orElse: () => ingredient.copyWith(amount: ingredient.amount / ratio),
         ),
       )
       .map((ingredient) => _multiplyIngredient(ingredient, ratio))
-      .toList()
+      .toList();
 
-    // Finally add all ingredients that are new in the modification.
-    ..addAll(
-      modifiedIngredients
-          .where(
-            (modifiedIngredient) => !recipe.ingredients.any(
-              (ingredient) =>
-                  ingredient.name == modifiedIngredient.name &&
-                  ingredient.unit == modifiedIngredient.unit,
-            ),
-          )
-          .map((ingredient) => _multiplyIngredient(ingredient, ratio)),
-    );
-
-  return recipe.copyWith(
-    ingredients: newIngredients.toList(),
+  // Add all ingredients from the modification that are not in the recipe.
+  ingredients.addAll(
+    modifiedIngredients
+        .where(
+          (ingredient) =>
+              ingredient.amount >= 0 &&
+              !ingredients.any(
+                (modifiedIngredient) =>
+                    modifiedIngredient.name == ingredient.name &&
+                    modifiedIngredient.amount >= 0,
+              ),
+        )
+        .map((ingredient) => _multiplyIngredient(ingredient, ratio)),
   );
+
+  return recipe.copyWith(ingredients: ingredients);
 }
 
 Ingredient _multiplyIngredient(Ingredient ingredient, double factor) =>

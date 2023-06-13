@@ -49,16 +49,22 @@ void main() {
     test('When recipe is modified, then modification is applied', () {
       var recipe = const Recipe(
         ingredients: [
-          Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
+          Ingredient(amount: 1, unit: "g", name: "Salz"),
+          Ingredient(amount: 3, unit: "kg", name: "Mehl"),
+          Ingredient(amount: 2, unit: "", name: "Gurken"),
+          Ingredient(amount: 5, unit: "", name: "Erdbeeren"),
         ],
         name: "Test Recipe",
-        servings: 2,
+        servings: 4,
       );
 
       var modification = const RecipeModification(
-        servings: 4,
+        servings: 2,
         modifiedIngredients: [
-          Ingredient(amount: 10, unit: "kg", name: "Test Ingredient"),
+          Ingredient(amount: 2, unit: "g", name: "Salz"),
+          Ingredient(amount: 1, unit: "g", name: "Mehl"),
+          Ingredient(amount: 7, unit: "", name: "Erdbeeren"),
+          Ingredient(amount: 1, unit: "", name: "Glas"),
         ],
       );
 
@@ -68,12 +74,20 @@ void main() {
       );
 
       expect(modifiedRecipe.name, "Test Recipe");
-      expect(modifiedRecipe.servings, 2);
-      expect(modifiedRecipe.ingredients.length, 1);
-      var ingredient = modifiedRecipe.ingredients.first;
-      expect(ingredient.name, "Test Ingredient");
-      expect(ingredient.amount, 5);
-      expect(ingredient.unit, "kg");
+      expect(modifiedRecipe.servings, 4);
+      expect(modifiedRecipe.ingredients.length, 5);
+
+      var expectedIngredients = [
+        const Ingredient(amount: 4, unit: "g", name: "Salz"),
+        const Ingredient(amount: 2, unit: "g", name: "Mehl"),
+        const Ingredient(amount: 2, unit: "", name: "Gurken"),
+        const Ingredient(amount: 14, unit: "", name: "Erdbeeren"),
+        const Ingredient(amount: 2, unit: "", name: "Glas"),
+      ];
+
+      for (var ingredient in modifiedRecipe.ingredients) {
+        expect(expectedIngredients.contains(ingredient), isTrue);
+      }
     });
 
     test(
