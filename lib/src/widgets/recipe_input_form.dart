@@ -140,6 +140,10 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       return;
     }
 
+    setState(() {
+      _messageBoxes.clear();
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
     );
