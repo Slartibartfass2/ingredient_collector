@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../l10n/locale_keys.g.dart';
 import '../models/recipe_parsing_job.dart';
 
+part 'additional_recipe_information_meta_data_log.dart';
 part 'amount_parsing_failure_meta_data_log.dart';
 part 'complete_failure_meta_data_log.dart';
 part 'deliberately_not_supported_url_meta_data_log.dart';

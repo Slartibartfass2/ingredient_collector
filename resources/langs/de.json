@@ -52,6 +52,11 @@
             "message": "Beim Parsen von {recipeUrl} ist ein Fehler aufgetreten. Eine Zutat konnte nicht geparst werden."
         }
     },
+    "additional_information": {
+        "title": "Zusätzliche Informationen zu '{recipeName}'",
+        "note_message": "Die folgende Notiz wurde hinzugefügt: '{note}'",
+        "modification_message": "Das Rezept wurde geändert."
+    },
     "recipe_modification": {
         "loading": "Rezeptänderung wird geladen ...",
         "page_title": "Rezeptänderung für {servings} Portionen '{recipeName}'",

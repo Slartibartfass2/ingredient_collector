@@ -52,6 +52,11 @@
             "message": "An error occurred while parsing {recipeUrl}. An ingredient couldn't be parsed."
         }
     },
+    "additional_information": {
+        "title": "Additional information for '{recipeName}'",
+        "note_message": "The following note was added: '{note}'",
+        "modification_message": "The recipe was modified."
+    },
     "recipe_modification": {
         "loading": "Loading recipe modification ...",
         "page_title": "Recipe modification for {servings} servings of '{recipeName}'",
