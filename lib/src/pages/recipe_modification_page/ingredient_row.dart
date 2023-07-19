@@ -107,7 +107,7 @@ class _IngredientRowState extends State<IngredientRow> {
     var amountField = Expanded(
       child: _CustomTextFormField(
         controller: widget.amountController,
-        labelText: "Amount",
+        labelText: LocaleKeys.modification_page_amount.tr(),
         isEnabled: widget.isEnabled,
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
@@ -125,7 +125,7 @@ class _IngredientRowState extends State<IngredientRow> {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: _CustomTextFormField(
           controller: widget.unitController,
-          labelText: "Unit",
+          labelText: LocaleKeys.modification_page_unit.tr(),
           isEnabled: widget.isEnabled,
           color: color ?? unitColor,
           onChanged: _onUnitChange,
@@ -137,7 +137,7 @@ class _IngredientRowState extends State<IngredientRow> {
       flex: 2,
       child: _CustomTextFormField(
         controller: widget.nameController,
-        labelText: "Name",
+        labelText: LocaleKeys.modification_page_name.tr(),
         isEnabled: widget.isEnabled,
         isReadOnly: !widget.isNew,
         color: color,

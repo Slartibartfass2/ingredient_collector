@@ -63,5 +63,21 @@
         "duplicate_name_text": "'{name}' existiert bereits",
         "empty_name_text": "Zutat muss einen Namen haben",
         "saved_snackbar": "Rezeptänderung gespeichert"
+    },
+    "modification_page": {
+        "removed_ingredients": "Entfernte Zutaten",
+        "add_ingredient": "Zutat hinzufügen",
+        "save_modification": "Änderung speichern",
+        "amount": "Menge",
+        "unit": "Einheit",
+        "name": "Name"
+    },
+    "recipe_note_dialog": {
+        "title": "Rezeptnotiz hinzufügen",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "text_area_label": "Rezeptnotiz",
+        "text_area_helper": "Diese Notiz wird gespeichert und angezeigt, wenn in der Zukunft die Zutaten für dieses Rezept gesammelt werden.",
+        "text_area_hint": "z.B. \"4 Portionen sind nicht genug für 2 Personen, nehme stattdessen 8!\""
     }
 }

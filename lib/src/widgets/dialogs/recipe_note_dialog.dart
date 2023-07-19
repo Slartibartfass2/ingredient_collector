@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../l10n/locale_keys.g.dart';
 import '../../local_storage_controller.dart';
 
 /// A dialog to add a note to a recipe.
@@ -43,14 +45,12 @@ class RecipeNoteDialog extends StatelessWidget {
         if (snapshot.hasData && snapshot.data != null) {
           textField = TextField(
             controller: TextEditingController(text: snapshot.data),
-            decoration: const InputDecoration(
-              labelText: "Recipe note",
-              helperText: "This note will be saved and displayed when the "
-                  "ingredients for this recipe are collected in the future.",
+            decoration: InputDecoration(
+              labelText: LocaleKeys.recipe_note_dialog_text_area_label.tr(),
+              helperText: LocaleKeys.recipe_note_dialog_text_area_helper.tr(),
               helperMaxLines: 100,
-              hintText: "e.g. \"4 servings is not enough for two people,"
-                  " use 8 instead!\"",
-              border: OutlineInputBorder(),
+              hintText: LocaleKeys.recipe_note_dialog_text_area_hint.tr(),
+              border: const OutlineInputBorder(),
               alignLabelWithHint: true,
             ),
             maxLines: 5,
@@ -65,18 +65,18 @@ class RecipeNoteDialog extends StatelessWidget {
       onPressed: () {
         Navigator.of(context).pop();
       },
-      child: const Text("Cancel"),
+      child: const Text(LocaleKeys.recipe_note_dialog_cancel).tr(),
     );
 
     var saveButton = ElevatedButton(
       onPressed: () async => _onSave(context, textField),
-      child: const Text("Save"),
+      child: const Text(LocaleKeys.recipe_note_dialog_save).tr(),
     );
 
     return SimpleDialog(
-      title: const Text("Add recipe note"),
+      title: const Text(LocaleKeys.recipe_note_dialog_title).tr(),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-      semanticLabel: "Add recipe note",
+      semanticLabel: LocaleKeys.recipe_note_dialog_title.tr(),
       children: [
         textAreaFutureBuilder,
         const SizedBox(height: 10),

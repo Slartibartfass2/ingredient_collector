@@ -63,5 +63,21 @@
         "duplicate_name_text": "'{name}' already exists",
         "empty_name_text": "Ingredient name can't be empty",
         "saved_snackbar": "Recipe modification saved"
+    },
+    "modification_page": {
+        "removed_ingredients": "Removed ingredients",
+        "add_ingredient": "Add ingredient",
+        "save_modification": "Save modification",
+        "amount": "Amount",
+        "unit": "Unit",
+        "name": "Name"
+    },
+    "recipe_note_dialog": {
+        "title": "Add recipe note",
+        "save": "Save",
+        "cancel": "Cancel",
+        "text_area_label": "Recipe note",
+        "text_area_helper": "This note will be saved and displayed when the ingredients for this recipe are collected in the future.",
+        "text_area_hint": "e.g. \"4 servings is not enough for two people, use 8 instead!\""
     }
 }

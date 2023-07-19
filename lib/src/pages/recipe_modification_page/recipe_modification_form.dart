@@ -202,9 +202,9 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
           const Expanded(child: Divider()),
           const SizedBox(width: 8),
           Text(
-            "Removed ingredients",
+            LocaleKeys.modification_page_removed_ingredients,
             style: TextStyle(color: Theme.of(context).disabledColor),
-          ),
+          ).tr(),
           const SizedBox(width: 8),
           const Expanded(child: Divider()),
         ],
@@ -212,12 +212,12 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     );
 
     var addIngredientButton = FormButton(
-      buttonText: "Add ingredient",
+      buttonText: LocaleKeys.modification_page_add_ingredient.tr(),
       onPressed: _addNewIngredient,
     );
 
     var saveModificationButton = FormButton(
-      buttonText: "Save modification",
+      buttonText: LocaleKeys.modification_page_save_modification.tr(),
       onPressed: () async => _onSave(context),
     );
 
