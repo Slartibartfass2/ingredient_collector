@@ -7,6 +7,7 @@ import '../../models/recipe_parsing_job.dart';
 import '../../pages/recipe_modification_page/recipe_modification_page.dart';
 import '../../recipe_controller/recipe_cache.dart';
 import '../../recipe_controller/recipe_controller.dart';
+import '../../theme.dart';
 import '../dialogs/recipe_note_dialog.dart';
 import '../recipe_input_form.dart';
 import 'recipe_parsing_state.dart';
@@ -159,8 +160,8 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
         helperColor: switch (parsingState) {
           RecipeParsingState.notStarted => const Color(0xFF0DCAF0),
           RecipeParsingState.inProgress => const Color(0xFF6C757D),
-          RecipeParsingState.successful => const Color(0xFF198754),
-          RecipeParsingState.failed => const Color(0xFFDC3545),
+          RecipeParsingState.successful => successColor,
+          RecipeParsingState.failed => errorColor,
         },
       ),
     );
