@@ -1,11 +1,14 @@
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
+import '../local_storage_controller.dart';
 import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
+import '../models/recipe_modification.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'recipe_cache.dart';
+import 'recipe_tools.dart';
 import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
@@ -63,6 +66,37 @@ class RecipeController {
         result = RecipeParsingResult(
           recipe: Recipe.withServings(cachedRecipe, recipeParsingJob.servings),
           metaDataLogs: [],
+        );
+      }
+
+      var recipe = result.recipe;
+      var additionalInformation =
+          await LocalStorageController().getAdditionalRecipeInformation(
+        recipeParsingJob.url.origin,
+        recipe != null ? recipe.name : "",
+      );
+
+      if (recipe != null && additionalInformation != null) {
+        var modification = additionalInformation.recipeModification;
+        var modifiedRecipe = modifyRecipe(
+          recipe: recipe,
+          modification: modification ??
+              RecipeModification(
+                servings: recipe.servings,
+                modifiedIngredients: [],
+              ),
+        );
+
+        result = result.copyWith(
+          recipe: modifiedRecipe,
+          metaDataLogs: [
+            ...result.metaDataLogs,
+            AdditionalRecipeInformationMetaDataLog(
+              recipeName: recipe.name,
+              note: additionalInformation.note,
+              wasRecipeModified: modification != null,
+            ),
+          ],
         );
       }
 
