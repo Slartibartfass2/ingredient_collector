@@ -98,7 +98,6 @@ class LocalStorageController {
   ///
   /// If the content of the local storage is invalid, it is cleared and null is
   /// returned.
-  @visibleForTesting
   Future<AdditionalRecipeInformation?> getAdditionalRecipeInformation(
     String recipeUrlOrigin,
     String recipeName,
@@ -166,7 +165,15 @@ class LocalStorageController {
     if (matches.isNotEmpty) {
       additionalRecipeInformations.remove(matches.first);
     }
-    additionalRecipeInformations.add(additionalRecipeInformation);
+
+    // If the information is empty, it is not stored.
+    var note = additionalRecipeInformation.note;
+    var modification = additionalRecipeInformation.recipeModification;
+    var isEmptyInformation = note.isEmpty &&
+        (modification == null || modification.modifiedIngredients.isEmpty);
+    if (!isEmptyInformation) {
+      additionalRecipeInformations.add(additionalRecipeInformation);
+    }
 
     await store.setStringList(
       "additional_recipe_informations",
