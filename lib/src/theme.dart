@@ -13,10 +13,10 @@ const warningColor = Color.fromARGB(255, 255, 145, 0);
 const warningBackgroundColor = Color.fromARGB(255, 253, 241, 229);
 
 /// Color for success.
-const successColor = Color.fromARGB(255, 8, 185, 78);
+const successColor = Colors.green;
 
 /// Background color for success.
-const successBackgroundColor = Color.fromARGB(255, 230, 248, 237);
+// const successBackgroundColor = Color.fromARGB(255, 228, 243, 229);
 
 /// Color for information.
 const informationColor = Colors.blue;
