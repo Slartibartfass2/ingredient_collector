@@ -27,7 +27,8 @@
     "servings_field_label": "Portionen",
     "message_box_title": {
         "warning": "Warnung",
-        "error": "Fehler"
+        "error": "Fehler",
+        "info": "Info"
     },
     "missing_cors_plugin": {
         "title": "CORS-Plugin fehlt",

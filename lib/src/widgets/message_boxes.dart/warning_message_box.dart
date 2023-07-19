@@ -5,7 +5,7 @@ import '../../../l10n/locale_keys.g.dart';
 import '../../theme.dart';
 import 'message_box.dart';
 
-/// [MessageBox] which represents a warning.
+/// [MessageBox] that represents a warning.
 class WarningMessageBox extends MessageBox {
   /// Creates a [WarningMessageBox].
   WarningMessageBox({

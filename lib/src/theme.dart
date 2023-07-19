@@ -17,3 +17,9 @@ const successColor = Color.fromARGB(255, 8, 185, 78);
 
 /// Background color for success.
 const successBackgroundColor = Color.fromARGB(255, 230, 248, 237);
+
+/// Color for information.
+const informationColor = Colors.blue;
+
+/// Background color for information.
+const informationBackgroundColor = Color.fromARGB(255, 219, 238, 253);

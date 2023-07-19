@@ -27,7 +27,8 @@
     "servings_field_label": "Servings",
     "message_box_title": {
         "warning": "Warning",
-        "error": "Error"
+        "error": "Error",
+        "info": "Info"
     },
     "missing_cors_plugin": {
         "title": "CORS plugin is missing",

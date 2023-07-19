@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../meta_data_logs/meta_data_log.dart';
 import 'error_message_box.dart';
+import 'info_message_box.dart';
 import 'warning_message_box.dart';
 
 /// Colored box widget with an icon, a title and a message.
@@ -99,5 +100,7 @@ class MessageBox extends StatelessWidget {
           ErrorMessageBox(title: log.title, message: log.message),
         MetaDataLogType.warning =>
           WarningMessageBox(title: log.title, message: log.message),
+        MetaDataLogType.info =>
+          InfoMessageBox(title: log.title, message: log.message),
       };
 }

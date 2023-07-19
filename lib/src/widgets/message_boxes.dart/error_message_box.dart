@@ -5,7 +5,7 @@ import '../../../l10n/locale_keys.g.dart';
 import '../../theme.dart';
 import 'message_box.dart';
 
-/// [MessageBox] which represents an error.
+/// [MessageBox] that represents an error.
 class ErrorMessageBox extends MessageBox {
   /// Creates a [ErrorMessageBox].
   ErrorMessageBox({
@@ -13,8 +13,8 @@ class ErrorMessageBox extends MessageBox {
     required super.title,
     required super.message,
   }) : super(
-          textColor: informationColor,
-          backgroundColor: informationBackgroundColor,
+          textColor: errorColor,
+          backgroundColor: errorBackgroundColor,
           iconData: Icons.error,
           titleTag: LocaleKeys.message_box_title_error.tr(),
         );
