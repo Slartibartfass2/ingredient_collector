@@ -1,4 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:ingredient_collector/src/local_storage_controller.dart';
+import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
+import 'package:ingredient_collector/src/models/additional_recipe_information.dart';
+import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/recipe_modification.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
@@ -99,5 +104,113 @@ void main() {
     expect(secondResult.recipe, isNull);
     expect(isFailed, isTrue);
     expect(wasStarted, isTrue);
+  });
+
+  test(
+    'When recipe is parsed and additional information is stored for it, then '
+    'the modification is applied and a log created',
+    () async {
+      var url =
+          Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
+      var job = RecipeParsingJob(
+        url: url,
+        servings: 4,
+        language: "de",
+      );
+
+      await LocalStorageController().setAdditionalRecipeInformation(
+        AdditionalRecipeInformation(
+          recipeUrlOrigin: url.origin,
+          recipeName: "Zucchini-Karotten-Kichererbsen-Pfanne",
+          note: "Test note",
+          recipeModification: const RecipeModification(
+            servings: 4,
+            modifiedIngredients: [
+              Ingredient(amount: 4, unit: "", name: "Zucchini"),
+            ],
+          ),
+        ),
+      );
+
+      var results = await RecipeController().collectRecipes(
+        recipeParsingJobs: [job],
+        language: "de",
+      );
+
+      expect(results, isNotEmpty);
+      var result = results.first;
+      expect(result.recipe, isNotNull);
+      var recipe = result.recipe!;
+      var ingredient = recipe.ingredients
+          .where((element) => element.name == "Zucchini")
+          .first;
+      expect(ingredient.amount, 4);
+
+      var logs = result.metaDataLogs;
+      expect(logs, isNotEmpty);
+      var log = logs.first;
+      expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
+
+      var additionalInformationLog =
+          log as AdditionalRecipeInformationMetaDataLog;
+
+      expect(
+        additionalInformationLog.recipeName,
+        "Zucchini-Karotten-Kichererbsen-Pfanne",
+      );
+      expect(additionalInformationLog.note, "Test note");
+      expect(additionalInformationLog.wasRecipeModified, isTrue);
+    },
+  );
+
+  test(
+    'When recipe is parsed and only note is stored for it, then a log created',
+    () async {
+      var url =
+          Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
+      var job = RecipeParsingJob(
+        url: url,
+        servings: 4,
+        language: "de",
+      );
+
+      await LocalStorageController().setAdditionalRecipeInformation(
+        AdditionalRecipeInformation(
+          recipeUrlOrigin: url.origin,
+          recipeName: "Zucchini-Karotten-Kichererbsen-Pfanne",
+          note: "Test note",
+        ),
+      );
+
+      var results = await RecipeController().collectRecipes(
+        recipeParsingJobs: [job],
+        language: "de",
+      );
+
+      expect(results, isNotEmpty);
+      var result = results.first;
+      expect(result.recipe, isNotNull);
+
+      var logs = result.metaDataLogs;
+      expect(logs, isNotEmpty);
+      var log = logs.first;
+      expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
+
+      var additionalInformationLog =
+          log as AdditionalRecipeInformationMetaDataLog;
+
+      expect(
+        additionalInformationLog.recipeName,
+        "Zucchini-Karotten-Kichererbsen-Pfanne",
+      );
+      expect(additionalInformationLog.note, "Test note");
+      expect(additionalInformationLog.wasRecipeModified, isFalse);
+    },
+  );
+
+  test('When url is not supported, then isUrlSupported returns false', () {
+    var url = Uri.parse("https://example.org");
+    var isSupported = RecipeController().isUrlSupported(url);
+    expect(isSupported, isFalse);
   });
 }
