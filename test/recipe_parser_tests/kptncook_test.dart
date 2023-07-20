@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
@@ -187,4 +188,37 @@ void main() {
       equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
     );
   });
+
+  test(
+    'When sharing url is parsed, then url is redirected and correct recipe '
+    'parsed',
+    () async {
+      var recipeJob = RecipeController().createRecipeParsingJob(
+        url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
+        servings: 2,
+        language: "de",
+      );
+
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "de",
+      );
+      var recipe = result.first.recipe!;
+
+      var redirectJob = RecipeController().createRecipeParsingJob(
+        url: Uri.parse("https://sharing.kptncook.com/uSnuwfRkhsb"),
+        servings: 2,
+        language: "de",
+      );
+
+      var redirectResult = await RecipeController().collectRecipes(
+        recipeParsingJobs: [redirectJob],
+        language: "de",
+      );
+      var redirectRecipe = redirectResult.first.recipe!;
+
+      expect(recipe, equals(redirectRecipe));
+    },
+    tags: ["parsing-test"],
+  );
 }
