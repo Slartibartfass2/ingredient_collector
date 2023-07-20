@@ -121,8 +121,8 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var recipeJobs = mergeRecipeParsingJobs(
       validRows.map(
         (row) => RecipeParsingJob(
-          url: Uri.parse(row.urlController.text),
-          servings: int.parse(row.servingsController.text),
+          url: Uri.parse(row.urlController.text.trim()),
+          servings: int.parse(row.servingsController.text.trim()),
           language: language,
         ),
       ),
@@ -131,7 +131,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var recipeJobToRows = {
       for (var job in recipeJobs)
         job: validRows.where(
-          (row) => row.urlController.text == job.url.toString(),
+          (row) => row.urlController.text.trim() == job.url.toString(),
         ),
     };
 

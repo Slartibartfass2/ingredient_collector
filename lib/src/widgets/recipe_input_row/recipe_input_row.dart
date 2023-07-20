@@ -56,7 +56,7 @@ class RecipeInputRow extends StatefulWidget {
 
 class _RecipeInputRowState extends State<RecipeInputRow> {
   Future<void> _onAddNote(BuildContext context) async {
-    var url = Uri.tryParse(widget.urlController.text);
+    var url = Uri.tryParse(widget.urlController.text.trim());
     if (url == null) {
       return;
     }
@@ -80,7 +80,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
   }
 
   Future<void> _onModifyRecipe(BuildContext context) async {
-    var url = Uri.tryParse(widget.urlController.text);
+    var url = Uri.tryParse(widget.urlController.text.trim());
     if (url == null) {
       return;
     }
@@ -118,7 +118,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
       recipeParsingJobs: [
         RecipeParsingJob(
           url: url,
-          servings: int.tryParse(widget.servingsController.text) ?? 1,
+          servings: int.tryParse(widget.servingsController.text.trim()) ?? 1,
           language: language,
         ),
       ],
