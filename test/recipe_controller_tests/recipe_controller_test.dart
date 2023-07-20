@@ -109,8 +109,8 @@ void main() {
   });
 
   test(
-    'When recipe is parsed and additional information is stored for it, then '
-    'the modification is applied and a log created',
+    'When modification and note are stored for recipe, then the modification is'
+    ' applied and a log created',
     () async {
       var recipeUrlOrigin = "test origin";
 
@@ -164,7 +164,7 @@ void main() {
   );
 
   test(
-    'When recipe is parsed and only note is stored for it, then a log created',
+    'When note is stored for recipe, then a log is created',
     () async {
       var recipeUrlOrigin = "test origin";
 
@@ -209,4 +209,46 @@ void main() {
     var isSupported = RecipeController().isUrlSupported(url);
     expect(isSupported, isFalse);
   });
+
+  test(
+    'When recipe is parsed and only modification is stored, then no log is '
+    'created',
+    () async {
+      var url =
+          Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
+
+      var job = RecipeParsingJob(
+        url: url,
+        servings: 4,
+        language: "de",
+      );
+
+      await LocalStorageController().setAdditionalRecipeInformation(
+        AdditionalRecipeInformation(
+          recipeUrlOrigin: url.origin,
+          recipeName: "Zucchini-Karotten-Kichererbsen-Pfanne",
+          recipeModification: const RecipeModification(
+            servings: 4,
+            modifiedIngredients: [
+              Ingredient(amount: 4, unit: "", name: "Zucchini"),
+            ],
+          ),
+        ),
+      );
+
+      var results = await RecipeController().collectRecipes(
+        recipeParsingJobs: [job],
+        language: "de",
+        onSuccessfullyParsedRecipe: (job, text) {
+          expect(text, endsWith(" (recipe_row.modified)"));
+        },
+      );
+      var result = results.first;
+
+      expect(
+        result.metaDataLogs.whereType<AdditionalRecipeInformationMetaDataLog>(),
+        isEmpty,
+      );
+    },
+  );
 }
