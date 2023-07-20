@@ -23,15 +23,17 @@ class AdditionalRecipeInformationMetaDataLog extends MetaDataLog {
               'recipeName': recipeName,
             },
           ),
-          message: (note.isNotEmpty
-                  ? LocaleKeys.additional_information_note_message.tr(
-                      namedArgs: {
-                        'note': note,
-                      },
-                    )
-                  : "") +
-              (wasRecipeModified
-                  ? LocaleKeys.additional_information_modification_message.tr()
-                  : ''),
+          message: [
+            note.isNotEmpty
+                ? LocaleKeys.additional_information_note_message.tr(
+                    namedArgs: {
+                      'note': note,
+                    },
+                  )
+                : '',
+            wasRecipeModified
+                ? LocaleKeys.additional_information_modification_message.tr()
+                : '',
+          ].where((text) => text.isNotEmpty).join('\n'),
         );
 }
