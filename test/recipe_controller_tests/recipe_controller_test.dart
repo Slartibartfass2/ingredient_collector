@@ -3,8 +3,10 @@ import 'package:ingredient_collector/src/local_storage_controller.dart';
 import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/additional_recipe_information.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_modification.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
+import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -110,18 +112,12 @@ void main() {
     'When recipe is parsed and additional information is stored for it, then '
     'the modification is applied and a log created',
     () async {
-      var url =
-          Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
-      var job = RecipeParsingJob(
-        url: url,
-        servings: 4,
-        language: "de",
-      );
+      var recipeUrlOrigin = "test origin";
 
       await LocalStorageController().setAdditionalRecipeInformation(
         AdditionalRecipeInformation(
-          recipeUrlOrigin: url.origin,
-          recipeName: "Zucchini-Karotten-Kichererbsen-Pfanne",
+          recipeUrlOrigin: recipeUrlOrigin,
+          recipeName: "Test recipe",
           note: "Test note",
           recipeModification: const RecipeModification(
             servings: 4,
@@ -132,21 +128,28 @@ void main() {
         ),
       );
 
-      var results = await RecipeController().collectRecipes(
-        recipeParsingJobs: [job],
-        language: "de",
+      var result = const RecipeParsingResult(
+        recipe: Recipe(
+          ingredients: [Ingredient(amount: 2, unit: "", name: "Zucchini")],
+          name: "Test recipe",
+          servings: 4,
+        ),
+        metaDataLogs: [],
       );
 
-      expect(results, isNotEmpty);
-      var result = results.first;
-      expect(result.recipe, isNotNull);
-      var recipe = result.recipe!;
+      var modifiedResult = await RecipeController().applyRecipeModification(
+        result,
+        recipeUrlOrigin,
+      );
+
+      expect(modifiedResult.recipe, isNotNull);
+      var recipe = modifiedResult.recipe!;
       var ingredient = recipe.ingredients
           .where((element) => element.name == "Zucchini")
           .first;
       expect(ingredient.amount, 4);
 
-      var logs = result.metaDataLogs;
+      var logs = modifiedResult.metaDataLogs;
       expect(logs, isNotEmpty);
       var log = logs.first;
       expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
@@ -154,10 +157,7 @@ void main() {
       var additionalInformationLog =
           log as AdditionalRecipeInformationMetaDataLog;
 
-      expect(
-        additionalInformationLog.recipeName,
-        "Zucchini-Karotten-Kichererbsen-Pfanne",
-      );
+      expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
       expect(additionalInformationLog.wasRecipeModified, isTrue);
     },
@@ -166,32 +166,31 @@ void main() {
   test(
     'When recipe is parsed and only note is stored for it, then a log created',
     () async {
-      var url =
-          Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
-      var job = RecipeParsingJob(
-        url: url,
-        servings: 4,
-        language: "de",
-      );
+      var recipeUrlOrigin = "test origin";
 
       await LocalStorageController().setAdditionalRecipeInformation(
         AdditionalRecipeInformation(
-          recipeUrlOrigin: url.origin,
-          recipeName: "Zucchini-Karotten-Kichererbsen-Pfanne",
+          recipeUrlOrigin: recipeUrlOrigin,
+          recipeName: "Test recipe",
           note: "Test note",
         ),
       );
 
-      var results = await RecipeController().collectRecipes(
-        recipeParsingJobs: [job],
-        language: "de",
+      var result = const RecipeParsingResult(
+        recipe: Recipe(
+          ingredients: [Ingredient(amount: 2, unit: "", name: "Zucchini")],
+          name: "Test recipe",
+          servings: 4,
+        ),
+        metaDataLogs: [],
       );
 
-      expect(results, isNotEmpty);
-      var result = results.first;
-      expect(result.recipe, isNotNull);
+      var modifiedResult = await RecipeController().applyRecipeModification(
+        result,
+        recipeUrlOrigin,
+      );
 
-      var logs = result.metaDataLogs;
+      var logs = modifiedResult.metaDataLogs;
       expect(logs, isNotEmpty);
       var log = logs.first;
       expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
@@ -199,10 +198,7 @@ void main() {
       var additionalInformationLog =
           log as AdditionalRecipeInformationMetaDataLog;
 
-      expect(
-        additionalInformationLog.recipeName,
-        "Zucchini-Karotten-Kichererbsen-Pfanne",
-      );
+      expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
       expect(additionalInformationLog.wasRecipeModified, isFalse);
     },

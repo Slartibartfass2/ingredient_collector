@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
@@ -69,36 +70,8 @@ class RecipeController {
         );
       }
 
-      var recipe = result.recipe;
-      var additionalInformation =
-          await LocalStorageController().getAdditionalRecipeInformation(
-        recipeParsingJob.url.origin,
-        recipe != null ? recipe.name : "",
-      );
-
-      if (recipe != null && additionalInformation != null) {
-        var modification = additionalInformation.recipeModification;
-        var modifiedRecipe = modifyRecipe(
-          recipe: recipe,
-          modification: modification ??
-              RecipeModification(
-                servings: recipe.servings,
-                modifiedIngredients: [],
-              ),
-        );
-
-        result = result.copyWith(
-          recipe: modifiedRecipe,
-          metaDataLogs: [
-            ...result.metaDataLogs,
-            AdditionalRecipeInformationMetaDataLog(
-              recipeName: recipe.name,
-              note: additionalInformation.note,
-              wasRecipeModified: modification != null,
-            ),
-          ],
-        );
-      }
+      var recipeUrlOrigin = recipeParsingJob.url.origin;
+      result = await applyRecipeModification(result, recipeUrlOrigin);
 
       // Call callbacks
       if (result.recipe == null && onFailedParsedRecipe != null) {
@@ -119,6 +92,57 @@ class RecipeController {
   /// Supported means that there's a parsing script available which can be used
   /// to collect the ingredients of the recipe.
   bool isUrlSupported(Uri url) => RecipeWebsite.fromUrl(url) != null;
+
+  /// Applies the [RecipeModification] to the passed [RecipeParsingResult].
+  ///
+  /// If the [RecipeModification] is null, the [RecipeParsingResult] is returned
+  /// unchanged.
+  ///
+  /// If the [RecipeModification] is not null, the [RecipeModification] is
+  /// applied to the [RecipeParsingResult.recipe] and the [RecipeParsingResult]
+  /// is returned with the modified [RecipeParsingResult.recipe].
+  ///
+  /// A [AdditionalRecipeInformationMetaDataLog] is added to the
+  /// [RecipeParsingResult.metaDataLogs] containing the [RecipeModification]
+  /// and the note.
+  @visibleForTesting
+  Future<RecipeParsingResult> applyRecipeModification(
+    RecipeParsingResult result,
+    String recipeUrlOrigin,
+  ) async {
+    var recipe = result.recipe;
+    var additionalInformation =
+        await LocalStorageController().getAdditionalRecipeInformation(
+      recipeUrlOrigin,
+      recipe != null ? recipe.name : "",
+    );
+
+    if (recipe == null || additionalInformation == null) {
+      return result;
+    }
+
+    var modification = additionalInformation.recipeModification;
+    var modifiedRecipe = modifyRecipe(
+      recipe: recipe,
+      modification: modification ??
+          RecipeModification(
+            servings: recipe.servings,
+            modifiedIngredients: [],
+          ),
+    );
+
+    return result.copyWith(
+      recipe: modifiedRecipe,
+      metaDataLogs: [
+        ...result.metaDataLogs,
+        AdditionalRecipeInformationMetaDataLog(
+          recipeName: recipe.name,
+          note: additionalInformation.note,
+          wasRecipeModified: modification != null,
+        ),
+      ],
+    );
+  }
 
   Future<RecipeParsingResult> _collectRecipe(
     http.Client client,
