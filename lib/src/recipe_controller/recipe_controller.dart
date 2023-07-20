@@ -129,7 +129,9 @@ class RecipeController {
     }
 
     var modification = additionalInformation.recipeModification;
-    if (modification != null) {
+    var isModificationEmpty =
+        modification == null || (modification.modifiedIngredients.isEmpty);
+    if (!isModificationEmpty) {
       recipe = modifyRecipe(
         recipe: recipe,
         modification: modification,
@@ -151,7 +153,7 @@ class RecipeController {
     return result.copyWith(
       recipe: recipe,
       metaDataLogs: metaDataLogs,
-      wasModified: modification != null,
+      wasModified: !isModificationEmpty,
     );
   }
 
