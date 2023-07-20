@@ -116,7 +116,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     );
     var result = await RecipeController().collectRecipes(
       recipeParsingJobs: [
-        RecipeParsingJob(
+        RecipeController().createRecipeParsingJob(
           url: url,
           servings: int.tryParse(widget.servingsController.text.trim()) ?? 1,
           language: language,

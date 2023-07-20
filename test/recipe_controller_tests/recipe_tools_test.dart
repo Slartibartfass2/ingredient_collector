@@ -16,9 +16,9 @@ void main() {
       'When list with no duplicates is merged, then equal list is returned',
       () {
         var jobs = [
-          RecipeParsingJob(url: Uri.parse("url1"), servings: 1, language: ""),
-          RecipeParsingJob(url: Uri.parse("url2"), servings: 2, language: ""),
-          RecipeParsingJob(url: Uri.parse("url3"), servings: 3, language: ""),
+          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
+          RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
+          RecipeParsingJob(id: 0, url: Uri.parse("url3"), servings: 3),
         ];
         var mergedJobs = mergeRecipeParsingJobs(jobs);
         expect(mergedJobs, equals(jobs));
@@ -29,16 +29,16 @@ void main() {
       'When duplicates are merged, then duplicates result in one job',
       () {
         var jobs = [
-          RecipeParsingJob(url: Uri.parse("url1"), servings: 1, language: ""),
-          RecipeParsingJob(url: Uri.parse("url2"), servings: 2, language: ""),
-          RecipeParsingJob(url: Uri.parse("url1"), servings: 3, language: ""),
+          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
+          RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
+          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 3),
         ];
         var mergedJobs = mergeRecipeParsingJobs(jobs);
         expect(
           mergedJobs,
           equals([
-            RecipeParsingJob(url: Uri.parse("url1"), servings: 4, language: ""),
-            RecipeParsingJob(url: Uri.parse("url2"), servings: 2, language: ""),
+            RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 4),
+            RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
           ]),
         );
       },

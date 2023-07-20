@@ -16,12 +16,29 @@ import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {
+  int _nextRecipeParsingJobId = 0;
+
   static final RecipeController _singleton = RecipeController._internal();
 
   /// Get Recipe Controller singleton instance.
   factory RecipeController() => _singleton;
 
   RecipeController._internal();
+
+  /// Creates a new [RecipeParsingJob] with the passed [url] and [servings].
+  RecipeParsingJob createRecipeParsingJob({
+    required Uri url,
+    required int servings,
+    required String language,
+  }) {
+    var id = _nextRecipeParsingJobId++;
+    return RecipeParsingJob(
+      id: id,
+      url: url,
+      servings: servings,
+      language: language,
+    );
+  }
 
   /// Collects recipes from the websites in the passed [recipeParsingJobs].
   ///

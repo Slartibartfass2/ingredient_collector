@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
@@ -19,7 +18,7 @@ void main() {
   test(
     "collect KptnCook recipe",
     () async {
-      var recipeJob = RecipeParsingJob(
+      var recipeJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/4b596ab7"),
         servings: 2,
         language: "de",

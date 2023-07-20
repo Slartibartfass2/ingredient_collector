@@ -8,6 +8,9 @@ part 'recipe_parsing_job.freezed.dart';
 class RecipeParsingJob with _$RecipeParsingJob {
   /// Creates [RecipeParsingJob] object.
   const factory RecipeParsingJob({
+    /// ID of the recipe parsing job.
+    required int id,
+
     /// URL of the recipe.
     required Uri url,
 
@@ -15,6 +18,6 @@ class RecipeParsingJob with _$RecipeParsingJob {
     required int servings,
 
     /// The language that should be used to parse the recipe.
-    required String language,
+    @Default("") String language,
   }) = _RecipeParsingJob;
 }
