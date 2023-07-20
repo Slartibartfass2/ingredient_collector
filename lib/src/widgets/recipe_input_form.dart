@@ -185,7 +185,9 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
         key: _formKey,
         child: Column(
           children: [
-            ..._messageBoxes,
+            ..._messageBoxes
+                .map((box) => [box, const SizedBox(height: 10)])
+                .expand((element) => element),
             ...recipeInputRows,
             FormButton(
               buttonText: LocaleKeys.add_recipe_button_text.tr(),
