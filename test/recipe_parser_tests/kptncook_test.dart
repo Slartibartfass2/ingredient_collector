@@ -6,11 +6,15 @@ import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show KptnCookParser;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'parser_test_helper.dart';
 
 void main() {
-  setUp(() => RecipeCache().cache.clear());
+  setUp(() {
+    SharedPreferences.setMockInitialValues({});
+    RecipeCache().cache.clear();
+  });
 
   test(
     "collect KptnCook recipe",

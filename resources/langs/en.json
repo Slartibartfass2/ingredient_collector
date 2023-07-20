@@ -8,11 +8,17 @@
         "copy_snackbar": "Ingredients copied to clipboard"
     },
     "recipe_row": {
-        "close_button_text": "Remove recipe URL",
+        "remove_recipe_text": "Remove recipe",
+        "add_note_text": "Add note",
+        "modify_recipe_text": "Modify recipe",
         "helper_text": {
             "in_progress": "Recipe is being processed ...",
             "failed": "Recipe couldn't be processed"
-        }
+        },
+        "add_note_disabled_tooltip": "Enter a URL to add a note",
+        "modify_recipe_disabled_tooltip": "Enter a URL to modify the recipe",
+        "parsing_snackbar": "Recipe is being processed ...",
+        "modified": "modified"
     },
     "url_input_field": {
         "label": "Recipe URL",
@@ -22,7 +28,8 @@
     "servings_field_label": "Servings",
     "message_box_title": {
         "warning": "Warning",
-        "error": "Error"
+        "error": "Error",
+        "info": "Info"
     },
     "missing_cors_plugin": {
         "title": "CORS plugin is missing",
@@ -45,5 +52,31 @@
             "title": "Failed to parse an ingredient",
             "message": "An error occurred while parsing {recipeUrl}. An ingredient couldn't be parsed."
         }
+    },
+    "additional_information": {
+        "title": "Additional information for '{recipeName}'"
+    },
+    "recipe_modification": {
+        "loading": "Loading recipe modification ...",
+        "page_title": "Recipe modification for {servings} servings of '{recipeName}'",
+        "duplicate_name_text": "'{name}' already exists",
+        "empty_name_text": "Ingredient name can't be empty",
+        "saved_snackbar": "Recipe modification saved"
+    },
+    "modification_page": {
+        "removed_ingredients": "Removed ingredients",
+        "add_ingredient": "Add ingredient",
+        "save_modification": "Save modification",
+        "amount": "Amount",
+        "unit": "Unit",
+        "name": "Name"
+    },
+    "recipe_note_dialog": {
+        "title": "Add recipe note",
+        "save": "Save",
+        "cancel": "Cancel",
+        "text_area_label": "Recipe note",
+        "text_area_helper": "This note will be saved and displayed when the ingredients for this recipe are collected in the future.",
+        "text_area_hint": "e.g. \"4 servings is not enough for two people, use 8 instead!\""
     }
 }

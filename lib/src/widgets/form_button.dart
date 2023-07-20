@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'recipe_input_form.dart';
 
 /// An [ElevatedButton] with fixed style used in the [RecipeInputForm].
-class FormButton extends Padding {
+class FormButton extends StatelessWidget {
   /// The text of this [FormButton].
   final String buttonText;
 
@@ -11,18 +11,25 @@ class FormButton extends Padding {
   final void Function() onPressed;
 
   /// Creates a new [FormButton].
-  FormButton({
+  const FormButton({
     super.key,
     required this.buttonText,
     required this.onPressed,
-  }) : super(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: ElevatedButton(
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(double.maxFinite, 0),
-            ),
-            child: Text(buttonText),
-          ),
-        );
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
+    return SizedBox(
+      width: width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          child: Text(buttonText),
+        ),
+      ),
+    );
+  }
 }

@@ -9,6 +9,9 @@ import '../../recipe_controller/recipe_controller.dart';
 /// The input is validated to be a valid URL and to be supported by the app.
 /// See [RecipeController.isUrlSupported] for details.
 class UrlInputField extends TextFormField {
+  /// The function that is called when the input is validated.
+  final void Function({required bool isValid}) onValidated;
+
   /// The helper text to display below the input field.
   final String? helperText;
 
@@ -19,6 +22,7 @@ class UrlInputField extends TextFormField {
   UrlInputField({
     super.key,
     required super.controller,
+    required this.onValidated,
     this.helperText,
     this.helperColor,
   }) : super(
@@ -34,6 +38,7 @@ class UrlInputField extends TextFormField {
           keyboardType: TextInputType.url,
           validator: (value) {
             if (value == null || value.isEmpty) {
+              onValidated(isValid: false);
               return null;
             }
 
@@ -41,13 +46,16 @@ class UrlInputField extends TextFormField {
 
             var isUrl = url?.hasAbsolutePath ?? false;
             if (!isUrl) {
+              onValidated(isValid: false);
               return LocaleKeys.url_input_field_invalid_url_text.tr();
             }
 
             if (url != null && !RecipeController().isUrlSupported(url)) {
+              onValidated(isValid: false);
               return LocaleKeys.url_input_field_unsupported_url_text.tr();
             }
 
+            onValidated(isValid: true);
             return null;
           },
         );

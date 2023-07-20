@@ -8,11 +8,17 @@
         "copy_snackbar": "Zutaten in Zwischenablage kopiert"
     },
     "recipe_row": {
-        "close_button_text": "Rezept URL entfernen",
+        "remove_recipe_text": "Rezept entfernen",
+        "add_note_text": "Notiz hinzufügen",
+        "modify_recipe_text": "Rezept ändern",
         "helper_text": {
             "in_progress": "Rezept wird verarbeitet ...",
             "failed": "Rezept konnte nicht verarbeitet werden"
-        }
+        },
+        "add_note_disabled_tooltip": "Geben Sie eine URL ein, um eine Notiz hinzuzufügen",
+        "modify_recipe_disabled_tooltip": "Geben Sie eine URL ein, um das Rezept zu ändern",
+        "parsing_snackbar": "Rezept wird verarbeitet ...",
+        "modified": "Geändert"
     },
     "url_input_field": {
         "label": "Rezept URL",
@@ -22,7 +28,8 @@
     "servings_field_label": "Portionen",
     "message_box_title": {
         "warning": "Warnung",
-        "error": "Fehler"
+        "error": "Fehler",
+        "info": "Info"
     },
     "missing_cors_plugin": {
         "title": "CORS-Plugin fehlt",
@@ -45,5 +52,31 @@
             "title": "Parsen einer Zutat fehlgeschlagen",
             "message": "Beim Parsen von {recipeUrl} ist ein Fehler aufgetreten. Eine Zutat konnte nicht geparst werden."
         }
+    },
+    "additional_information": {
+        "title": "Zusätzliche Informationen zu '{recipeName}'"
+    },
+    "recipe_modification": {
+        "loading": "Rezeptänderung wird geladen ...",
+        "page_title": "Rezeptänderung für {servings} Portionen '{recipeName}'",
+        "duplicate_name_text": "'{name}' existiert bereits",
+        "empty_name_text": "Zutat muss einen Namen haben",
+        "saved_snackbar": "Rezeptänderung gespeichert"
+    },
+    "modification_page": {
+        "removed_ingredients": "Entfernte Zutaten",
+        "add_ingredient": "Zutat hinzufügen",
+        "save_modification": "Änderung speichern",
+        "amount": "Menge",
+        "unit": "Einheit",
+        "name": "Name"
+    },
+    "recipe_note_dialog": {
+        "title": "Rezeptnotiz hinzufügen",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "text_area_label": "Rezeptnotiz",
+        "text_area_helper": "Diese Notiz wird gespeichert und angezeigt, wenn in der Zukunft die Zutaten für dieses Rezept gesammelt werden.",
+        "text_area_hint": "z.B. \"4 Portionen sind nicht genug für 2 Personen, nehme stattdessen 8!\""
     }
 }

@@ -4,7 +4,7 @@ import 'ingredient.dart';
 
 part 'recipe.freezed.dart';
 
-/// Data class which holds information about a single recipe.
+/// Data class that holds information about a single recipe.
 ///
 /// The informations consists of a list of [ingredients], the [name] of the
 /// recipe and the amount of [servings].
