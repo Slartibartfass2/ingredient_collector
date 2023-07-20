@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.0] - 2023-07-20
+
+### Added
+
+- User can add notes and modifications to recipes ([#94](https://github.com/Slartibartfass2/ingredient_collector/pull/94))
+- Added support for KptnCook sharing urls ([#100](https://github.com/Slartibartfass2/ingredient_collector/pull/100))
+
+### Fixed
+
+- Fixed bug where only one recipe is collected if the same link is used for more than one recipe ([#96](https://github.com/Slartibartfass2/ingredient_collector/pull/96))
+- Added missing padding between message boxes ([#98](https://github.com/Slartibartfass2/ingredient_collector/pull/98))
+
 ## [0.4.0] - 2023-06-04
 
 ### Added
@@ -51,6 +63,7 @@
 
 _Initial release._
 
+[0.5.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.4.0
 [0.3.1]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.3.1
 [0.3.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.3.0
