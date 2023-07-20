@@ -2,8 +2,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  setUpAll(() {
+    SharedPreferences.setMockInitialValues({});
+  });
+
   setUp(() => RecipeCache().cache.clear());
 
   test(
