@@ -14,7 +14,12 @@ class RecipeCache {
   @visibleForTesting
   final Map<String, Recipe> cache = {};
 
-  final Map<String, Uri> _redirects = {};
+  /// Cache that stores the redirects with the url origin and url path as key.
+  ///
+  /// The url origin is the url without the path and query parameters.
+  /// The key is build as follows: "<url origin><url path>".
+  @visibleForTesting
+  final Map<String, Uri> redirects = {};
 
   static final RecipeCache _singleton = RecipeCache._internal();
 
@@ -31,7 +36,7 @@ class RecipeCache {
   ///
   /// If the recipe is not cached yet, null is returned.
   Recipe? getRecipe(Uri url) {
-    var keyUrl = _redirects[getKey(url)] ?? url;
+    var keyUrl = redirects[getKey(url)] ?? url;
     return cache[getKey(keyUrl)];
   }
 
@@ -39,7 +44,7 @@ class RecipeCache {
   ///
   /// If the recipe is already cached, it is overwritten.
   void addRecipe(Uri url, Recipe recipe) {
-    var keyUrl = _redirects[getKey(url)] ?? url;
+    var keyUrl = redirects[getKey(url)] ?? url;
     cache[getKey(keyUrl)] = recipe;
   }
 
@@ -47,11 +52,11 @@ class RecipeCache {
   ///
   /// If the redirect is already cached, it is overwritten.
   void addRedirect(Uri originalUrl, Uri redirectUrl) {
-    _redirects[getKey(originalUrl)] = redirectUrl;
+    redirects[getKey(originalUrl)] = redirectUrl;
   }
 
   /// Returns the redirect for the passed [originalUrl].
   ///
   /// If the redirect is not cached yet, null is returned.
-  Uri? getRedirect(Uri originalUrl) => _redirects[getKey(originalUrl)];
+  Uri? getRedirect(Uri originalUrl) => redirects[getKey(originalUrl)];
 }
