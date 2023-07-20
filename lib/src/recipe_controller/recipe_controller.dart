@@ -11,17 +11,35 @@ import '../models/recipe_modification.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'recipe_cache.dart';
+import 'recipe_redirect.dart';
 import 'recipe_tools.dart';
 import 'recipe_website.dart';
 
 /// Controller for collecting recipes.
 class RecipeController {
+  int _nextRecipeParsingJobId = 0;
+
   static final RecipeController _singleton = RecipeController._internal();
 
   /// Get Recipe Controller singleton instance.
   factory RecipeController() => _singleton;
 
   RecipeController._internal();
+
+  /// Creates a new [RecipeParsingJob] with the passed [url] and [servings].
+  RecipeParsingJob createRecipeParsingJob({
+    required Uri url,
+    required int servings,
+    required String language,
+  }) {
+    var id = _nextRecipeParsingJobId++;
+    return RecipeParsingJob(
+      id: id,
+      url: url,
+      servings: servings,
+      language: language,
+    );
+  }
 
   /// Collects recipes from the websites in the passed [recipeParsingJobs].
   ///
@@ -50,6 +68,10 @@ class RecipeController {
     var headers = <String, String>{
       'Accept-Language': language,
     };
+
+    recipeParsingJobs = await Future.wait(
+      recipeParsingJobs.map((job) => _getRedirectRecipeParsingJob(client, job)),
+    );
 
     for (var recipeParsingJob in recipeParsingJobs) {
       if (onRecipeParsingStarted != null) {
@@ -98,7 +120,8 @@ class RecipeController {
   ///
   /// Supported means that there's a parsing script available which can be used
   /// to collect the ingredients of the recipe.
-  bool isUrlSupported(Uri url) => RecipeWebsite.fromUrl(url) != null;
+  bool isUrlSupported(Uri url) =>
+      RecipeWebsite.fromUrl(url) != null || RecipeRedirect.fromUrl(url) != null;
 
   /// Applies the [RecipeModification] to the passed [RecipeParsingResult].
   ///
@@ -182,5 +205,36 @@ class RecipeController {
     }
 
     return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
+  }
+
+  Future<RecipeParsingJob> _getRedirectRecipeParsingJob(
+    http.Client client,
+    RecipeParsingJob recipeParsingJob,
+  ) async {
+    var redirectParser = RecipeRedirect.values
+        .where((element) => element.urlHost == recipeParsingJob.url.host)
+        .firstOrNull
+        ?.redirectParser;
+
+    if (redirectParser == null) {
+      return recipeParsingJob;
+    }
+
+    http.Response response;
+    try {
+      response = await client.get(recipeParsingJob.url);
+    } on http.ClientException {
+      // Return original job, so error can be handled in collectRecipes
+      return recipeParsingJob;
+    }
+    var document = parse(response.body);
+
+    var url = redirectParser.getRedirectUrl(document);
+
+    if (url != null) {
+      RecipeCache().addRedirect(recipeParsingJob.url, url);
+    }
+
+    return recipeParsingJob.copyWith(url: url ?? recipeParsingJob.url);
   }
 }

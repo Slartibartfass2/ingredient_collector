@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/l10n/locale_keys.g.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
@@ -20,7 +19,7 @@ void main() {
   test(
     'collect new Eat this! recipe',
     () async {
-      var recipeJob = RecipeParsingJob(
+      var recipeJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse(
           "https://www.eat-this.org/planetary-health-bowl-mit-lupinen-und-kurkuma-dressing/",
         ),
@@ -69,7 +68,7 @@ void main() {
   test(
     'collect old Eat this! recipe',
     () async {
-      var recipeJob = RecipeParsingJob(
+      var recipeJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse(
           "https://www.eat-this.org/gruner-bohnensalat-mit-speck/",
         ),
@@ -109,7 +108,7 @@ void main() {
   test(
     'collect unsupported Eat this! recipe',
     () async {
-      var recipeJob = RecipeParsingJob(
+      var recipeJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse(
           "https://www.eat-this.org/veganes-raclette/",
         ),

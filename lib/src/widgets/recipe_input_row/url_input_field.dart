@@ -42,7 +42,7 @@ class UrlInputField extends TextFormField {
               return null;
             }
 
-            var url = Uri.tryParse(value);
+            var url = Uri.tryParse(value.trim());
 
             var isUrl = url?.hasAbsolutePath ?? false;
             if (!isUrl) {

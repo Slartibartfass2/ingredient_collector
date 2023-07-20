@@ -5,7 +5,6 @@ import 'package:ingredient_collector/src/models/additional_recipe_information.da
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_modification.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
@@ -21,7 +20,7 @@ void main() {
     'When recipe is parsed again, then the cached recipe is used to create the '
     'RecipeParsingResult',
     () async {
-      var job = RecipeParsingJob(
+      var job = RecipeController().createRecipeParsingJob(
         url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41"),
         servings: 4,
         language: "de",
@@ -50,7 +49,7 @@ void main() {
   );
 
   test('When recipe is parsed, then callback functions are called', () async {
-    var successJob = RecipeParsingJob(
+    var successJob = RecipeController().createRecipeParsingJob(
       url: Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41"),
       servings: 4,
       language: "de",
@@ -78,7 +77,7 @@ void main() {
     expect(isSuccessful, isTrue);
     expect(wasStarted, isTrue);
 
-    var failJob = RecipeParsingJob(
+    var failJob = RecipeController().createRecipeParsingJob(
       url: Uri.parse("https://example.org/recipe"),
       servings: 4,
       language: "de",
@@ -216,7 +215,7 @@ void main() {
       var url =
           Uri.parse("http://mobile.kptncook.com/recipe/pinterest/50d87d41");
 
-      var job = RecipeParsingJob(
+      var job = RecipeController().createRecipeParsingJob(
         url: url,
         servings: 4,
         language: "de",

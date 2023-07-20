@@ -78,4 +78,34 @@ void main() {
       expect(cachedRecipe, equals(newRecipe));
     },
   );
+
+  test(
+    'When the redirect cache is empty and addRedirect is called, then redirect '
+    'is added to the cache.',
+    () {
+      var url = Uri.parse("https://example.org");
+      var redirectUrl = Uri.parse("https://example.org/redirect");
+
+      RecipeCache().addRedirect(url, redirectUrl);
+
+      var cachedRedirectUrl =
+          RecipeCache().redirects[RecipeCache().getKey(url)];
+      expect(cachedRedirectUrl, isNotNull);
+    },
+  );
+
+  test(
+    'When redirect cache contains redirect and getRedirect is called, then '
+    'redirect is returned',
+    () {
+      var url = Uri.parse("https://example.org");
+      var redirectUrl = Uri.parse("https://example.org/redirect");
+
+      RecipeCache().redirects[RecipeCache().getKey(url)] = redirectUrl;
+
+      var cachedRedirectUrl = RecipeCache().getRedirect(url);
+      expect(cachedRedirectUrl, isNotNull);
+      expect(cachedRedirectUrl, equals(redirectUrl));
+    },
+  );
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
 import '../models/recipe.dart';
-import '../models/recipe_parsing_job.dart';
 import '../recipe_controller/recipe_controller.dart';
 import '../recipe_controller/recipe_tools.dart';
 import 'collection_output_textarea.dart';
@@ -120,18 +119,18 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     // Create recipe parsing jobs from the valid rows.
     var recipeJobs = mergeRecipeParsingJobs(
       validRows.map(
-        (row) => RecipeParsingJob(
-          url: Uri.parse(row.urlController.text),
-          servings: int.parse(row.servingsController.text),
+        (row) => RecipeController().createRecipeParsingJob(
+          url: Uri.parse(row.urlController.text.trim()),
+          servings: int.parse(row.servingsController.text.trim()),
           language: language,
         ),
       ),
     );
 
-    var recipeJobToRows = {
+    var recipeJobIdToRows = {
       for (var job in recipeJobs)
-        job: validRows.where(
-          (row) => row.urlController.text == job.url.toString(),
+        job.id: validRows.where(
+          (row) => row.urlController.text.trim() == job.url.toString(),
         ),
     };
 
@@ -151,13 +150,14 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var parsingResults = await RecipeController().collectRecipes(
       recipeParsingJobs: recipeJobs,
       language: language,
-      onSuccessfullyParsedRecipe: (job, recipeName) => recipeJobToRows[job]!
+      onSuccessfullyParsedRecipe: (job, recipeName) => recipeJobIdToRows[
+              job.id]!
           // ignore: avoid_function_literals_in_foreach_calls, makes sense here
           .forEach((row) => _onSuccessfullyParsedRecipe(row, recipeName)),
       onFailedParsedRecipe: (job) =>
-          recipeJobToRows[job]!.forEach(_onFailedParsedRecipe),
+          recipeJobIdToRows[job.id]!.forEach(_onFailedParsedRecipe),
       onRecipeParsingStarted: (job) =>
-          recipeJobToRows[job]!.forEach(_onRecipeParsingStarted),
+          recipeJobIdToRows[job.id]!.forEach(_onRecipeParsingStarted),
     );
 
     var metaDataLogs = parsingResults

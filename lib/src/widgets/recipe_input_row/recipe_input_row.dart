@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/locale_keys.g.dart';
 import '../../models/recipe.dart';
-import '../../models/recipe_parsing_job.dart';
 import '../../pages/recipe_modification_page/recipe_modification_page.dart';
 import '../../recipe_controller/recipe_cache.dart';
 import '../../recipe_controller/recipe_controller.dart';
@@ -56,10 +55,12 @@ class RecipeInputRow extends StatefulWidget {
 
 class _RecipeInputRowState extends State<RecipeInputRow> {
   Future<void> _onAddNote(BuildContext context) async {
-    var url = Uri.tryParse(widget.urlController.text);
-    if (url == null) {
+    var parsedUrl = Uri.tryParse(widget.urlController.text.trim());
+    if (parsedUrl == null) {
       return;
     }
+
+    var url = RecipeCache().getRedirect(parsedUrl) ?? parsedUrl;
 
     var recipe = await _getRecipe(context, url);
     if (recipe == null) {
@@ -80,10 +81,12 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
   }
 
   Future<void> _onModifyRecipe(BuildContext context) async {
-    var url = Uri.tryParse(widget.urlController.text);
-    if (url == null) {
+    var parsedUrl = Uri.tryParse(widget.urlController.text.trim());
+    if (parsedUrl == null) {
       return;
     }
+
+    var url = RecipeCache().getRedirect(parsedUrl) ?? parsedUrl;
 
     var recipe = await _getRecipe(context, url);
     if (recipe == null) {
@@ -116,9 +119,9 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     );
     var result = await RecipeController().collectRecipes(
       recipeParsingJobs: [
-        RecipeParsingJob(
+        RecipeController().createRecipeParsingJob(
           url: url,
-          servings: int.tryParse(widget.servingsController.text) ?? 1,
+          servings: int.tryParse(widget.servingsController.text.trim()) ?? 1,
           language: language,
         ),
       ],

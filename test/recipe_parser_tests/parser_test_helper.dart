@@ -3,7 +3,6 @@ import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 
@@ -35,7 +34,7 @@ Future<void> testParsingRecipes(
 }) async {
   var jobs = urls
       .map(
-        (url) => RecipeParsingJob(
+        (url) => RecipeController().createRecipeParsingJob(
           url: Uri.parse(url),
           servings: 2,
           language: language,
