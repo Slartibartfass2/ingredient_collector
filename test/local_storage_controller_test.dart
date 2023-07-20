@@ -216,6 +216,49 @@ void main() {
         await _expectTestAdditionalRecipeInformation();
       },
     );
+
+    test(
+      'When additionalRecipeInformation is empty, then it is removed from the '
+      'store',
+      () async {
+        SharedPreferences.setMockInitialValues({});
+
+        await LocalStorageController().setAdditionalRecipeInformation(
+          const AdditionalRecipeInformation(
+            recipeUrlOrigin: "test",
+            recipeName: "test name",
+            note: "test note",
+            recipeModification: RecipeModification(
+              servings: 2,
+              modifiedIngredients: [
+                Ingredient(
+                  amount: 34,
+                  unit: "test unit",
+                  name: "test name",
+                ),
+              ],
+            ),
+          ),
+        );
+
+        await LocalStorageController().setAdditionalRecipeInformation(
+          const AdditionalRecipeInformation(
+            recipeUrlOrigin: "test",
+            recipeName: "test name",
+            note: "",
+            recipeModification: RecipeModification(
+              servings: 2,
+              modifiedIngredients: [],
+            ),
+          ),
+        );
+
+        var additionalRecipeInformation = await LocalStorageController()
+            .getAdditionalRecipeInformation("test", "test name");
+
+        expect(additionalRecipeInformation, isNull);
+      },
+    );
   });
 
   group('Test getRecipeNote', () {
