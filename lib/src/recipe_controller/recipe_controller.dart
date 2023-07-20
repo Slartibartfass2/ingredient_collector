@@ -11,6 +11,7 @@ import '../models/recipe_modification.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'recipe_cache.dart';
+import 'recipe_redirect.dart';
 import 'recipe_tools.dart';
 import 'recipe_website.dart';
 
@@ -68,6 +69,10 @@ class RecipeController {
       'Accept-Language': language,
     };
 
+    recipeParsingJobs = await Future.wait(
+      recipeParsingJobs.map((job) => _getRedirectRecipeParsingJob(client, job)),
+    );
+
     for (var recipeParsingJob in recipeParsingJobs) {
       if (onRecipeParsingStarted != null) {
         onRecipeParsingStarted(recipeParsingJob);
@@ -115,7 +120,8 @@ class RecipeController {
   ///
   /// Supported means that there's a parsing script available which can be used
   /// to collect the ingredients of the recipe.
-  bool isUrlSupported(Uri url) => RecipeWebsite.fromUrl(url) != null;
+  bool isUrlSupported(Uri url) =>
+      RecipeWebsite.fromUrl(url) != null || RecipeRedirect.fromUrl(url) != null;
 
   /// Applies the [RecipeModification] to the passed [RecipeParsingResult].
   ///
@@ -199,5 +205,36 @@ class RecipeController {
     }
 
     return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
+  }
+
+  Future<RecipeParsingJob> _getRedirectRecipeParsingJob(
+    http.Client client,
+    RecipeParsingJob recipeParsingJob,
+  ) async {
+    var redirectParser = RecipeRedirect.values
+        .where((element) => element.urlHost == recipeParsingJob.url.host)
+        .firstOrNull
+        ?.redirectParser;
+
+    if (redirectParser == null) {
+      return recipeParsingJob;
+    }
+
+    http.Response response;
+    try {
+      response = await client.get(recipeParsingJob.url);
+    } on http.ClientException {
+      // Return original job, so error can be handled in collectRecipes
+      return recipeParsingJob;
+    }
+    var document = parse(response.body);
+
+    var url = redirectParser.getRedirectUrl(document);
+
+    if (url != null) {
+      RecipeCache().addRedirect(recipeParsingJob.url, url);
+    }
+
+    return recipeParsingJob.copyWith(url: url ?? recipeParsingJob.url);
   }
 }
