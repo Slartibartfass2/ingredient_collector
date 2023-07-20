@@ -159,7 +159,7 @@ void main() {
 
       expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
-      expect(additionalInformationLog.wasRecipeModified, isTrue);
+      expect(modifiedResult.wasModified, isTrue);
     },
   );
 
@@ -200,7 +200,7 @@ void main() {
 
       expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
-      expect(additionalInformationLog.wasRecipeModified, isFalse);
+      expect(modifiedResult.wasModified, isFalse);
     },
   );
 

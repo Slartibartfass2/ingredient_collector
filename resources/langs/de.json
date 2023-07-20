@@ -17,7 +17,8 @@
         },
         "add_note_disabled_tooltip": "Geben Sie eine URL ein, um eine Notiz hinzuzufügen",
         "modify_recipe_disabled_tooltip": "Geben Sie eine URL ein, um das Rezept zu ändern",
-        "parsing_snackbar": "Rezept wird verarbeitet ..."
+        "parsing_snackbar": "Rezept wird verarbeitet ...",
+        "modified": "Geändert"
     },
     "url_input_field": {
         "label": "Rezept URL",
@@ -53,9 +54,7 @@
         }
     },
     "additional_information": {
-        "title": "Zusätzliche Informationen zu '{recipeName}'",
-        "note_message": "Die folgende Notiz wurde hinzugefügt: '{note}'",
-        "modification_message": "Das Rezept wurde geändert."
+        "title": "Zusätzliche Informationen zu '{recipeName}'"
     },
     "recipe_modification": {
         "loading": "Rezeptänderung wird geladen ...",

@@ -16,5 +16,8 @@ class RecipeParsingResult with _$RecipeParsingResult {
 
     /// Additional informations about the parsing.
     required List<MetaDataLog> metaDataLogs,
+
+    /// Whether the recipe was modified.
+    @Default(false) bool wasModified,
   }) = _RecipeParsingResult;
 }

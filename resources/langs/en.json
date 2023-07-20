@@ -17,7 +17,8 @@
         },
         "add_note_disabled_tooltip": "Enter a URL to add a note",
         "modify_recipe_disabled_tooltip": "Enter a URL to modify the recipe",
-        "parsing_snackbar": "Recipe is being processed ..."
+        "parsing_snackbar": "Recipe is being processed ...",
+        "modified": "modified"
     },
     "url_input_field": {
         "label": "Recipe URL",
@@ -53,9 +54,7 @@
         }
     },
     "additional_information": {
-        "title": "Additional information for '{recipeName}'",
-        "note_message": "The following note was added: '{note}'",
-        "modification_message": "The recipe was modified."
+        "title": "Additional information for '{recipeName}'"
     },
     "recipe_modification": {
         "loading": "Loading recipe modification ...",

@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
+import '../../l10n/locale_keys.g.dart';
 import '../local_storage_controller.dart';
 import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
@@ -77,7 +79,12 @@ class RecipeController {
       if (result.recipe == null && onFailedParsedRecipe != null) {
         onFailedParsedRecipe(recipeParsingJob);
       } else if (result.recipe != null && onSuccessfullyParsedRecipe != null) {
-        onSuccessfullyParsedRecipe(recipeParsingJob, result.recipe?.name ?? "");
+        var recipe = result.recipe;
+        var message = recipe != null ? recipe.name : "";
+        if (result.wasModified) {
+          message += " (${LocaleKeys.recipe_row_modified.tr()})";
+        }
+        onSuccessfullyParsedRecipe(recipeParsingJob, message);
       }
 
       results.add(result);
@@ -122,25 +129,29 @@ class RecipeController {
     }
 
     var modification = additionalInformation.recipeModification;
-    var modifiedRecipe = modifyRecipe(
-      recipe: recipe,
-      modification: modification ??
-          RecipeModification(
-            servings: recipe.servings,
-            modifiedIngredients: [],
-          ),
-    );
+    if (modification != null) {
+      recipe = modifyRecipe(
+        recipe: recipe,
+        modification: modification,
+      );
+    }
+
+    var metaDataLogs = <MetaDataLog>[
+      ...result.metaDataLogs,
+      ...additionalInformation.note.isNotEmpty
+          ? [
+              AdditionalRecipeInformationMetaDataLog(
+                recipeName: recipe.name,
+                note: additionalInformation.note,
+              ),
+            ]
+          : [],
+    ];
 
     return result.copyWith(
-      recipe: modifiedRecipe,
-      metaDataLogs: [
-        ...result.metaDataLogs,
-        AdditionalRecipeInformationMetaDataLog(
-          recipeName: recipe.name,
-          note: additionalInformation.note,
-          wasRecipeModified: modification != null,
-        ),
-      ],
+      recipe: recipe,
+      metaDataLogs: metaDataLogs,
+      wasModified: modification != null,
     );
   }
 
