@@ -12,11 +12,10 @@ import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dar
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  setUpAll(() {
+  setUp(() {
     SharedPreferences.setMockInitialValues({});
+    RecipeCache().cache.clear();
   });
-
-  setUp(() => RecipeCache().cache.clear());
 
   test(
     'When recipe is parsed again, then the cached recipe is used to create the '

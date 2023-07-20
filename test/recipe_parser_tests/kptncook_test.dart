@@ -11,11 +11,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'parser_test_helper.dart';
 
 void main() {
-  setUpAll(() {
+  setUp(() {
     SharedPreferences.setMockInitialValues({});
+    RecipeCache().cache.clear();
   });
-
-  setUp(() => RecipeCache().cache.clear());
 
   test(
     "collect KptnCook recipe",
