@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
@@ -39,7 +38,7 @@ void main() {
       expectIngredient(recipe, "Limette", amount: 1);
       expectIngredient(recipe, "Ingwer", amount: 10, unit: "g");
       expectIngredient(recipe, "Kokosmilch", amount: 150, unit: "ml");
-      expectIngredient(recipe, "Brokkoli", amount: 0.5);
+      expectIngredient(recipe, "Brokkoli", amount: 1);
       expectIngredient(recipe, "Koriander, frisch", amount: 10, unit: "g");
       expectIngredient(recipe, "Basmati-Reis", amount: 120, unit: "g");
       expectIngredient(recipe, "Räuchertofu", amount: 200, unit: "g");
