@@ -10,6 +10,10 @@ import 'models/recipe_modification.dart';
 ///
 /// The local storage is used to save [AdditionalRecipeInformation]s.
 class LocalStorageController {
+  /// Key for the additional recipe information in the local storage.
+  static const additionalRecipeInformationKey =
+      "additional_recipe_informations";
+
   /// Returns the note for the recipe with the given [recipeUrlOrigin] and
   /// [recipeName].
   ///
@@ -103,20 +107,20 @@ class LocalStorageController {
     String recipeName,
   ) async {
     var store = await SharedPreferences.getInstance();
-    var jsonList = store.getStringList("additional_recipe_informations");
+    var jsonList = store.getStringList(additionalRecipeInformationKey);
 
     if (jsonList == null || jsonList.isEmpty) {
       return null;
     }
 
-    var additionalRecipeInformations = _getAdditionalRecipeInformations(
+    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(
       jsonList,
       () async {
-        await store.remove("additional_recipe_informations");
+        await store.remove(additionalRecipeInformationKey);
       },
     );
 
-    var matches = additionalRecipeInformations.where(
+    var matches = additionalRecipeInformationList.where(
       (element) =>
           element.recipeUrlOrigin == recipeUrlOrigin &&
           element.recipeName == recipeName,
@@ -135,26 +139,26 @@ class LocalStorageController {
     AdditionalRecipeInformation additionalRecipeInformation,
   ) async {
     var store = await SharedPreferences.getInstance();
-    var jsonList = store.getStringList("additional_recipe_informations");
+    var jsonList = store.getStringList(additionalRecipeInformationKey);
 
     // If there was no additional recipe information saved yet, save the given
     // additional recipe information.
     if (jsonList == null || jsonList.isEmpty) {
       await store.setStringList(
-        "additional_recipe_informations",
+        additionalRecipeInformationKey,
         [jsonEncode(additionalRecipeInformation.toJson())],
       );
       return;
     }
 
-    var additionalRecipeInformations = _getAdditionalRecipeInformations(
+    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(
       jsonList,
       () async {
-        await store.remove("additional_recipe_informations");
+        await store.remove(additionalRecipeInformationKey);
       },
     );
 
-    var matches = additionalRecipeInformations.where(
+    var matches = additionalRecipeInformationList.where(
       (element) =>
           element.recipeUrlOrigin ==
               additionalRecipeInformation.recipeUrlOrigin &&
@@ -163,7 +167,7 @@ class LocalStorageController {
 
     // Overwrite the saved additional recipe information if it already exists.
     if (matches.isNotEmpty) {
-      additionalRecipeInformations.remove(matches.first);
+      additionalRecipeInformationList.remove(matches.first);
     }
 
     // If the information is empty, it is not stored.
@@ -172,23 +176,25 @@ class LocalStorageController {
     var isEmptyInformation = note.isEmpty &&
         (modification == null || modification.modifiedIngredients.isEmpty);
     if (!isEmptyInformation) {
-      additionalRecipeInformations.add(additionalRecipeInformation);
+      additionalRecipeInformationList.add(additionalRecipeInformation);
     }
 
     await store.setStringList(
-      "additional_recipe_informations",
-      additionalRecipeInformations.map((e) => jsonEncode(e.toJson())).toList(),
+      additionalRecipeInformationKey,
+      additionalRecipeInformationList
+          .map((e) => jsonEncode(e.toJson()))
+          .toList(),
     );
   }
 
-  List<AdditionalRecipeInformation> _getAdditionalRecipeInformations(
+  List<AdditionalRecipeInformation> _getAdditionalRecipeInformationList(
     List<String> jsonList,
     void Function() onFormatException,
   ) {
-    var additionalRecipeInformations = <AdditionalRecipeInformation>[];
+    var additionalRecipeInformationList = <AdditionalRecipeInformation>[];
     for (var jsonString in jsonList) {
       try {
-        additionalRecipeInformations.add(
+        additionalRecipeInformationList.add(
           AdditionalRecipeInformation.fromJson(
             jsonDecode(jsonString),
           ),
@@ -198,6 +204,6 @@ class LocalStorageController {
         return [];
       }
     }
-    return additionalRecipeInformations;
+    return additionalRecipeInformationList;
   }
 }

@@ -6,7 +6,7 @@ part 'recipe.freezed.dart';
 
 /// Data class that holds information about a single recipe.
 ///
-/// The informations consists of a list of [ingredients], the [name] of the
+/// The information consists of a list of [ingredients], the [name] of the
 /// recipe and the amount of [servings].
 @freezed
 class Recipe with _$Recipe {

@@ -25,11 +25,11 @@ void main() {
     );
 
     test(
-      'When local storage contains empty additional_recipe_informations list '
+      'When local storage contains empty additional recipe information list '
       'and getAdditionalRecipeInformation is called, then null is returned',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [],
+          LocalStorageController.additionalRecipeInformationKey: [],
         });
 
         var result = await LocalStorageController()
@@ -40,12 +40,12 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains additional recipe '
+      'When additional recipe information contains additional recipe '
       'information and getAdditionalRecipeInformation is called with different '
       'name, then null is returned',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -65,12 +65,12 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains additional recipe '
+      'When additional recipe information contains additional recipe '
       'information and getAdditionalRecipeInformation is called, then the '
       'additional recipe information is returned',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -110,12 +110,14 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains invalid json string and '
+      'When additional recipe information contains invalid json string and '
       'getAdditionalRecipeInformation is called, then null is returned and the '
       'local storage is cleared',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": ["invalid json string"],
+          LocalStorageController.additionalRecipeInformationKey: [
+            "invalid json string",
+          ],
         });
 
         var result = await LocalStorageController()
@@ -123,7 +125,12 @@ void main() {
 
         expect(result, isNull);
         var store = await SharedPreferences.getInstance();
-        expect(store.getStringList("additional_recipe_informations"), isNull);
+        expect(
+          store.getStringList(
+            LocalStorageController.additionalRecipeInformationKey,
+          ),
+          isNull,
+        );
       },
     );
   });
@@ -141,12 +148,12 @@ void main() {
     );
 
     test(
-      'When local storage contains empty additional_recipe_informations list '
+      'When local storage contains empty additional recipe information list '
       'and setAdditionalRecipeInformation is called, then the additional recipe'
       ' information is saved',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [],
+          LocalStorageController.additionalRecipeInformationKey: [],
         });
 
         await _addTestAdditionalRecipeInformation();
@@ -155,12 +162,12 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains additional recipe '
+      'When additional recipe information contains additional recipe '
       'information and setAdditionalRecipeInformation is called with different '
       'name, then the additional recipe information is saved',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test0",
@@ -178,12 +185,12 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains additional recipe '
+      'When additional recipe information contains additional recipe '
       'information and setAdditionalRecipeInformation is called, then the '
       'additional recipe information is overwritten',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -204,12 +211,14 @@ void main() {
     );
 
     test(
-      'When additional_recipe_informations contains invalid json string and '
+      'When additional recipe information contains invalid json string and '
       'setAdditionalRecipeInformation is called, then the additional recipe '
       'information is saved and the local storage is cleared',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": ["invalid json string"],
+          LocalStorageController.additionalRecipeInformationKey: [
+            "invalid json string",
+          ],
         });
 
         await _addTestAdditionalRecipeInformation();
@@ -278,7 +287,7 @@ void main() {
       'When there\'s information stored, then the note is returned',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -319,7 +328,7 @@ void main() {
       'When there\'s information stored, then the note is overwritten',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -359,7 +368,7 @@ void main() {
       'When there\'s information stored, then the modification is returned',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -414,7 +423,7 @@ void main() {
       'When there\'s information stored, then the modification is overwritten',
       () async {
         SharedPreferences.setMockInitialValues({
-          "additional_recipe_informations": [
+          LocalStorageController.additionalRecipeInformationKey: [
             jsonEncode(
               {
                 "recipeUrlOrigin": "test",
@@ -472,7 +481,8 @@ Future<void> _expectTestAdditionalRecipeInformation({
   bool isNoteEmpty = false,
 }) async {
   var store = await SharedPreferences.getInstance();
-  var jsonList = store.getStringList("additional_recipe_informations");
+  var jsonList = store
+      .getStringList(LocalStorageController.additionalRecipeInformationKey);
   expect(jsonList, isNotNull);
   expect(jsonList!.length, amount);
   for (var i = 0; i < amount; i++) {

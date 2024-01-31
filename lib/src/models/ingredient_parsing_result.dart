@@ -13,7 +13,7 @@ class IngredientParsingResult with _$IngredientParsingResult {
     /// Optionally parsed ingredient.
     @Default([]) List<Ingredient> ingredients,
 
-    /// Additional informations about the parsing.
+    /// Additional information about the parsing.
     @Default([]) List<MetaDataLog> metaDataLogs,
   }) = _IngredientParsingResult;
 }
