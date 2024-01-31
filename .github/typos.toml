@@ -2,3 +2,9 @@
 extend-exclude = [
     "resources/langs/de.json",
 ]
+
+[default]
+extend-ignore-identifiers-re = [
+    "bund",
+    "oder",
+]

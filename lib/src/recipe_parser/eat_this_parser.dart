@@ -14,12 +14,12 @@ class EatThisParser extends RecipeParser {
   /// Pattern for the amount information of an ingredient.
   static const _servingsPattern =
       "(?<servings>[0-9]+(-[0-9]+)?|einen|eine|ein)";
-  static const _uePattern = "(\u00FC|\u0075\u0308)";
+  static const _umlautPattern = "(\u00FC|\u0075\u0308)";
   static final _servingsTextPatterns = [
     RegExp(
-      "Zutaten\\sf${_uePattern}r(\\s(ca\\.|etwa))?\\s$_servingsPattern\\s",
+      "Zutaten\\sf${_umlautPattern}r(\\s(ca\\.|etwa))?\\s$_servingsPattern\\s",
     ),
-    RegExp("F${_uePattern}r\\s$_servingsPattern\\s"),
+    RegExp("F${_umlautPattern}r\\s$_servingsPattern\\s"),
   ];
 
   /// Known unit strings.
@@ -139,8 +139,8 @@ class EatThisParser extends RecipeParser {
     // If first part is not already a number, check whether the amount and unit
     // are concatenated
     if (tryParseAmountString(parts.first) == null) {
-      var splittedFirstPart = _breakUpNumberAndText(parts.first);
-      parts = splittedFirstPart + parts.skip(1).toList();
+      var splitFirstPart = _breakUpNumberAndText(parts.first);
+      parts = splitFirstPart + parts.skip(1).toList();
     }
     var parsedParts =
         parts.map((part) => tryParseAmountString(part, language: language));
