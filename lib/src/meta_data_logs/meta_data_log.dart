@@ -47,7 +47,7 @@ enum MetaDataLogType {
   /// For example information can't be fetched, the html structure changed.
   error,
 
-  /// A general information fot the user.
+  /// A general information for the user.
   ///
   /// For example that the recipe was modified.
   info,

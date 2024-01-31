@@ -14,7 +14,7 @@ class RecipeParsingResult with _$RecipeParsingResult {
     /// Optionally parsed recipe.
     Recipe? recipe,
 
-    /// Additional informations about the parsing.
+    /// Additional information about the parsing.
     required List<MetaDataLog> metaDataLogs,
 
     /// Whether the recipe was modified.

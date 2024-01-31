@@ -68,7 +68,7 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 /// Modifies the passed [recipe] with the passed [modification].
 ///
 /// It is assumed that the ingredients are unique in both [Recipe.ingredients]
-/// and [RecipeModification.modifiedIngredients], meaing that there are not
+/// and [RecipeModification.modifiedIngredients], meaning that there are not
 /// two ingredients with the same name.
 /// The [modification] is applied to the [recipe] and the modified recipe is
 /// returned.
