@@ -66,6 +66,8 @@ jobs:
 
       - name: Check spelling
         uses: crate-ci/typos@v1.17.2
+        with:
+          config: .github/typos.toml
 
   test:
     runs-on: ubuntu-latest
