@@ -111,7 +111,7 @@ jobs:
 
       # Windows
       - name: Get windows release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: windows-release-artifacts
           path: windows-release/
@@ -123,7 +123,7 @@ jobs:
 
       # Web
       - name: Get web release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: web-release-artifacts
           path: web-release/
@@ -135,7 +135,7 @@ jobs:
 
       # Android
       - name: Get android release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: android-release-artifacts
           path: android-release/
@@ -169,7 +169,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Get web release artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: web-release-artifacts
           path: .
