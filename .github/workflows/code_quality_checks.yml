@@ -89,7 +89,7 @@ jobs:
           dart run test_cov_console -e lib/l10n/locale_keys.g.dart
 
       - name: Upload code coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           directory: coverage
           flags: unittests
