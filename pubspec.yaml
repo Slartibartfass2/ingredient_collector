@@ -14,7 +14,7 @@ dependencies:
   http: ^0.13.5
   intl: ^0.18.0
   json_annotation: ^4.8.1
-  path: ^1.8.2
+  path: ^1.9.0
   path_provider: ^2.1.2
   test_cov_console: ^0.2.2
   shared_preferences: ^2.1.1
