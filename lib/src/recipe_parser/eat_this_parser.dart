@@ -59,8 +59,9 @@ class EatThisParser extends RecipeParser {
   ) {
     if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          DeliberatelyNotSupportedUrlMetaDataLog(
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.deliberatelyNotSupportedUrl,
             recipeUrl: recipeParsingJob.url,
           ),
         ],
@@ -77,8 +78,11 @@ class EatThisParser extends RecipeParser {
         (recipeContainerElementsOldDesign.isEmpty &&
             recipeContainerElementsNewDesign.isEmpty)) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -100,8 +104,11 @@ class EatThisParser extends RecipeParser {
       );
     } else {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -117,7 +124,7 @@ class EatThisParser extends RecipeParser {
   IngredientParsingResult parseIngredientOldDesign(
     Element element,
     double servingsMultiplier,
-    String recipeUrl,
+    Uri recipeUrl,
     String? language,
   ) {
     var ingredientText = element.text.trim();
@@ -166,8 +173,11 @@ class EatThisParser extends RecipeParser {
     var name = parts.skip(checkIndex + 1).join(" ");
     if (name.isEmpty) {
       return IngredientParsingResult(
-        metaDataLogs: [
-          IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.ingredientParsingFailure,
+            recipeUrl: recipeUrl,
+          ),
         ],
       );
     }
@@ -191,7 +201,7 @@ class EatThisParser extends RecipeParser {
   IngredientParsingResult parseIngredientNewDesign(
     Element element,
     double servingsMultiplier,
-    String recipeUrl,
+    Uri recipeUrl,
     String? language,
   ) =>
       parseWordPressIngredient(
@@ -218,8 +228,11 @@ class EatThisParser extends RecipeParser {
 
     if (servingsElements.isEmpty) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -233,8 +246,11 @@ class EatThisParser extends RecipeParser {
     var matchGroup = recipeServingsMatch?.namedGroup("servings");
     if (matchGroup == null) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -257,7 +273,7 @@ class EatThisParser extends RecipeParser {
   IngredientParsingResult? _tryParsePlusConcatenatedIngredients(
     String ingredientText,
     double servingsMultiplier,
-    String recipeUrl,
+    Uri recipeUrl,
     String? language,
   ) {
     var ingredients = ingredientText.split("+").map(
@@ -274,8 +290,8 @@ class EatThisParser extends RecipeParser {
             .map((result) => result.ingredients)
             .expand((ingredient) => ingredient)
             .toList(),
-        metaDataLogs: ingredients
-            .map((result) => result.metaDataLogs)
+        logs: ingredients
+            .map((result) => result.logs)
             .expand((log) => log)
             .toList(),
       );

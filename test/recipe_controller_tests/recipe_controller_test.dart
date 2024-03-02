@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/local_storage_controller.dart';
-import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
+import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/additional_recipe_information.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
@@ -132,7 +132,7 @@ void main() {
           name: "Test recipe",
           servings: 4,
         ),
-        metaDataLogs: [],
+        logs: [],
       );
 
       var modifiedResult = await RecipeController().applyRecipeModification(
@@ -147,13 +147,12 @@ void main() {
           .first;
       expect(ingredient.amount, 4);
 
-      var logs = modifiedResult.metaDataLogs;
+      var logs = modifiedResult.logs;
       expect(logs, isNotEmpty);
       var log = logs.first;
-      expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
+      expect(log, isA<AdditionalRecipeInformationJobLog>());
 
-      var additionalInformationLog =
-          log as AdditionalRecipeInformationMetaDataLog;
+      var additionalInformationLog = log as AdditionalRecipeInformationJobLog;
 
       expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
@@ -180,7 +179,7 @@ void main() {
           name: "Test recipe",
           servings: 4,
         ),
-        metaDataLogs: [],
+        logs: [],
       );
 
       var modifiedResult = await RecipeController().applyRecipeModification(
@@ -188,13 +187,12 @@ void main() {
         recipeUrlOrigin,
       );
 
-      var logs = modifiedResult.metaDataLogs;
+      var logs = modifiedResult.logs;
       expect(logs, isNotEmpty);
       var log = logs.first;
-      expect(log, isA<AdditionalRecipeInformationMetaDataLog>());
+      expect(log, isA<AdditionalRecipeInformationJobLog>());
 
-      var additionalInformationLog =
-          log as AdditionalRecipeInformationMetaDataLog;
+      var additionalInformationLog = log as AdditionalRecipeInformationJobLog;
 
       expect(additionalInformationLog.recipeName, "Test recipe");
       expect(additionalInformationLog.note, "Test note");
@@ -244,7 +242,7 @@ void main() {
       var result = results.first;
 
       expect(
-        result.metaDataLogs.whereType<AdditionalRecipeInformationMetaDataLog>(),
+        result.logs.whereType<AdditionalRecipeInformationJobLog>(),
         isEmpty,
       );
     },

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
-import 'package:ingredient_collector/l10n/locale_keys.g.dart';
+import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
@@ -123,10 +123,10 @@ void main() {
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isTrue);
       expect(
-        result.first.metaDataLogs.any(
+        result.first.logs.any(
           (log) =>
-              log.title ==
-              LocaleKeys.parsing_messages_deliberately_unsupported_url_title,
+              log is SimpleJobLog &&
+              log.subType == JobLogSubType.deliberatelyNotSupportedUrl,
         ),
         isTrue,
       );
@@ -155,16 +155,24 @@ void main() {
   test('parse empty ingredient element new design', () {
     var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
-    var result =
-        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredientNewDesign(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
   test('parse empty ingredient element old design', () {
     var parser = const EatThisParser();
     var ingredientElement = Element.html("<a></a>");
-    var result =
-        parser.parseIngredientOldDesign(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredientOldDesign(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -177,8 +185,12 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Zucker</span>
     </li>
     """);
-    var result =
-        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredientNewDesign(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -199,8 +211,12 @@ void main() {
       1 1/2 EL Reis- oder Ahornsirup
     </li>
     """);
-    var result =
-        parser.parseIngredientOldDesign(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredientOldDesign(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -222,8 +238,12 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result =
-        parser.parseIngredientNewDesign(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredientNewDesign(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

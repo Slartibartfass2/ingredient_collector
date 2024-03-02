@@ -35,6 +35,10 @@
         "title": "CORS-Plugin fehlt",
         "message": "Die Daten von {recipeUrl} konnten nicht abgerufen werden. Sie benötigen möglicherweise ein CORS-Plugin, um diese Website zu nutzen.\n- Für Chrome: https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf \n- Für Firefox: https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin \n- Für Edge: https://microsoftedge.microsoft.com/addons/detail/allow-cors-accesscontro/bhjepjpgngghppolkjdhckmnfphffdag"
     },
+    "http_request_error": {
+        "title": "HTTP Anfrage fehlgeschlagen",
+        "message": "Beim Abrufen von {recipeUrl} ist ein Fehler aufgetreten. Der Server hat mit dem Statuscode {status} und der Nachricht '{message}' geantwortet."
+    },
     "parsing_messages": {
         "complete_failure": {
             "title": "Parsen fehlgeschlagen",

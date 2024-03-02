@@ -4,8 +4,8 @@ import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 
 import '../../l10n/locale_keys.g.dart';
+import '../job_logs/job_log.dart';
 import '../local_storage_controller.dart';
-import '../meta_data_logs/meta_data_log.dart';
 import '../models/recipe.dart';
 import '../models/recipe_modification.dart';
 import '../models/recipe_parsing_job.dart';
@@ -90,7 +90,7 @@ class RecipeController {
       } else {
         result = RecipeParsingResult(
           recipe: Recipe.withServings(cachedRecipe, recipeParsingJob.servings),
-          metaDataLogs: [],
+          logs: [],
         );
       }
 
@@ -132,8 +132,8 @@ class RecipeController {
   /// applied to the [RecipeParsingResult.recipe] and the [RecipeParsingResult]
   /// is returned with the modified [RecipeParsingResult.recipe].
   ///
-  /// A [AdditionalRecipeInformationMetaDataLog] is added to the
-  /// [RecipeParsingResult.metaDataLogs] containing the [RecipeModification]
+  /// A [AdditionalRecipeInformationJobLog] is added to the
+  /// [RecipeParsingResult.logs] containing the [RecipeModification]
   /// and the note.
   @visibleForTesting
   Future<RecipeParsingResult> applyRecipeModification(
@@ -161,11 +161,11 @@ class RecipeController {
       );
     }
 
-    var metaDataLogs = <MetaDataLog>[
-      ...result.metaDataLogs,
+    var logs = <JobLog>[
+      ...result.logs,
       ...additionalInformation.note.isNotEmpty
           ? [
-              AdditionalRecipeInformationMetaDataLog(
+              AdditionalRecipeInformationJobLog(
                 recipeName: recipe.name,
                 note: additionalInformation.note,
               ),
@@ -175,7 +175,7 @@ class RecipeController {
 
     return result.copyWith(
       recipe: recipe,
-      metaDataLogs: metaDataLogs,
+      logs: logs,
       wasModified: !isModificationEmpty,
     );
   }
@@ -190,8 +190,23 @@ class RecipeController {
       response = await client.get(recipeParsingJob.url, headers: headers);
     } on http.ClientException {
       return RecipeParsingResult(
-        metaDataLogs: [
-          MissingCorsPluginMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.missingCorsPlugin,
+            recipeUrl: recipeParsingJob.url,
+          ),
+        ],
+      );
+    }
+
+    if (!_isSuccessStatusCode(response.statusCode)) {
+      return RecipeParsingResult(
+        logs: [
+          RequestFailureJobLog(
+            recipeUrl: recipeParsingJob.url,
+            statusCode: response.statusCode,
+            responseMessage: response.body,
+          ),
         ],
       );
     }
@@ -201,7 +216,7 @@ class RecipeController {
     var recipeWebsite = RecipeWebsite.fromUrl(recipeParsingJob.url);
 
     if (recipeWebsite == null) {
-      return const RecipeParsingResult(metaDataLogs: []);
+      return const RecipeParsingResult(logs: []);
     }
 
     return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
@@ -237,4 +252,6 @@ class RecipeController {
 
     return recipeParsingJob.copyWith(url: url ?? recipeParsingJob.url);
   }
+
+  bool _isSuccessStatusCode(int statusCode) => (statusCode ~/ 100) == 2;
 }

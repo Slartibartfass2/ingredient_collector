@@ -35,6 +35,10 @@
         "title": "CORS plugin is missing",
         "message": "The data from {recipeUrl} couldn't be fetched. You may need a CORS plugin to use this website.\n- For Chrome: https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf \n- For Firefox: https://addons.mozilla.org/en-US/firefox/addon/access-control-allow-origin \n- For Edge: https://microsoftedge.microsoft.com/addons/detail/allow-cors-accesscontro/bhjepjpgngghppolkjdhckmnfphffdag"
     },
+    "http_request_error": {
+        "title": "HTTP request failed",
+        "message": "An error occurred while fetching {recipeUrl}. The server returned status code {status} and message '{message}'."
+    },
     "parsing_messages": {
         "complete_failure": {
             "title": "Parsing failed",

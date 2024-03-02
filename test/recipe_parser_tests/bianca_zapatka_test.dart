@@ -182,7 +182,12 @@ void main() {
   test('parse empty ingredient element', () {
     var parser = const BiancaZapatkaParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -195,7 +200,12 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Gemüsebrühe</span>
     </li>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -211,7 +221,12 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -227,7 +242,12 @@ void main() {
       <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
     </li>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 }

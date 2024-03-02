@@ -126,7 +126,7 @@ RecipeParsingResult createResultFromIngredientParsing(
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
-  IngredientParsingResult Function(Element, double, String, String?)
+  IngredientParsingResult Function(Element, double, Uri, String?)
       parseIngredientMethod,
 ) {
   var ingredientParsingResults = elements
@@ -134,15 +134,15 @@ RecipeParsingResult createResultFromIngredientParsing(
         (element) => parseIngredientMethod(
           element,
           servingsMultiplier,
-          job.url.toString(),
+          job.url,
           job.language,
         ),
       )
       .toList();
 
   var logs = ingredientParsingResults
-      .map((result) => result.metaDataLogs)
-      .expand((metaDataLogs) => metaDataLogs)
+      .map((result) => result.logs)
+      .expand((jobLogs) => jobLogs)
       .toList();
 
   var ingredients = ingredientParsingResults
@@ -156,6 +156,6 @@ RecipeParsingResult createResultFromIngredientParsing(
       name: recipeName,
       servings: job.servings,
     ),
-    metaDataLogs: logs,
+    logs: logs,
   );
 }

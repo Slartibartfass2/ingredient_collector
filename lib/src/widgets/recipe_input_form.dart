@@ -160,9 +160,9 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
           recipeJobIdToRows[job.id]!.forEach(_onRecipeParsingStarted),
     );
 
-    var metaDataLogs = parsingResults
-        .map((result) => result.metaDataLogs)
-        .expand((log) => log)
+    var logs = parsingResults
+        .map((result) => result.logs)
+        .expand((jobLogs) => jobLogs)
         .toList();
     var parsedRecipes = parsingResults
         .map((result) => result.recipe)
@@ -174,7 +174,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     if (context.mounted) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       setState(() {
-        _messageBoxes = metaDataLogs.map(MessageBox.fromMetaDataLog).toList();
+        _messageBoxes = logs.map(MessageBox.fromJobLog).toList();
         textArea.controller.text = collectionResult.resultSortedByAmount;
       });
     }

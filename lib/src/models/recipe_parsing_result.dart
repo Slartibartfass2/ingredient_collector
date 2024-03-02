@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../meta_data_logs/meta_data_log.dart';
+import '../job_logs/job_log.dart';
 import 'recipe.dart';
 import 'recipe_parsing_job.dart';
 
@@ -15,7 +15,7 @@ class RecipeParsingResult with _$RecipeParsingResult {
     Recipe? recipe,
 
     /// Additional information about the parsing.
-    required List<MetaDataLog> metaDataLogs,
+    required List<JobLog> logs,
 
     /// Whether the recipe was modified.
     @Default(false) bool wasModified,

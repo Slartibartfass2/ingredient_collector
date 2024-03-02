@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart' show fail;
-import 'package:ingredient_collector/src/meta_data_logs/meta_data_log.dart';
+import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
@@ -19,14 +19,11 @@ void expectIngredient(
   }
 }
 
-bool hasRecipeParsingErrors(RecipeParsingResult result) => result.metaDataLogs
-    .where((log) => log.type == MetaDataLogType.error)
-    .isNotEmpty;
+bool hasRecipeParsingErrors(RecipeParsingResult result) =>
+    result.logs.where((log) => log.type == JobLogType.error).isNotEmpty;
 
 bool hasIngredientParsingErrors(IngredientParsingResult result) =>
-    result.metaDataLogs
-        .where((log) => log.type == MetaDataLogType.error)
-        .isNotEmpty;
+    result.logs.where((log) => log.type == JobLogType.error).isNotEmpty;
 
 Future<void> testParsingRecipes(
   List<String> urls, {
@@ -49,7 +46,7 @@ Future<void> testParsingRecipes(
       language: job.language,
     ).then((value) => value.first);
     if (hasRecipeParsingErrors(result) || result.recipe == null) {
-      notWorkingUrls.add(job.url.toString());
+      notWorkingUrls.add("${job.url}: ${result.logs.join(", ")}");
     }
   }
 

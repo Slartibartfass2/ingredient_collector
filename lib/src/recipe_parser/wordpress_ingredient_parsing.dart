@@ -1,6 +1,6 @@
 import 'package:html/dom.dart';
 
-import '../meta_data_logs/meta_data_log.dart';
+import '../job_logs/job_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import 'parsing_helper.dart';
@@ -12,7 +12,7 @@ import 'parsing_helper.dart';
 IngredientParsingResult parseWordPressIngredient(
   Element element,
   double servingsMultiplier,
-  String recipeUrl,
+  Uri recipeUrl,
   String? language,
 ) {
   var name = "";
@@ -26,13 +26,16 @@ IngredientParsingResult parseWordPressIngredient(
         : nameElement.text.trim();
   } else {
     return IngredientParsingResult(
-      metaDataLogs: [
-        IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+      logs: [
+        SimpleJobLog(
+          subType: JobLogSubType.ingredientParsingFailure,
+          recipeUrl: recipeUrl,
+        ),
       ],
     );
   }
 
-  var logs = <MetaDataLog>[];
+  var logs = <JobLog>[];
 
   var amount = 0.0;
   var amountElements =
@@ -45,7 +48,7 @@ IngredientParsingResult parseWordPressIngredient(
       amount = parsedAmount * servingsMultiplier;
     } else {
       logs.add(
-        AmountParsingFailureMetaDataLog(
+        AmountParsingFailureJobLog(
           recipeUrl: recipeUrl,
           amountString: amountString,
           ingredientName: name,
@@ -66,6 +69,6 @@ IngredientParsingResult parseWordPressIngredient(
     ingredients: [
       Ingredient(amount: amount, unit: unit, name: name),
     ],
-    metaDataLogs: logs,
+    logs: logs,
   );
 }
