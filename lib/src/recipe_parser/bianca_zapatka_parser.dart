@@ -21,7 +21,10 @@ class BiancaZapatkaParser extends RecipeParser {
         ingredientContainers.isEmpty) {
       return RecipeParsingResult(
         logs: [
-          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -47,7 +50,7 @@ class BiancaZapatkaParser extends RecipeParser {
   IngredientParsingResult parseIngredient(
     Element element,
     double servingsMultiplier,
-    String recipeUrl,
+    Uri recipeUrl,
     String? language,
   ) =>
       parseWordPressIngredient(

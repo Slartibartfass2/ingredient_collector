@@ -108,7 +108,12 @@ void main() {
   test('parse empty ingredient element', () {
     var parser = const KptnCookParser();
     var ingredientElement = Element.html("<a></a>");
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -124,7 +129,12 @@ void main() {
       </div>
     </div>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -144,7 +154,12 @@ void main() {
       </div>
     </div>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,
@@ -164,7 +179,12 @@ void main() {
       </div>
     </div>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isTrue);
   });
 
@@ -180,7 +200,12 @@ void main() {
       </div>
     </div>
     """);
-    var result = parser.parseIngredient(ingredientElement, 1, "", "de");
+    var result = parser.parseIngredient(
+      ingredientElement,
+      1,
+      Uri.parse("www.example.org"),
+      "de",
+    );
     expect(hasIngredientParsingErrors(result), isFalse);
     expect(
       result.ingredients.first,

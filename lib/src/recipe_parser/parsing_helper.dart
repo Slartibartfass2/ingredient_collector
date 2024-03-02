@@ -126,7 +126,7 @@ RecipeParsingResult createResultFromIngredientParsing(
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
-  IngredientParsingResult Function(Element, double, String, String?)
+  IngredientParsingResult Function(Element, double, Uri, String?)
       parseIngredientMethod,
 ) {
   var ingredientParsingResults = elements
@@ -134,7 +134,7 @@ RecipeParsingResult createResultFromIngredientParsing(
         (element) => parseIngredientMethod(
           element,
           servingsMultiplier,
-          job.url.toString(),
+          job.url,
           job.language,
         ),
       )

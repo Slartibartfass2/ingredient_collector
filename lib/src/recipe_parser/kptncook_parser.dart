@@ -22,7 +22,10 @@ class KptnCookParser extends RecipeParser {
         listContainers[2].children.length < 3) {
       return RecipeParsingResult(
         logs: [
-          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -38,7 +41,10 @@ class KptnCookParser extends RecipeParser {
     if (matchGroup == null) {
       return RecipeParsingResult(
         logs: [
-          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
@@ -65,7 +71,7 @@ class KptnCookParser extends RecipeParser {
   IngredientParsingResult parseIngredient(
     Element element,
     double servingsMultiplier,
-    String recipeUrl,
+    Uri recipeUrl,
     String? language,
   ) {
     var name = "";
@@ -75,7 +81,10 @@ class KptnCookParser extends RecipeParser {
     } else {
       return IngredientParsingResult(
         logs: [
-          IngredientParsingFailureJobLog(recipeUrl: recipeUrl),
+          SimpleJobLog(
+            subType: JobLogSubType.ingredientParsingFailure,
+            recipeUrl: recipeUrl,
+          ),
         ],
       );
     }

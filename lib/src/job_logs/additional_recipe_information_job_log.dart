@@ -12,13 +12,5 @@ class AdditionalRecipeInformationJobLog extends JobLog {
   AdditionalRecipeInformationJobLog({
     required this.recipeName,
     required this.note,
-  }) : super(
-          type: JobLogType.info,
-          title: LocaleKeys.additional_information_title.tr(
-            namedArgs: {
-              'recipeName': recipeName,
-            },
-          ),
-          message: note,
-        );
+  }) : super(type: JobLogType.info);
 }

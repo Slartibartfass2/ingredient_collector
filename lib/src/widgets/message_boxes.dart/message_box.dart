@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../l10n/locale_keys.g.dart';
 import '../../job_logs/job_log.dart';
 import 'error_message_box.dart';
 import 'info_message_box.dart';
@@ -95,12 +97,70 @@ class MessageBox extends StatelessWidget {
   }
 
   /// Creates a [MessageBox] from a [JobLog].
-  factory MessageBox.fromJobLog(JobLog log) => switch (log.type) {
-        JobLogType.error =>
-          ErrorMessageBox(title: log.title, message: log.message),
-        JobLogType.warning =>
-          WarningMessageBox(title: log.title, message: log.message),
-        JobLogType.info =>
-          InfoMessageBox(title: log.title, message: log.message),
+  factory MessageBox.fromJobLog(JobLog log) => switch (log) {
+        RequestFailureJobLog log => ErrorMessageBox(
+            title: LocaleKeys.http_request_error_title.tr(),
+            message: LocaleKeys.http_request_error_message.tr(
+              namedArgs: {
+                'recipeUrl': log.recipeUrl.toString(),
+                'status': log.statusCode.toString(),
+                'message': log.responseMessage,
+              },
+            ),
+          ),
+        AmountParsingFailureJobLog log => ErrorMessageBox(
+            title: LocaleKeys.parsing_messages_amount_failure_title.tr(),
+            message: LocaleKeys.parsing_messages_amount_failure_message.tr(
+              namedArgs: {
+                'recipeUrl': log.recipeUrl.toString(),
+                'amountString': log.amountString,
+                'ingredientName': log.ingredientName,
+              },
+            ),
+          ),
+        AdditionalRecipeInformationJobLog log => InfoMessageBox(
+            title: LocaleKeys.additional_information_title.tr(
+              namedArgs: {
+                'recipeName': log.recipeName,
+              },
+            ),
+            message: log.note,
+          ),
+        SimpleJobLog log => MessageBox.fromSimpleJobLog(log),
       };
+
+  /// Creates a [MessageBox] from a [SimpleJobLog].
+  factory MessageBox.fromSimpleJobLog(SimpleJobLog log) {
+    var title = switch (log.subType) {
+      JobLogSubType.completeFailure =>
+        LocaleKeys.parsing_messages_complete_failure_title.tr(),
+      JobLogSubType.deliberatelyNotSupportedUrl =>
+        LocaleKeys.parsing_messages_deliberately_unsupported_url_title.tr(),
+      JobLogSubType.ingredientParsingFailure =>
+        LocaleKeys.parsing_messages_ingredient_failure_title.tr(),
+      JobLogSubType.missingCorsPlugin =>
+        LocaleKeys.missing_cors_plugin_title.tr(),
+    };
+
+    var url = log.recipeUrl.toString();
+    var message = switch (log.subType) {
+      JobLogSubType.completeFailure => LocaleKeys
+          .parsing_messages_complete_failure_message
+          .tr(namedArgs: {'recipeUrl': url}),
+      JobLogSubType.deliberatelyNotSupportedUrl => LocaleKeys
+          .parsing_messages_deliberately_unsupported_url_message
+          .tr(namedArgs: {'recipeUrl': url}),
+      JobLogSubType.ingredientParsingFailure => LocaleKeys
+          .parsing_messages_ingredient_failure_message
+          .tr(namedArgs: {'recipeUrl': url}),
+      JobLogSubType.missingCorsPlugin => LocaleKeys.missing_cors_plugin_message
+          .tr(namedArgs: {'recipeUrl': url}),
+    };
+
+    return switch (log.type) {
+      JobLogType.error => ErrorMessageBox(title: title, message: message),
+      JobLogType.info => InfoMessageBox(title: title, message: message),
+      JobLogType.warning => WarningMessageBox(title: title, message: message),
+    };
+  }
 }

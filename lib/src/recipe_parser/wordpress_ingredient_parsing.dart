@@ -12,7 +12,7 @@ import 'parsing_helper.dart';
 IngredientParsingResult parseWordPressIngredient(
   Element element,
   double servingsMultiplier,
-  String recipeUrl,
+  Uri recipeUrl,
   String? language,
 ) {
   var name = "";
@@ -27,7 +27,10 @@ IngredientParsingResult parseWordPressIngredient(
   } else {
     return IngredientParsingResult(
       logs: [
-        IngredientParsingFailureJobLog(recipeUrl: recipeUrl),
+        SimpleJobLog(
+          subType: JobLogSubType.ingredientParsingFailure,
+          recipeUrl: recipeUrl,
+        ),
       ],
     );
   }

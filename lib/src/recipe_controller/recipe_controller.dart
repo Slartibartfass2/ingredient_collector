@@ -191,7 +191,10 @@ class RecipeController {
     } on http.ClientException {
       return RecipeParsingResult(
         logs: [
-          MissingCorsPluginJobLog(recipeUrl: recipeParsingJob.url),
+          SimpleJobLog(
+            subType: JobLogSubType.missingCorsPlugin,
+            recipeUrl: recipeParsingJob.url,
+          ),
         ],
       );
     }
