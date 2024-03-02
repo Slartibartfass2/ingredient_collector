@@ -13,4 +13,7 @@ class SimpleJobLog extends JobLog {
     required this.subType,
     required this.recipeUrl,
   }) : super(type: subType.type);
+
+  @override
+  String toString() => "SimpleJobLog(subType=$subType, url=$recipeUrl)";
 }

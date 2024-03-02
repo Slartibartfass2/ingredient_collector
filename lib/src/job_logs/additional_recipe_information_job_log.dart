@@ -13,4 +13,8 @@ class AdditionalRecipeInformationJobLog extends JobLog {
     required this.recipeName,
     required this.note,
   }) : super(type: JobLogType.info);
+
+  @override
+  String toString() =>
+      "AdditionalRecipeInformationJobLog(recipeName=$recipeName, note=$note)";
 }

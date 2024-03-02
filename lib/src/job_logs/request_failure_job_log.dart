@@ -17,4 +17,9 @@ class RequestFailureJobLog extends JobLog {
     required this.statusCode,
     required this.responseMessage,
   }) : super(type: JobLogType.error);
+
+  @override
+  String toString() =>
+      "RequestFailureJobLog(url=$recipeUrl, statusCode=$statusCode, "
+      "message=$responseMessage)";
 }

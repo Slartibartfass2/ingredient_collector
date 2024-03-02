@@ -19,4 +19,7 @@ sealed class JobLog {
   const JobLog({
     required this.type,
   });
+
+  @override
+  String toString() => "JobLog(type=$type)";
 }

@@ -17,4 +17,9 @@ class AmountParsingFailureJobLog extends JobLog {
     required this.amountString,
     required this.ingredientName,
   }) : super(type: JobLogType.error);
+
+  @override
+  String toString() =>
+      "AmountParsingFailureJobLog(url=$recipeUrl, amount=$amountString, "
+      "ingredientName=$ingredientName)";
 }
