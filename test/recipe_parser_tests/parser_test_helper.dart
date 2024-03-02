@@ -49,7 +49,7 @@ Future<void> testParsingRecipes(
       language: job.language,
     ).then((value) => value.first);
     if (hasRecipeParsingErrors(result) || result.recipe == null) {
-      notWorkingUrls.add(job.url.toString());
+      notWorkingUrls.add("${job.url}: ${result.metaDataLogs.join(", ")}");
     }
   }
 
