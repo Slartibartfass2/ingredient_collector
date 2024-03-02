@@ -196,6 +196,18 @@ class RecipeController {
       );
     }
 
+    if (!_isSuccessStatusCode(response.statusCode)) {
+      return RecipeParsingResult(
+        metaDataLogs: [
+          RequestFailureMetaDataLog(
+            recipeUrl: recipeParsingJob.url,
+            statusCode: response.statusCode,
+            responseMessage: response.body,
+          ),
+        ],
+      );
+    }
+
     var document = parse(response.body);
 
     var recipeWebsite = RecipeWebsite.fromUrl(recipeParsingJob.url);
@@ -237,4 +249,6 @@ class RecipeController {
 
     return recipeParsingJob.copyWith(url: url ?? recipeParsingJob.url);
   }
+
+  bool _isSuccessStatusCode(int statusCode) => (statusCode ~/ 100) == 2;
 }

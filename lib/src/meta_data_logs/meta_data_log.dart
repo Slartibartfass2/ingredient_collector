@@ -11,6 +11,7 @@ part 'complete_failure_meta_data_log.dart';
 part 'deliberately_not_supported_url_meta_data_log.dart';
 part 'ingredient_parsing_failure_meta_data_log.dart';
 part 'missing_cors_plugin_meta_data_log.dart';
+part 'request_failure_meta_data_log.dart';
 
 /// Data class that represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.
@@ -30,6 +31,10 @@ class MetaDataLog {
     required this.title,
     required this.message,
   });
+
+  @override
+  String toString() =>
+      "MetaDataLog(type=$type, title=$title, message=$message)";
 }
 
 /// Type of [MetaDataLog].
