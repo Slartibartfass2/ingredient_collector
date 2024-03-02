@@ -55,6 +55,52 @@ class SimpleVeganistaParser extends RecipeParser {
     String recipeUrl,
     String? language,
   ) {
-    return IngredientParsingResult();
+    var spans = element.getElementsByTagName("span");
+    var amount = _parseAmount(spans);
+    var unit = "";
+    for (var span in spans) {
+      var parsedUnit = _parseUnit(span);
+      if (parsedUnit != null) {
+        unit = parsedUnit;
+        break;
+      }
+    }
+
+    var name = element
+        .getElementsByTagName("strong")
+        .map((e) => e.text.trim())
+        .join(" ");
+
+    print("amount: $amount, unit: $unit, name: $name");
+
+    return const IngredientParsingResult();
+  }
+
+  double _parseAmount(List<Element> spans) {
+    var attributes = ["data-nf-metric", "data-amount"];
+    for (var attribute in attributes) {
+      var matching =
+          spans.map((e) => e.attributes[attribute]).whereType<String>();
+      if (matching.isEmpty) {
+        continue;
+      }
+      var sum = matching
+          .map(tryParseAmountString)
+          .whereType<double>()
+          .reduce((sum, value) => sum + value);
+      return sum / matching.length;
+    }
+    return 0;
+  }
+
+  String? _parseUnit(Element span) {
+    var attributes = ["data-nf-metric-unit", "data-unit"];
+    for (var attribute in attributes) {
+      var attributeValue = span.attributes[attribute];
+      if (attributeValue != null) {
+        return attributeValue;
+      }
+    }
+    return null;
   }
 }
