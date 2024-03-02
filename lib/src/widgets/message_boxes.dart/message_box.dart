@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../meta_data_logs/meta_data_log.dart';
+import '../../job_logs/job_log.dart';
 import 'error_message_box.dart';
 import 'info_message_box.dart';
 import 'warning_message_box.dart';
@@ -94,13 +94,13 @@ class MessageBox extends StatelessWidget {
     );
   }
 
-  /// Creates a [MessageBox] from a [MetaDataLog].
-  factory MessageBox.fromMetaDataLog(MetaDataLog log) => switch (log.type) {
-        MetaDataLogType.error =>
+  /// Creates a [MessageBox] from a [JobLog].
+  factory MessageBox.fromJobLog(JobLog log) => switch (log.type) {
+        JobLogType.error =>
           ErrorMessageBox(title: log.title, message: log.message),
-        MetaDataLogType.warning =>
+        JobLogType.warning =>
           WarningMessageBox(title: log.title, message: log.message),
-        MetaDataLogType.info =>
+        JobLogType.info =>
           InfoMessageBox(title: log.title, message: log.message),
       };
 }

@@ -1,23 +1,23 @@
-library meta_data_log;
+library job_log;
 
 import 'package:easy_localization/easy_localization.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../models/recipe_parsing_job.dart';
 
-part 'additional_recipe_information_meta_data_log.dart';
-part 'amount_parsing_failure_meta_data_log.dart';
-part 'complete_failure_meta_data_log.dart';
-part 'deliberately_not_supported_url_meta_data_log.dart';
-part 'ingredient_parsing_failure_meta_data_log.dart';
-part 'missing_cors_plugin_meta_data_log.dart';
-part 'request_failure_meta_data_log.dart';
+part 'additional_recipe_information_job_log.dart';
+part 'amount_parsing_failure_job_log.dart';
+part 'complete_failure_job_log.dart';
+part 'deliberately_not_supported_url_job_log.dart';
+part 'ingredient_parsing_failure_job_log.dart';
+part 'missing_cors_plugin_job_log.dart';
+part 'request_failure_job_log.dart';
 
 /// Data class that represents additional information which is generated when a
 /// [RecipeParsingJob] is executed.
-class MetaDataLog {
+class JobLog {
   /// Type of log.
-  final MetaDataLogType type;
+  final JobLogType type;
 
   /// Title of log.
   final String title;
@@ -25,22 +25,21 @@ class MetaDataLog {
   /// Message of log.
   final String message;
 
-  /// Creates a [MetaDataLog] object.
-  const MetaDataLog({
+  /// Creates a [JobLog] object.
+  const JobLog({
     required this.type,
     required this.title,
     required this.message,
   });
 
   @override
-  String toString() =>
-      "MetaDataLog(type=$type, title=$title, message=$message)";
+  String toString() => "JobLog(type=$type, title=$title, message=$message)";
 }
 
-/// Type of [MetaDataLog].
+/// Type of [JobLog].
 ///
 /// A different type leads to a different representation of the log to the user.
-enum MetaDataLogType {
+enum JobLogType {
   /// The result of the [RecipeParsingJob] isn't complete and the user may need
   /// to fetch missing information.
   ///

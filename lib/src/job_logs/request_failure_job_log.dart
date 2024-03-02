@@ -1,7 +1,7 @@
-part of meta_data_log;
+part of job_log;
 
-/// [MetaDataLog] for when the HTTP request failed.
-class RequestFailureMetaDataLog extends MetaDataLog {
+/// [JobLog] for when the HTTP request failed.
+class RequestFailureJobLog extends JobLog {
   /// Url of the recipe that could not be requested.
   final Uri recipeUrl;
 
@@ -11,13 +11,13 @@ class RequestFailureMetaDataLog extends MetaDataLog {
   /// Response message of the HTTP request.
   final String responseMessage;
 
-  /// Creates a [RequestFailureMetaDataLog] object.
-  RequestFailureMetaDataLog({
+  /// Creates a [RequestFailureJobLog] object.
+  RequestFailureJobLog({
     required this.recipeUrl,
     required this.statusCode,
     required this.responseMessage,
   }) : super(
-          type: MetaDataLogType.error,
+          type: JobLogType.error,
           title: LocaleKeys.http_request_error_title.tr(),
           message: LocaleKeys.http_request_error_message.tr(
             namedArgs: {

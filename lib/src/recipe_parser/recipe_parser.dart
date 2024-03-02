@@ -3,7 +3,7 @@ library recipe_parser;
 import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:html/dom.dart' show Document, Element;
 
-import '../meta_data_logs/meta_data_log.dart';
+import '../job_logs/job_log.dart';
 import '../models/ingredient.dart';
 import '../models/ingredient_parsing_result.dart';
 import '../models/recipe_parsing_job.dart';

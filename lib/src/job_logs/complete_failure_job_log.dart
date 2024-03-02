@@ -1,14 +1,14 @@
-part of meta_data_log;
+part of job_log;
 
-/// [MetaDataLog] for when a [RecipeParsingJob] fails completely.
-class CompleteFailureMetaDataLog extends MetaDataLog {
+/// [JobLog] for when a [RecipeParsingJob] fails completely.
+class CompleteFailureJobLog extends JobLog {
   /// Url of the recipe that could not be parsed.
   final Uri recipeUrl;
 
-  /// Creates a [CompleteFailureMetaDataLog] object.
-  CompleteFailureMetaDataLog({required this.recipeUrl})
+  /// Creates a [CompleteFailureJobLog] object.
+  CompleteFailureJobLog({required this.recipeUrl})
       : super(
-          type: MetaDataLogType.error,
+          type: JobLogType.error,
           title: LocaleKeys.parsing_messages_complete_failure_title.tr(),
           message: LocaleKeys.parsing_messages_complete_failure_message.tr(
             namedArgs: {'recipeUrl': recipeUrl.toString()},

@@ -1,19 +1,19 @@
-part of meta_data_log;
+part of job_log;
 
-/// [MetaDataLog] for when additional information is stored for a recipe.
-class AdditionalRecipeInformationMetaDataLog extends MetaDataLog {
+/// [JobLog] for when additional information is stored for a recipe.
+class AdditionalRecipeInformationJobLog extends JobLog {
   /// The name of the recipe.
   final String recipeName;
 
   /// The note that was added.
   final String note;
 
-  /// Creates a [AdditionalRecipeInformationMetaDataLog] object.
-  AdditionalRecipeInformationMetaDataLog({
+  /// Creates a [AdditionalRecipeInformationJobLog] object.
+  AdditionalRecipeInformationJobLog({
     required this.recipeName,
     required this.note,
   }) : super(
-          type: MetaDataLogType.info,
+          type: JobLogType.info,
           title: LocaleKeys.additional_information_title.tr(
             namedArgs: {
               'recipeName': recipeName,

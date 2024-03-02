@@ -123,7 +123,7 @@ void main() {
       expect(result.length, 1);
       expect(hasRecipeParsingErrors(result.first), isTrue);
       expect(
-        result.first.metaDataLogs.any(
+        result.first.logs.any(
           (log) =>
               log.title ==
               LocaleKeys.parsing_messages_deliberately_unsupported_url_title,

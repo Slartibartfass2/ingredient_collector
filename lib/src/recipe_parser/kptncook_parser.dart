@@ -21,8 +21,8 @@ class KptnCookParser extends RecipeParser {
         listContainers.length < 3 ||
         listContainers[2].children.length < 3) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -37,8 +37,8 @@ class KptnCookParser extends RecipeParser {
     var matchGroup = recipeServingsMatch?.group(0);
     if (matchGroup == null) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -74,13 +74,13 @@ class KptnCookParser extends RecipeParser {
       name = nameElements.first.text.trim();
     } else {
       return IngredientParsingResult(
-        metaDataLogs: [
-          IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+        logs: [
+          IngredientParsingFailureJobLog(recipeUrl: recipeUrl),
         ],
       );
     }
 
-    var logs = <MetaDataLog>[];
+    var logs = <JobLog>[];
 
     var amount = 0.0;
     var unit = "";
@@ -99,7 +99,7 @@ class KptnCookParser extends RecipeParser {
         amount = parsedAmount * servingsMultiplier;
       } else {
         logs.add(
-          AmountParsingFailureMetaDataLog(
+          AmountParsingFailureJobLog(
             recipeUrl: recipeUrl,
             amountString: amountString,
             ingredientName: name,
@@ -116,7 +116,7 @@ class KptnCookParser extends RecipeParser {
       ingredients: [
         Ingredient(amount: amount, unit: unit, name: name),
       ],
-      metaDataLogs: logs,
+      logs: logs,
     );
   }
 }

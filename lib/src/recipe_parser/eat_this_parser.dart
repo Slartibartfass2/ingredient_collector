@@ -59,8 +59,8 @@ class EatThisParser extends RecipeParser {
   ) {
     if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          DeliberatelyNotSupportedUrlMetaDataLog(
+        logs: [
+          DeliberatelyNotSupportedUrlJobLog(
             recipeUrl: recipeParsingJob.url,
           ),
         ],
@@ -77,8 +77,8 @@ class EatThisParser extends RecipeParser {
         (recipeContainerElementsOldDesign.isEmpty &&
             recipeContainerElementsNewDesign.isEmpty)) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -100,8 +100,8 @@ class EatThisParser extends RecipeParser {
       );
     } else {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -166,8 +166,8 @@ class EatThisParser extends RecipeParser {
     var name = parts.skip(checkIndex + 1).join(" ");
     if (name.isEmpty) {
       return IngredientParsingResult(
-        metaDataLogs: [
-          IngredientParsingFailureMetaDataLog(recipeUrl: recipeUrl),
+        logs: [
+          IngredientParsingFailureJobLog(recipeUrl: recipeUrl),
         ],
       );
     }
@@ -218,8 +218,8 @@ class EatThisParser extends RecipeParser {
 
     if (servingsElements.isEmpty) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -233,8 +233,8 @@ class EatThisParser extends RecipeParser {
     var matchGroup = recipeServingsMatch?.namedGroup("servings");
     if (matchGroup == null) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -274,8 +274,8 @@ class EatThisParser extends RecipeParser {
             .map((result) => result.ingredients)
             .expand((ingredient) => ingredient)
             .toList(),
-        metaDataLogs: ingredients
-            .map((result) => result.metaDataLogs)
+        logs: ingredients
+            .map((result) => result.logs)
             .expand((log) => log)
             .toList(),
       );

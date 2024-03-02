@@ -1,7 +1,7 @@
-part of meta_data_log;
+part of job_log;
 
-/// [MetaDataLog] for when the parsing of an amount string fails.
-class AmountParsingFailureMetaDataLog extends MetaDataLog {
+/// [JobLog] for when the parsing of an amount string fails.
+class AmountParsingFailureJobLog extends JobLog {
   /// Url of the recipe that could not be parsed.
   final String recipeUrl;
 
@@ -11,13 +11,13 @@ class AmountParsingFailureMetaDataLog extends MetaDataLog {
   /// Name of the ingredient that could not be parsed.
   final String ingredientName;
 
-  /// Creates a [AmountParsingFailureMetaDataLog] object.
-  AmountParsingFailureMetaDataLog({
+  /// Creates a [AmountParsingFailureJobLog] object.
+  AmountParsingFailureJobLog({
     required this.recipeUrl,
     required this.amountString,
     required this.ingredientName,
   }) : super(
-          type: MetaDataLogType.error,
+          type: JobLogType.error,
           title: LocaleKeys.parsing_messages_amount_failure_title.tr(),
           message: LocaleKeys.parsing_messages_amount_failure_message.tr(
             namedArgs: {

@@ -1,14 +1,14 @@
-part of meta_data_log;
+part of job_log;
 
-/// [MetaDataLog] for when a recipe url is deliberately not supported.
-class DeliberatelyNotSupportedUrlMetaDataLog extends MetaDataLog {
+/// [JobLog] for when a recipe url is deliberately not supported.
+class DeliberatelyNotSupportedUrlJobLog extends JobLog {
   /// Url of the recipe that could not be parsed.
   final Uri recipeUrl;
 
-  /// Creates a [DeliberatelyNotSupportedUrlMetaDataLog] object.
-  DeliberatelyNotSupportedUrlMetaDataLog({required this.recipeUrl})
+  /// Creates a [DeliberatelyNotSupportedUrlJobLog] object.
+  DeliberatelyNotSupportedUrlJobLog({required this.recipeUrl})
       : super(
-          type: MetaDataLogType.error,
+          type: JobLogType.error,
           title: LocaleKeys.parsing_messages_deliberately_unsupported_url_title
               .tr(),
           message: LocaleKeys

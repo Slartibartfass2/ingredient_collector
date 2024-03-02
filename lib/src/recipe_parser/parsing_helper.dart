@@ -141,8 +141,8 @@ RecipeParsingResult createResultFromIngredientParsing(
       .toList();
 
   var logs = ingredientParsingResults
-      .map((result) => result.metaDataLogs)
-      .expand((metaDataLogs) => metaDataLogs)
+      .map((result) => result.logs)
+      .expand((jobLogs) => jobLogs)
       .toList();
 
   var ingredients = ingredientParsingResults
@@ -156,6 +156,6 @@ RecipeParsingResult createResultFromIngredientParsing(
       name: recipeName,
       servings: job.servings,
     ),
-    metaDataLogs: logs,
+    logs: logs,
   );
 }

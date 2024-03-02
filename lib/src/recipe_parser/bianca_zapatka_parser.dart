@@ -20,8 +20,8 @@ class BiancaZapatkaParser extends RecipeParser {
         servingsElements.isEmpty ||
         ingredientContainers.isEmpty) {
       return RecipeParsingResult(
-        metaDataLogs: [
-          CompleteFailureMetaDataLog(recipeUrl: recipeParsingJob.url),
+        logs: [
+          CompleteFailureJobLog(recipeUrl: recipeParsingJob.url),
         ],
       );
     }
