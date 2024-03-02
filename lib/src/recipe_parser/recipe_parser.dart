@@ -14,6 +14,7 @@ import 'wordpress_ingredient_parsing.dart';
 part 'bianca_zapatka_parser.dart';
 part 'eat_this_parser.dart';
 part 'kptncook_parser.dart';
+part 'simple_veganista_parser.dart';
 
 /// Interface for all recipe parsers.
 // ignore: one_member_abstracts, we define a common interface for all recipe parsers

@@ -122,7 +122,7 @@ double? _tryGetFractionWithSlash(String text) {
 
 /// Parses the passed [elements] using the [parseIngredientMethod].
 RecipeParsingResult createResultFromIngredientParsing(
-  List<Element> elements,
+  Iterable<Element> elements,
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
