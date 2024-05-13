@@ -9,4 +9,5 @@ extend-ignore-identifiers-re = [
     "Bund",
     "oder",
     "informations",
+    "ein",
 ]
