@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/vegane-karotten-brokkoli-quiche",
+        "servings": 8
+    },
+    "result": {
+        "name": "Vegane Karotten-Brokkoli-Quiche",
+        "ingredients": [
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Weizenmehl Type 550"
+            },
+            {
+                "amount": 100.0,
+                "unit": "g",
+                "name": "Dinkelvollkornmehl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "g",
+                "name": "Backpulver"
+            },
+            {
+                "amount": 1.75,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 250.0,
+                "unit": "g",
+                "name": "veganer Quark"
+            },
+            {
+                "amount": 100.0,
+                "unit": "ml",
+                "name": "Sojamilch"
+            },
+            {
+                "amount": 4.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "Apfelessig"
+            },
+            {
+                "amount": 150.0,
+                "unit": "g",
+                "name": "Brokkoli"
+            },
+            {
+                "amount": 150.0,
+                "unit": "g",
+                "name": "Karotten"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Zehen",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Tofu"
+            },
+            {
+                "amount": 20.0,
+                "unit": "g",
+                "name": "helle Misopaste"
+            },
+            {
+                "amount": 20.0,
+                "unit": "g",
+                "name": "Senf"
+            },
+            {
+                "amount": 0.25,
+                "unit": "TL",
+                "name": "Muskat"
+            },
+            {
+                "amount": 0.5,
+                "unit": "",
+                "name": "Zitrone"
+            },
+            {
+                "amount": 50.0,
+                "unit": "g",
+                "name": "veganer Reibekäse"
+            }
+        ]
+    }
+}

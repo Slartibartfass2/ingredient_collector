@@ -1,0 +1,41 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/vegane-dinkel-laugenstangen-mit-vollkorn",
+        "servings": 8
+    },
+    "result": {
+        "name": "Vegane überbackene Dinkel-Laugenstangen mit Vollkorn",
+        "ingredients": [
+            {
+                "amount": 1.0,
+                "unit": "Pkg.",
+                "name": "Trockenhefe (entspr. 7 g)"
+            },
+            {
+                "amount": 350.0,
+                "unit": "g",
+                "name": "Dinkelmehl Type 630"
+            },
+            {
+                "amount": 150.0,
+                "unit": "g",
+                "name": "Dinkelvollkornmehl"
+            },
+            {
+                "amount": 1.75,
+                "unit": "EL",
+                "name": "Salz"
+            },
+            {
+                "amount": 50.0,
+                "unit": "g",
+                "name": "Natron"
+            },
+            {
+                "amount": 8.0,
+                "unit": "EL",
+                "name": "Sanchon Cheesana Rauch-Zwiebel, Jalapeño, Paprika oder Tomate"
+            }
+        ]
+    }
+}

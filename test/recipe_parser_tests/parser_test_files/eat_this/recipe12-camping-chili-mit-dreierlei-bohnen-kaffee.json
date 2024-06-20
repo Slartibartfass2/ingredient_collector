@@ -1,0 +1,106 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/camping-chili-mit-dreierlei-bohnen-kaffee",
+        "servings": 4
+    },
+    "result": {
+        "name": "Camping Chili mit dreierlei Bohnen & Kaffee",
+        "ingredients": [
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "große Zwiebel"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Jalapeño"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Karotte"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "rote Paprika"
+            },
+            {
+                "amount": 425.0,
+                "unit": "ml",
+                "name": "/ 1 Dose Bonduelle Tigerbohnen"
+            },
+            {
+                "amount": 425.0,
+                "unit": "ml",
+                "name": "/ 1 Dose Bonduelle Kidneybohnen"
+            },
+            {
+                "amount": 425.0,
+                "unit": "ml",
+                "name": "/ 1 Dose Bonduelle Kichererbsen"
+            },
+            {
+                "amount": 280.0,
+                "unit": "g",
+                "name": "gehackte Tomaten"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Cocktailtomaten"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Kreuzkümmel"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "geräuchertes Paprikapulver"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "Oregano"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "schwarzer Pfeffer"
+            },
+            {
+                "amount": 75.0,
+                "unit": "ml",
+                "name": "starker Kaffee oder Espresso"
+            },
+            {
+                "amount": 0.5,
+                "unit": "Bund",
+                "name": "Koriander"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Limette"
+            }
+        ]
+    }
+}

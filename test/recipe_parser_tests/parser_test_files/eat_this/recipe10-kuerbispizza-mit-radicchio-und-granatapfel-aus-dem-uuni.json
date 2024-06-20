@@ -1,0 +1,86 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/kuerbispizza-mit-radicchio-und-granatapfel-aus-dem-uuni",
+        "servings": 4
+    },
+    "result": {
+        "name": "Kürbispizza mit Radicchio und Granatapfel aus dem Uuni",
+        "ingredients": [
+            {
+                "amount": 4.0,
+                "unit": "g",
+                "name": "Trockenhefe"
+            },
+            {
+                "amount": 8.0,
+                "unit": "g",
+                "name": "Salz"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "italienisches Pizzamehl Tipo 00, Weizenmehl Type 405 oder Dinkelmehl Type 630"
+            },
+            {
+                "amount": 1.0,
+                "unit": "EL",
+                "name": "Granatapfelkerne"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Knoblauchzehe"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 200.0,
+                "unit": "ml",
+                "name": "Passata"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "getrockneter Oregano"
+            },
+            {
+                "amount": 1.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Hokkaido-Kürbis"
+            },
+            {
+                "amount": 0.5,
+                "unit": "",
+                "name": "rote Zwiebel"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Blätter Radicchio"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kerne von 1/2 Granatapfel"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "optional: einige EL veganer Frischkäse (z. B. von Simply V)"
+            }
+        ]
+    }
+}

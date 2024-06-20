@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/veganer-colcannon-irischer-kartoffelbrei",
+        "servings": 4
+    },
+    "result": {
+        "name": "Veganer Colcannon – irischer Kartoffelbrei mit Grünkohl",
+        "ingredients": [
+            {
+                "amount": 1.0,
+                "unit": "kg",
+                "name": "Kartoffeln"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 45.0,
+                "unit": "g",
+                "name": "vegane Butter"
+            },
+            {
+                "amount": 125.0,
+                "unit": "g",
+                "name": "Grünkohl"
+            },
+            {
+                "amount": 125.0,
+                "unit": "g",
+                "name": "Spitzkohl"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Apfelessig"
+            },
+            {
+                "amount": 150.0,
+                "unit": "ml",
+                "name": "Hafermilch"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 1.0,
+                "unit": "Prise",
+                "name": "Muskat"
+            }
+        ]
+    }
+}

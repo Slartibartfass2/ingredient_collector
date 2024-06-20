@@ -1,0 +1,56 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/blaetterteig-canapes-mit-karamellisierten-zwiebeln",
+        "servings": 8
+    },
+    "result": {
+        "name": "Blätterteig-Canapés mit karamellisierten Zwiebeln & Thymian",
+        "ingredients": [
+            {
+                "amount": 250.0,
+                "unit": "g",
+                "name": "Zwiebeln"
+            },
+            {
+                "amount": 1.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "Rohrohrzucker"
+            },
+            {
+                "amount": 1.0,
+                "unit": "EL",
+                "name": "Balsamicoessig"
+            },
+            {
+                "amount": 270.0,
+                "unit": "g",
+                "name": "veganer Blätterteig"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Zweige",
+                "name": "Thymian"
+            },
+            {
+                "amount": 50.0,
+                "unit": "g",
+                "name": "fermentierter Cashewkäse"
+            },
+            {
+                "amount": 8.0,
+                "unit": "TL",
+                "name": "Preiselbeersauce"
+            }
+        ]
+    }
+}

@@ -1,0 +1,116 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/planetary-health-bowl-mit-lupinen-und-kurkuma-dressing",
+        "servings": 2
+    },
+    "result": {
+        "name": "Planetary Health Bowl mit Lupinen & Kurkuma-Dressing",
+        "ingredients": [
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Sonnenblumenkerne"
+            },
+            {
+                "amount": 0.5,
+                "unit": "",
+                "name": "Zitrone"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Kurkumapulver"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Ingwerpulver"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Apfelessig"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Apfeldicksaft"
+            },
+            {
+                "amount": 1.75,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Schalotte"
+            },
+            {
+                "amount": 150.0,
+                "unit": "g",
+                "name": "Rote Bete"
+            },
+            {
+                "amount": 120.0,
+                "unit": "g",
+                "name": "Karotte"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Apfel"
+            },
+            {
+                "amount": 1.5,
+                "unit": "EL",
+                "name": "Leinöl"
+            },
+            {
+                "amount": 250.0,
+                "unit": "g",
+                "name": "Pastinake"
+            },
+            {
+                "amount": 250.0,
+                "unit": "g",
+                "name": "braune Champignons"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Rapsöl"
+            },
+            {
+                "amount": 125.0,
+                "unit": "g",
+                "name": "Buchweizen"
+            },
+            {
+                "amount": 100.0,
+                "unit": "g",
+                "name": "Feldsalat"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "gekochte Lupinen"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Sauerkraut"
+            },
+            {
+                "amount": 25.0,
+                "unit": "g",
+                "name": "Walnüsse"
+            },
+            {
+                "amount": 20.0,
+                "unit": "g",
+                "name": "Microgreens"
+            }
+        ]
+    }
+}
