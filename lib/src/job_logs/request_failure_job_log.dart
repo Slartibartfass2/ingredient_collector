@@ -1,4 +1,4 @@
-part of job_log;
+part of 'job_log.dart';
 
 /// [JobLog] for when the HTTP request failed.
 class RequestFailureJobLog extends JobLog {

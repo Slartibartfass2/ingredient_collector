@@ -1,4 +1,4 @@
-part of job_log;
+part of 'job_log.dart';
 
 /// [JobLog] for when additional information is stored for a recipe.
 class AdditionalRecipeInformationJobLog extends JobLog {

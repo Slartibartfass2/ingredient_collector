@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/local_storage_controller.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
+import 'package:ingredient_collector/src/local_storage_controller.dart';
 import 'package:ingredient_collector/src/models/additional_recipe_information.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
