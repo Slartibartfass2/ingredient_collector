@@ -18,13 +18,7 @@ IngredientParsingResult parseWordPressIngredient(
   var name = "";
   var nameElements =
       element.getElementsByClassName("wprm-recipe-ingredient-name");
-  if (nameElements.isNotEmpty) {
-    var nameElement = nameElements.first;
-    // Sometimes the name has a url reference in a <a> tag
-    name = nameElement.children.isNotEmpty
-        ? nameElement.children.map((element) => element.text).join()
-        : nameElement.text.trim();
-  } else {
+  if (nameElements.isEmpty) {
     return IngredientParsingResult(
       logs: [
         SimpleJobLog(
@@ -34,6 +28,12 @@ IngredientParsingResult parseWordPressIngredient(
       ],
     );
   }
+
+  var nameElement = nameElements.first;
+  // Sometimes the name has a url reference in a <a> tag
+  name = nameElement.children.isNotEmpty
+      ? nameElement.children.map((element) => element.text).join()
+      : nameElement.text.trim();
 
   var logs = <JobLog>[];
 
