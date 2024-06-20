@@ -9,7 +9,7 @@ import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 
-import 'models/parser_test.dart';
+import 'models/parser_test_case.dart';
 import 'models/parser_test_result.dart';
 
 void expectIngredient(
@@ -69,16 +69,16 @@ Future<void> testParsingRecipes(
   }
 }
 
-Future<ParserTest> _getTestFromFile(String path) async {
+Future<ParserTestCase> _getTestFromFile(String path) async {
   var file = File(path);
   var content = await file.readAsString();
   var json = jsonDecode(content);
-  return ParserTest.fromJson(json);
+  return ParserTestCase.fromJson(json);
 }
 
-Future<List<ParserTest>> _getTestsFromDirectory(String directory) async {
+Future<List<ParserTestCase>> _getTestsFromDirectory(String directory) async {
   var files = Directory(directory).listSync();
-  var tests = <ParserTest>[];
+  var tests = <ParserTestCase>[];
   for (var file in files) {
     var test = await _getTestFromFile(file.path);
     tests.add(test);
