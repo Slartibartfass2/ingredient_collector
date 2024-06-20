@@ -1,4 +1,4 @@
-part of recipe_parser;
+part of 'recipe_parser.dart';
 
 /// [RecipeParser] implementation for `www.eat-this.org`.
 class EatThisParser extends RecipeParser {

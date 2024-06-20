@@ -1,4 +1,4 @@
-part of redirect_parser;
+part of 'redirect_parser.dart';
 
 /// [RedirectParser] implementation for `sharing.kptncook.com`.
 class KptnCookSharingUrlParser extends RedirectParser {

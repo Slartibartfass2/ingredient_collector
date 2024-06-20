@@ -1,4 +1,4 @@
-part of recipe_parser;
+part of 'recipe_parser.dart';
 
 /// [RecipeParser] implementation for `biancazapatka.com`.
 class BiancaZapatkaParser extends RecipeParser {
@@ -10,7 +10,8 @@ class BiancaZapatkaParser extends RecipeParser {
     Document document,
     RecipeParsingJob recipeParsingJob,
   ) {
-    var recipeNameElements = document.getElementsByClassName("entry-title");
+    var recipeNameElements =
+        document.getElementsByClassName("wprm-recipe-name");
     var servingsElements =
         document.getElementsByClassName("wprm-recipe-servings");
     var ingredientContainers =
