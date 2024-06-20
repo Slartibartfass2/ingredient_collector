@@ -36,25 +36,23 @@ void main() {
 
       var recipe = result.first.recipe!;
       expect(recipe.servings, 2);
-      expect(recipe.ingredients.length, 23);
+      expect(recipe.ingredients.length, 21);
 
       expectIngredient(recipe, "Sonnenblumenkerne", amount: 60, unit: "g");
       expectIngredient(recipe, "Zitrone", amount: 0.5);
       expectIngredient(recipe, "Kurkumapulver", amount: 1.5, unit: "TL");
       expectIngredient(recipe, "Ingwerpulver", amount: 1.5, unit: "TL");
-      expectIngredient(recipe, "Apfelessig", amount: 2, unit: "EL");
+      expectIngredient(recipe, "Apfelessig", amount: 3, unit: "EL");
       expectIngredient(recipe, "Apfeldicksaft", amount: 1.5, unit: "TL");
-      expectIngredient(recipe, "Salz", amount: 1, unit: "TL");
+      expectIngredient(recipe, "Salz", amount: 1.75, unit: "TL");
       expectIngredient(recipe, "Schalotte", amount: 1);
       expectIngredient(recipe, "Rote Bete", amount: 150, unit: "g");
       expectIngredient(recipe, "Karotte", amount: 120, unit: "g");
       expectIngredient(recipe, "Apfel", amount: 60, unit: "g");
       expectIngredient(recipe, "Leinöl", amount: 1.5, unit: "EL");
-      expectIngredient(recipe, "Apfelessig", amount: 1, unit: "EL");
       expectIngredient(recipe, "Pastinake", amount: 250, unit: "g");
       expectIngredient(recipe, "braune Champignons", amount: 250, unit: "g");
       expectIngredient(recipe, "Rapsöl", amount: 2, unit: "EL");
-      expectIngredient(recipe, "Salz", amount: 0.75, unit: "TL");
       expectIngredient(recipe, "Buchweizen", amount: 125, unit: "g");
       expectIngredient(recipe, "Feldsalat", amount: 100, unit: "g");
       expectIngredient(recipe, "gekochte Lupinen", amount: 200, unit: "g");
