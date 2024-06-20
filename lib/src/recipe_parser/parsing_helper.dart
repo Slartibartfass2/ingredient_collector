@@ -113,7 +113,7 @@ double? _tryGetRange(String text) {
 
 /// Tries to parse a fraction with '/' from the passed [text] e.g. 1/3.
 double? _tryGetFractionWithSlash(String text) {
-  var parts = text.split("/");
+  var parts = text.split(RegExp("[/⁄]"));
 
   if (parts.length != 2) {
     return null;
