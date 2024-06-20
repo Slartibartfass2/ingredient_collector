@@ -49,36 +49,45 @@ double? tryParseAmountString(
     // When the string can't be parsed, try other parsing methods
   }
 
+  var words = amountString.split(RegExp(r"\s+"));
+  if (words.length == 1) {
+    return _tryParseSingleWordAmount(words.first);
+  }
+  return _tryParseMultipleWordsAmount(words, language);
+}
+
+double? _tryParseSingleWordAmount(String word) {
   // When string is range return middle
-  var range = _tryGetRange(amountString);
+  var range = _tryGetRange(word);
   if (range != null) {
     return range;
   }
 
-  var fractionWithSlash = _tryGetFractionWithSlash(amountString);
+  var fractionWithSlash = _tryGetFractionWithSlash(word);
   if (fractionWithSlash != null) {
     return fractionWithSlash;
   }
 
-  if (fractions.containsKey(amountString)) {
-    return fractions[amountString];
+  if (fractions.containsKey(word)) {
+    return fractions[word];
   }
 
-  var words = amountString.split(RegExp(r"\s+"));
-  if (words.length > 1) {
-    var parsedWords = words
-        .map((word) => tryParseAmountString(word, language: language))
-        .whereType<double>();
+  return null;
+}
 
-    // Sum up values
-    if (parsedWords.length == words.length) {
-      return parsedWords.reduce((value1, value2) => value1 + value2);
-    }
+double? _tryParseMultipleWordsAmount(List<String> words, String? language) {
+  var parsedWords = words
+      .map((word) => tryParseAmountString(word, language: language))
+      .whereType<double>();
 
-    // Sometimes there's a leading word e.g. approx. or ca.
-    if (parsedWords.length == 1) {
-      return parsedWords.first;
-    }
+  // Sum up values
+  if (parsedWords.length == words.length) {
+    return parsedWords.reduce((value1, value2) => value1 + value2);
+  }
+
+  // Sometimes there's a leading word e.g. approx. or ca.
+  if (parsedWords.length == 1) {
+    return parsedWords.first;
   }
 
   return null;
