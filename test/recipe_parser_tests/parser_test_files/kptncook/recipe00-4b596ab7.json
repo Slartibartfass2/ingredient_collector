@@ -1,0 +1,101 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/4b596ab7",
+        "servings": 2
+    },
+    "result": {
+        "name": "Sticky Tofu mit Brokkoli & Kokosnuss-Reis",
+        "ingredients": [
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Brokkoli"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Limette"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "Ingwer"
+            },
+            {
+                "amount": 150.0,
+                "unit": "ml",
+                "name": "Kokosmilch"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "Koriander, frisch"
+            },
+            {
+                "amount": 120.0,
+                "unit": "g",
+                "name": "Basmati-Reis"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "Sesamsaat"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Räuchertofu"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sonnenblumenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sesamöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Weißweinessig"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Agavendicksaft"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Wasser"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocken"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Speisestärke"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sojasauce"
+            }
+        ]
+    }
+}

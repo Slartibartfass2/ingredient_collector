@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/50d87d41",
+        "servings": 2
+    },
+    "result": {
+        "name": "Zucchini-Karotten-Kichererbsen-Pfanne",
+        "ingredients": [
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Chilischote"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "Koriander, frisch"
+            },
+            {
+                "amount": 30.0,
+                "unit": "g",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Karotten"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Zucchini"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Zitrone"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Kichererbsen, Dose od. Glas"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Zimt, gemahlen"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Muskatnuss"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Piment, gemahlen"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kreuzkümmel (Cumin), gemahlen"
+            }
+        ]
+    }
+}

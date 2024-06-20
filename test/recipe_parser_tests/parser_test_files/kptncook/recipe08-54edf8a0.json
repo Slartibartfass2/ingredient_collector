@@ -1,0 +1,91 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/54edf8a0",
+        "servings": 2
+    },
+    "result": {
+        "name": "Cremige Cannelloni mit Veggie-Hack",
+        "ingredients": [
+            {
+                "amount": 15.0,
+                "unit": "g",
+                "name": "Basilikum, frisch"
+            },
+            {
+                "amount": 250.0,
+                "unit": "ml",
+                "name": "Pflanzlicher Drink"
+            },
+            {
+                "amount": 90.0,
+                "unit": "g",
+                "name": "Cannelloni"
+            },
+            {
+                "amount": 125.0,
+                "unit": "g",
+                "name": "braune Champignons"
+            },
+            {
+                "amount": 125.0,
+                "unit": "g",
+                "name": "veganes Hack"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Speisezwiebel"
+            },
+            {
+                "amount": 50.0,
+                "unit": "g",
+                "name": "veganer Frischkäse"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Tomaten, gestückelt"
+            },
+            {
+                "amount": 30.0,
+                "unit": "g",
+                "name": "vegane Butter"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Lorbeerblatt"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Weizenmehl, Typ 405"
+            }
+        ]
+    }
+}

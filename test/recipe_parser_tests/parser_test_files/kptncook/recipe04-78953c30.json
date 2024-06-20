@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/78953c30",
+        "servings": 2
+    },
+    "result": {
+        "name": "Würzige One-Pot-Pasta mit Pilzen & Cheddar",
+        "ingredients": [
+            {
+                "amount": 30.0,
+                "unit": "g",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "braune Champignons"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Speisezwiebeln"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Stange(n)",
+                "name": "Staudensellerie"
+            },
+            {
+                "amount": 70.0,
+                "unit": "g",
+                "name": "geröstete Paprikas, im Glas"
+            },
+            {
+                "amount": 40.0,
+                "unit": "g",
+                "name": "Schlagsahne"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "Petersilie, frisch"
+            },
+            {
+                "amount": 80.0,
+                "unit": "g",
+                "name": "Cheddar, 7 Monate gereift"
+            },
+            {
+                "amount": 350.0,
+                "unit": "g",
+                "name": "Tomaten, passiert"
+            },
+            {
+                "amount": 160.0,
+                "unit": "g",
+                "name": "Fusilli Nudeln (Spiralnudeln)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sonnenblumenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Paprikapulver, edelsüß"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sojasauce"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            }
+        ]
+    }
+}
