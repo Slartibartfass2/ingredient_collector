@@ -41,6 +41,8 @@ app.*.map.json
 # Freezed generated files
 /lib/src/models/**/*.freezed.dart
 /lib/src/models/**/*.g.dart
+/test/recipe_parser_tests/models/**/*.freezed.dart
+/test/recipe_parser_tests/models/**/*.g.dart
 
 # Locale generated files
 /lib/l10n/locale_keys.g.dart

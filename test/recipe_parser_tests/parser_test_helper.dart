@@ -1,4 +1,7 @@
-import 'package:flutter_test/flutter_test.dart' show fail;
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter_test/flutter_test.dart' show expect, fail;
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
@@ -6,13 +9,24 @@ import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 
+import 'models/parser_test.dart';
+import 'models/parser_test_result.dart';
+
 void expectIngredient(
   Recipe recipe,
   String name, {
   double amount = 0.0,
   String unit = "",
-}) {
-  var ingredient = Ingredient(amount: amount, unit: unit, name: name);
+}) =>
+    expectIngredient2(
+      recipe,
+      Ingredient(amount: amount, unit: unit, name: name),
+    );
+
+void expectIngredient2(
+  Recipe recipe,
+  Ingredient ingredient,
+) {
   var isInRecipe = recipe.ingredients.contains(ingredient);
   if (!isInRecipe) {
     fail("$ingredient was not found in the recipe");
@@ -52,5 +66,58 @@ Future<void> testParsingRecipes(
 
   if (notWorkingUrls.isNotEmpty) {
     fail("The following recipes failed:\n${notWorkingUrls.join("\n")}");
+  }
+}
+
+Future<ParserTest> _getTestFromFile(String path) async {
+  var file = File(path);
+  var content = await file.readAsString();
+  var json = jsonDecode(content);
+  return ParserTest.fromJson(json);
+}
+
+Future<List<ParserTest>> _getTestsFromDirectory(String directory) async {
+  var files = Directory(directory).listSync();
+  var tests = <ParserTest>[];
+  for (var file in files) {
+    var test = await _getTestFromFile(file.path);
+    tests.add(test);
+  }
+  return tests;
+}
+
+void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
+  if (hasRecipeParsingErrors(result) || result.recipe == null) {
+    fail("The recipe failed to parse: ${result.logs.join(", ")}");
+  }
+  var recipe = result.recipe!;
+  expect(recipe.name, expected.name);
+  expect(recipe.ingredients.length, expected.ingredients.length);
+  for (var ingredient in expected.ingredients) {
+    expectIngredient2(recipe, ingredient);
+  }
+}
+
+Future<void> testParsingTestFiles(String directory) async {
+  var tests = await _getTestsFromDirectory(directory);
+  var jobs = tests.map(
+    (test) => RecipeController().createRecipeParsingJob(
+      url: Uri.parse(test.request.url),
+      servings: test.request.servings,
+      language: "de",
+    ),
+  );
+  var expectedResults = tests.map((test) => test.result).toList();
+
+  var results = await RecipeController().collectRecipes(
+    recipeParsingJobs: jobs,
+    language: "de",
+  );
+  var resultsList = results.toList();
+
+  for (var i = 0; i < resultsList.length; i++) {
+    var result = resultsList[i];
+    var expected = expectedResults[i];
+    _testParserTest(result, expected);
   }
 }
