@@ -68,6 +68,7 @@ class EatThisParser extends RecipeParser {
       );
     }
 
+    // For new recipes 'wprm-recipe-name' works too
     var recipeNameElements = document.getElementsByClassName("entry-title");
     var recipeContainerElementsOldDesign =
         document.getElementsByClassName("zutaten");
