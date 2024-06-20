@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/veganes-schlemmerfilet-bordelaise",
+        "servings": 2
+    },
+    "result": {
+        "name": "Tofu à la Bordelaise - Veganes Schlemmerfilet",
+        "ingredients": [
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Tofu"
+            },
+            {
+                "amount": 0.5,
+                "unit": "",
+                "name": "Noriblatt"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "vegane Butter"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Zwiebel"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Paprikapulver"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Hefeflocken"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Panko Semmelbrösel"
+            },
+            {
+                "amount": 0.5,
+                "unit": "Bund",
+                "name": "Petersilie und Dill"
+            },
+            {
+                "amount": 0.5,
+                "unit": "",
+                "name": "Zitrone"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kartoffelpüree"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Rahmspinat"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Vegane Hollandaise"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Zitronenscheiben"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Petersilie und Dill"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "NORSAN Omega-3 Vegan Öl"
+            }
+        ]
+    }
+}

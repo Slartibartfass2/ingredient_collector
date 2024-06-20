@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/kartoffelspiralen",
+        "servings": 3
+    },
+    "result": {
+        "name": "Kartoffelspiralen (Spiral-Kartoffeln, Twister-Kartoffeln, Tornado-Kartoffeln)",
+        "ingredients": [
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "mittelgroße Kartoffeln"
+            },
+            {
+                "amount": 2.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Paprikapulver"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "Knoblauchpulver"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "italienische Kräutermischung"
+            },
+            {
+                "amount": 1.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.5,
+                "unit": "TL",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Grobes Meersalz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Petersilie"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Vegane Mayonnaise"
+            }
+        ]
+    }
+}
