@@ -77,6 +77,10 @@ double? _tryParseSingleWordAmount(String word) {
     return numberInParantheses;
   }
 
+  if (word.toLowerCase().contains("optional")) {
+    return 0;
+  }
+
   return null;
 }
 
