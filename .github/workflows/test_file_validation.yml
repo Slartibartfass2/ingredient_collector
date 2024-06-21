@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "scripts/test-file-validation/**"
-      - "test/recipe_parser_tests/parser_test_files/*.json"
+      - "test/recipe_parser_tests/parser_test_files/**/*.json"
 
 jobs:
   validation:

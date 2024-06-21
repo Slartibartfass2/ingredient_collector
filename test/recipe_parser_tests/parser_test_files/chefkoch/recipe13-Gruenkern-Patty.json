@@ -1,0 +1,71 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/2531991396777936/Gruenkern-Patty.html",
+        "servings": 16
+    },
+    "result": {
+        "name": "Grünkern-Patty",
+        "ingredients": [
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Grünkern, geschrotet"
+            },
+            {
+                "amount": 100.0,
+                "unit": "g",
+                "name": "Sonnenblumenkerne"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Haferflocken"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n)"
+            },
+            {
+                "amount": 8.0,
+                "unit": "TL",
+                "name": "Gemüsebrühepulver, hefefrei"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Wasser"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Schalotte(n)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Currypulver"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Tomatenmark, gewürztes"
+            },
+            {
+                "amount": 0.0,
+                "unit": "etwas",
+                "name": "Mehl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Öl zum Braten"
+            }
+        ]
+    }
+}

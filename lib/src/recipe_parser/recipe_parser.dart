@@ -12,6 +12,7 @@ import 'parsing_helper.dart';
 import 'wordpress_ingredient_parsing.dart';
 
 part 'bianca_zapatka_parser.dart';
+part 'chefkoch_parser.dart';
 part 'eat_this_parser.dart';
 part 'kptncook_parser.dart';
 

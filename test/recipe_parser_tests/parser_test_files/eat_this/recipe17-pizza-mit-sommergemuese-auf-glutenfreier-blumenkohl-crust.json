@@ -1,0 +1,101 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/pizza-mit-sommergemuese-auf-glutenfreier-blumenkohl-crust",
+        "servings": 4
+    },
+    "result": {
+        "name": "Pizza mit Sommergemüse auf glutenfreier Blumenkohl-Crust",
+        "ingredients": [
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Blumenkohlröschen"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Leinsamen (geschrotet)"
+            },
+            {
+                "amount": 160.0,
+                "unit": "ml",
+                "name": "Wasser"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Reismehl"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Kartoffelmehl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Knoblauchzehe"
+            },
+            {
+                "amount": 200.0,
+                "unit": "ml",
+                "name": "Tomaten-Passata"
+            },
+            {
+                "amount": 8.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Agavendicksaft"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Oregano"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "gelbe Paprika"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Champignons"
+            },
+            {
+                "amount": 0.6666,
+                "unit": "",
+                "name": "Zucchini"
+            },
+            {
+                "amount": 16.0,
+                "unit": "",
+                "name": "Cocktailtomaten"
+            },
+            {
+                "amount": 35.0,
+                "unit": "",
+                "name": "schwarze Kalamata-Oliven"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "etwas frischer Basilikum"
+            }
+        ]
+    }
+}

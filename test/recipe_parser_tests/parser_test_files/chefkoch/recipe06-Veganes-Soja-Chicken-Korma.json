@@ -1,0 +1,106 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/3274371486501413/Veganes-Soja-Chicken-Korma.html",
+        "servings": 12
+    },
+    "result": {
+        "name": "Veganes Soja-'Chicken'-Korma",
+        "ingredients": [
+            {
+                "amount": 900.0,
+                "unit": "g",
+                "name": "Sojaschnetzel"
+            },
+            {
+                "amount": 3.0,
+                "unit": "Liter",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Dose/n",
+                "name": "Kokosmilch"
+            },
+            {
+                "amount": 9.0,
+                "unit": "TL",
+                "name": "Currypaste, rote"
+            },
+            {
+                "amount": 1.5,
+                "unit": "Tube/n",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 12.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n)"
+            },
+            {
+                "amount": 3.0,
+                "unit": "Stück(e)",
+                "name": "Ingwer, ca. daumenlang"
+            },
+            {
+                "amount": 12.0,
+                "unit": "",
+                "name": "Nelke(n)"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 3.0,
+                "unit": "TL",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Kurkuma"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Currypulver"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Kreuzkümmel"
+            },
+            {
+                "amount": 0.0,
+                "unit": "einige",
+                "name": "Mandel(n), gehobelt und geröstet"
+            },
+            {
+                "amount": 30.0,
+                "unit": "Stiel/e",
+                "name": "Koriander und/oder Basilikum"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Öl (am besten Kokosöl)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Reis"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Naanbrot(e)"
+            }
+        ]
+    }
+}

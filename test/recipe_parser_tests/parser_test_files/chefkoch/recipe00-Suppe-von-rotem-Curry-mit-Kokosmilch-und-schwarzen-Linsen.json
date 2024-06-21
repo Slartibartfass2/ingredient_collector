@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/967311202389120/Suppe-von-rotem-Curry-mit-Kokosmilch-und-schwarzen-Linsen.html",
+        "servings": 12
+    },
+    "result": {
+        "name": "Suppe von rotem Curry mit Kokosmilch und schwarzen Linsen",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "Bund",
+                "name": "Lauchzwiebel(n) (Zwiebellauch)"
+            },
+            {
+                "amount": 3.0,
+                "unit": "TL",
+                "name": "Ingwer, frisch geriebener"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Currypulver, rotes"
+            },
+            {
+                "amount": 9.0,
+                "unit": "",
+                "name": "Tomate(n)"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Belugalinsen, schwarze (alternativ rote)"
+            },
+            {
+                "amount": 1200.0,
+                "unit": "ml",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 1200.0,
+                "unit": "ml",
+                "name": "Kokosmilch"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Zweig/e",
+                "name": "Koriandergrün"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Kaffir-Limettenblätter oder Zitronengras"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Öl"
+            }
+        ]
+    }
+}

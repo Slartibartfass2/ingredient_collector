@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/1588791266256787/Grillgemuese.html",
+        "servings": 2
+    },
+    "result": {
+        "name": "Grillgemüse",
+        "ingredients": [
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Paprikaschote(n), bunte"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Tomate(n)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Zucchini"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Sojasauce"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Spritzer",
+                "name": "Tabasco"
+            },
+            {
+                "amount": 0.0,
+                "unit": "viel",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Grillgewürz"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Bund",
+                "name": "Kräuter nach Wahl, frische"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Schuss",
+                "name": "Olivenöl"
+            }
+        ]
+    }
+}

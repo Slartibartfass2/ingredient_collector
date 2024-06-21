@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter_test/flutter_test.dart' show expect, fail;
+import 'package:flutter_test/flutter_test.dart' show expect, fail, isTrue;
+import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
+import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart';
 
 import 'models/parser_test_case.dart';
 import 'models/parser_test_result.dart';
@@ -78,5 +81,15 @@ Future<void> testParsingTestFiles(String directory) async {
     var result = resultsList[i];
     var expected = expectedResults[i];
     _testParserTest(result, expected);
+  }
+}
+
+RecipeParsingJob getExampleParsingJob() =>
+    RecipeParsingJob(id: 1, url: Uri.parse("www.example.org"), servings: 2);
+
+void expectRecipeParsingErrors(RecipeParser parser, List<Document> documents) {
+  for (var document in documents) {
+    var result = parser.parseRecipe(document, getExampleParsingJob());
+    expect(hasRecipeParsingErrors(result), isTrue);
   }
 }

@@ -1,0 +1,56 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/1151011221381450/Der-beste-Pizzateig.html",
+        "servings": 12
+    },
+    "result": {
+        "name": "Der beste Pizzateig",
+        "ingredients": [
+            {
+                "amount": 1500.0,
+                "unit": "g",
+                "name": "Weizenmehl Type 405"
+            },
+            {
+                "amount": 900.0,
+                "unit": "ml",
+                "name": "Wasser"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 15.0,
+                "unit": "g",
+                "name": "Frischhefe"
+            },
+            {
+                "amount": 3.0,
+                "unit": "Dose/n",
+                "name": "Pizzatomaten"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "etwas",
+                "name": "Zucker"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Basilikum"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Oregano"
+            }
+        ]
+    }
+}

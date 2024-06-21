@@ -1,0 +1,91 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/3100201462870456/Adzukibohnen-Burger.html",
+        "servings": 16
+    },
+    "result": {
+        "name": "Adzukibohnen-Burger",
+        "ingredients": [
+            {
+                "amount": 800.0,
+                "unit": "g",
+                "name": "Adzukibohnen, getrocknet oder 600 g aus der Dose, alternativ Kidneybohnen"
+            },
+            {
+                "amount": 4.0,
+                "unit": "m.-große",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Rapsöl"
+            },
+            {
+                "amount": 8.0,
+                "unit": "EL",
+                "name": "Senf"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Gewürz(e) (Oregano, Paprikapulver, Chilipulver, Kräuter der Provence)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n)"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Paniermehl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Öl zum Braten"
+            },
+            {
+                "amount": 16.0,
+                "unit": "",
+                "name": "Burgerbrötchen (z. B. Vollkornbuns zum Toasten)"
+            },
+            {
+                "amount": 16.0,
+                "unit": "Blätter",
+                "name": "Blattsalat"
+            },
+            {
+                "amount": 16.0,
+                "unit": "Scheibe/n",
+                "name": "Gurke(n)"
+            },
+            {
+                "amount": 16.0,
+                "unit": "Scheibe/n",
+                "name": "Tomate(n)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "Kresse"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Paprikaschote(n)"
+            },
+            {
+                "amount": 32.0,
+                "unit": "EL",
+                "name": "Ketchup oder BBQ-Sauce"
+            }
+        ]
+    }
+}

@@ -1,0 +1,171 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/2812481433250378/Die-ultimative-vegane-Lasagne.html",
+        "servings": 32
+    },
+    "result": {
+        "name": "Die ultimative vegane Lasagne",
+        "ingredients": [
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Naturtofu"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Räuchertofu"
+            },
+            {
+                "amount": 8.0,
+                "unit": "m.-große",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 1200.0,
+                "unit": "g",
+                "name": "Champignons"
+            },
+            {
+                "amount": 8.0,
+                "unit": "große",
+                "name": "Möhre(n)"
+            },
+            {
+                "amount": 20.0,
+                "unit": "Stange/n",
+                "name": "Staudensellerie"
+            },
+            {
+                "amount": 16.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Peperoni"
+            },
+            {
+                "amount": 16.0,
+                "unit": "EL",
+                "name": "Sojasauce"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Rohrohrzucker"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Paprikapulver, rosenscharfes"
+            },
+            {
+                "amount": 800.0,
+                "unit": "ml",
+                "name": "Weißwein, trockener"
+            },
+            {
+                "amount": 8.0,
+                "unit": "Liter",
+                "name": "Wasser"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Gemüsebrühepulver"
+            },
+            {
+                "amount": 8.0,
+                "unit": "TL",
+                "name": "Thymian, getrockneter"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Lorbeerblätter"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Muskatnuss, frisch geriebene"
+            },
+            {
+                "amount": 8.0,
+                "unit": "TL",
+                "name": "Meersalz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer, schwarzer, aus der Mühle"
+            },
+            {
+                "amount": 8.0,
+                "unit": "Topf",
+                "name": "Basilikum"
+            },
+            {
+                "amount": 20.0,
+                "unit": "EL",
+                "name": "Rapsöl zum Braten, mildes"
+            },
+            {
+                "amount": 2000.0,
+                "unit": "g",
+                "name": "Blattspinat, optional"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Margarine, vegane"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Weizenmehl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Liter",
+                "name": "Sojamilch (Sojadrink) (Sojadrink Calcium), kalter"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "ml",
+                "name": "Sojasahne (Sojacreme Cuisine)"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Zitrone(n), Saft davon"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Muskat"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Pck.",
+                "name": "Lasagneplatte(n)"
+            },
+            {
+                "amount": 1200.0,
+                "unit": "g",
+                "name": "Käseersatz, veganer (Wilmersburger Bio-Pizzaschmelz kräftig)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Margarine für die Form, vegane"
+            }
+        ]
+    }
+}

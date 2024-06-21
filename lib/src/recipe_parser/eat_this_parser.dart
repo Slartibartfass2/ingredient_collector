@@ -91,28 +91,17 @@ class EatThisParser extends RecipeParser {
     var recipeName = recipeNameElements.first.text.trim();
 
     RecipeParsingResult recipeParsingResult;
-    if (recipeContainerElementsNewDesign.isNotEmpty) {
-      recipeParsingResult = _parseRecipeNewDesign(
-        recipeContainerElementsNewDesign.first,
-        recipeName,
-        recipeParsingJob,
-      );
-    } else if (recipeContainerElementsOldDesign.isNotEmpty) {
-      recipeParsingResult = _parseRecipeOldDesign(
-        recipeContainerElementsOldDesign.first,
-        recipeName,
-        recipeParsingJob,
-      );
-    } else {
-      return RecipeParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
-        ],
-      );
-    }
+    recipeParsingResult = recipeContainerElementsNewDesign.isNotEmpty
+        ? _parseRecipeNewDesign(
+            recipeContainerElementsNewDesign.first,
+            recipeName,
+            recipeParsingJob,
+          )
+        : _parseRecipeOldDesign(
+            recipeContainerElementsOldDesign.first,
+            recipeName,
+            recipeParsingJob,
+          );
 
     return recipeParsingResult;
   }
@@ -226,8 +215,9 @@ class EatThisParser extends RecipeParser {
         (pattern) => element.text.startsWith(pattern),
       ),
     );
+    var ingredientElements = recipeElement.getElementsByTagName("li");
 
-    if (servingsElements.isEmpty) {
+    if (servingsElements.isEmpty || ingredientElements.isEmpty) {
       return RecipeParsingResult(
         logs: [
           SimpleJobLog(
@@ -259,8 +249,6 @@ class EatThisParser extends RecipeParser {
     var recipeServings = tryParseAmountString(matchGroup);
     recipeServings ??= 1;
     var servingsMultiplier = recipeParsingJob.servings / recipeServings;
-
-    var ingredientElements = recipeElement.getElementsByTagName("li");
 
     return createResultFromIngredientParsing(
       ingredientElements,
@@ -307,11 +295,22 @@ class EatThisParser extends RecipeParser {
   ) {
     var servingsElements =
         recipeElement.getElementsByClassName("wprm-recipe-servings");
-    var recipeServings = int.parse(servingsElements.first.text);
-    var servingsMultiplier = recipeParsingJob.servings / recipeServings;
-
     var ingredientElements =
         recipeElement.getElementsByClassName("wprm-recipe-ingredient");
+
+    if (servingsElements.isEmpty || ingredientElements.isEmpty) {
+      return RecipeParsingResult(
+        logs: [
+          SimpleJobLog(
+            subType: JobLogSubType.completeFailure,
+            recipeUrl: recipeParsingJob.url,
+          ),
+        ],
+      );
+    }
+
+    var recipeServings = int.parse(servingsElements.first.text);
+    var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
     return createResultFromIngredientParsing(
       ingredientElements,

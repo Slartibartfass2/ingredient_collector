@@ -225,7 +225,10 @@ class RecipeController {
     Recipe? mergedRecipe;
     if (recipe != null) {
       mergedRecipe = recipe.copyWith(
-        ingredients: mergeIngredients(recipe.ingredients).toList(),
+        name: _escapeName(recipe.name),
+        ingredients: mergeIngredients(recipe.ingredients)
+            .map((elem) => elem.copyWith(name: _escapeName(elem.name)))
+            .toList(),
       );
     }
     return result.copyWith(recipe: mergedRecipe);
@@ -264,3 +267,5 @@ class RecipeController {
 
   bool _isSuccessStatusCode(int statusCode) => (statusCode ~/ 100) == 2;
 }
+
+String _escapeName(String name) => name.replaceAll("\"", "'");
