@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/3021081454935797/Weisskohl-Kartoffel-Eintopf.html",
+        "servings": 15
+    },
+    "result": {
+        "name": "Weißkohl-Kartoffel-Eintopf",
+        "ingredients": [
+            {
+                "amount": 2.5,
+                "unit": "Kopf",
+                "name": "Weißkohl"
+            },
+            {
+                "amount": 5.0,
+                "unit": "m.-große",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 20.0,
+                "unit": "",
+                "name": "Kartoffel(n), festkochend"
+            },
+            {
+                "amount": 5.0,
+                "unit": "EL, gehäuft",
+                "name": "Senf, französischer, körnig"
+            },
+            {
+                "amount": 5.0,
+                "unit": "Liter",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Kümmelpulver"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Paprikapulver, edelsüßes"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 15.0,
+                "unit": "EL",
+                "name": "Öl"
+            },
+            {
+                "amount": 150.0,
+                "unit": "ml",
+                "name": "Pflanzensahne (Pflanzencreme Cuisine)"
+            }
+        ]
+    }
+}

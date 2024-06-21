@@ -1,0 +1,126 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/3952961605784719/Vegan-Wellington-festlicher-veganer-Braten-fuer-Weihnachten.html",
+        "servings": 30
+    },
+    "result": {
+        "name": "Vegan Wellington - festlicher, veganer Braten für Weihnachten",
+        "ingredients": [
+            {
+                "amount": 5.0,
+                "unit": "Pck.",
+                "name": "Blätterteig, aus dem Kühlregal (die meisten sind vegan)"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Leinsamen"
+            },
+            {
+                "amount": 25.0,
+                "unit": "EL",
+                "name": "Wasser"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 650.0,
+                "unit": "g",
+                "name": "Zwiebel(n), gewürfelt (ca. 1 mittelgroße)"
+            },
+            {
+                "amount": 750.0,
+                "unit": "g",
+                "name": "Karotte(n), gewürfelt"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Staudensellerie, gewürfelt (ca. 2 Stangen)"
+            },
+            {
+                "amount": 20.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n), gehackt"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Thymian, getrocknet"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Salbei, getrocknet, gemahlen"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Rosmarin, getrocknet"
+            },
+            {
+                "amount": 1750.0,
+                "unit": "g",
+                "name": "Champignons, braune, klein geschnitten"
+            },
+            {
+                "amount": 7.5,
+                "unit": "EL",
+                "name": "Tamarisauce oder Sojasauce"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Walnüsse, fein gehackt"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Mandel(n), fein gehackt"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Marone(n), vorgekochte, fein gehackt"
+            },
+            {
+                "amount": 375.0,
+                "unit": "g",
+                "name": "Dattel(n), getrocknete, oder Soft-Datteln, fein gehackt"
+            },
+            {
+                "amount": 150.0,
+                "unit": "g",
+                "name": "Panko, grob"
+            },
+            {
+                "amount": 7.5,
+                "unit": "EL",
+                "name": "Worcestershiresauce, vegan (z. B. von „Appel“)"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer, frisch gemahlen"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Flüssigrauch, Liquid Smoke (z. B. von „Painmaker“ oder „Stubb’s“)  optional"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Sojasahne (Sojacreme Cuisine)"
+            }
+        ]
+    }
+}

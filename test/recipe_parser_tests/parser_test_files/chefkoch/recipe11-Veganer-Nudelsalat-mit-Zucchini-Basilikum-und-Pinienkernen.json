@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/3116771464648692/Veganer-Nudelsalat-mit-Zucchini-Basilikum-und-Pinienkernen.html",
+        "servings": 4
+    },
+    "result": {
+        "name": "Veganer Nudelsalat mit Zucchini, Basilikum und Pinienkernen",
+        "ingredients": [
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Nudeln nach Wahl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Frühlingszwiebel(n)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Balsamico"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Senf"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Agavendicksaft oder Zucker"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Cayennepfeffer"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Knoblauchzehe(n)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 1.0,
+                "unit": "",
+                "name": "Zucchini"
+            },
+            {
+                "amount": 1.0,
+                "unit": "Glas",
+                "name": "Tomate(n), getrocknete in Öl"
+            },
+            {
+                "amount": 120.0,
+                "unit": "g",
+                "name": "Pinienkerne"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Handvoll",
+                "name": "Basilikumblätter, frische"
+            }
+        ]
+    }
+}

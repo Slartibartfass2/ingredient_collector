@@ -1,0 +1,56 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/2666701418666258/Vegane-Champignonsosse.html",
+        "servings": 4
+    },
+    "result": {
+        "name": "Vegane Champignonsoße",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Zwiebel(n)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Handvoll",
+                "name": "Champignons"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Mandelmus"
+            },
+            {
+                "amount": 600.0,
+                "unit": "ml",
+                "name": "Wasser"
+            },
+            {
+                "amount": 0.0,
+                "unit": "etwas",
+                "name": "Gemüsebrühe, gekörnte"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Petersilie"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chili"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Öl"
+            }
+        ]
+    }
+}

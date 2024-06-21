@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "https://www.chefkoch.de/rezepte/4279851704956942/Buffalo-Blumenkohl-Wings.html",
+        "servings": 10
+    },
+    "result": {
+        "name": "Buffalo Blumenkohl Wings",
+        "ingredients": [
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Mehl"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Paprikapulver, edelsüßes"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Zwiebelgranulat"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Knoblauchpulver"
+            },
+            {
+                "amount": 200.0,
+                "unit": "ml",
+                "name": "Chilisauce"
+            },
+            {
+                "amount": 200.0,
+                "unit": "ml",
+                "name": "Kochcreme, vegane"
+            },
+            {
+                "amount": 0.0,
+                "unit": "evtl.",
+                "name": "Wasser nach Bedarf"
+            },
+            {
+                "amount": 1500.0,
+                "unit": "g",
+                "name": "Blumenkohlröschen"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Panko oder Paniermehl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "n. B.",
+                "name": "BBQ-Sauce nach Wahl zum Bestreichen"
+            }
+        ]
+    }
+}
