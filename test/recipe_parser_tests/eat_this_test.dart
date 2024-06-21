@@ -73,6 +73,108 @@ void main() {
     tags: ["parsing-test"],
   );
 
+  group('Recipe parsing', () {
+    const recipeNameElement = """
+    <div class="entry-title">
+      Example Recipe
+    </div>
+    """;
+    const recipeContainerOld = """
+    <div class="zutaten">
+      <p>Zutaten für 2 Personen</p>
+      <ul>
+        <li>12 g Example Ingredient</li>
+      </ul>
+    </div>
+  	""";
+    const recipeContainerNew = """
+    <div class="wprm-recipe">
+      <div class="wprm-recipe-servings">2</div>
+      <div class="wprm-recipe-ingredient">12 g Example Ingredient</div>
+    </div>
+  	""";
+
+    test(
+      'When the recipe name element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeContainerOld
+        """);
+        var document2 = Document.html("""
+        $recipeContainerNew
+        """);
+        expectRecipeParsingErrors(parser, [document1, document2]);
+      },
+    );
+
+    test(
+      'When the recipe container is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $recipeNameElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When both recipe containers are available, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $recipeNameElement
+        $recipeContainerOld
+        $recipeContainerNew
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When the servings element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeNameElement
+        <div class="zutaten">
+          <ul>
+            <li>12 g Example Ingredient</li>
+          </ul>
+        </div>
+        """);
+        var document2 = Document.html("""
+        $recipeNameElement
+        <div class="wprm-recipe">
+          <div class="wprm-recipe-ingredient">12 g Example Ingredient</div>
+        </div>
+        """);
+        expectRecipeParsingErrors(parser, [
+          document1,
+          document2,
+        ]);
+      },
+    );
+
+    test(
+      'When the ingredients element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeNameElement
+        <div class="zutaten">
+          <ul>
+            <li>12 g Example Ingredient</li>
+          </ul>
+        </div>
+        """);
+        var document2 = Document.html("""
+        $recipeNameElement
+        <div class="wprm-recipe">
+          <div class="wprm-recipe-servings">2</div>
+        </div>
+        """);
+        expectRecipeParsingErrors(parser, [document1, document2]);
+      },
+    );
+  });
+
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");

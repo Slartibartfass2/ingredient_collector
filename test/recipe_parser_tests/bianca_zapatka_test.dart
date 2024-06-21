@@ -34,6 +34,57 @@ void main() {
     tags: ["parsing-test"],
   );
 
+  group('Recipe parsing', () {
+    const recipeNameElement = """
+    <div class="wprm-recipe-name">
+      Example Recipe
+    </div>
+    """;
+    const servingsElement = """
+    <div class="wprm-recipe-servings">
+      2
+    </div>
+    """;
+    const ingredientsElement = """
+    <div class="wprm-recipe-ingredient">
+      Ingredient Element
+    </div>
+    """;
+
+    test(
+      'When the recipe name element is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $servingsElement
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When the servings element is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $recipeNameElement
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When the ingredients element is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+  });
+
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");

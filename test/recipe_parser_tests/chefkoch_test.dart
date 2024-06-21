@@ -34,6 +34,101 @@ void main() {
     tags: ["parsing-test"],
   );
 
+  group('Recipe parsing', () {
+    const recipeNameElement = """
+    <div class="recipe-header">
+      <h1>Example Recipe</h1>
+    </div>
+    """;
+    const servingsElement = """
+    <div class="recipe-servings">
+      <input value="2">
+    </div>
+    """;
+    const ingredientsElement = """
+    <div class="ingredients">
+      <table>
+        <tr><td>Ingredient Element</td></tr>
+      </table>
+    </div>
+    """;
+
+    test(
+      'When the recipe name element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $servingsElement
+        $ingredientsElement
+        """);
+        var document2 = Document.html("""
+        <div class="recipe-header"> </div>
+        $servingsElement
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [document1, document2]);
+      },
+    );
+
+    test(
+      'When the servings element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeNameElement
+        $ingredientsElement
+        """);
+        var document2 = Document.html("""
+        $recipeNameElement
+        <div class="recipe-servings"> </div>
+        $ingredientsElement
+        """);
+        var document3 = Document.html("""
+        $recipeNameElement
+        <div class="recipe-servings">
+          <input>
+        </div>
+        $ingredientsElement
+        """);
+        var document4 = Document.html("""
+        $recipeNameElement
+        <div class="recipe-servings">
+          <input value="invalid_value">
+        </div>
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [
+          document1,
+          document2,
+          document3,
+          document4,
+        ]);
+      },
+    );
+
+    test(
+      'When the ingredients element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        """);
+        var document2 = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        <div class="ingredients"> </div>
+        """);
+        var document3 = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        <div class="ingredients">
+          <table>
+          </table>
+        </div>
+        """);
+        expectRecipeParsingErrors(parser, [document1, document2, document3]);
+      },
+    );
+  });
+
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");

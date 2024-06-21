@@ -35,6 +35,64 @@ void main() {
     tags: ["parsing-test"],
   );
 
+  group('Recipe parsing', () {
+    const recipeNameElement = """
+    <div class="kptn-recipetitle">
+      Example Recipe
+    </div>
+    """;
+    const servingsElement = """
+    <div class="kptn-person-count">
+      2
+    </div>
+    """;
+    const ingredientsElement = """
+    <div class="col-md-offset-3">
+      Ingredient Element
+    </div>
+    """;
+
+    test(
+      'When the recipe name element is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $servingsElement
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When the servings element is missing, then parsing returns errors',
+      () {
+        var document = Document.html("""
+        $recipeNameElement
+        $ingredientsElement
+        """);
+        expectRecipeParsingErrors(parser, [document]);
+      },
+    );
+
+    test(
+      'When the ingredients element is missing, then parsing returns errors',
+      () {
+        var document1 = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        """);
+        var document2 = Document.html("""
+        $recipeNameElement
+        $servingsElement
+        <div class="col-md-offset-3">Title Element</div>
+        <div class="col-md-offset-3">Description Element</div>
+        <div class="col-md-offset-3">Ingredients Element</div>
+        """);
+        expectRecipeParsingErrors(parser, [document1, document2]);
+      },
+    );
+  });
+
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");
