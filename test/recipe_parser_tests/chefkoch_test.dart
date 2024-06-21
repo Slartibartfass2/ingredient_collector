@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
     show ChefkochParser;
@@ -16,6 +17,14 @@ void main() {
     RecipeCache().cache.clear();
   });
 
+  IngredientParsingResult parseIngredient(Element ingredientElement) =>
+      parser.parseIngredient(
+        ingredientElement,
+        1.0,
+        Uri.parse("www.example.org"),
+        "de",
+      );
+
   test(
     'When test files are parsed, then expected results are met',
     () async => testParsingTestFiles(
@@ -28,12 +37,7 @@ void main() {
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");
-      var result = parser.parseIngredient(
-        ingredientElement,
-        1,
-        Uri.parse("www.example.org"),
-        "de",
-      );
+      var result = parseIngredient(ingredientElement);
       expect(hasIngredientParsingErrors(result), isTrue);
     });
 
@@ -51,12 +55,7 @@ void main() {
           </td>
         </tr>
         """);
-        var result = parser.parseIngredient(
-          ingredientElement,
-          1,
-          Uri.parse("www.example.org"),
-          "de",
-        );
+        var result = parseIngredient(ingredientElement);
         expect(hasIngredientParsingErrors(result), isFalse);
         expect(
           result.ingredients.first,
@@ -84,12 +83,7 @@ void main() {
           </td>
         </tr>
         """);
-        var result = parser.parseIngredient(
-          ingredientElement,
-          1,
-          Uri.parse("www.example.org"),
-          "de",
-        );
+        var result = parseIngredient(ingredientElement);
         expect(hasIngredientParsingErrors(result), isFalse);
         expect(
           result.ingredients.first,
