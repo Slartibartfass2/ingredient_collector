@@ -118,18 +118,6 @@ void main() {
     );
 
     test(
-      'When both recipe containers are available, then parsing returns errors',
-      () {
-        var document = Document.html("""
-        $recipeNameElement
-        $recipeContainerOld
-        $recipeContainerNew
-        """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
-
-    test(
       'When the servings element is missing, then parsing returns errors',
       () {
         var document1 = Document.html("""

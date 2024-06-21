@@ -91,28 +91,17 @@ class EatThisParser extends RecipeParser {
     var recipeName = recipeNameElements.first.text.trim();
 
     RecipeParsingResult recipeParsingResult;
-    if (recipeContainerElementsNewDesign.isNotEmpty) {
-      recipeParsingResult = _parseRecipeNewDesign(
-        recipeContainerElementsNewDesign.first,
-        recipeName,
-        recipeParsingJob,
-      );
-    } else if (recipeContainerElementsOldDesign.isNotEmpty) {
-      recipeParsingResult = _parseRecipeOldDesign(
-        recipeContainerElementsOldDesign.first,
-        recipeName,
-        recipeParsingJob,
-      );
-    } else {
-      return RecipeParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
-        ],
-      );
-    }
+    recipeParsingResult = recipeContainerElementsNewDesign.isNotEmpty
+        ? _parseRecipeNewDesign(
+            recipeContainerElementsNewDesign.first,
+            recipeName,
+            recipeParsingJob,
+          )
+        : _parseRecipeOldDesign(
+            recipeContainerElementsOldDesign.first,
+            recipeName,
+            recipeParsingJob,
+          );
 
     return recipeParsingResult;
   }
