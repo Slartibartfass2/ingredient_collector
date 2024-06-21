@@ -32,7 +32,7 @@ IngredientParsingResult parseWordPressIngredient(
   var nameElement = nameElements.first;
   // Sometimes the name has a url reference in a <a> tag
   name = nameElement.children.isNotEmpty
-      ? nameElement.children.map((element) => element.text).join()
+      ? nameElement.children.map((element) => element.text).join().trim()
       : nameElement.text.trim();
 
   var logs = <JobLog>[];
