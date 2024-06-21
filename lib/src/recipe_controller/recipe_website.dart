@@ -9,7 +9,10 @@ enum RecipeWebsite {
   biancaZapatka("biancazapatka.com", BiancaZapatkaParser()),
 
   /// Eat This.
-  eatThis("www.eat-this.org", EatThisParser());
+  eatThis("www.eat-this.org", EatThisParser()),
+
+  /// Chefkoch.
+  chefkoch("www.chefkoch.de", ChefkochParser());
 
   /// Returns the [RecipeWebsite] for the passed [url].
   ///

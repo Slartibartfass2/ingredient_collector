@@ -154,8 +154,8 @@
 - [x] Add support for [KptnCook](https://www.kptncook.com/)
 - [x] Add support for [Eat This](https://www.eat-this.org/)
 - [x] Add support for [Bianca Zapatka](https://biancazapatka.com/de/)
+- [x] Add support for [Chefkoch](https://www.chefkoch.de/)
 - [ ] Add support for [Nora Cooks](https://www.noracooks.com/)
-- [ ] Add support for [Chefkoch](https://www.chefkoch.de/)
 - [ ] Add support for [BBC Good Food](https://www.bbcgoodfood.com/)
 
 See the [open issues](https://github.com/Slartibartfass2/ingredient_collector/issues) for a full list of proposed features (and known issues).
