@@ -31,7 +31,7 @@ import '../../test/recipe_parser_tests/parser_test_helper.dart';
 ///   ```
 /// 5. Run the script and verify the recipes
 void main() {
-  const fileDirectory = "kptncook";
+  const fileDirectory = "bianca_zapatka";
 
   setUp(() {
     SharedPreferences.setMockInitialValues({});
@@ -68,26 +68,26 @@ void main() {
 
   test("create files", () async {
     var urls = [
-      "http://mobile.kptncook.com/recipe/pinterest/4b596ab7",
-      "http://mobile.kptncook.com/recipe/pinterest/635c0bad",
-      "http://mobile.kptncook.com/recipe/pinterest/11ac751d",
-      "http://mobile.kptncook.com/recipe/pinterest/39ca1693",
-      "http://mobile.kptncook.com/recipe/pinterest/78953c30",
-      "http://mobile.kptncook.com/recipe/pinterest/17a4b8b",
-      "http://mobile.kptncook.com/recipe/pinterest/4fcb5947",
-      "http://mobile.kptncook.com/recipe/pinterest/50d87d41",
-      "http://mobile.kptncook.com/recipe/pinterest/54edf8a0",
-      "http://mobile.kptncook.com/recipe/pinterest/5a948e36",
-      "http://mobile.kptncook.com/recipe/pinterest/5050d37a",
-      "http://mobile.kptncook.com/recipe/pinterest/5f1565c5",
-      "http://mobile.kptncook.com/recipe/pinterest/3e110959",
-      "http://mobile.kptncook.com/recipe/pinterest/6a9c6549",
-      "http://mobile.kptncook.com/recipe/pinterest/49219eeb",
-      "http://mobile.kptncook.com/recipe/pinterest/bb082a7",
-      "http://mobile.kptncook.com/recipe/pinterest/3ac1047b",
-      "http://mobile.kptncook.com/recipe/pinterest/73c683de",
-      "http://mobile.kptncook.com/recipe/pinterest/37653916",
-      "http://mobile.kptncook.com/recipe/pinterest/15e9a06f",
+      "https://biancazapatka.com/de/blumenkohl-tikka-masala",
+      "https://biancazapatka.com/de/cremiges-pilzrisotto",
+      "https://biancazapatka.com/de/vegane-nussecken",
+      "https://biancazapatka.com/de/reispapier-dumplings",
+      "https://biancazapatka.com/de/knuspriger-tofu-asiatisch",
+      "https://biancazapatka.com/de/vegane-frittata-mit-gemuese",
+      "https://biancazapatka.com/de/kartoffel-hack-auflauf",
+      "https://biancazapatka.com/de/bauerntopf",
+      "https://biancazapatka.com/de/erdnuss-curry-mit-gemuese",
+      "https://biancazapatka.com/de/vegane-haehnchenkeulen",
+      "https://biancazapatka.com/de/suesskartoffel-bowl-mit-kichererbsen",
+      "https://biancazapatka.com/de/kartoffelspiralen",
+      "https://biancazapatka.com/de/veganes-schlemmerfilet-bordelaise",
+      "https://biancazapatka.com/de/veganer-doener-kebab",
+      "https://biancazapatka.com/de/erdbeerkuchen",
+      "https://biancazapatka.com/de/karottensalat-mit-apfel",
+      "https://biancazapatka.com/de/nudelauflauf-bolognese",
+      "https://biancazapatka.com/de/cannelloni-mit-spinat",
+      "https://biancazapatka.com/de/pasta-mit-kuerbis-sauce",
+      "https://biancazapatka.com/de/gnocchi-pfanne-mit-spargel",
     ];
 
     var map = <String, int>{};
