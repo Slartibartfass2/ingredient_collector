@@ -12,7 +12,7 @@ class WordPressParser extends RecipeParser {
   ) {
     var recipeNameElements = document
         .getElementsByClassName("wprm-recipe-name")
-        .map((e) => e.text.trim())
+        .map((element) => element.text.trim())
         .where((element) => element.isNotEmpty);
     var servingsElements = document
         .getElementsByClassName("wprm-recipe-servings")

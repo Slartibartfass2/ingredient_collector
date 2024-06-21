@@ -19,14 +19,6 @@ void main() {
     RecipeCache().cache.clear();
   });
 
-  IngredientParsingResult parseIngredientNewDesign(Element ingredientElement) =>
-      parser.parseIngredientNewDesign(
-        ingredientElement,
-        1.0,
-        Uri.parse("www.example.org"),
-        "de",
-      );
-
   IngredientParsingResult parseIngredientOldDesign(Element ingredientElement) =>
       parser.parseIngredientOldDesign(
         ingredientElement,
@@ -87,12 +79,6 @@ void main() {
       </ul>
     </div>
   	""";
-    const recipeContainerNew = """
-    <div class="wprm-recipe">
-      <div class="wprm-recipe-servings">2</div>
-      <div class="wprm-recipe-ingredient">12 g Example Ingredient</div>
-    </div>
-  	""";
 
     test(
       'When the recipe name element is missing, then parsing returns errors',
@@ -101,7 +87,8 @@ void main() {
         $recipeContainerOld
         """);
         var document2 = Document.html("""
-        $recipeContainerNew
+        $recipeContainerOld
+        <div class="entry-title"></div>
         """);
         expectRecipeParsingErrors(parser, [document1, document2]);
       },
@@ -120,7 +107,7 @@ void main() {
     test(
       'When the servings element is missing, then parsing returns errors',
       () {
-        var document1 = Document.html("""
+        var document = Document.html("""
         $recipeNameElement
         <div class="zutaten">
           <ul>
@@ -128,23 +115,14 @@ void main() {
           </ul>
         </div>
         """);
-        var document2 = Document.html("""
-        $recipeNameElement
-        <div class="wprm-recipe">
-          <div class="wprm-recipe-ingredient">12 g Example Ingredient</div>
-        </div>
-        """);
-        expectRecipeParsingErrors(parser, [
-          document1,
-          document2,
-        ]);
+        expectRecipeParsingErrors(parser, [document]);
       },
     );
 
     test(
       'When the ingredients element is missing, then parsing returns errors',
       () {
-        var document1 = Document.html("""
+        var document = Document.html("""
         $recipeNameElement
         <div class="zutaten">
           <ul>
@@ -152,13 +130,7 @@ void main() {
           </ul>
         </div>
         """);
-        var document2 = Document.html("""
-        $recipeNameElement
-        <div class="wprm-recipe">
-          <div class="wprm-recipe-servings">2</div>
-        </div>
-        """);
-        expectRecipeParsingErrors(parser, [document1, document2]);
+        expectRecipeParsingErrors(parser, [document]);
       },
     );
   });
@@ -166,31 +138,9 @@ void main() {
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
       var ingredientElement = Element.html("<a></a>");
-      var resultNew = parseIngredientNewDesign(ingredientElement);
-      var resultOld = parseIngredientOldDesign(ingredientElement);
-      expect(hasIngredientParsingErrors(resultNew), isTrue);
-      expect(hasIngredientParsingErrors(resultOld), isTrue);
+      var result = parseIngredientOldDesign(ingredientElement);
+      expect(hasIngredientParsingErrors(result), isTrue);
     });
-
-    test(
-      'When element with amount and unit is parsed, then parsing is '
-      'successful (new design)',
-      () {
-        var ingredientElement = Element.html("""
-        <li class="wprm-recipe-ingredient">
-          <span class="wprm-recipe-ingredient-amount">½</span>
-          <span class="wprm-recipe-ingredient-unit">TL</span>
-          <span class="wprm-recipe-ingredient-name">Zucker</span>
-        </li>
-        """);
-        var result = parseIngredientNewDesign(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isFalse);
-        expect(
-          result.ingredients.first,
-          equals(const Ingredient(amount: 0.5, unit: "TL", name: "Zucker")),
-        );
-      },
-    );
 
     test(
       'When element with amount and unit is parsed, then parsing is '
@@ -213,21 +163,6 @@ void main() {
             ),
           ),
         );
-      },
-    );
-
-    test(
-      'When element with invalid amount is parsed, then parsing returns '
-      'errors',
-      () {
-        var ingredientElement = Element.html("""
-        <li class="wprm-recipe-ingredient">
-          <span class="wprm-recipe-ingredient-amount">amount</span>
-          <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
-        </li>
-        """);
-        var result = parseIngredientNewDesign(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isTrue);
       },
     );
   });
