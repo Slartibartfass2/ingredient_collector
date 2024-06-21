@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/buffalo-mac-and-cheese",
+        "servings": 36
+    },
+    "result": {
+        "name": "Vegan Buffalo Mac and Cheese",
+        "ingredients": [
+            {
+                "amount": 4.5,
+                "unit": "cups",
+                "name": "raw cashews"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "water"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "buffalo sauce"
+            },
+            {
+                "amount": 6.0,
+                "unit": "tablespoons",
+                "name": "fresh lemon juice"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "nutritional yeast"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 36.0,
+                "unit": "ounces",
+                "name": "small shaped pasta"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "soy curls"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "warm vegetable broth"
+            },
+            {
+                "amount": 21.0,
+                "unit": "ounces",
+                "name": "vegan shredded cheddar cheese"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "vegan ranch"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "panko breadcrumbs"
+            },
+            {
+                "amount": 3.0,
+                "unit": "tablespoon",
+                "name": "vegan butter, melted"
+            }
+        ]
+    }
+}

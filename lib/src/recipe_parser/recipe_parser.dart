@@ -9,12 +9,13 @@ import '../models/ingredient_parsing_result.dart';
 import '../models/recipe_parsing_job.dart';
 import '../models/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
-import 'wordpress_ingredient_parsing.dart';
 
 part 'bianca_zapatka_parser.dart';
 part 'chefkoch_parser.dart';
 part 'eat_this_parser.dart';
 part 'kptncook_parser.dart';
+part 'nora_cooks_parser.dart';
+part 'wordpress_parser.dart';
 
 /// Interface for all recipe parsers.
 // ignore: one_member_abstracts, we define a common interface for all recipe parsers

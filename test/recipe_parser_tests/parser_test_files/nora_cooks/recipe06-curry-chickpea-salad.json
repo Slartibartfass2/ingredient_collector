@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/curry-chickpea-salad",
+        "servings": 16
+    },
+    "result": {
+        "name": "Curry Chickpea Salad",
+        "ingredients": [
+            {
+                "amount": 8.0,
+                "unit": "15-ounce",
+                "name": "cans chickpeas, drained and rinsed"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "vegan mayo"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "curry powder"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "mango chutney"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 4.0,
+                "unit": "rib",
+                "name": "celery, finely diced"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "green onion, finely diced"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "raisins"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "roasted chopped cashews"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "chopped fresh cilantro"
+            }
+        ]
+    }
+}

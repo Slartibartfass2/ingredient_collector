@@ -1,0 +1,81 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-lentil-soup",
+        "servings": 32
+    },
+    "result": {
+        "name": "The Best Lentil Soup",
+        "ingredients": [
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "medium onion, chopped"
+            },
+            {
+                "amount": 12.0,
+                "unit": "",
+                "name": "cloves garlic, minced"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "medium carrots, peeled and chopped"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "celery ribs, chopped"
+            },
+            {
+                "amount": 56.0,
+                "unit": "ounce",
+                "name": "can crushed or diced tomatoes"
+            },
+            {
+                "amount": 8.0,
+                "unit": "cups",
+                "name": "dry green or brown lentils"
+            },
+            {
+                "amount": 28.0,
+                "unit": "cups",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "ground cumin"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "ground coriander"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "smoked paprika"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "salt, or to taste"
+            },
+            {
+                "amount": 12.0,
+                "unit": "cups",
+                "name": "baby spinach, sliced into ribbons"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "lemon, juiced (about 2 tablespoons)"
+            }
+        ]
+    }
+}

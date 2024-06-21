@@ -1,0 +1,51 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-breakfast-sandwich",
+        "servings": 48
+    },
+    "result": {
+        "name": "Vegan Breakfast Sandwich (Freezer-Friendly)",
+        "ingredients": [
+            {
+                "amount": 96.0,
+                "unit": "ounces",
+                "name": "JUST Egg liquid*"
+            },
+            {
+                "amount": 24.0,
+                "unit": "tablespoons",
+                "name": "all purpose flour"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "baking powder"
+            },
+            {
+                "amount": 3.0,
+                "unit": "teaspoon",
+                "name": "black salt"
+            },
+            {
+                "amount": 48.0,
+                "unit": "",
+                "name": "vegan breakfast sausage rounds*"
+            },
+            {
+                "amount": 48.0,
+                "unit": "",
+                "name": "slices vegan cheddar style cheese"
+            },
+            {
+                "amount": 48.0,
+                "unit": "",
+                "name": "english muffins"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "hot sauce, vegan mayo, arugula, spinach, sliced tomatoes, mashed avocado"
+            }
+        ]
+    }
+}

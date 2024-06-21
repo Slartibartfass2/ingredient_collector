@@ -72,6 +72,15 @@ double? _tryParseSingleWordAmount(String word) {
     return fractions[word];
   }
 
+  var numberInParentheses = _tryGetNumberInParentheses(word);
+  if (numberInParentheses != null) {
+    return numberInParentheses;
+  }
+
+  if (word.toLowerCase().contains("optional")) {
+    return 0;
+  }
+
   return null;
 }
 
@@ -127,6 +136,14 @@ double? _tryGetFractionWithSlash(String text) {
   }
 
   return numerator / denominator;
+}
+
+/// Tries to parse a number in parentheses from the passed [text] e.g. (2).
+double? _tryGetNumberInParentheses(String text) {
+  var pattern = RegExp("([0-9]+)");
+  var match = pattern.firstMatch(text)?.group(0);
+  if (match == null) return null;
+  return tryParseAmountString(match);
 }
 
 /// Parses the passed [elements] using the [parseIngredientMethod].

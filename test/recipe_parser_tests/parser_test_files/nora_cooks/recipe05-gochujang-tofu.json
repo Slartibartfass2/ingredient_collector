@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/gochujang-tofu",
+        "servings": 12
+    },
+    "result": {
+        "name": "Gochujang Tofu",
+        "ingredients": [
+            {
+                "amount": 60.0,
+                "unit": "ounce",
+                "name": "block extra-firm tofu"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "cornstarch"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "olive oil"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "tomato sauce"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "gochujang paste (make sure it's vegan friendly)"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "low sodium soy sauce"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "granulated sugar"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "rice vinegar"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "water"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "toasted sesame oil"
+            },
+            {
+                "amount": 12.0,
+                "unit": "cloves",
+                "name": "garlic, minced"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "grated fresh ginger"
+            }
+        ]
+    }
+}

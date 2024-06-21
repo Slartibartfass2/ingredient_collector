@@ -1,0 +1,91 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/crispy-tofu",
+        "servings": 32
+    },
+    "result": {
+        "name": "Vegan Chicken Nuggets",
+        "ingredients": [
+            {
+                "amount": 8.0,
+                "unit": "14.5 ounce",
+                "name": "blocks firm tofu"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "low sodium soy sauce"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cup",
+                "name": "water"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "onion powder"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "garlic powder"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "unsweetened plant milk"
+            },
+            {
+                "amount": 8.0,
+                "unit": "cups",
+                "name": "all purpose flour"
+            },
+            {
+                "amount": 16.0,
+                "unit": "cups",
+                "name": "cornflakes"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "smoked paprika"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "onion powder"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "spray oil, for baking"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "vegan mayo"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "yellow mustard"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "pure maple syrup"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "barbecue sauce"
+            }
+        ]
+    }
+}

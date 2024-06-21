@@ -1,0 +1,106 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-fried-chicken",
+        "servings": 24
+    },
+    "result": {
+        "name": "Vegan Fried Chicken",
+        "ingredients": [
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "vital wheat gluten"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "nutritional yeast"
+            },
+            {
+                "amount": 8.0,
+                "unit": "teaspoon",
+                "name": "onion powder"
+            },
+            {
+                "amount": 8.0,
+                "unit": "teaspoon",
+                "name": "garlic powder"
+            },
+            {
+                "amount": 10.0,
+                "unit": "teaspoon",
+                "name": "black pepper"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "cajun seasoning"
+            },
+            {
+                "amount": 6.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 26.0,
+                "unit": "cups",
+                "name": "vegan no chicken broth"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cup",
+                "name": "unsweetened soy milk"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cup",
+                "name": "all purpose flour"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "nutritional yeast"
+            },
+            {
+                "amount": 8.0,
+                "unit": "teaspoons",
+                "name": "apple cider vinegar"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "cornstarch"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "paprika"
+            },
+            {
+                "amount": 8.0,
+                "unit": "teaspoons",
+                "name": "garlic powder"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "dried thyme"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "oregano"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "heat safe oil, such as vegetable or peanut oil"
+            }
+        ]
+    }
+}

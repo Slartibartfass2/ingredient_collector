@@ -68,42 +68,11 @@ class EatThisParser extends RecipeParser {
       );
     }
 
-    // For new recipes 'wprm-recipe-name' works too
-    var recipeNameElements = document.getElementsByClassName("entry-title");
-    var recipeContainerElementsOldDesign =
-        document.getElementsByClassName("zutaten");
-    var recipeContainerElementsNewDesign =
-        document.getElementsByClassName("wprm-recipe");
-
-    if (recipeNameElements.isEmpty ||
-        (recipeContainerElementsOldDesign.isEmpty &&
-            recipeContainerElementsNewDesign.isEmpty)) {
-      return RecipeParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
-        ],
-      );
+    var isNewDesign = document.getElementsByClassName("wprm-recipe").isNotEmpty;
+    if (isNewDesign) {
+      return const WordPressParser().parseRecipe(document, recipeParsingJob);
     }
-
-    var recipeName = recipeNameElements.first.text.trim();
-
-    RecipeParsingResult recipeParsingResult;
-    recipeParsingResult = recipeContainerElementsNewDesign.isNotEmpty
-        ? _parseRecipeNewDesign(
-            recipeContainerElementsNewDesign.first,
-            recipeName,
-            recipeParsingJob,
-          )
-        : _parseRecipeOldDesign(
-            recipeContainerElementsOldDesign.first,
-            recipeName,
-            recipeParsingJob,
-          );
-
-    return recipeParsingResult;
+    return _parseRecipeOldDesign(document, recipeParsingJob);
   }
 
   /// Parses an html [Element] representing an [Ingredient] in the old design.
@@ -183,41 +152,37 @@ class EatThisParser extends RecipeParser {
     );
   }
 
-  /// Parses an html [Element] representing an [Ingredient] in the new design.
-  ///
-  /// If the parsing fails the ingredient in [IngredientParsingResult] will be
-  /// null and a suitable log will be returned.
-  @visibleForTesting
-  IngredientParsingResult parseIngredientNewDesign(
-    Element element,
-    double servingsMultiplier,
-    Uri recipeUrl,
-    String? language,
-  ) =>
-      parseWordPressIngredient(
-        element,
-        servingsMultiplier,
-        recipeUrl,
-        language,
-      );
-
   RecipeParsingResult _parseRecipeOldDesign(
-    Element recipeElement,
-    String recipeName,
+    Document document,
     RecipeParsingJob recipeParsingJob,
   ) {
-    var possibleServingsElements = recipeElement.getElementsByTagName("p") +
-        recipeElement.getElementsByTagName("h3") +
-        recipeElement.getElementsByTagName("h2") +
-        recipeElement.getElementsByTagName("h4");
-    var servingsElements = possibleServingsElements.where(
-      (element) => _servingsTextPatterns.any(
-        (pattern) => element.text.startsWith(pattern),
-      ),
-    );
-    var ingredientElements = recipeElement.getElementsByTagName("li");
+    var recipeNameElements = document
+        .getElementsByClassName("entry-title")
+        .map((element) => element.text.trim())
+        .where((element) => element.isNotEmpty);
+    var recipeContainerElements = document.getElementsByClassName("zutaten");
+    var servingsElements = recipeContainerElements
+        .map(
+          (element) =>
+              element.getElementsByTagName("p") +
+              element.getElementsByTagName("h3") +
+              element.getElementsByTagName("h2") +
+              element.getElementsByTagName("h4"),
+        )
+        .expand((element) => element)
+        .where(
+          (element) => _servingsTextPatterns.any(
+            (pattern) => element.text.startsWith(pattern),
+          ),
+        );
+    var ingredientElements = recipeContainerElements
+        .map((element) => element.getElementsByTagName("li"))
+        .expand((element) => element)
+        .toList();
 
-    if (servingsElements.isEmpty || ingredientElements.isEmpty) {
+    if (recipeNameElements.isEmpty ||
+        servingsElements.isEmpty ||
+        ingredientElements.isEmpty) {
       return RecipeParsingResult(
         logs: [
           SimpleJobLog(
@@ -228,6 +193,7 @@ class EatThisParser extends RecipeParser {
       );
     }
 
+    var recipeName = recipeNameElements.first;
     var servingsElement = servingsElements.first;
 
     // Retrieve amount of servings
@@ -286,39 +252,6 @@ class EatThisParser extends RecipeParser {
       );
     }
     return null;
-  }
-
-  RecipeParsingResult _parseRecipeNewDesign(
-    Element recipeElement,
-    String recipeName,
-    RecipeParsingJob recipeParsingJob,
-  ) {
-    var servingsElements =
-        recipeElement.getElementsByClassName("wprm-recipe-servings");
-    var ingredientElements =
-        recipeElement.getElementsByClassName("wprm-recipe-ingredient");
-
-    if (servingsElements.isEmpty || ingredientElements.isEmpty) {
-      return RecipeParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
-        ],
-      );
-    }
-
-    var recipeServings = int.parse(servingsElements.first.text);
-    var servingsMultiplier = recipeParsingJob.servings / recipeServings;
-
-    return createResultFromIngredientParsing(
-      ingredientElements,
-      recipeParsingJob,
-      servingsMultiplier,
-      recipeName,
-      parseIngredientNewDesign,
-    );
   }
 
   List<String> _breakUpNumberAndText(String numberAndTextString) {

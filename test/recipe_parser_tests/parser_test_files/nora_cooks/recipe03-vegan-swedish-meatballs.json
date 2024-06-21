@@ -1,0 +1,106 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-swedish-meatballs",
+        "servings": 24
+    },
+    "result": {
+        "name": "Vegan Swedish Meatballs",
+        "ingredients": [
+            {
+                "amount": 8.0,
+                "unit": "cloves",
+                "name": "garlic"
+            },
+            {
+                "amount": 1.3333333333333333,
+                "unit": "cup",
+                "name": "unsweetened soy milk"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "panko breadcrumbs"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "ground flaxseeds"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "ground allspice"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "ground nutmeg"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "ground black pepper"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 64.0,
+                "unit": "ounces",
+                "name": "vegan ground beef"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 16.0,
+                "unit": "tablespoons",
+                "name": "vegan butter"
+            },
+            {
+                "amount": 16.0,
+                "unit": "tablespoons",
+                "name": "all purpose flour"
+            },
+            {
+                "amount": 8.0,
+                "unit": "cups",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "vegan cream"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "vegan Worcestershire sauce"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "dijon mustard"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "salt and pepper, to taste"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Vegan Mashed Potatoes"
+            },
+            {
+                "amount": 48.0,
+                "unit": "ounces",
+                "name": "cooked pasta"
+            }
+        ]
+    }
+}

@@ -13,7 +13,7 @@ void main() {
   test(
     'When test files are parsed, then expected results are met',
     () async => testParsingTestFiles(
-      "./test/recipe_parser_tests/parser_test_files/bianca_zapatka",
+      "./test/recipe_parser_tests/parser_test_files/nora_cooks",
     ),
     timeout: const Timeout(Duration(minutes: 5)),
     tags: ["parsing-test"],

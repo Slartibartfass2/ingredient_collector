@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-lo-mein",
+        "servings": 12
+    },
+    "result": {
+        "name": "Vegan Lo Mein",
+        "ingredients": [
+            {
+                "amount": 0.75,
+                "unit": "cup",
+                "name": "low sodium soy sauce"
+            },
+            {
+                "amount": 3.0,
+                "unit": "tablespoon",
+                "name": "granulated sugar"
+            },
+            {
+                "amount": 6.0,
+                "unit": "teaspoons",
+                "name": "toasted sesame oil"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "ground ginger"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "Sriracha hot sauce"
+            },
+            {
+                "amount": 24.0,
+                "unit": "ounces",
+                "name": "udon wheat noodles"
+            },
+            {
+                "amount": 6.0,
+                "unit": "tablespoons",
+                "name": "high-heat safe oil"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "sliced cremini mushrooms"
+            },
+            {
+                "amount": 3.0,
+                "unit": "small",
+                "name": "white onion"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "red bell pepper"
+            },
+            {
+                "amount": 3.0,
+                "unit": "medium",
+                "name": "carrot"
+            },
+            {
+                "amount": 12.0,
+                "unit": "large",
+                "name": "cloves garlic"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "chopped green onions"
+            }
+        ]
+    }
+}

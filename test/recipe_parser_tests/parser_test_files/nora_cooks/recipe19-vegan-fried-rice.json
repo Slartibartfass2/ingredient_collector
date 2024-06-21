@@ -1,0 +1,81 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-fried-rice",
+        "servings": 16
+    },
+    "result": {
+        "name": "Vegan Fried Rice",
+        "ingredients": [
+            {
+                "amount": 4.0,
+                "unit": "tablespoon",
+                "name": "olive oil"
+            },
+            {
+                "amount": 4.0,
+                "unit": "block",
+                "name": "firm or extra-firm tofu (14-16 oz)"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "nutritional yeast"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "turmeric"
+            },
+            {
+                "amount": 8.0,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 2.0,
+                "unit": "medium",
+                "name": "sweet onion, diced small"
+            },
+            {
+                "amount": 16.0,
+                "unit": "cloves",
+                "name": "garlic, minced"
+            },
+            {
+                "amount": 8.0,
+                "unit": "large",
+                "name": "carrots, peeled and diced"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "frozen peas"
+            },
+            {
+                "amount": 16.0,
+                "unit": "cups",
+                "name": "cooked and chilled rice (white or brown are both fine)"
+            },
+            {
+                "amount": 10.0,
+                "unit": "",
+                "name": "green onions, sliced"
+            },
+            {
+                "amount": 14.0,
+                "unit": "tablespoons",
+                "name": "low sodium soy sauce (use tamari for gluten free)"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "toasted sesame oil"
+            }
+        ]
+    }
+}
