@@ -33,6 +33,7 @@ class IngredientCollectorApp extends StatelessWidget {
         home: const HomePage(),
         title: appTitle,
         theme: ThemeData(
+          useMaterial3: false,
           primarySwatch: Colors.blue,
         ),
         locale: context.locale,
