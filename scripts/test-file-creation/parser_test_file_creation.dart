@@ -129,7 +129,7 @@ void main() {
 
     var recipeStrings = results.map((e) => allToJson(e.$1, e.$2)).toList();
     for (var i = 0; i < recipeStrings.length; i++) {
-      var title = results[i].$1.url.toString().split("/").last;
+      var title = results[i].$1.url.toString().split("/").last.split(".").first;
       var fileName = "recipe${i.toString().padLeft(2, '0')}-$title";
       await write(recipeStrings[i], fileName);
     }
