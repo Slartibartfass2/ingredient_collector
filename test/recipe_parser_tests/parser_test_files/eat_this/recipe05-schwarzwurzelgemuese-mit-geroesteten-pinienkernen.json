@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/schwarzwurzelgemuese-mit-geroesteten-pinienkernen",
+        "servings": 12
+    },
+    "result": {
+        "name": "Schwarzwurzelgemüse mit gerösteten Pinienkernen",
+        "ingredients": [
+            {
+                "amount": 1500.0,
+                "unit": "g",
+                "name": "Schwarzwurzel"
+            },
+            {
+                "amount": 9.0,
+                "unit": "EL",
+                "name": "Pinienkerne"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "Schalotte"
+            },
+            {
+                "amount": 9.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Zehen",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Rauchsalz"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "schwarzer Pfeffer"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Sojasauce"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Petersilie"
+            },
+            {
+                "amount": 3.0,
+                "unit": "TL",
+                "name": "Speisestärke"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "Zitrone"
+            }
+        ]
+    }
+}

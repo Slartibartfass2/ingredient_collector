@@ -1,0 +1,71 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/15e9a06f",
+        "servings": 8
+    },
+    "result": {
+        "name": "Tofu-Reis-Pfanne à la Stroganoff",
+        "ingredients": [
+            {
+                "amount": 480.0,
+                "unit": "g",
+                "name": "Basmati-Reis"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Speisezwiebel"
+            },
+            {
+                "amount": 800.0,
+                "unit": "g",
+                "name": "Tofu, natur"
+            },
+            {
+                "amount": 480.0,
+                "unit": "g",
+                "name": "Champignons"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "rote Paprika"
+            },
+            {
+                "amount": 800.0,
+                "unit": "ml",
+                "name": "Pflanzliche Sahne"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Paprikapulver, edelsüß"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocke"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sojasauce"
+            }
+        ]
+    }
+}

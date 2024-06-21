@@ -1,4 +1,4 @@
-part of job_log;
+part of 'job_log.dart';
 
 /// Type of [JobLog].
 ///

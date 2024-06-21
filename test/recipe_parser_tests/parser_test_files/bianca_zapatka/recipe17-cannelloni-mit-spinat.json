@@ -1,0 +1,86 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/cannelloni-mit-spinat",
+        "servings": 8
+    },
+    "result": {
+        "name": "Cannelloni mit Spinat - wie beim Italiener!",
+        "ingredients": [
+            {
+                "amount": 36.0,
+                "unit": "",
+                "name": "Cannelloni"
+            },
+            {
+                "amount": 1600.0,
+                "unit": "g",
+                "name": "TK-Blattspinat"
+            },
+            {
+                "amount": 600.0,
+                "unit": "g",
+                "name": "veganer Frischkäse"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Pflanzenöl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Zwiebeln"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 800.0,
+                "unit": "g",
+                "name": "stückige Tomaten"
+            },
+            {
+                "amount": 400.0,
+                "unit": "ml",
+                "name": "vegane Sahne"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Italienische Kräutermischung"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Agavendicksaft"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "veganer Käse"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Allrounder Topping"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Basilikum"
+            }
+        ]
+    }
+}

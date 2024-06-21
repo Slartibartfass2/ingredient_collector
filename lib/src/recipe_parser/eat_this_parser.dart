@@ -1,4 +1,4 @@
-part of recipe_parser;
+part of 'recipe_parser.dart';
 
 /// [RecipeParser] implementation for `www.eat-this.org`.
 class EatThisParser extends RecipeParser {
@@ -68,6 +68,7 @@ class EatThisParser extends RecipeParser {
       );
     }
 
+    // For new recipes 'wprm-recipe-name' works too
     var recipeNameElements = document.getElementsByClassName("entry-title");
     var recipeContainerElementsOldDesign =
         document.getElementsByClassName("zutaten");

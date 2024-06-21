@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/karottensalat-mit-apfel",
+        "servings": 16
+    },
+    "result": {
+        "name": "Der Beste Karotten-Apfel-Salat nach Omas Rezept",
+        "ingredients": [
+            {
+                "amount": 2000.0,
+                "unit": "g",
+                "name": "Karotten"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "großer Apfel"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Zitrone"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Raps- oder Olivenöl"
+            },
+            {
+                "amount": 6.0,
+                "unit": "TL",
+                "name": "Agavendicksaft"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Veganer Feta"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Walnüsse"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Petersilie & Basilikum"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Baguette"
+            }
+        ]
+    }
+}

@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/reispapier-dumplings",
+        "servings": 24
+    },
+    "result": {
+        "name": "Knusprige Dumplings aus Reispapier (Schnelle Gyoza)",
+        "ingredients": [
+            {
+                "amount": 24.0,
+                "unit": "",
+                "name": "Reispapierplatten"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Sesamöl"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Stück",
+                "name": "Ingwer"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Champignons"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Kohl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Karotten"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Tamari"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Chilipulver"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 5.0,
+                "unit": "EL",
+                "name": "Sesam"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Rezept Dipping-Sauce"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Koriander"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocken"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Limetten"
+            }
+        ]
+    }
+}

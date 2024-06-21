@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/veganer-doener-kebab",
+        "servings": 16
+    },
+    "result": {
+        "name": "Der Beste Vegane Döner Kebab - schnell und einfach selbstgemacht!",
+        "ingredients": [
+            {
+                "amount": 16.0,
+                "unit": "",
+                "name": "Dönerbrote"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Rezept",
+                "name": "Rotkrautsalat"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Rezept",
+                "name": "Tzatziki"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Romana Salatherz"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Tomaten"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Rezept",
+                "name": "Veganes Dönerfleisch"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Öl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Zwiebeln / Röstzwiebeln"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Veganer Feta"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Burgersauce"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Ajvar"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Avocado"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gurken"
+            }
+        ]
+    }
+}

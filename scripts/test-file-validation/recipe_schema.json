@@ -1,0 +1,65 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/Slartibartfass2/ingredient_collector/blob/main/test/recipe_parser_tests/parser_test_files/recipe_schema.json",
+    "title": "Recipe",
+    "description": "A recipe",
+    "type": "object",
+    "properties": {
+        "request": {
+            "description": "The request to fetch the recipe",
+            "type": "object",
+            "properties": {
+                "url": {
+                    "description": "The URL of the request",
+                    "type": "string",
+                    "pattern": "(?:http[s]?:\\/\\/.)?(?:www\\.)?[-a-zA-Z0-9@%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b(?:[-a-zA-Z0-9@:%_\\+.~#?&\\/\\/=]*)"
+                },
+                "servings": {
+                    "description": "The number of servings to request",
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [ "url", "servings" ]
+        },
+        "result": {
+            "description": "The expected result of the request",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the recipe",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ingredients": {
+                    "description": "The ingredients of the recipe",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "description": "The amount of the ingredient",
+                                "type": "number",
+                                "minimum": 0
+                            },
+                            "unit": {
+                                "description": "The unit of the ingredient",
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "The name of the ingredient",
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        },
+                        "required": [ "amount", "unit", "name" ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                }
+            },
+            "required": [ "name", "ingredients" ]
+        }
+    },
+    "required": [ "request", "result" ]
+}

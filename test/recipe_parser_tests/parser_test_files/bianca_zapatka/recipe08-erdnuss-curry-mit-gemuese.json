@@ -1,0 +1,116 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/erdnuss-curry-mit-gemuese",
+        "servings": 20
+    },
+    "result": {
+        "name": "Das Beste Erdnuss-Curry (einfach & vegan)",
+        "ingredients": [
+            {
+                "amount": 1250.0,
+                "unit": "g",
+                "name": "Basmati-Reis"
+            },
+            {
+                "amount": 5.0,
+                "unit": "EL",
+                "name": "Kokosöl"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "rote Zwiebel"
+            },
+            {
+                "amount": 17.5,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 5.0,
+                "unit": "Stück",
+                "name": "Ingwer"
+            },
+            {
+                "amount": 7.5,
+                "unit": "EL",
+                "name": "Currypaste"
+            },
+            {
+                "amount": 7.5,
+                "unit": "",
+                "name": "Karotten"
+            },
+            {
+                "amount": 10.0,
+                "unit": "",
+                "name": "Paprika"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "Zucchini"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "grüne Prinzess-Bohnen"
+            },
+            {
+                "amount": 10.0,
+                "unit": "",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 10.0,
+                "unit": "TL",
+                "name": "Paprikapulver"
+            },
+            {
+                "amount": 12.5,
+                "unit": "EL",
+                "name": "Tamari"
+            },
+            {
+                "amount": 500.0,
+                "unit": "ml",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 5.0,
+                "unit": "Dose",
+                "name": "Kokosmilch"
+            },
+            {
+                "amount": 15.0,
+                "unit": "EL",
+                "name": "Erdnussmus"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Frische Petersilie oder Koriander"
+            },
+            {
+                "amount": 15.0,
+                "unit": "EL",
+                "name": "geröstete Erdnüsse"
+            },
+            {
+                "amount": 10.0,
+                "unit": "EL",
+                "name": "Sesam"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocken"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Limetten"
+            }
+        ]
+    }
+}

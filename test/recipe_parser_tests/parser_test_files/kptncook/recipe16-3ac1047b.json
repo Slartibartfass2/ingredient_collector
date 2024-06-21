@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/3ac1047b",
+        "servings": 4
+    },
+    "result": {
+        "name": "Orzo-Risotto mit Pilzen, Parmesan & Basilikum-Öl",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Speisezwiebel"
+            },
+            {
+                "amount": 2.0,
+                "unit": "EL",
+                "name": "Pinienkern"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Champignons"
+            },
+            {
+                "amount": 40.0,
+                "unit": "g",
+                "name": "Basilikum, frisch"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Orzo (Nudelreis)"
+            },
+            {
+                "amount": 40.0,
+                "unit": "g",
+                "name": "Parmesan"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gemüsebrühe"
+            }
+        ]
+    }
+}

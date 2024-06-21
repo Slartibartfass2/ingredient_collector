@@ -65,7 +65,7 @@ class MessageBox extends StatelessWidget {
                 color: _textColor,
                 fontWeight: FontWeight.bold,
               ),
-              textScaleFactor: 1.05,
+              textScaler: const TextScaler.linear(1.05),
             ),
           ),
         ],

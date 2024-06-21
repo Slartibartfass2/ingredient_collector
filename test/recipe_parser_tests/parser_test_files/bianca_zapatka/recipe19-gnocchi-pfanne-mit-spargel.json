@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/gnocchi-pfanne-mit-spargel",
+        "servings": 12
+    },
+    "result": {
+        "name": "Gnocchi-Pfanne mit grünem Spargel in cremiger Rahmsauce",
+        "ingredients": [
+            {
+                "amount": 7.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 1800.0,
+                "unit": "g",
+                "name": "Gnocchi"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "Zwiebel"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 750.0,
+                "unit": "g",
+                "name": "grüner Spargel"
+            },
+            {
+                "amount": 750.0,
+                "unit": "g",
+                "name": "Kirschtomaten"
+            },
+            {
+                "amount": 750.0,
+                "unit": "ml",
+                "name": "vegane Kochsahne"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Hefeflocken"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "Spritzer Zitronensaft"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Frische Petersilie"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Frisches Basilikum"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Veganer Parmesan"
+            }
+        ]
+    }
+}

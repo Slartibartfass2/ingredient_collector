@@ -1,0 +1,81 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/szechuan-pilz-scallops-in-knoblauch-sauce",
+        "servings": 6
+    },
+    "result": {
+        "name": "Szechuan-Pilz-Scallops in Knoblauch-Sauce",
+        "ingredients": [
+            {
+                "amount": 75.0,
+                "unit": "g",
+                "name": "getrocknete Mu Err Pilze"
+            },
+            {
+                "amount": 900.0,
+                "unit": "g",
+                "name": "Kräuterseitlinge"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 1.5,
+                "unit": "",
+                "name": "rote Paprika"
+            },
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "rote Chilischote"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Zehen",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 9.0,
+                "unit": "EL",
+                "name": "Erdnussöl"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Sojasauce"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "dunkle Sojasauce"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "chinesischer Kochwein"
+            },
+            {
+                "amount": 4.5,
+                "unit": "EL",
+                "name": "chinesischer schwarzer Essig"
+            },
+            {
+                "amount": 1.5,
+                "unit": "EL",
+                "name": "Zucker"
+            },
+            {
+                "amount": 2.25,
+                "unit": "EL",
+                "name": "Speisestärke"
+            },
+            {
+                "amount": 0.75,
+                "unit": "TL",
+                "name": "MSG"
+            }
+        ]
+    }
+}

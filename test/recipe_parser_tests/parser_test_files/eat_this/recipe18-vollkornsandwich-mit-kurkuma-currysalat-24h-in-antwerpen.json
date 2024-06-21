@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/vollkornsandwich-mit-kurkuma-currysalat-24h-in-antwerpen",
+        "servings": 8
+    },
+    "result": {
+        "name": "Vollkornsandwich mit Kurkuma-Currysalat & 24h in Antwerpen",
+        "ingredients": [
+            {
+                "amount": 600.0,
+                "unit": "g",
+                "name": "gekochte Kichererbsen"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Schalotte (optional)"
+            },
+            {
+                "amount": 8.0,
+                "unit": "EL",
+                "name": "Sojajoghurt"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Apfelessig"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Currypulver"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Kurkumapulver (oder frisch gerieben)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Meersalz"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "große Karotte"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "reife Avocado"
+            },
+            {
+                "amount": 8.0,
+                "unit": "EL",
+                "name": "Alfalfasprossen"
+            },
+            {
+                "amount": 16.0,
+                "unit": "",
+                "name": "Scheiben gutes Vollkornbrot"
+            }
+        ]
+    }
+}

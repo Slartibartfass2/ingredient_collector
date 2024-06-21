@@ -17,6 +17,7 @@ void main() {
 
   test('parse amount string with combined numbers', () {
     expect(tryParseAmountString("1 ⅝", language: "en"), equals(1.625));
+    expect(tryParseAmountString("1 1/2", language: "en"), equals(1.5));
   });
 
   test('parse amount string with leading word', () {

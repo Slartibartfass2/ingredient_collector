@@ -1,0 +1,41 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/nudelauflauf-bolognese",
+        "servings": 20
+    },
+    "result": {
+        "name": "Schneller Nudelauflauf Bolognese (einfach & vegan)",
+        "ingredients": [
+            {
+                "amount": 1500.0,
+                "unit": "g",
+                "name": "Nudeln"
+            },
+            {
+                "amount": 2500.0,
+                "unit": "g",
+                "name": "Bolognese Sauce"
+            },
+            {
+                "amount": 625.0,
+                "unit": "g",
+                "name": "Vegane Crème fraîche"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Veganer Käse"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Allrounder Topping"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kräuter"
+            }
+        ]
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/herzhaftes-monkey-bread-mit-sauerteig",
+        "servings": 2700
+    },
+    "result": {
+        "name": "Herzhaftes Monkey Bread mit Sauerteig",
+        "ingredients": [
+            {
+                "amount": 2400.0,
+                "unit": "g",
+                "name": "Pizzateig"
+            },
+            {
+                "amount": 45.0,
+                "unit": "g",
+                "name": "Petersilie"
+            },
+            {
+                "amount": 1.5,
+                "unit": "Zehe",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 13.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 3.75,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "Oregano"
+            },
+            {
+                "amount": 0.75,
+                "unit": "TL",
+                "name": "Chiliflocken"
+            },
+            {
+                "amount": 90.0,
+                "unit": "g",
+                "name": "Veganer Reibekäse"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Mohn"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Sesam"
+            }
+        ]
+    }
+}

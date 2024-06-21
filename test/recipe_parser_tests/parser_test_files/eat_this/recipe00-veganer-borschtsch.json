@@ -1,0 +1,101 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/veganer-borschtsch",
+        "servings": 8
+    },
+    "result": {
+        "name": "Veganer Borschtsch",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Gemüsezwiebel"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Rote Bete"
+            },
+            {
+                "amount": 550.0,
+                "unit": "g",
+                "name": "Kartoffeln"
+            },
+            {
+                "amount": 300.0,
+                "unit": "g",
+                "name": "Karotte"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Weißkraut"
+            },
+            {
+                "amount": 10.0,
+                "unit": "Zehen",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 10.0,
+                "unit": "g",
+                "name": "getrocknete Steinpilze"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Sonnenblumenöl"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Kümmel"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 100.0,
+                "unit": "g",
+                "name": "getrocknete Sojaschnetzel"
+            },
+            {
+                "amount": 4.0,
+                "unit": "Blätter",
+                "name": "Lorbeer"
+            },
+            {
+                "amount": 12.0,
+                "unit": "",
+                "name": "Wacholderbeeren"
+            },
+            {
+                "amount": 12.0,
+                "unit": "EL",
+                "name": "Apfelessig"
+            },
+            {
+                "amount": 1.5,
+                "unit": "TL",
+                "name": "schwarzer Pfeffer"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "veganer Quark"
+            },
+            {
+                "amount": 30.0,
+                "unit": "g",
+                "name": "Dill"
+            }
+        ]
+    }
+}

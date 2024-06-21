@@ -1,0 +1,66 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/49219eeb",
+        "servings": 6
+    },
+    "result": {
+        "name": "Indisches Kokos-Dal",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "",
+                "name": "Gemüsezwiebel"
+            },
+            {
+                "amount": 780.0,
+                "unit": "ml",
+                "name": "Kokosmilch"
+            },
+            {
+                "amount": 18.0,
+                "unit": "g",
+                "name": "Garam Masala"
+            },
+            {
+                "amount": 60.0,
+                "unit": "g",
+                "name": "Ingwer"
+            },
+            {
+                "amount": 780.0,
+                "unit": "g",
+                "name": "Tomaten, geschält"
+            },
+            {
+                "amount": 480.0,
+                "unit": "g",
+                "name": "Rote Linsen"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kokosöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocke"
+            }
+        ]
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/73c683de",
+        "servings": 4
+    },
+    "result": {
+        "name": "Knusprige Kartoffeln & Kichererbsen mit Chili & Joghurt",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Speisezwiebel"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Griechischer Joghurt"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Kartoffeln"
+            },
+            {
+                "amount": 240.0,
+                "unit": "g",
+                "name": "Blattspinat, frisch"
+            },
+            {
+                "amount": 400.0,
+                "unit": "g",
+                "name": "Kichererbsen, Dose od. Glas"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Weißweinessig"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Kreuzkümmel (Cumin), gemahlen"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Chiliflocke"
+            }
+        ]
+    }
+}

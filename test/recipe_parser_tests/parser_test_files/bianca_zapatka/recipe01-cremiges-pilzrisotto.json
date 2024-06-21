@@ -1,0 +1,71 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/cremiges-pilzrisotto",
+        "servings": 4
+    },
+    "result": {
+        "name": "Cremiges Pilz-Risotto (vegan + GF)",
+        "ingredients": [
+            {
+                "amount": 250.0,
+                "unit": "g",
+                "name": "Arborio-Reis"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "Zwiebel"
+            },
+            {
+                "amount": 6.0,
+                "unit": "Zehen",
+                "name": "Knoblauch"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 120.0,
+                "unit": "ml",
+                "name": "Weißwein"
+            },
+            {
+                "amount": 600.0,
+                "unit": "ml",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 240.0,
+                "unit": "ml",
+                "name": "Sojasahne"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Champignons"
+            },
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Soja-Sauce"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "veganer Parmesan"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "frische Petersilie"
+            }
+        ]
+    }
+}

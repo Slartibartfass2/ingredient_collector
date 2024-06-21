@@ -1,0 +1,101 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/knuspriger-tofu-asiatisch",
+        "servings": 8
+    },
+    "result": {
+        "name": "Knusper-Tofu in Sauce nach Asiatischer Art",
+        "ingredients": [
+            {
+                "amount": 800.0,
+                "unit": "g",
+                "name": "fester Tofu"
+            },
+            {
+                "amount": 160.0,
+                "unit": "g",
+                "name": "Speise-/Maisstärke"
+            },
+            {
+                "amount": 240.0,
+                "unit": "ml",
+                "name": "Wasser"
+            },
+            {
+                "amount": 120.0,
+                "unit": "g",
+                "name": "Panko-Paniermehl"
+            },
+            {
+                "amount": 7.0,
+                "unit": "EL",
+                "name": "Sriracha"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Ahornsirup"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Tamari"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Reisessig"
+            },
+            {
+                "amount": 7.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 2.0,
+                "unit": "Stück",
+                "name": "Ingwer"
+            },
+            {
+                "amount": 4.0,
+                "unit": "EL",
+                "name": "Sesamöl"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "ca. 80 ml Wasser"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Reis"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gemüse"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Sesam"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Frühlingszwiebeln"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Koriander oder Petersilie"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Geröstete Erdnüsse"
+            }
+        ]
+    }
+}

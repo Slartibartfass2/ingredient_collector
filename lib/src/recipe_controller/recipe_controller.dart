@@ -219,7 +219,16 @@ class RecipeController {
       return const RecipeParsingResult(logs: []);
     }
 
-    return recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
+    var result =
+        recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
+    var recipe = result.recipe;
+    Recipe? mergedRecipe;
+    if (recipe != null) {
+      mergedRecipe = recipe.copyWith(
+        ingredients: mergeIngredients(recipe.ingredients).toList(),
+      );
+    }
+    return result.copyWith(recipe: mergedRecipe);
   }
 
   Future<RecipeParsingJob> _getRedirectRecipeParsingJob(

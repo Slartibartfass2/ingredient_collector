@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "http://mobile.kptncook.com/recipe/pinterest/5050d37a",
+        "servings": 8
+    },
+    "result": {
+        "name": "Würziges Pilz-Tofu-Geschnetzeltes mit Süßkartoffelpüree",
+        "ingredients": [
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "braune Champignons"
+            },
+            {
+                "amount": 8.0,
+                "unit": "",
+                "name": "Süßkartoffeln"
+            },
+            {
+                "amount": 20.0,
+                "unit": "g",
+                "name": "Schnittlauch, frisch"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Speisezwiebel"
+            },
+            {
+                "amount": 280.0,
+                "unit": "ml",
+                "name": "Haferdrink"
+            },
+            {
+                "amount": 160.0,
+                "unit": "g",
+                "name": "vegane Butter"
+            },
+            {
+                "amount": 600.0,
+                "unit": "g",
+                "name": "Räuchertofu"
+            },
+            {
+                "amount": 80.0,
+                "unit": "g",
+                "name": "Tafel Meerrettich"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Pfeffer"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Muskatnüsse"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Weizenmehl, Typ 405"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz"
+            }
+        ]
+    }
+}

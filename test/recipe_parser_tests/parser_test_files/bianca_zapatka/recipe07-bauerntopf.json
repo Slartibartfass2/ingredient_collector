@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "https://biancazapatka.com/de/bauerntopf",
+        "servings": 8
+    },
+    "result": {
+        "name": "Bauerntopf nach Omas Rezept mit Linsen und Gemüse (Einfach & Vegan)",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 500.0,
+                "unit": "g",
+                "name": "Veganes Hack"
+            },
+            {
+                "amount": 2.0,
+                "unit": "",
+                "name": "große Zwiebel"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 6.0,
+                "unit": "EL",
+                "name": "Tomatenmark"
+            },
+            {
+                "amount": 240.0,
+                "unit": "ml",
+                "name": "Rotwein"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Kartoffeln"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Karotten"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Paprika"
+            },
+            {
+                "amount": 180.0,
+                "unit": "g",
+                "name": "rote Linsen"
+            },
+            {
+                "amount": 1560.0,
+                "unit": "ml",
+                "name": "Gemüsebrühe"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "getrocknete Kräuter"
+            },
+            {
+                "amount": 4.0,
+                "unit": "TL",
+                "name": "Paprika edelsüß"
+            },
+            {
+                "amount": 2.0,
+                "unit": "TL",
+                "name": "Paprika rosenscharf"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Salz und Pfeffer"
+            },
+            {
+                "amount": 4.0,
+                "unit": "",
+                "name": "Lorbeerblätter"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "frische Petersilie und Thymian"
+            }
+        ]
+    }
+}

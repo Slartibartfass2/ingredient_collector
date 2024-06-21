@@ -1,0 +1,106 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/hummus-wrap-der-perfekte-lunch-snack",
+        "servings": 10
+    },
+    "result": {
+        "name": "Hummus-Wrap – der perfekte Lunch-Snack!",
+        "ingredients": [
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "gekochte Kichererbsen"
+            },
+            {
+                "amount": 150.0,
+                "unit": "ml",
+                "name": "Wasser"
+            },
+            {
+                "amount": 2.5,
+                "unit": "EL",
+                "name": "Tahin"
+            },
+            {
+                "amount": 2.5,
+                "unit": "",
+                "name": "Knoblauchzehe"
+            },
+            {
+                "amount": 7.5,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 1.25,
+                "unit": "TL",
+                "name": "Salz"
+            },
+            {
+                "amount": 1.25,
+                "unit": "TL",
+                "name": "Kurkuma"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Currypulver"
+            },
+            {
+                "amount": 1000.0,
+                "unit": "g",
+                "name": "Austernpilze"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "gute Prise Salz"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "Karotte"
+            },
+            {
+                "amount": 1.25,
+                "unit": "",
+                "name": "Salatgurke"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "Schalotte"
+            },
+            {
+                "amount": 20.0,
+                "unit": "",
+                "name": "große Salatblätter (z. B. Eisberg)"
+            },
+            {
+                "amount": 5.0,
+                "unit": "Handvoll",
+                "name": "Babyspinat"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Sonnenblumenkerne"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Sesam"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Kürbiskerne"
+            },
+            {
+                "amount": 10.0,
+                "unit": "",
+                "name": "Tortillas"
+            }
+        ]
+    }
+}

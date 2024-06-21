@@ -1,0 +1,71 @@
+{
+    "request": {
+        "url": "https://www.eat-this.org/bunte-kartoffeln-mit-mandel-petersilien-pesto",
+        "servings": 20
+    },
+    "result": {
+        "name": "Bunte Kartoffeln mit Mandel-Petersilien-Pesto",
+        "ingredients": [
+            {
+                "amount": 5.0,
+                "unit": "kg",
+                "name": "bunte Kartoffeln (z. B. Blauer Schwede, Highland Burgundy Red, Bamberger Hörnchen, Ditta, Rosa Tannenzapfen, Salad Blue etc.)"
+            },
+            {
+                "amount": 12.5,
+                "unit": "EL",
+                "name": "Rapsöl oder gutes Olivenöl"
+            },
+            {
+                "amount": 15.0,
+                "unit": "",
+                "name": "Knoblauchzehen"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "grobes Meersalz"
+            },
+            {
+                "amount": 200.0,
+                "unit": "g",
+                "name": "Mandeln (ungesalzen und ungeröstet, mit Schale)"
+            },
+            {
+                "amount": 100.0,
+                "unit": "g",
+                "name": "Cashewkerne (ungesalzen und ungeröstet)"
+            },
+            {
+                "amount": 2.5,
+                "unit": "Bund",
+                "name": "Petersilie"
+            },
+            {
+                "amount": 5.0,
+                "unit": "",
+                "name": "Knoblauchzehe"
+            },
+            {
+                "amount": 20.0,
+                "unit": "EL",
+                "name": "Rotweinessig"
+            },
+            {
+                "amount": 15.0,
+                "unit": "EL",
+                "name": "Olivenöl"
+            },
+            {
+                "amount": 5.0,
+                "unit": "TL",
+                "name": "Agavendicksaft"
+            },
+            {
+                "amount": 2.5,
+                "unit": "TL",
+                "name": "Salz"
+            }
+        ]
+    }
+}
