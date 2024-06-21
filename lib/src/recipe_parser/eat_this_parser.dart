@@ -194,7 +194,7 @@ class EatThisParser extends RecipeParser {
     Uri recipeUrl,
     String? language,
   ) =>
-      parseWordPressIngredient(
+      const WordPressParser().parseIngredient(
         element,
         servingsMultiplier,
         recipeUrl,

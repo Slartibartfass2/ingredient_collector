@@ -21,7 +21,7 @@ void expectIngredient(
 ) {
   var isInRecipe = recipe.ingredients.contains(ingredient);
   if (!isInRecipe) {
-    fail("$ingredient was not found in the recipe");
+    fail("$ingredient was not found in the recipe '${recipe.name}'");
   }
 }
 
