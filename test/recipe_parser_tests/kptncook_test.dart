@@ -24,111 +24,99 @@ void main() {
     tags: ["parsing-test"],
   );
 
-  test('parse empty ingredient element', () {
-    var parser = const KptnCookParser();
-    var ingredientElement = Element.html("<a></a>");
-    var result = parser.parseIngredient(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
-    );
-    expect(hasIngredientParsingErrors(result), isTrue);
-  });
+  group('Ingredient parsing', () {
+    test('When empty element is parsed, then parsing returns errors', () {
+      var parser = const KptnCookParser();
+      var ingredientElement = Element.html("<a></a>");
+      var result = parser.parseIngredient(
+        ingredientElement,
+        1,
+        Uri.parse("www.example.org"),
+        "de",
+      );
+      expect(hasIngredientParsingErrors(result), isTrue);
+    });
 
-  test('parse ingredient element with amount and unit', () {
-    var parser = const KptnCookParser();
-    var ingredientElement = Element.html("""
-    <div>
-      <div class="kptn-ingredient-measure">
-        30 g
-      </div>
-      <div class="kptn-ingredient">
-        Walnusskerne
-      </div>
-    </div>
-    """);
-    var result = parser.parseIngredient(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
+    test(
+      'When element with amount and unit is parsed, then parsing is '
+      'successful',
+      () {
+        var parser = const KptnCookParser();
+        var ingredientElement = Element.html("""
+        <div>
+          <div class="kptn-ingredient-measure">
+            30 g
+          </div>
+          <div class="kptn-ingredient">
+            Walnusskerne
+          </div>
+        </div>
+        """);
+        var result = parser.parseIngredient(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isFalse);
+        expect(
+          result.ingredients.first,
+          equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
+        );
+      },
     );
-    expect(hasIngredientParsingErrors(result), isFalse);
-    expect(
-      result.ingredients.first,
-      equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
-    );
-  });
 
-  test('parse ingredient element with amount and no unit', () {
-    var parser = const KptnCookParser();
-    var ingredientElement = Element.html("""
-    <div>
-      <div class="kptn-ingredient-measure">
-        2
-      </div>
-      <div class="kptn-ingredient">
-        Walnüsse
-      </div>
-    </div>
-    """);
-    var result = parser.parseIngredient(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
+    test(
+      'When element with only amount is parsed, then parsing is successful',
+      () {
+        var parser = const KptnCookParser();
+        var ingredientElement = Element.html("""
+        <div>
+          <div class="kptn-ingredient-measure">
+            0.5
+          </div>
+          <div class="kptn-ingredient">
+            Brokkoli
+          </div>
+        </div>
+        """);
+        var result = parser.parseIngredient(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isFalse);
+        expect(
+          result.ingredients.first,
+          equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
+        );
+      },
     );
-    expect(hasIngredientParsingErrors(result), isFalse);
-    expect(
-      result.ingredients.first,
-      equals(const Ingredient(amount: 2, unit: "", name: "Walnüsse")),
-    );
-  });
 
-  test('provide feedback when amount parsing fails', () {
-    var parser = const KptnCookParser();
-    var ingredientElement = Element.html("""
-    <div>
-      <div class="kptn-ingredient-measure">
-        measure
-      </div>
-      <div class="kptn-ingredient">
-        Walnüsse
-      </div>
-    </div>
-    """);
-    var result = parser.parseIngredient(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
-    );
-    expect(hasIngredientParsingErrors(result), isTrue);
-  });
-
-  test('parse ingredient element with decimal amount', () {
-    var parser = const KptnCookParser();
-    var ingredientElement = Element.html("""
-    <div>
-      <div class="kptn-ingredient-measure">
-        0.5
-      </div>
-      <div class="kptn-ingredient">
-        Brokkoli
-      </div>
-    </div>
-    """);
-    var result = parser.parseIngredient(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
-    );
-    expect(hasIngredientParsingErrors(result), isFalse);
-    expect(
-      result.ingredients.first,
-      equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
+    test(
+      'When element with invalid amount is parsed, then parsing returns '
+      'errors',
+      () {
+        var parser = const KptnCookParser();
+        var ingredientElement = Element.html("""
+        <div>
+          <div class="kptn-ingredient-measure">
+            measure
+          </div>
+          <div class="kptn-ingredient">
+            Walnüsse
+          </div>
+        </div>
+        """);
+        var result = parser.parseIngredient(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isTrue);
+      },
     );
   });
 

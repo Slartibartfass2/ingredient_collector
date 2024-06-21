@@ -17,7 +17,7 @@ void main() {
   });
 
   test(
-    'collect unsupported Eat this! recipe',
+    'When unsupported recipe is collected, then correct error is returned',
     () async {
       var recipeJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse(
@@ -54,98 +54,101 @@ void main() {
     tags: ["parsing-test"],
   );
 
-  test('parse empty ingredient element new design', () {
-    var parser = const EatThisParser();
-    var ingredientElement = Element.html("<a></a>");
-    var result = parser.parseIngredientNewDesign(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
-    );
-    expect(hasIngredientParsingErrors(result), isTrue);
-  });
+  group('Ingredient parsing', () {
+    test('When empty element is parsed, then parsing returns errors', () {
+      var parser = const EatThisParser();
+      var ingredientElement = Element.html("<a></a>");
+      var resultNew = parser.parseIngredientNewDesign(
+        ingredientElement,
+        1,
+        Uri.parse("www.example.org"),
+        "de",
+      );
+      var resultOld = parser.parseIngredientOldDesign(
+        ingredientElement,
+        1,
+        Uri.parse("www.example.org"),
+        "de",
+      );
+      expect(hasIngredientParsingErrors(resultNew), isTrue);
+      expect(hasIngredientParsingErrors(resultOld), isTrue);
+    });
 
-  test('parse empty ingredient element old design', () {
-    var parser = const EatThisParser();
-    var ingredientElement = Element.html("<a></a>");
-    var result = parser.parseIngredientOldDesign(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
+    test(
+      'When element with amount and unit is parsed, then parsing is '
+      'successful (new design)',
+      () {
+        var parser = const EatThisParser();
+        var ingredientElement = Element.html("""
+        <li class="wprm-recipe-ingredient">
+          <span class="wprm-recipe-ingredient-amount">½</span>
+          <span class="wprm-recipe-ingredient-unit">TL</span>
+          <span class="wprm-recipe-ingredient-name">Zucker</span>
+        </li>
+        """);
+        var result = parser.parseIngredientNewDesign(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isFalse);
+        expect(
+          result.ingredients.first,
+          equals(const Ingredient(amount: 0.5, unit: "TL", name: "Zucker")),
+        );
+      },
     );
-    expect(hasIngredientParsingErrors(result), isTrue);
-  });
 
-  test('parse ingredient element new design', () {
-    var parser = const EatThisParser();
-    var ingredientElement = Element.html("""
-    <li class="wprm-recipe-ingredient">
-      <span class="wprm-recipe-ingredient-amount">½</span>
-      <span class="wprm-recipe-ingredient-unit">TL</span>
-      <span class="wprm-recipe-ingredient-name">Zucker</span>
-    </li>
-    """);
-    var result = parser.parseIngredientNewDesign(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
+    test(
+      'When element with amount and unit is parsed, then parsing is '
+      'successful (old design)',
+      () {
+        var parser = const EatThisParser();
+        var ingredientElement = Element.html("""
+        <li>
+          1 1/2 EL Reis- oder Ahornsirup
+        </li>
+        """);
+        var result = parser.parseIngredientOldDesign(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isFalse);
+        expect(
+          result.ingredients.first,
+          equals(
+            const Ingredient(
+              amount: 1.5,
+              unit: "EL",
+              name: "Reis- oder Ahornsirup",
+            ),
+          ),
+        );
+      },
     );
-    expect(hasIngredientParsingErrors(result), isFalse);
-    expect(
-      result.ingredients.first,
-      equals(
-        const Ingredient(
-          amount: 0.5,
-          unit: "TL",
-          name: "Zucker",
-        ),
-      ),
-    );
-  });
 
-  test('parse ingredient element old design', () {
-    var parser = const EatThisParser();
-    var ingredientElement = Element.html("""
-    <li>
-      1 1/2 EL Reis- oder Ahornsirup
-    </li>
-    """);
-    var result = parser.parseIngredientOldDesign(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
+    test(
+      'When element with invalid amount is parsed, then parsing returns '
+      'errors',
+      () {
+        var parser = const EatThisParser();
+        var ingredientElement = Element.html("""
+        <li class="wprm-recipe-ingredient">
+          <span class="wprm-recipe-ingredient-amount">amount</span>
+          <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
+        </li>
+        """);
+        var result = parser.parseIngredientNewDesign(
+          ingredientElement,
+          1,
+          Uri.parse("www.example.org"),
+          "de",
+        );
+        expect(hasIngredientParsingErrors(result), isTrue);
+      },
     );
-    expect(hasIngredientParsingErrors(result), isFalse);
-    expect(
-      result.ingredients.first,
-      equals(
-        const Ingredient(
-          amount: 1.5,
-          unit: "EL",
-          name: "Reis- oder Ahornsirup",
-        ),
-      ),
-    );
-  });
-
-  test('provide feedback when amount parsing fails', () {
-    var parser = const EatThisParser();
-    var ingredientElement = Element.html("""
-    <li class="wprm-recipe-ingredient">
-      <span class="wprm-recipe-ingredient-amount">amount</span>
-      <span class="wprm-recipe-ingredient-name">Blumenkohl</span>
-    </li>
-    """);
-    var result = parser.parseIngredientNewDesign(
-      ingredientElement,
-      1,
-      Uri.parse("www.example.org"),
-      "de",
-    );
-    expect(hasIngredientParsingErrors(result), isTrue);
   });
 }
