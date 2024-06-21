@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-release-artifacts
-          path: 'build/windows/runner/Release/**'
+          path: 'build/windows/x64/runner/Release/**'
           if-no-files-found: error
 
   build-web-release:
