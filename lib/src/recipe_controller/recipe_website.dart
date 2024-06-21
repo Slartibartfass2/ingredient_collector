@@ -12,7 +12,10 @@ enum RecipeWebsite {
   eatThis("www.eat-this.org", EatThisParser()),
 
   /// Chefkoch.
-  chefkoch("www.chefkoch.de", ChefkochParser());
+  chefkoch("www.chefkoch.de", ChefkochParser()),
+
+  /// Nora Cooks.
+  noraCooks("www.noracooks.com", NoraCooksParser());
 
   /// Returns the [RecipeWebsite] for the passed [url].
   ///

@@ -14,6 +14,7 @@ part 'bianca_zapatka_parser.dart';
 part 'chefkoch_parser.dart';
 part 'eat_this_parser.dart';
 part 'kptncook_parser.dart';
+part 'nora_cooks_parser.dart';
 part 'wordpress_parser.dart';
 
 /// Interface for all recipe parsers.
