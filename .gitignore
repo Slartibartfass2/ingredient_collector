@@ -56,3 +56,6 @@ coverage_view/
 
 # FVM Version Cache
 .fvm/
+
+# LTeX
+.vscode/ltex.dictionary.**.txt
