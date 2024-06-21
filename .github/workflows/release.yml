@@ -146,9 +146,11 @@ jobs:
           args: zip -qq -r android-release.zip android-release
 
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: docker://antonyurchenko/git-release:v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: |
+          args: |
             windows-release.zip
             web-release.zip
             android-release.zip
