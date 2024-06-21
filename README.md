@@ -155,7 +155,7 @@
 - [x] Add support for [Eat This](https://www.eat-this.org/)
 - [x] Add support for [Bianca Zapatka](https://biancazapatka.com/de/)
 - [x] Add support for [Chefkoch](https://www.chefkoch.de/)
-- [ ] Add support for [Nora Cooks](https://www.noracooks.com/)
+- [x] Add support for [Nora Cooks](https://www.noracooks.com/)
 - [ ] Add support for [BBC Good Food](https://www.bbcgoodfood.com/)
 
 See the [open issues](https://github.com/Slartibartfass2/ingredient_collector/issues) for a full list of proposed features (and known issues).
@@ -177,9 +177,11 @@ Don't forget to give the project a star! Thanks again!
 
 ### Adding support for a recipe website
 
-1. Add a new parser in [./lib/src/recipe_parser/](./lib/src/recipe_parser/) extending [RecipeParser](./lib/src/recipe_parser/recipe_parser.dart).
+1. Add a new parser in [./lib/src/recipe_parser/](./lib/src/recipe_parser/) extending [RecipeParser](./lib/src/recipe_parser/recipe_parser.dart) as part of `recipe_parser`.
 
     ```dart
+    part of 'recipe_parser.dart';
+
     class ExampleParser extends RecipeParser {
       const ExampleParser();
 
@@ -193,13 +195,23 @@ Don't forget to give the project a star! Thanks again!
     }
     ```
 
-2. Add the new supported website in [./lib/src/recipe_controller/recipe_website.dart](./lib/src/recipe_controller/recipe_website.dart).
+2. Declare the new parser in [./lib/src/recipe_parser/recipe_parser.dart](./lib/src/recipe_parser/recipe_parser.dart)
+
+    ```dart
+    library recipe_parser;
+
+    part 'example_parser.dart';
+
+    ...
+    ```
+
+3. Add the new supported website in [./lib/src/recipe_controller/recipe_website.dart](./lib/src/recipe_controller/recipe_website.dart).
 
    ```dart
    exampleWebsite("https://www.example.org", ExampleParser());
    ```
 
-3. Add tests in [./test/recipe_parser_tests/](./test/recipe_parser_tests/) to ensure the parsing works.
+4. Add tests in [./test/recipe_parser_tests/](./test/recipe_parser_tests/) to ensure the parsing works.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
