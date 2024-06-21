@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/fruit-salad",
+        "servings": 24
+    },
+    "result": {
+        "name": "Fruit Salad",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "pound",
+                "name": "fresh strawberries, hulled and sliced"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "blueberries"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "raspberries"
+            },
+            {
+                "amount": 6.0,
+                "unit": "",
+                "name": "peaches, sliced"
+            },
+            {
+                "amount": 2.25,
+                "unit": "cup",
+                "name": "cherries, pitted and halved"
+            },
+            {
+                "amount": 12.0,
+                "unit": "",
+                "name": "kiwis, peeled and chopped"
+            },
+            {
+                "amount": 0.75,
+                "unit": "cup",
+                "name": "chopped fresh mint"
+            },
+            {
+                "amount": 0.75,
+                "unit": "cup",
+                "name": "agave"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "zest of 2 limes"
+            },
+            {
+                "amount": 6.0,
+                "unit": "tablespoons",
+                "name": "fresh lime juice"
+            }
+        ]
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/broccoli-salad",
+        "servings": 20
+    },
+    "result": {
+        "name": "Vegan Broccoli Salad",
+        "ingredients": [
+            {
+                "amount": 16.0,
+                "unit": "cups",
+                "name": "chopped broccoli"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cups",
+                "name": "shredded red cabbage"
+            },
+            {
+                "amount": 0.6666666666666666,
+                "unit": "cup",
+                "name": "diced small red onion"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "dried cranberries"
+            },
+            {
+                "amount": 0.5,
+                "unit": "cup",
+                "name": "pepitas"
+            },
+            {
+                "amount": 0.5,
+                "unit": "cup",
+                "name": "sliced almonds"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cups",
+                "name": "raw cashews"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoons",
+                "name": "lemon juice"
+            },
+            {
+                "amount": 2.0,
+                "unit": "tablespoon",
+                "name": "apple cider vinegar"
+            },
+            {
+                "amount": 6.0,
+                "unit": "tablespoons",
+                "name": "pure maple syrup"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "ground turmeric"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "water"
+            }
+        ]
+    }
+}

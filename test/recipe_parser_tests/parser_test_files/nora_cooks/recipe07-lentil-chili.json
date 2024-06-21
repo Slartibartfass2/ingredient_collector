@@ -1,0 +1,111 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/lentil-chili",
+        "servings": 16
+    },
+    "result": {
+        "name": "Lentil Chili",
+        "ingredients": [
+            {
+                "amount": 2.0,
+                "unit": "medium",
+                "name": "yellow onion"
+            },
+            {
+                "amount": 2.0,
+                "unit": "medium",
+                "name": "green bell pepper"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cloves",
+                "name": "garlic"
+            },
+            {
+                "amount": 4.0,
+                "unit": "tablespoons",
+                "name": "chili powder"
+            },
+            {
+                "amount": 2.0,
+                "unit": "teaspoon",
+                "name": "ground cumin"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "smoked paprika"
+            },
+            {
+                "amount": 0.5,
+                "unit": "teaspoon",
+                "name": "cayenne pepper"
+            },
+            {
+                "amount": 56.0,
+                "unit": "ounces",
+                "name": "crushed tomatoes"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "red lentils"
+            },
+            {
+                "amount": 4.0,
+                "unit": "15-ounce",
+                "name": "cans black beans"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "finely chopped walnuts"
+            },
+            {
+                "amount": 8.0,
+                "unit": "cups",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 2.0,
+                "unit": "tablespoon",
+                "name": "pure maple syrup"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "salt, or to taste"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "vegan sour cream"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "shredded cheese"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "chopped chives or cilantro"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "tortilla chips"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "diced or sliced avocado"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "vegan cornbread"
+            }
+        ]
+    }
+}

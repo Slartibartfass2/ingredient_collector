@@ -1,0 +1,61 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-corn-chowder",
+        "servings": 30
+    },
+    "result": {
+        "name": "Vegan Corn Chowder",
+        "ingredients": [
+            {
+                "amount": 7.5,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 5.0,
+                "unit": "medium",
+                "name": "onion, diced"
+            },
+            {
+                "amount": 5.0,
+                "unit": "medium",
+                "name": "red bell pepper, chopped small"
+            },
+            {
+                "amount": 25.0,
+                "unit": "cups",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 2.5,
+                "unit": "teaspoon",
+                "name": "smoked paprika"
+            },
+            {
+                "amount": 20.0,
+                "unit": "cups",
+                "name": "corn, fresh or frozen"
+            },
+            {
+                "amount": 10.0,
+                "unit": "pounds",
+                "name": "yukon gold potatoes, peeled and chopped"
+            },
+            {
+                "amount": 5.0,
+                "unit": "cup",
+                "name": "raw cashews"
+            },
+            {
+                "amount": 2.5,
+                "unit": "cup",
+                "name": "nutritional yeast"
+            },
+            {
+                "amount": 3.75,
+                "unit": "teaspoon",
+                "name": "salt, or to taste"
+            }
+        ]
+    }
+}

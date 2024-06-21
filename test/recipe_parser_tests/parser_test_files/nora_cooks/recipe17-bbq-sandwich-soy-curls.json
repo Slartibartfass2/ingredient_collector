@@ -1,0 +1,31 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/bbq-sandwich-soy-curls",
+        "servings": 24
+    },
+    "result": {
+        "name": "The Best Vegan BBQ Sandwich with Soy Curls",
+        "ingredients": [
+            {
+                "amount": 4.0,
+                "unit": "8-ounce",
+                "name": "Bag Soy Curls"
+            },
+            {
+                "amount": 4.0,
+                "unit": "recipe",
+                "name": "Quick and Easy Vegan Barbecue Sauce"
+            },
+            {
+                "amount": 20.0,
+                "unit": "",
+                "name": "buns or rolls (1 for each person)"
+            },
+            {
+                "amount": 0.0,
+                "unit": "1 recipe",
+                "name": "Classic Vegan Coleslaw"
+            }
+        ]
+    }
+}

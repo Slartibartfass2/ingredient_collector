@@ -1,0 +1,56 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-naan",
+        "servings": 24
+    },
+    "result": {
+        "name": "Easy Vegan Naan",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "teaspoon",
+                "name": "instant yeast"
+            },
+            {
+                "amount": 2.25,
+                "unit": "cup",
+                "name": "warm water"
+            },
+            {
+                "amount": 3.0,
+                "unit": "teaspoon",
+                "name": "granulated sugar"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "all purpose flour"
+            },
+            {
+                "amount": 3.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 2.25,
+                "unit": "teaspoon",
+                "name": "baking powder"
+            },
+            {
+                "amount": 9.0,
+                "unit": "tablespoons",
+                "name": "coconut cream"
+            },
+            {
+                "amount": 6.0,
+                "unit": "tablespoons",
+                "name": "olive oil"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Optional: melted vegan butter for serving, minced garlic or fresh herbs"
+            }
+        ]
+    }
+}

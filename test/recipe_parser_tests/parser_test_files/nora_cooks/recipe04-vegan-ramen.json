@@ -1,0 +1,96 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-ramen",
+        "servings": 30
+    },
+    "result": {
+        "name": "Easy Vegan Ramen",
+        "ingredients": [
+            {
+                "amount": 10.0,
+                "unit": "tablespoons",
+                "name": "toasted sesame oil"
+            },
+            {
+                "amount": 5.0,
+                "unit": "tablespoon",
+                "name": "chopped garlic"
+            },
+            {
+                "amount": 5.0,
+                "unit": "tablespoon",
+                "name": "grated fresh ginger"
+            },
+            {
+                "amount": 5.0,
+                "unit": "cup",
+                "name": "shredded carrots"
+            },
+            {
+                "amount": 5.0,
+                "unit": "ounce",
+                "name": "dried shiitake mushrooms"
+            },
+            {
+                "amount": 20.0,
+                "unit": "cups",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 20.0,
+                "unit": "cups",
+                "name": "water"
+            },
+            {
+                "amount": 30.0,
+                "unit": "tablespoons",
+                "name": "low sodium soy sauce"
+            },
+            {
+                "amount": 5.0,
+                "unit": "tablespoon",
+                "name": "seasoned rice vinegar"
+            },
+            {
+                "amount": 7.5,
+                "unit": "tablespoons",
+                "name": "Sriracha hot sauce"
+            },
+            {
+                "amount": 10.0,
+                "unit": "packages",
+                "name": "instant ramen, flavor packets discarded"
+            },
+            {
+                "amount": 2.5,
+                "unit": "cup",
+                "name": "sliced scallions"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "more sliced scallions"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "sesame seeds"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "more shredded carrots"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "extra-firm tofu, sliced"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "more hot sauce"
+            }
+        ]
+    }
+}

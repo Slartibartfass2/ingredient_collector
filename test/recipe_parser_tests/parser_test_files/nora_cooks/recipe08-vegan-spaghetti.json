@@ -1,0 +1,91 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/vegan-spaghetti",
+        "servings": 30
+    },
+    "result": {
+        "name": "The Best Vegan Spaghetti",
+        "ingredients": [
+            {
+                "amount": 80.0,
+                "unit": "ounces",
+                "name": "vegan ground beef"
+            },
+            {
+                "amount": 5.0,
+                "unit": "medium",
+                "name": "yellow onion, finely diced"
+            },
+            {
+                "amount": 75.0,
+                "unit": "ounce",
+                "name": "can lentils, drained and rinsed"
+            },
+            {
+                "amount": 75.0,
+                "unit": "ounces",
+                "name": "tomato sauce"
+            },
+            {
+                "amount": 30.0,
+                "unit": "ounces",
+                "name": "tomato paste"
+            },
+            {
+                "amount": 5.0,
+                "unit": "cup",
+                "name": "water"
+            },
+            {
+                "amount": 5.0,
+                "unit": "teaspoon",
+                "name": "Italian seasoning"
+            },
+            {
+                "amount": 10.0,
+                "unit": "teaspoons",
+                "name": "dried parsley flakes"
+            },
+            {
+                "amount": 5.0,
+                "unit": "teaspoon",
+                "name": "garlic powder"
+            },
+            {
+                "amount": 1.25,
+                "unit": "teaspoon",
+                "name": "crushed red chili flakes"
+            },
+            {
+                "amount": 5.0,
+                "unit": "tablespoon",
+                "name": "vegan Worcestershire sauce, optional"
+            },
+            {
+                "amount": 5.0,
+                "unit": "tablespoon",
+                "name": "granulated sugar"
+            },
+            {
+                "amount": 20.0,
+                "unit": "tablespoons",
+                "name": "chopped fresh basil, optional"
+            },
+            {
+                "amount": 80.0,
+                "unit": "ounces",
+                "name": "spaghetti noodles"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Vegan Parmesan"
+            },
+            {
+                "amount": 0.0,
+                "unit": "",
+                "name": "Dutch Oven Bread"
+            }
+        ]
+    }
+}

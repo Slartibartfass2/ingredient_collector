@@ -1,0 +1,81 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/marry-me-chickpeas",
+        "servings": 18
+    },
+    "result": {
+        "name": "Marry Me Chickpeas",
+        "ingredients": [
+            {
+                "amount": 3.0,
+                "unit": "tablespoon",
+                "name": "olive oil"
+            },
+            {
+                "amount": 15.0,
+                "unit": "cloves",
+                "name": "garlic"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "sun dried tomatoes"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "oregano"
+            },
+            {
+                "amount": 1.5,
+                "unit": "teaspoon",
+                "name": "red chili flakes"
+            },
+            {
+                "amount": 3.0,
+                "unit": "teaspoon",
+                "name": "salt"
+            },
+            {
+                "amount": 0.75,
+                "unit": "teaspoon",
+                "name": "ground black pepper"
+            },
+            {
+                "amount": 6.0,
+                "unit": "15-ounce",
+                "name": "cans chickpeas"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "vegetable broth"
+            },
+            {
+                "amount": 3.0,
+                "unit": "tablespoon",
+                "name": "tomato paste"
+            },
+            {
+                "amount": 3.0,
+                "unit": "cup",
+                "name": "vegan cream"
+            },
+            {
+                "amount": 6.0,
+                "unit": "cups",
+                "name": "baby spinach"
+            },
+            {
+                "amount": 13.5,
+                "unit": "",
+                "name": "fresh basil leaves"
+            },
+            {
+                "amount": 1.5,
+                "unit": "cup",
+                "name": "grated vegan parmesan cheese"
+            }
+        ]
+    }
+}

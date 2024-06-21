@@ -1,0 +1,81 @@
+{
+    "request": {
+        "url": "https://www.noracooks.com/edamame-salad",
+        "servings": 24
+    },
+    "result": {
+        "name": "Edamame Salad with Peanut Sauce",
+        "ingredients": [
+            {
+                "amount": 64.0,
+                "unit": "ounces",
+                "name": "frozen shelled edamame"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cup",
+                "name": "shredded red cabbage"
+            },
+            {
+                "amount": 4.0,
+                "unit": "cup",
+                "name": "shredded carrots"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "chopped green onions"
+            },
+            {
+                "amount": 8.0,
+                "unit": "cups",
+                "name": "chopped kale"
+            },
+            {
+                "amount": 1.0,
+                "unit": "cup",
+                "name": "chopped cilantro"
+            },
+            {
+                "amount": 2.0,
+                "unit": "cup",
+                "name": "chopped peanuts"
+            },
+            {
+                "amount": 24.0,
+                "unit": "tablespoons",
+                "name": "creamy peanut butter"
+            },
+            {
+                "amount": 12.0,
+                "unit": "tablespoons",
+                "name": "seasoned rice vinegar"
+            },
+            {
+                "amount": 12.0,
+                "unit": "tablespoons",
+                "name": "low sodium soy sauce"
+            },
+            {
+                "amount": 12.0,
+                "unit": "tablespoons",
+                "name": "pure maple syrup"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "toasted sesame oil"
+            },
+            {
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "name": "ground ginger"
+            },
+            {
+                "amount": 4.0,
+                "unit": "teaspoon",
+                "name": "Sriracha hot sauce"
+            }
+        ]
+    }
+}
