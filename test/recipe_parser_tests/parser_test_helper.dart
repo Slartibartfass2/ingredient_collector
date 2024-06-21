@@ -14,17 +14,6 @@ import 'models/parser_test_result.dart';
 
 void expectIngredient(
   Recipe recipe,
-  String name, {
-  double amount = 0.0,
-  String unit = "",
-}) =>
-    expectIngredient2(
-      recipe,
-      Ingredient(amount: amount, unit: unit, name: name),
-    );
-
-void expectIngredient2(
-  Recipe recipe,
   Ingredient ingredient,
 ) {
   var isInRecipe = recipe.ingredients.contains(ingredient);
@@ -38,36 +27,6 @@ bool hasRecipeParsingErrors(RecipeParsingResult result) =>
 
 bool hasIngredientParsingErrors(IngredientParsingResult result) =>
     result.logs.where((log) => log.type == JobLogType.error).isNotEmpty;
-
-Future<void> testParsingRecipes(
-  List<String> urls, {
-  required String language,
-}) async {
-  var jobs = urls
-      .map(
-        (url) => RecipeController().createRecipeParsingJob(
-          url: Uri.parse(url),
-          servings: 2,
-          language: language,
-        ),
-      )
-      .toList();
-
-  var notWorkingUrls = <String>[];
-  for (var job in jobs) {
-    var result = await RecipeController().collectRecipes(
-      recipeParsingJobs: [job],
-      language: job.language,
-    ).then((value) => value.first);
-    if (hasRecipeParsingErrors(result) || result.recipe == null) {
-      notWorkingUrls.add("${job.url}: ${result.logs.join(", ")}");
-    }
-  }
-
-  if (notWorkingUrls.isNotEmpty) {
-    fail("The following recipes failed:\n${notWorkingUrls.join("\n")}");
-  }
-}
 
 Future<ParserTestCase> _getTestFromFile(String path) async {
   var file = File(path);
@@ -94,7 +53,7 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
   expect(recipe.name, expected.name);
   expect(recipe.ingredients.length, expected.ingredients.length);
   for (var ingredient in expected.ingredients) {
-    expectIngredient2(recipe, ingredient);
+    expectIngredient(recipe, ingredient);
   }
 }
 
