@@ -18,7 +18,7 @@ class ChefkochParser extends RecipeParser {
         .getElementsByClassName("recipe-servings")
         .map((e) => e.getElementsByTagName("input"))
         .expand((element) => element)
-        .where((element) => (element.attributes["value"] ?? "").isNotEmpty);
+        .where(_hasIntValueAttribute);
     var ingredientElements = document
         .getElementsByClassName("ingredients")
         .map((e) => e.getElementsByTagName("tbody"))
@@ -112,5 +112,10 @@ class ChefkochParser extends RecipeParser {
       ],
       logs: <JobLog>[],
     );
+  }
+
+  bool _hasIntValueAttribute(Element element) {
+    var valueAttribute = element.attributes["value"];
+    return int.tryParse(valueAttribute ?? "") != null;
   }
 }
