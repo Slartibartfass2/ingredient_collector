@@ -1,58 +1,58 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/veganes-schlemmerfilet-bordelaise",
-        "servings": 2
+        "servings": 8
     },
     "result": {
         "name": "Tofu à la Bordelaise - Veganes Schlemmerfilet",
         "ingredients": [
             {
-                "amount": 200.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "Tofu"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "",
                 "name": "Noriblatt"
             },
             {
-                "amount": 60.0,
+                "amount": 240.0,
                 "unit": "g",
                 "name": "vegane Butter"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Zwiebel"
             },
             {
-                "amount": 2.0,
+                "amount": 8.0,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 1.5,
+                "amount": 6.0,
                 "unit": "TL",
                 "name": "Paprikapulver"
             },
             {
-                "amount": 2.0,
+                "amount": 8.0,
                 "unit": "EL",
                 "name": "Hefeflocken"
             },
             {
-                "amount": 60.0,
+                "amount": 240.0,
                 "unit": "g",
                 "name": "Panko Semmelbrösel"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "Bund",
                 "name": "Petersilie und Dill"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "",
                 "name": "Zitrone"
             },
@@ -87,7 +87,7 @@
                 "name": "Petersilie und Dill"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "TL",
                 "name": "NORSAN Omega-3 Vegan Öl"
             }

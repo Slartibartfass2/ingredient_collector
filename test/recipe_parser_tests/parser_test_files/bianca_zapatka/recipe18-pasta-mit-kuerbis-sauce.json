@@ -1,38 +1,38 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/pasta-mit-kuerbis-sauce",
-        "servings": 4
+        "servings": 16
     },
     "result": {
         "name": "Pasta mit Kürbissauce - cremig, einfach & lecker!",
         "ingredients": [
             {
-                "amount": 600.0,
+                "amount": 2400.0,
                 "unit": "g",
                 "name": "Kürbis"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "rote Paprika"
             },
             {
-                "amount": 3.0,
+                "amount": 12.0,
                 "unit": "",
                 "name": "kleine Tomaten oder 1 große Tomate"
             },
             {
-                "amount": 4.0,
+                "amount": 16.0,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 2.5,
+                "amount": 10.0,
                 "unit": "EL",
                 "name": "Olivenöl"
             },
             {
-                "amount": 200.0,
+                "amount": 800.0,
                 "unit": "ml",
                 "name": "Sahne"
             },
@@ -42,7 +42,7 @@
                 "name": "Salz & Pfeffer"
             },
             {
-                "amount": 400.0,
+                "amount": 1600.0,
                 "unit": "g",
                 "name": "Pasta"
             },

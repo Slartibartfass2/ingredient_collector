@@ -1,48 +1,48 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/4b596ab7",
-        "servings": 2
+        "servings": 8
     },
     "result": {
         "name": "Sticky Tofu mit Brokkoli & Kokosnuss-Reis",
         "ingredients": [
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Brokkoli"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Limette"
             },
             {
-                "amount": 10.0,
+                "amount": 40.0,
                 "unit": "g",
                 "name": "Ingwer"
             },
             {
-                "amount": 150.0,
+                "amount": 600.0,
                 "unit": "ml",
                 "name": "Kokosmilch"
             },
             {
-                "amount": 10.0,
+                "amount": 40.0,
                 "unit": "g",
                 "name": "Koriander, frisch"
             },
             {
-                "amount": 120.0,
+                "amount": 480.0,
                 "unit": "g",
                 "name": "Basmati-Reis"
             },
             {
-                "amount": 10.0,
+                "amount": 40.0,
                 "unit": "g",
                 "name": "Sesamsaat"
             },
             {
-                "amount": 200.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "Räuchertofu"
             },

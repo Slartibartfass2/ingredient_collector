@@ -1,53 +1,53 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/54edf8a0",
-        "servings": 2
+        "servings": 4
     },
     "result": {
         "name": "Cremige Cannelloni mit Veggie-Hack",
         "ingredients": [
             {
-                "amount": 15.0,
+                "amount": 30.0,
                 "unit": "g",
                 "name": "Basilikum, frisch"
             },
             {
-                "amount": 250.0,
+                "amount": 500.0,
                 "unit": "ml",
                 "name": "Pflanzlicher Drink"
             },
             {
-                "amount": 90.0,
+                "amount": 180.0,
                 "unit": "g",
                 "name": "Cannelloni"
             },
             {
-                "amount": 125.0,
+                "amount": 250.0,
                 "unit": "g",
                 "name": "braune Champignons"
             },
             {
-                "amount": 125.0,
+                "amount": 250.0,
                 "unit": "g",
                 "name": "veganes Hack"
             },
             {
-                "amount": 1.0,
+                "amount": 2.0,
                 "unit": "",
                 "name": "Speisezwiebel"
             },
             {
-                "amount": 50.0,
+                "amount": 100.0,
                 "unit": "g",
                 "name": "veganer Frischkäse"
             },
             {
-                "amount": 200.0,
+                "amount": 400.0,
                 "unit": "g",
                 "name": "Tomaten, gestückelt"
             },
             {
-                "amount": 30.0,
+                "amount": 60.0,
                 "unit": "g",
                 "name": "vegane Butter"
             },

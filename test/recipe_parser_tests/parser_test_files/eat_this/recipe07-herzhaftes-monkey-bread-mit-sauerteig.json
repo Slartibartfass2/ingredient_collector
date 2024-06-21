@@ -1,63 +1,63 @@
 {
     "request": {
         "url": "https://www.eat-this.org/herzhaftes-monkey-bread-mit-sauerteig",
-        "servings": 900
+        "servings": 2700
     },
     "result": {
         "name": "Herzhaftes Monkey Bread mit Sauerteig",
         "ingredients": [
             {
-                "amount": 800.0,
+                "amount": 2400.0,
                 "unit": "g",
                 "name": "Pizzateig"
             },
             {
-                "amount": 15.0,
+                "amount": 45.0,
                 "unit": "g",
                 "name": "Petersilie"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "Zehe",
                 "name": "Knoblauch"
             },
             {
-                "amount": 4.5,
+                "amount": 13.5,
                 "unit": "EL",
                 "name": "Olivenöl"
             },
             {
-                "amount": 1.25,
+                "amount": 3.75,
                 "unit": "TL",
                 "name": "Salz"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "EL",
                 "name": "Tomatenmark"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "TL",
                 "name": "Oregano"
             },
             {
-                "amount": 0.25,
+                "amount": 0.75,
                 "unit": "TL",
                 "name": "Chiliflocken"
             },
             {
-                "amount": 30.0,
+                "amount": 90.0,
                 "unit": "g",
                 "name": "Veganer Reibekäse"
             },
             {
-                "amount": 2.0,
+                "amount": 6.0,
                 "unit": "EL",
                 "name": "Mohn"
             },
             {
-                "amount": 2.0,
+                "amount": 6.0,
                 "unit": "EL",
                 "name": "Sesam"
             }

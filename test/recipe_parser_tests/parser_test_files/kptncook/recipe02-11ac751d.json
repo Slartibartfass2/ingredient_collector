@@ -1,28 +1,28 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/11ac751d",
-        "servings": 2
+        "servings": 10
     },
     "result": {
         "name": "Süßkartoffelauflauf mit Quinoa",
         "ingredients": [
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Süßkartoffel"
             },
             {
-                "amount": 120.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "Quinoa"
             },
             {
-                "amount": 2.0,
+                "amount": 10.0,
                 "unit": "Zweig(e)",
                 "name": "Thymian, frisch"
             },
             {
-                "amount": 2.0,
+                "amount": 10.0,
                 "unit": "",
                 "name": "Frühlingszwiebeln"
             },
@@ -32,12 +32,12 @@
                 "name": "Zitrone"
             },
             {
-                "amount": 40.0,
+                "amount": 200.0,
                 "unit": "g",
                 "name": "Blattspinat, frisch"
             },
             {
-                "amount": 30.0,
+                "amount": 150.0,
                 "unit": "g",
                 "name": "Cashewkerne, ungesalzen"
             },

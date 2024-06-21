@@ -1,58 +1,58 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/reispapier-dumplings",
-        "servings": 12
+        "servings": 24
     },
     "result": {
         "name": "Knusprige Dumplings aus Reispapier (Schnelle Gyoza)",
         "ingredients": [
             {
-                "amount": 12.0,
+                "amount": 24.0,
                 "unit": "",
                 "name": "Reispapierplatten"
             },
             {
-                "amount": 1.5,
+                "amount": 3.0,
                 "unit": "EL",
                 "name": "Sesamöl"
             },
             {
-                "amount": 4.0,
+                "amount": 8.0,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 1.0,
+                "amount": 2.0,
                 "unit": "Stück",
                 "name": "Ingwer"
             },
             {
-                "amount": 250.0,
+                "amount": 500.0,
                 "unit": "g",
                 "name": "Champignons"
             },
             {
-                "amount": 250.0,
+                "amount": 500.0,
                 "unit": "g",
                 "name": "Kohl"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Karotten"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Frühlingszwiebeln"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Tamari"
             },
             {
-                "amount": 1.0,
+                "amount": 2.0,
                 "unit": "TL",
                 "name": "Chilipulver"
             },
@@ -62,17 +62,17 @@
                 "name": "Salz und Pfeffer"
             },
             {
-                "amount": 2.5,
+                "amount": 5.0,
                 "unit": "EL",
                 "name": "Sesam"
             },
             {
-                "amount": 1.0,
+                "amount": 2.0,
                 "unit": "",
                 "name": "Rezept Dipping-Sauce"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Frühlingszwiebeln"
             },

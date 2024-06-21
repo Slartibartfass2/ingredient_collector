@@ -1,58 +1,58 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/cannelloni-mit-spinat",
-        "servings": 4
+        "servings": 8
     },
     "result": {
         "name": "Cannelloni mit Spinat - wie beim Italiener!",
         "ingredients": [
             {
-                "amount": 18.0,
+                "amount": 36.0,
                 "unit": "",
                 "name": "Cannelloni"
             },
             {
-                "amount": 800.0,
+                "amount": 1600.0,
                 "unit": "g",
                 "name": "TK-Blattspinat"
             },
             {
-                "amount": 300.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "veganer Frischkäse"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Pflanzenöl"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Zwiebeln"
             },
             {
-                "amount": 4.0,
+                "amount": 8.0,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 2.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Tomatenmark"
             },
             {
-                "amount": 400.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "stückige Tomaten"
             },
             {
-                "amount": 200.0,
+                "amount": 400.0,
                 "unit": "ml",
                 "name": "vegane Sahne"
             },
             {
-                "amount": 2.5,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Italienische Kräutermischung"
             },
@@ -62,12 +62,12 @@
                 "name": "Salz und Pfeffer"
             },
             {
-                "amount": 1.0,
+                "amount": 2.0,
                 "unit": "EL",
                 "name": "Agavendicksaft"
             },
             {
-                "amount": 150.0,
+                "amount": 300.0,
                 "unit": "g",
                 "name": "veganer Käse"
             },

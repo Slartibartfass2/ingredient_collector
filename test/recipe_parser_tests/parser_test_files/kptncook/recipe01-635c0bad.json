@@ -1,18 +1,18 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/635c0bad",
-        "servings": 2
+        "servings": 6
     },
     "result": {
         "name": "Gnocchi mit Hackfleisch & karamellisierten Zwiebeln",
         "ingredients": [
             {
-                "amount": 200.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "Schweinehackfleisch"
             },
             {
-                "amount": 300.0,
+                "amount": 900.0,
                 "unit": "g",
                 "name": "Gnocchi"
             },
@@ -22,17 +22,17 @@
                 "name": "rote Zwiebel"
             },
             {
-                "amount": 3.0,
+                "amount": 9.0,
                 "unit": "Zweig(e)",
                 "name": "Rosmarin, frisch"
             },
             {
-                "amount": 80.0,
+                "amount": 240.0,
                 "unit": "g",
                 "name": "Blattspinat, frisch"
             },
             {
-                "amount": 30.0,
+                "amount": 90.0,
                 "unit": "g",
                 "name": "Parmesan"
             },

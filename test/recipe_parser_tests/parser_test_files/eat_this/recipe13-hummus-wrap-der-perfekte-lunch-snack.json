@@ -1,103 +1,103 @@
 {
     "request": {
         "url": "https://www.eat-this.org/hummus-wrap-der-perfekte-lunch-snack",
-        "servings": 2
+        "servings": 10
     },
     "result": {
         "name": "Hummus-Wrap – der perfekte Lunch-Snack!",
         "ingredients": [
             {
-                "amount": 200.0,
+                "amount": 1000.0,
                 "unit": "g",
                 "name": "gekochte Kichererbsen"
             },
             {
-                "amount": 30.0,
+                "amount": 150.0,
                 "unit": "ml",
                 "name": "Wasser"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "EL",
                 "name": "Tahin"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "",
                 "name": "Knoblauchzehe"
             },
             {
-                "amount": 1.5,
+                "amount": 7.5,
                 "unit": "EL",
                 "name": "Olivenöl"
             },
             {
-                "amount": 0.25,
+                "amount": 1.25,
                 "unit": "TL",
                 "name": "Salz"
             },
             {
-                "amount": 0.25,
+                "amount": 1.25,
                 "unit": "TL",
                 "name": "Kurkuma"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "TL",
                 "name": "Currypulver"
             },
             {
-                "amount": 200.0,
+                "amount": 1000.0,
                 "unit": "g",
                 "name": "Austernpilze"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "gute Prise Salz"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Karotte"
             },
             {
-                "amount": 0.25,
+                "amount": 1.25,
                 "unit": "",
                 "name": "Salatgurke"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Schalotte"
             },
             {
-                "amount": 4.0,
+                "amount": 20.0,
                 "unit": "",
                 "name": "große Salatblätter (z. B. Eisberg)"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "Handvoll",
                 "name": "Babyspinat"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Sonnenblumenkerne"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Sesam"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Kürbiskerne"
             },
             {
-                "amount": 2.0,
+                "amount": 10.0,
                 "unit": "",
                 "name": "Tortillas"
             }

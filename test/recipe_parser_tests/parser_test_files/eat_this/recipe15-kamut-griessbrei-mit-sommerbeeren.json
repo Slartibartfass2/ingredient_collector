@@ -1,33 +1,33 @@
 {
     "request": {
         "url": "https://www.eat-this.org/kamut-griessbrei-mit-sommerbeeren",
-        "servings": 2
+        "servings": 6
     },
     "result": {
         "name": "Kamut-Grießbrei mit Sommerbeeren",
         "ingredients": [
             {
-                "amount": 375.0,
+                "amount": 1125.0,
                 "unit": "ml",
                 "name": "Lieblingspflanzenmilch (z. B. Mandel, Soja, Hafer)"
             },
             {
-                "amount": 70.0,
+                "amount": 210.0,
                 "unit": "g",
                 "name": "Kamutgrieß"
             },
             {
-                "amount": 2.0,
+                "amount": 6.0,
                 "unit": "EL",
                 "name": "Mohn"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "EL",
                 "name": "Ahorn- oder Reissirup"
             },
             {
-                "amount": 200.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "frische Sommerbeeren (z. B. Himbeeren, Stachelbeeren, Heidelbeeren)"
             }

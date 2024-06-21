@@ -1,43 +1,43 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/50d87d41",
-        "servings": 2
+        "servings": 8
     },
     "result": {
         "name": "Zucchini-Karotten-Kichererbsen-Pfanne",
         "ingredients": [
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Chilischote"
             },
             {
-                "amount": 10.0,
+                "amount": 40.0,
                 "unit": "g",
                 "name": "Koriander, frisch"
             },
             {
-                "amount": 30.0,
+                "amount": 120.0,
                 "unit": "g",
                 "name": "Tomatenmark"
             },
             {
-                "amount": 2.0,
+                "amount": 8.0,
                 "unit": "",
                 "name": "Karotten"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Zucchini"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "Zitrone"
             },
             {
-                "amount": 200.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "Kichererbsen, Dose od. Glas"
             },

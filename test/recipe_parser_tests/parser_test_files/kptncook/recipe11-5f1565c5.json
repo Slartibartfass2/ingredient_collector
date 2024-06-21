@@ -1,33 +1,33 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/5f1565c5",
-        "servings": 2
+        "servings": 10
     },
     "result": {
         "name": "Kürbis-Curry mit knusprigen Kichererbsen",
         "ingredients": [
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Hokkaido-Kürbis"
             },
             {
-                "amount": 400.0,
+                "amount": 2000.0,
                 "unit": "g",
                 "name": "Kichererbsen, Dose od. Glas"
             },
             {
-                "amount": 20.0,
+                "amount": 100.0,
                 "unit": "g",
                 "name": "rote Currypaste"
             },
             {
-                "amount": 350.0,
+                "amount": 1750.0,
                 "unit": "ml",
                 "name": "Kokosmilch"
             },
             {
-                "amount": 80.0,
+                "amount": 400.0,
                 "unit": "g",
                 "name": "Babyspinat"
             },

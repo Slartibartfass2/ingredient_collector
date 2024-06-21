@@ -1,38 +1,38 @@
 {
     "request": {
         "url": "https://www.eat-this.org/vollkornsandwich-mit-kurkuma-currysalat-24h-in-antwerpen",
-        "servings": 2
+        "servings": 8
     },
     "result": {
         "name": "Vollkornsandwich mit Kurkuma-Currysalat & 24h in Antwerpen",
         "ingredients": [
             {
-                "amount": 150.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "gekochte Kichererbsen"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "",
                 "name": "Schalotte (optional)"
             },
             {
-                "amount": 2.0,
+                "amount": 8.0,
                 "unit": "EL",
                 "name": "Sojajoghurt"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Apfelessig"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "TL",
                 "name": "Currypulver"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "TL",
                 "name": "Kurkumapulver (oder frisch gerieben)"
             },
@@ -42,22 +42,22 @@
                 "name": "Meersalz"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "",
                 "name": "große Karotte"
             },
             {
-                "amount": 0.5,
+                "amount": 2.0,
                 "unit": "",
                 "name": "reife Avocado"
             },
             {
-                "amount": 2.0,
+                "amount": 8.0,
                 "unit": "EL",
                 "name": "Alfalfasprossen"
             },
             {
-                "amount": 4.0,
+                "amount": 16.0,
                 "unit": "",
                 "name": "Scheiben gutes Vollkornbrot"
             }

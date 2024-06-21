@@ -1,83 +1,83 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/blumenkohl-tikka-masala",
-        "servings": 4
+        "servings": 12
     },
     "result": {
         "name": "Blumenkohl Tikka Masala Curry (einfach & vegan)",
         "ingredients": [
             {
-                "amount": 1.5,
+                "amount": 4.5,
                 "unit": "EL",
                 "name": "Öl"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "",
                 "name": "Zwiebel"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "",
                 "name": "Blumenkohl (ca. 750g)"
             },
             {
-                "amount": 3.5,
+                "amount": 10.5,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "TL",
                 "name": "frischer Ingwer"
             },
             {
-                "amount": 75.0,
+                "amount": 225.0,
                 "unit": "g",
                 "name": "rote Linsen"
             },
             {
-                "amount": 2.0,
+                "amount": 6.0,
                 "unit": "TL",
                 "name": "Garam Masala"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "TL",
                 "name": "Kurkuma"
             },
             {
-                "amount": 0.25,
+                "amount": 0.75,
                 "unit": "TL",
                 "name": "gemahlener Kreuzkümmel"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "TL",
                 "name": "geräucherter Paprika oder Chili"
             },
             {
-                "amount": 0.5,
+                "amount": 1.5,
                 "unit": "TL",
                 "name": "Salz oder nach Geschmack"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "EL",
                 "name": "Agavensirup"
             },
             {
-                "amount": 1.0,
+                "amount": 3.0,
                 "unit": "",
                 "name": "Dose Tomaten (400ml)"
             },
             {
-                "amount": 240.0,
+                "amount": 720.0,
                 "unit": "ml",
                 "name": "Gemüsebrühe"
             },
             {
-                "amount": 120.0,
+                "amount": 360.0,
                 "unit": "g",
                 "name": "Soja-Joghurt oder Kokosmilch oder Cashew-Creme"
             },

@@ -1,48 +1,48 @@
 {
     "request": {
         "url": "http://mobile.kptncook.com/recipe/pinterest/4fcb5947",
-        "servings": 2
+        "servings": 10
     },
     "result": {
         "name": "Tofu Tikka Masala",
         "ingredients": [
             {
-                "amount": 6.0,
+                "amount": 30.0,
                 "unit": "g",
                 "name": "Garam Masala"
             },
             {
-                "amount": 100.0,
+                "amount": 500.0,
                 "unit": "ml",
                 "name": "Kokosmilch"
             },
             {
-                "amount": 120.0,
+                "amount": 600.0,
                 "unit": "g",
                 "name": "Basmati-Reis"
             },
             {
-                "amount": 6.0,
+                "amount": 30.0,
                 "unit": "g",
                 "name": "Koriander, frisch"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Speisezwiebel"
             },
             {
-                "amount": 200.0,
+                "amount": 1000.0,
                 "unit": "g",
                 "name": "Tofu, natur"
             },
             {
-                "amount": 10.0,
+                "amount": 50.0,
                 "unit": "g",
                 "name": "Ingwer"
             },
             {
-                "amount": 200.0,
+                "amount": 1000.0,
                 "unit": "g",
                 "name": "Tomaten, gestückelt"
             },

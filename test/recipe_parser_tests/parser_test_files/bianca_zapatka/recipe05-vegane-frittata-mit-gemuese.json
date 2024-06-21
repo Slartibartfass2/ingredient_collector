@@ -1,88 +1,88 @@
 {
     "request": {
         "url": "https://biancazapatka.com/de/vegane-frittata-mit-gemuese",
-        "servings": 8
+        "servings": 40
     },
     "result": {
         "name": "Vegane Gemüse-Frittata (Kichererbsen-Omelette)",
         "ingredients": [
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "EL",
                 "name": "Öl"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Zwiebel"
             },
             {
-                "amount": 2.0,
+                "amount": 10.0,
                 "unit": "",
                 "name": "Knoblauchzehen"
             },
             {
-                "amount": 200.0,
+                "amount": 1000.0,
                 "unit": "g",
                 "name": "Gemüse"
             },
             {
-                "amount": 30.0,
+                "amount": 150.0,
                 "unit": "g",
                 "name": "grünes Blattgemüse"
             },
             {
-                "amount": 1.5,
+                "amount": 7.5,
                 "unit": "TL",
                 "name": "Italienische Kräuter"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "",
                 "name": "Handvoll Kirschtomaten"
             },
             {
-                "amount": 160.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "Kichererbsenmehl"
             },
             {
-                "amount": 320.0,
+                "amount": 1600.0,
                 "unit": "ml",
                 "name": "Wasser"
             },
             {
-                "amount": 80.0,
+                "amount": 400.0,
                 "unit": "g",
                 "name": "Veganer Joghurt"
             },
             {
-                "amount": 2.5,
+                "amount": 12.5,
                 "unit": "EL",
                 "name": "Hefeflocken"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Paprikapulver"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "TL",
                 "name": "Kurkuma"
             },
             {
-                "amount": 1.0,
+                "amount": 5.0,
                 "unit": "TL",
                 "name": "Salz"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "TL",
                 "name": "Kala Namak"
             },
             {
-                "amount": 0.5,
+                "amount": 2.5,
                 "unit": "TL",
                 "name": "Pfeffer"
             },
@@ -92,17 +92,17 @@
                 "name": "Frische Kräuter"
             },
             {
-                "amount": 80.0,
+                "amount": 400.0,
                 "unit": "g",
                 "name": "Zucchini"
             },
             {
-                "amount": 60.0,
+                "amount": 300.0,
                 "unit": "g",
                 "name": "Paprika"
             },
             {
-                "amount": 60.0,
+                "amount": 300.0,
                 "unit": "g",
                 "name": "Karotten"
             }

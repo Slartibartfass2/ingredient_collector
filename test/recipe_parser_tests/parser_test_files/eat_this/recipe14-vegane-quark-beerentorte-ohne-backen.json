@@ -1,73 +1,73 @@
 {
     "request": {
         "url": "https://www.eat-this.org/vegane-quark-beerentorte-ohne-backen",
-        "servings": 1
+        "servings": 4
     },
     "result": {
         "name": "Vegane Quark-Beerentorte ohne Backen",
         "ingredients": [
             {
-                "amount": 50.0,
+                "amount": 200.0,
                 "unit": "g",
                 "name": "rohe Mandeln"
             },
             {
-                "amount": 50.0,
+                "amount": 200.0,
                 "unit": "g",
                 "name": "rohe Sonnenblumenkerne"
             },
             {
-                "amount": 50.0,
+                "amount": 200.0,
                 "unit": "g",
                 "name": "rohe Kürbiskerne"
             },
             {
-                "amount": 1.5,
+                "amount": 6.0,
                 "unit": "EL",
                 "name": "Reis- oder Ahornsirup"
             },
             {
-                "amount": 3.0,
+                "amount": 12.0,
                 "unit": "EL",
                 "name": "Kokosöl"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "Prise",
                 "name": "Salz"
             },
             {
-                "amount": 100.0,
+                "amount": 400.0,
                 "unit": "g",
                 "name": "Cashews (mindestens 8 Stunden eingeweicht)"
             },
             {
-                "amount": 200.0,
+                "amount": 800.0,
                 "unit": "g",
                 "name": "veganer Quark"
             },
             {
-                "amount": 100.0,
+                "amount": 400.0,
                 "unit": "ml",
                 "name": "Mandelmilch"
             },
             {
-                "amount": 3.0,
+                "amount": 12.0,
                 "unit": "EL",
                 "name": "Reissirup"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "TL",
                 "name": "Zitronenzesten"
             },
             {
-                "amount": 1.0,
+                "amount": 4.0,
                 "unit": "EL",
                 "name": "Zitronensaft"
             },
             {
-                "amount": 300.0,
+                "amount": 1200.0,
                 "unit": "g",
                 "name": "gemischte frische Sommerbeeren (z. B. Himbeeren, Stachelbeeren, Brombeeren)"
             }
