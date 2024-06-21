@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'parser_test_helper.dart';
 
 void main() {
+  const parser = BiancaZapatkaParser();
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     RecipeCache().cache.clear();
@@ -25,7 +27,6 @@ void main() {
 
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
-      var parser = const BiancaZapatkaParser();
       var ingredientElement = Element.html("<a></a>");
       var result = parser.parseIngredient(
         ingredientElement,
@@ -40,7 +41,6 @@ void main() {
       'When element with amount and unit is parsed, then parsing is '
       'successful',
       () {
-        var parser = const BiancaZapatkaParser();
         var ingredientElement = Element.html("""
         <li class="wprm-recipe-ingredient">
           <span class="wprm-recipe-ingredient-amount">ca. 24,5</span>
@@ -67,7 +67,6 @@ void main() {
     test(
       'When element with only amount is parsed, then parsing is successful',
       () {
-        var parser = const BiancaZapatkaParser();
         var ingredientElement = Element.html("""
         <li class="wprm-recipe-ingredient">
           <span class="wprm-recipe-ingredient-amount">½</span>
@@ -92,7 +91,6 @@ void main() {
       'When element with invalid amount is parsed, then parsing returns '
       'errors',
       () {
-        var parser = const BiancaZapatkaParser();
         var ingredientElement = Element.html("""
         <li class="wprm-recipe-ingredient">
           <span class="wprm-recipe-ingredient-amount">amount</span>

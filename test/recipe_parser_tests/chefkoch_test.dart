@@ -2,12 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
-import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart';
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
+    show ChefkochParser;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'parser_test_helper.dart';
 
 void main() {
+  const parser = ChefkochParser();
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     RecipeCache().cache.clear();
@@ -24,7 +27,6 @@ void main() {
 
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
-      var parser = const ChefkochParser();
       var ingredientElement = Element.html("<a></a>");
       var result = parser.parseIngredient(
         ingredientElement,
@@ -39,7 +41,6 @@ void main() {
       'When element with amount and unit is parsed, then parsing is '
       'successful',
       () {
-        var parser = const ChefkochParser();
         var ingredientElement = Element.html("""
         <tr>
           <td>
@@ -73,7 +74,6 @@ void main() {
     test(
       'When element with only amount is parsed, then parsing is successful',
       () {
-        var parser = const ChefkochParser();
         var ingredientElement = Element.html("""
         <tr>
           <td>

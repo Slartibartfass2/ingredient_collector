@@ -11,6 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'parser_test_helper.dart';
 
 void main() {
+  const parser = EatThisParser();
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     RecipeCache().cache.clear();
@@ -56,7 +58,6 @@ void main() {
 
   group('Ingredient parsing', () {
     test('When empty element is parsed, then parsing returns errors', () {
-      var parser = const EatThisParser();
       var ingredientElement = Element.html("<a></a>");
       var resultNew = parser.parseIngredientNewDesign(
         ingredientElement,
@@ -78,7 +79,6 @@ void main() {
       'When element with amount and unit is parsed, then parsing is '
       'successful (new design)',
       () {
-        var parser = const EatThisParser();
         var ingredientElement = Element.html("""
         <li class="wprm-recipe-ingredient">
           <span class="wprm-recipe-ingredient-amount">½</span>
@@ -104,7 +104,6 @@ void main() {
       'When element with amount and unit is parsed, then parsing is '
       'successful (old design)',
       () {
-        var parser = const EatThisParser();
         var ingredientElement = Element.html("""
         <li>
           1 1/2 EL Reis- oder Ahornsirup
@@ -134,7 +133,6 @@ void main() {
       'When element with invalid amount is parsed, then parsing returns '
       'errors',
       () {
-        var parser = const EatThisParser();
         var ingredientElement = Element.html("""
         <li class="wprm-recipe-ingredient">
           <span class="wprm-recipe-ingredient-amount">amount</span>
