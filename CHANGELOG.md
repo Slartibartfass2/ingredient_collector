@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0] - 2024-06-22
+
+### Added
+
+- Add Nora Cooks support ([#167](https://github.com/Slartibartfass2/ingredient_collector/pull/167))
+
 ## [0.6.0] - 2024-06-21
 
 ### Changed
@@ -72,6 +78,8 @@
 ## [0.1.0] - 2023-01-30
 
 _Initial release._
+
+[0.7.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.7.0
 
 [0.6.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.6.0
 

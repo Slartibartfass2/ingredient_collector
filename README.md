@@ -11,7 +11,7 @@
     <a href="https://github.com/Slartibartfass2/ingredient_collector">
         <img src="https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png" alt="Logo" width="80" height="80">
     </a>
-    <h3 align="center">ingredient_collector - 0.5.0</h3>
+    <h3 align="center">ingredient_collector - 0.7.0</h3>
     <p align="center">
         An app that collects ingredients from recipe websites and combines them into a shopping list.
     </p>
