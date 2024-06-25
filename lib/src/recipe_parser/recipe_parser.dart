@@ -4,10 +4,10 @@ import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:html/dom.dart' show Document, Element;
 
 import '../job_logs/job_log.dart';
-import '../models/ingredient.dart';
-import '../models/ingredient_parsing_result.dart';
-import '../models/recipe_parsing_job.dart';
-import '../models/recipe_parsing_result.dart';
+import '../models/domain/ingredient.dart';
+import '../models/parsing/ingredient_parsing_result.dart';
+import '../models/parsing/recipe_parsing_job.dart';
+import '../models/parsing/recipe_parsing_result.dart';
 import 'parsing_helper.dart';
 
 part 'bianca_zapatka_parser.dart';

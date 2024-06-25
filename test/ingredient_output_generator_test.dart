@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/ingredient_output_generator.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/recipe.dart';
 
 void main() {
   test('create collection result with empty list of recipes', () {

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/locale_keys.g.dart';
 import '../../local_storage_controller.dart';
-import '../../models/recipe.dart';
-import '../../models/recipe_modification.dart';
+import '../../models/domain/recipe.dart';
+import '../../models/local_storage/recipe_modification.dart';
 import '../../recipe_controller/recipe_tools.dart';
 import '../../widgets/adaptive_container.dart';
 import 'recipe_modification_form.dart';

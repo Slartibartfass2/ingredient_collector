@@ -4,11 +4,11 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart' show expect, fail, isTrue;
 import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/recipe.dart';
+import 'package:ingredient_collector/src/models/parsing/ingredient_parsing_result.dart';
+import 'package:ingredient_collector/src/models/parsing/recipe_parsing_job.dart';
+import 'package:ingredient_collector/src/models/parsing/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart';
 

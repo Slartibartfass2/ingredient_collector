@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
-import 'package:ingredient_collector/src/models/recipe_modification.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/recipe.dart';
+import 'package:ingredient_collector/src/models/local_storage/recipe_modification.dart';
+import 'package:ingredient_collector/src/models/parsing/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_tools.dart';
 
 void main() {

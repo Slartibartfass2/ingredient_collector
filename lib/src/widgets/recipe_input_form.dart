@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
-import '../models/recipe.dart';
+import '../models/domain/recipe.dart';
 import '../recipe_controller/recipe_controller.dart';
 import '../recipe_controller/recipe_tools.dart';
 import 'collection_output_textarea.dart';

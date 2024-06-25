@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/local_storage_controller.dart';
-import 'package:ingredient_collector/src/models/additional_recipe_information.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
-import 'package:ingredient_collector/src/models/recipe_modification.dart';
-import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/recipe.dart';
+import 'package:ingredient_collector/src/models/local_storage/additional_recipe_information.dart';
+import 'package:ingredient_collector/src/models/local_storage/recipe_modification.dart';
+import 'package:ingredient_collector/src/models/parsing/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';

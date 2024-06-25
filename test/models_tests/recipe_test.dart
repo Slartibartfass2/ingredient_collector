@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/recipe.dart';
 
 void main() {
   test(

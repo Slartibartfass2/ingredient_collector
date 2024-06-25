@@ -1,7 +1,7 @@
-import '../models/ingredient.dart';
-import '../models/recipe.dart';
-import '../models/recipe_modification.dart';
-import '../models/recipe_parsing_job.dart';
+import '../models/domain/ingredient.dart';
+import '../models/domain/recipe.dart';
+import '../models/local_storage/recipe_modification.dart';
+import '../models/parsing/recipe_parsing_job.dart';
 
 /// Merges the passed [RecipeParsingJob]s.
 ///

@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart' show NumberFormat;
 
-import 'models/ingredient.dart';
-import 'models/recipe.dart';
+import 'models/domain/ingredient.dart';
+import 'models/domain/recipe.dart';
 import 'models/recipe_collection_result.dart';
 import 'recipe_controller/recipe_tools.dart';
 

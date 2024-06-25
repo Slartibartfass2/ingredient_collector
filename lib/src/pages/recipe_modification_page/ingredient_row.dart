@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../l10n/locale_keys.g.dart';
-import '../../models/ingredient.dart';
+import '../../models/domain/ingredient.dart';
 
 /// A row to display the properties of an ingredient.
 class IngredientRow extends StatefulWidget {

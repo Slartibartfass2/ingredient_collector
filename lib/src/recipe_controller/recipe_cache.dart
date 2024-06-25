@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show visibleForTesting;
 
-import '../models/recipe.dart';
+import '../models/domain/recipe.dart';
 
 /// Cache for recipes.
 ///

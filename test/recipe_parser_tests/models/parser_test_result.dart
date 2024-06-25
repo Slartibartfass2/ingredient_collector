@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/domain/ingredient.dart';
 
 part 'parser_test_result.freezed.dart';
 part 'parser_test_result.g.dart';

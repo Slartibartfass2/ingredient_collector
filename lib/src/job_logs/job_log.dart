@@ -1,6 +1,6 @@
 library job_log;
 
-import '../models/recipe_parsing_job.dart';
+import '../models/parsing/recipe_parsing_job.dart';
 
 part 'additional_recipe_information_job_log.dart';
 part 'amount_parsing_failure_job_log.dart';

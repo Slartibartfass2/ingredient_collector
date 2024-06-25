@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../job_logs/job_log.dart';
-import 'ingredient.dart';
+import '../../job_logs/job_log.dart';
+import '../domain/ingredient.dart';
 
 part 'ingredient_parsing_result.freezed.dart';
 
