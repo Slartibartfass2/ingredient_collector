@@ -171,13 +171,12 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
     var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
 
     // If context is still valid, update the state.
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      setState(() {
-        _messageBoxes = logs.map(MessageBox.fromJobLog).toList();
-        textArea.controller.text = collectionResult.resultSortedByAmount;
-      });
-    }
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    setState(() {
+      _messageBoxes = logs.map(MessageBox.fromJobLog).toList();
+      textArea.controller.text = collectionResult.resultSortedByAmount;
+    });
   }
 
   @override
