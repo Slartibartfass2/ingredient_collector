@@ -5,11 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/local_storage/additional_recipe_information.dart';
 import '../models/local_storage/recipe_modification.dart';
+import '../models/local_storage/versions/local_storage_data_v1.dart';
 
 /// Controller for the local storage.
 ///
 /// The local storage is used to save [AdditionalRecipeInformation]s.
 class LocalStorageController {
+  /// Key for the [LocalStorageDataV1] object.
+  static const localStorageDataKey = "local_storage_data";
+
   /// Key for the additional recipe information in the local storage.
   static const additionalRecipeInformationKey =
       "additional_recipe_informations";

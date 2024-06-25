@@ -1,0 +1,14 @@
+{
+    "recipeUrlOrigin": "https://mobile.kptncook.com",
+    "recipeName": "Knusprige Gnocchi mit Zucchini-Basilikum-Sauce",
+    "note": "",
+    "recipeModification": {
+        "servings": 4,
+        "modifiedIngredients": [
+            { "amount": 4, "unit": "Zehen", "name": "Knoblauch" },
+            { "amount": 2, "unit": "EL", "name": "Olivenöl" },
+            { "amount": -1, "unit": "", "name": "Salz" },
+            { "amount": -1, "unit": "", "name": "Pfeffer" }
+        ]
+    }
+}
