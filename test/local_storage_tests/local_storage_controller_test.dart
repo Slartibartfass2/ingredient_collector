@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ingredient_collector/src/local_storage_controller.dart';
+import 'package:ingredient_collector/src/local_storage/local_storage_controller.dart';
 import 'package:ingredient_collector/src/models/domain/ingredient.dart';
 import 'package:ingredient_collector/src/models/local_storage/additional_recipe_information.dart';
 import 'package:ingredient_collector/src/models/local_storage/recipe_modification.dart';

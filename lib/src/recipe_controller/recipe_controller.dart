@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../../l10n/locale_keys.g.dart';
 import '../job_logs/job_log.dart';
-import '../local_storage_controller.dart';
+import '../local_storage/local_storage_controller.dart';
 import '../models/domain/recipe.dart';
 import '../models/local_storage/recipe_modification.dart';
 import '../models/parsing/recipe_parsing_job.dart';

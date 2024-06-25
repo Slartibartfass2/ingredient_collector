@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'models/local_storage/additional_recipe_information.dart';
-import 'models/local_storage/recipe_modification.dart';
+import '../models/local_storage/additional_recipe_information.dart';
+import '../models/local_storage/recipe_modification.dart';
 
 /// Controller for the local storage.
 ///

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../l10n/locale_keys.g.dart';
-import '../../local_storage_controller.dart';
+import '../../local_storage/local_storage_controller.dart';
 import '../../models/domain/ingredient.dart';
 import '../../models/domain/recipe.dart';
 import '../../recipe_controller/recipe_tools.dart';
