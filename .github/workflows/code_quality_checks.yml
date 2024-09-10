@@ -65,7 +65,7 @@ jobs:
         run: bash setup.ps1
 
       - name: Check spelling
-        uses: crate-ci/typos@v1.24.3
+        uses: crate-ci/typos@v1.24.5
         with:
           config: .github/typos.toml
 
