@@ -9,7 +9,7 @@
             {
                 "amount": 5.0,
                 "unit": "Dose",
-                "name": "Jackfruit, grün, 565 g"
+                "name": "Jackfruit, grüne, 565 g"
             },
             {
                 "amount": 5.0,
@@ -34,7 +34,7 @@
             {
                 "amount": 10.0,
                 "unit": "EL",
-                "name": "Essig (bei mir Apfelessig)"
+                "name": "Apfelessig"
             },
             {
                 "amount": 5.0,
@@ -44,12 +44,12 @@
             {
                 "amount": 2.5,
                 "unit": "TL",
-                "name": "Knoblauch, gemahlen"
+                "name": "Knoblauchpulver"
             },
             {
                 "amount": 2.5,
                 "unit": "TL",
-                "name": "Pfeffer, gemahlen"
+                "name": "Pfeffer"
             },
             {
                 "amount": 500.0,
@@ -59,7 +59,7 @@
             {
                 "amount": 20.0,
                 "unit": "",
-                "name": "Brötchen"
+                "name": "Burgerbrötchen"
             },
             {
                 "amount": 5.0,
