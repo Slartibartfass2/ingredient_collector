@@ -30,9 +30,8 @@ class RecipeModificationForm extends StatefulWidget {
     required this.originalRecipe,
     required this.recipeUrlOrigin,
     required this.modifiedRecipe,
-  }) : originalIngredientNames = originalRecipe.ingredients
-            .map((ingredient) => ingredient.name)
-            .toList();
+  }) : originalIngredientNames =
+           originalRecipe.ingredients.map((ingredient) => ingredient.name).toList();
 
   @override
   State<RecipeModificationForm> createState() => _RecipeModificationFormState();
@@ -52,30 +51,30 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     super.initState();
     var ingredients = widget.modifiedRecipe.ingredients;
     var originalIngredients = widget.originalRecipe.ingredients;
-    modifiedRows = ingredients
-        .map(
-          (ingredient) => _createRow(
-            ingredient,
-            originalIngredients.firstWhere(
-              (originalIngredient) =>
-                  originalIngredient.name == ingredient.name,
-              orElse: () => const Ingredient(amount: 0, unit: "", name: ""),
-            ),
-            true,
-            _onDelete,
-          ),
-        )
-        .toList();
-    removedRows = originalIngredients
-        .where(
-          (ingredient) => !ingredients.any(
-            (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
-          ),
-        )
-        .map(
-          (ingredient) => _createRow(ingredient, ingredient, false, _onRestore),
-        )
-        .toList();
+    modifiedRows =
+        ingredients
+            .map(
+              (ingredient) => _createRow(
+                ingredient,
+                originalIngredients.firstWhere(
+                  (originalIngredient) => originalIngredient.name == ingredient.name,
+                  orElse: () => const Ingredient(amount: 0, unit: "", name: ""),
+                ),
+                true,
+                _onDelete,
+              ),
+            )
+            .toList();
+    removedRows =
+        originalIngredients
+            .where(
+              (ingredient) =>
+                  !ingredients.any(
+                    (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
+                  ),
+            )
+            .map((ingredient) => _createRow(ingredient, ingredient, false, _onRestore))
+            .toList();
   }
 
   IngredientRow _createRow(
@@ -83,28 +82,22 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
     Ingredient originalIngredient,
     bool isEnabled,
     void Function(IngredientRow) onPressed,
-  ) =>
-      IngredientRow(
-        key: ValueKey(rowIndex++),
-        ingredient: ingredient,
-        originalIngredient: originalIngredient,
-        isEnabled: isEnabled,
-        isNew: !widget.originalIngredientNames.contains(ingredient.name),
-        onPressed: onPressed,
-        onNameValidation: _onNameValidation,
-      );
+  ) => IngredientRow(
+    key: ValueKey(rowIndex++),
+    ingredient: ingredient,
+    originalIngredient: originalIngredient,
+    isEnabled: isEnabled,
+    isNew: !widget.originalIngredientNames.contains(ingredient.name),
+    onPressed: onPressed,
+    onNameValidation: _onNameValidation,
+  );
 
   void _onDelete(IngredientRow row) {
     setState(() {
       modifiedRows.remove(row);
       if (row.nameController.text.isNotEmpty && !row.isNew) {
         removedRows.add(
-          _createRow(
-            row.modifiedIngredient,
-            row.originalIngredient,
-            false,
-            _onRestore,
-          ),
+          _createRow(row.modifiedIngredient, row.originalIngredient, false, _onRestore),
         );
       }
     });
@@ -113,28 +106,14 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
   void _onRestore(IngredientRow row) {
     setState(() {
       removedRows.remove(row);
-      modifiedRows.add(
-        _createRow(
-          row.modifiedIngredient,
-          row.originalIngredient,
-          true,
-          _onDelete,
-        ),
-      );
+      modifiedRows.add(_createRow(row.modifiedIngredient, row.originalIngredient, true, _onDelete));
     });
   }
 
   void _addNewIngredient() {
     setState(() {
       var newIngredient = const Ingredient(amount: 0, unit: "", name: "");
-      modifiedRows.add(
-        _createRow(
-          newIngredient,
-          newIngredient,
-          true,
-          _onDelete,
-        ),
-      );
+      modifiedRows.add(_createRow(newIngredient, newIngredient, true, _onDelete));
     });
   }
 
@@ -164,10 +143,7 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
 
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content:
-              const Text(LocaleKeys.recipe_modification_saved_snackbar).tr(),
-        ),
+        SnackBar(content: const Text(LocaleKeys.recipe_modification_saved_snackbar).tr()),
       );
       Navigator.pop(context);
     }
@@ -175,20 +151,13 @@ class _RecipeModificationFormState extends State<RecipeModificationForm> {
 
   String? _onNameValidation(String name) {
     var trimmedName = name.trim();
-    var duplicateRows = modifiedRows
-            .where((row) => row.modifiedIngredient.name == trimmedName)
-            .toList() +
-        removedRows
-            .where((row) => row.modifiedIngredient.name == trimmedName)
-            .toList();
+    var duplicateRows =
+        modifiedRows.where((row) => row.modifiedIngredient.name == trimmedName).toList() +
+        removedRows.where((row) => row.modifiedIngredient.name == trimmedName).toList();
 
     var isDuplicate = duplicateRows.length >= 2;
     return isDuplicate
-        ? LocaleKeys.recipe_modification_duplicate_name_text.tr(
-            namedArgs: {
-              "name": trimmedName,
-            },
-          )
+        ? LocaleKeys.recipe_modification_duplicate_name_text.tr(namedArgs: {"name": trimmedName})
         : null;
   }
 

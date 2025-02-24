@@ -10,14 +10,14 @@ import '../../../l10n/locale_keys.g.dart';
 class ServingsInputField extends TextFormField {
   /// Creates a new [ServingsInputField].
   ServingsInputField({super.key, required super.controller})
-      : super(
-          decoration: InputDecoration(
-            labelText: LocaleKeys.servings_field_label.tr(),
-            border: const OutlineInputBorder(),
-          ),
-          keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.allow(RegExp('[1-9][0-9]*')),
-          ],
-        );
+    : super(
+        decoration: InputDecoration(
+          labelText: LocaleKeys.servings_field_label.tr(),
+          border: const OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.number,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(RegExp('[1-9][0-9]*')),
+        ],
+      );
 }

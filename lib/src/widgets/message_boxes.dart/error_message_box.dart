@@ -8,14 +8,11 @@ import 'message_box.dart';
 /// [MessageBox] that represents an error.
 class ErrorMessageBox extends MessageBox {
   /// Creates a [ErrorMessageBox].
-  ErrorMessageBox({
-    super.key,
-    required super.title,
-    required super.message,
-  }) : super(
-          textColor: errorColor,
-          backgroundColor: errorBackgroundColor,
-          iconData: Icons.error,
-          titleTag: LocaleKeys.message_box_title_error.tr(),
-        );
+  ErrorMessageBox({super.key, required super.title, required super.message})
+    : super(
+        textColor: errorColor,
+        backgroundColor: errorBackgroundColor,
+        iconData: Icons.error,
+        titleTag: LocaleKeys.message_box_title_error.tr(),
+      );
 }

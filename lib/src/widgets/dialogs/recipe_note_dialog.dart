@@ -16,11 +16,7 @@ class RecipeNoteDialog extends StatelessWidget {
   final String recipeName;
 
   /// Creates a new [RecipeNoteDialog].
-  const RecipeNoteDialog({
-    super.key,
-    required this.recipeUrlOrigin,
-    required this.recipeName,
-  });
+  const RecipeNoteDialog({super.key, required this.recipeUrlOrigin, required this.recipeName});
 
   Future<void> _onSave(BuildContext context, TextField textArea) async {
     await LocalStorageController().setRecipeNote(
@@ -38,8 +34,7 @@ class RecipeNoteDialog extends StatelessWidget {
     var textField = const TextField();
     var textAreaFutureBuilder = FutureBuilder(
       future: Future(
-        () async =>
-            LocalStorageController().getRecipeNote(recipeUrlOrigin, recipeName),
+        () async => LocalStorageController().getRecipeNote(recipeUrlOrigin, recipeName),
       ),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
@@ -82,11 +77,7 @@ class RecipeNoteDialog extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            cancelButton,
-            const SizedBox(width: 10),
-            saveButton,
-          ],
+          children: [cancelButton, const SizedBox(width: 10), saveButton],
         ),
       ],
     );

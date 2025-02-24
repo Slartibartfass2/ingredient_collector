@@ -8,9 +8,8 @@ enum RecipeRedirect {
   /// Returns the [RecipeRedirect] for the passed [url].
   ///
   /// Returns null if the passed [url] is not supported.
-  static RecipeRedirect? fromUrl(Uri url) => RecipeRedirect.values
-      .where((redirect) => redirect.urlHost == url.host)
-      .firstOrNull;
+  static RecipeRedirect? fromUrl(Uri url) =>
+      RecipeRedirect.values.where((redirect) => redirect.urlHost == url.host).firstOrNull;
 
   const RecipeRedirect(this.urlHost, this.redirectParser);
 

@@ -9,29 +9,25 @@ import 'recipe_controller/recipe_tools.dart';
 ///
 /// The [RecipeCollectionResult] contains strings with different
 /// representations.
-RecipeCollectionResult createCollectionResultFromRecipes(
-  List<Recipe> recipes,
-) {
-  var mergedIngredients = mergeIngredients(
-    recipes.expand<Ingredient>((recipe) => recipe.ingredients).toList(),
-  ).toList();
-  var ingredientsSortedByAmount = mergedIngredients
-    ..sort((a, b) => b.amount.compareTo(a.amount));
+RecipeCollectionResult createCollectionResultFromRecipes(List<Recipe> recipes) {
+  var mergedIngredients =
+      mergeIngredients(
+        recipes.expand<Ingredient>((recipe) => recipe.ingredients).toList(),
+      ).toList();
+  var ingredientsSortedByAmount = mergedIngredients..sort((a, b) => b.amount.compareTo(a.amount));
 
-  var resultSortedByAmountText =
-      ingredientsSortedByAmount.map(_formatIngredient).join("\n");
+  var resultSortedByAmountText = ingredientsSortedByAmount.map(_formatIngredient).join("\n");
 
-  return RecipeCollectionResult(
-    resultSortedByAmount: resultSortedByAmountText,
-  );
+  return RecipeCollectionResult(resultSortedByAmount: resultSortedByAmountText);
 }
 
 String _formatIngredient(Ingredient ingredient) {
   var result = "";
   if (ingredient.amount > 0) {
-    var formatter = NumberFormat()
-      ..minimumFractionDigits = 0
-      ..maximumFractionDigits = 2;
+    var formatter =
+        NumberFormat()
+          ..minimumFractionDigits = 0
+          ..maximumFractionDigits = 2;
 
     result += "${formatter.format(ingredient.amount)} ";
   }

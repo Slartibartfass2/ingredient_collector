@@ -33,12 +33,7 @@ class RecipeController {
     required String language,
   }) {
     var id = _nextRecipeParsingJobId++;
-    return RecipeParsingJob(
-      id: id,
-      url: url,
-      servings: servings,
-      language: language,
-    );
+    return RecipeParsingJob(id: id, url: url, servings: servings, language: language);
   }
 
   /// Collects recipes from the websites in the passed [recipeParsingJobs].
@@ -65,9 +60,7 @@ class RecipeController {
     var results = <RecipeParsingResult>[];
     var client = http.Client();
 
-    var headers = <String, String>{
-      'Accept-Language': language,
-    };
+    var headers = <String, String>{'Accept-Language': language};
 
     recipeParsingJobs = await Future.wait(
       recipeParsingJobs.map((job) => _getRedirectRecipeParsingJob(client, job)),
@@ -141,8 +134,7 @@ class RecipeController {
     String recipeUrlOrigin,
   ) async {
     var recipe = result.recipe;
-    var additionalInformation =
-        await LocalStorageController().getAdditionalRecipeInformation(
+    var additionalInformation = await LocalStorageController().getAdditionalRecipeInformation(
       recipeUrlOrigin,
       recipe != null ? recipe.name : "",
     );
@@ -152,32 +144,24 @@ class RecipeController {
     }
 
     var modification = additionalInformation.recipeModification;
-    var isModificationEmpty =
-        modification == null || (modification.modifiedIngredients.isEmpty);
+    var isModificationEmpty = modification == null || (modification.modifiedIngredients.isEmpty);
     if (!isModificationEmpty) {
-      recipe = modifyRecipe(
-        recipe: recipe,
-        modification: modification,
-      );
+      recipe = modifyRecipe(recipe: recipe, modification: modification);
     }
 
     var logs = <JobLog>[
       ...result.logs,
       ...additionalInformation.note.isNotEmpty
           ? [
-              AdditionalRecipeInformationJobLog(
-                recipeName: recipe.name,
-                note: additionalInformation.note,
-              ),
-            ]
+            AdditionalRecipeInformationJobLog(
+              recipeName: recipe.name,
+              note: additionalInformation.note,
+            ),
+          ]
           : [],
     ];
 
-    return result.copyWith(
-      recipe: recipe,
-      logs: logs,
-      wasModified: !isModificationEmpty,
-    );
+    return result.copyWith(recipe: recipe, logs: logs, wasModified: !isModificationEmpty);
   }
 
   Future<RecipeParsingResult> _collectRecipe(
@@ -191,10 +175,7 @@ class RecipeController {
     } on http.ClientException {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.missingCorsPlugin,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.missingCorsPlugin, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -219,16 +200,16 @@ class RecipeController {
       return const RecipeParsingResult(logs: []);
     }
 
-    var result =
-        recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
+    var result = recipeWebsite.recipeParser.parseRecipe(document, recipeParsingJob);
     var recipe = result.recipe;
     Recipe? mergedRecipe;
     if (recipe != null) {
       mergedRecipe = recipe.copyWith(
         name: _escapeName(recipe.name),
-        ingredients: mergeIngredients(recipe.ingredients)
-            .map((elem) => elem.copyWith(name: _escapeName(elem.name)))
-            .toList(),
+        ingredients:
+            mergeIngredients(
+              recipe.ingredients,
+            ).map((elem) => elem.copyWith(name: _escapeName(elem.name))).toList(),
       );
     }
     return result.copyWith(recipe: mergedRecipe);
@@ -238,10 +219,11 @@ class RecipeController {
     http.Client client,
     RecipeParsingJob recipeParsingJob,
   ) async {
-    var redirectParser = RecipeRedirect.values
-        .where((element) => element.urlHost == recipeParsingJob.url.host)
-        .firstOrNull
-        ?.redirectParser;
+    var redirectParser =
+        RecipeRedirect.values
+            .where((element) => element.urlHost == recipeParsingJob.url.host)
+            .firstOrNull
+            ?.redirectParser;
 
     if (redirectParser == null) {
       return recipeParsingJob;

@@ -8,14 +8,11 @@ import 'message_box.dart';
 /// [MessageBox] that represents an information.
 class InfoMessageBox extends MessageBox {
   /// Creates a [InfoMessageBox].
-  InfoMessageBox({
-    super.key,
-    required super.title,
-    required super.message,
-  }) : super(
-          textColor: informationColor,
-          backgroundColor: informationBackgroundColor,
-          iconData: Icons.info_rounded,
-          titleTag: LocaleKeys.message_box_title_info.tr(),
-        );
+  InfoMessageBox({super.key, required super.title, required super.message})
+    : super(
+        textColor: informationColor,
+        backgroundColor: informationBackgroundColor,
+        iconData: Icons.info_rounded,
+        titleTag: LocaleKeys.message_box_title_info.tr(),
+      );
 }

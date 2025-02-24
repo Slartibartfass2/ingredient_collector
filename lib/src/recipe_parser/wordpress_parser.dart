@@ -6,30 +6,22 @@ class WordPressParser extends RecipeParser {
   const WordPressParser();
 
   @override
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  ) {
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob) {
     var recipeNameElements = document
         .getElementsByClassName("wprm-recipe-name")
         .map((element) => element.text.trim())
         .where((element) => element.isNotEmpty);
-    var servingsElements = document
-        .getElementsByClassName("wprm-recipe-servings")
-        .map((e) => int.tryParse(e.text))
-        .whereType<int>();
-    var ingredientElements =
-        document.getElementsByClassName("wprm-recipe-ingredient");
+    var servingsElements =
+        document
+            .getElementsByClassName("wprm-recipe-servings")
+            .map((e) => int.tryParse(e.text))
+            .whereType<int>();
+    var ingredientElements = document.getElementsByClassName("wprm-recipe-ingredient");
 
-    if (recipeNameElements.isEmpty ||
-        servingsElements.isEmpty ||
-        ingredientElements.isEmpty) {
+    if (recipeNameElements.isEmpty || servingsElements.isEmpty || ingredientElements.isEmpty) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -58,30 +50,24 @@ class WordPressParser extends RecipeParser {
     String? language,
   ) {
     var name = "";
-    var nameElements =
-        element.getElementsByClassName("wprm-recipe-ingredient-name");
+    var nameElements = element.getElementsByClassName("wprm-recipe-ingredient-name");
     if (nameElements.isEmpty) {
       return IngredientParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.ingredientParsingFailure,
-            recipeUrl: recipeUrl,
-          ),
-        ],
+        logs: [SimpleJobLog(subType: JobLogSubType.ingredientParsingFailure, recipeUrl: recipeUrl)],
       );
     }
 
     var nameElement = nameElements.first;
     // Sometimes the name has a url reference in a <a> tag
-    name = nameElement.children.isNotEmpty
-        ? nameElement.children.map((element) => element.text).join().trim()
-        : nameElement.text.trim();
+    name =
+        nameElement.children.isNotEmpty
+            ? nameElement.children.map((element) => element.text).join().trim()
+            : nameElement.text.trim();
 
     var logs = <JobLog>[];
 
     var amount = 0.0;
-    var amountElements =
-        element.getElementsByClassName("wprm-recipe-ingredient-amount");
+    var amountElements = element.getElementsByClassName("wprm-recipe-ingredient-amount");
     if (amountElements.isNotEmpty) {
       var amountElement = amountElements.first;
       var amountString = amountElement.text.trim();
@@ -100,17 +86,14 @@ class WordPressParser extends RecipeParser {
     }
 
     var unit = "";
-    var unitElements =
-        element.getElementsByClassName("wprm-recipe-ingredient-unit");
+    var unitElements = element.getElementsByClassName("wprm-recipe-ingredient-unit");
     if (unitElements.isNotEmpty) {
       var unitElement = unitElements.first;
       unit = unitElement.text.trim();
     }
 
     return IngredientParsingResult(
-      ingredients: [
-        Ingredient(amount: amount, unit: unit, name: name),
-      ],
+      ingredients: [Ingredient(amount: amount, unit: unit, name: name)],
       logs: logs,
     );
   }

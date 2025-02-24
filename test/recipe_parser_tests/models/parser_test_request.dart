@@ -5,10 +5,8 @@ part 'parser_test_request.g.dart';
 
 @freezed
 class ParserTestRequest with _$ParserTestRequest {
-  const factory ParserTestRequest({
-    required String url,
-    required int servings,
-  }) = _ParserTestRequest;
+  const factory ParserTestRequest({required String url, required int servings}) =
+      _ParserTestRequest;
 
   factory ParserTestRequest.fromJson(Map<String, dynamic> json) =>
       _$ParserTestRequestFromJson(json);

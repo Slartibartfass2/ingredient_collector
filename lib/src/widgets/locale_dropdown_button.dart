@@ -16,18 +16,16 @@ class LocaleDropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var value = SupportedLocale.values.firstWhere(
-      (supportedLocale) =>
-          supportedLocale.locale.languageCode == context.locale.languageCode,
+      (supportedLocale) => supportedLocale.locale.languageCode == context.locale.languageCode,
     );
 
-    var items = SupportedLocale.values
-        .map(
-          (supportedLocale) => DropdownMenuItem(
-            value: supportedLocale,
-            child: Text(supportedLocale.name),
-          ),
-        )
-        .toList();
+    var items =
+        SupportedLocale.values
+            .map(
+              (supportedLocale) =>
+                  DropdownMenuItem(value: supportedLocale, child: Text(supportedLocale.name)),
+            )
+            .toList();
 
     return Center(
       child: Padding(
@@ -41,15 +39,9 @@ class LocaleDropdownButton extends StatelessWidget {
             }
             onChanged.call(newValue);
           },
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-          ),
+          style: const TextStyle(color: Colors.white, fontSize: 16),
           underline: const SizedBox.shrink(),
-          icon: const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.white),
           dropdownColor: Theme.of(context).primaryColor,
         ),
       ),

@@ -4,8 +4,7 @@ import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
-    show KptnCookParser;
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart' show KptnCookParser;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'parser_test_helper.dart';
@@ -19,18 +18,11 @@ void main() {
   });
 
   IngredientParsingResult parseIngredient(Element ingredientElement) =>
-      parser.parseIngredient(
-        ingredientElement,
-        1.0,
-        Uri.parse("www.example.org"),
-        "de",
-      );
+      parser.parseIngredient(ingredientElement, 1.0, Uri.parse("www.example.org"), "de");
 
   test(
     'When test files are parsed, then expected results are met',
-    () async => testParsingTestFiles(
-      "./test/recipe_parser_tests/parser_test_files/eat_this",
-    ),
+    () async => testParsingTestFiles("./test/recipe_parser_tests/parser_test_files/eat_this"),
     timeout: const Timeout(Duration(minutes: 5)),
     tags: ["parsing-test"],
   );
@@ -52,45 +44,36 @@ void main() {
     </div>
     """;
 
-    test(
-      'When the recipe name element is missing, then parsing returns errors',
-      () {
-        var document = Document.html("""
+    test('When the recipe name element is missing, then parsing returns errors', () {
+      var document = Document.html("""
         $servingsElement
         $ingredientsElement
         """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document]);
+    });
 
-    test(
-      'When the servings element is missing, then parsing returns errors',
-      () {
-        var document = Document.html("""
+    test('When the servings element is missing, then parsing returns errors', () {
+      var document = Document.html("""
         $recipeNameElement
         $ingredientsElement
         """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document]);
+    });
 
-    test(
-      'When the ingredients element is missing, then parsing returns errors',
-      () {
-        var document1 = Document.html("""
+    test('When the ingredients element is missing, then parsing returns errors', () {
+      var document1 = Document.html("""
         $recipeNameElement
         $servingsElement
         """);
-        var document2 = Document.html("""
+      var document2 = Document.html("""
         $recipeNameElement
         $servingsElement
         <div class="col-md-offset-3">Title Element</div>
         <div class="col-md-offset-3">Description Element</div>
         <div class="col-md-offset-3">Ingredients Element</div>
         """);
-        expectRecipeParsingErrors(parser, [document1, document2]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document1, document2]);
+    });
   });
 
   group('Ingredient parsing', () {
@@ -100,11 +83,9 @@ void main() {
       expect(hasIngredientParsingErrors(result), isTrue);
     });
 
-    test(
-      'When element with amount and unit is parsed, then parsing is '
-      'successful',
-      () {
-        var ingredientElement = Element.html("""
+    test('When element with amount and unit is parsed, then parsing is '
+        'successful', () {
+      var ingredientElement = Element.html("""
         <div>
           <div class="kptn-ingredient-measure">
             30 g
@@ -114,19 +95,16 @@ void main() {
           </div>
         </div>
         """);
-        var result = parseIngredient(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isFalse);
-        expect(
-          result.ingredients.first,
-          equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
-        );
-      },
-    );
+      var result = parseIngredient(ingredientElement);
+      expect(hasIngredientParsingErrors(result), isFalse);
+      expect(
+        result.ingredients.first,
+        equals(const Ingredient(amount: 30, unit: "g", name: "Walnusskerne")),
+      );
+    });
 
-    test(
-      'When element with only amount is parsed, then parsing is successful',
-      () {
-        var ingredientElement = Element.html("""
+    test('When element with only amount is parsed, then parsing is successful', () {
+      var ingredientElement = Element.html("""
         <div>
           <div class="kptn-ingredient-measure">
             0.5
@@ -136,20 +114,17 @@ void main() {
           </div>
         </div>
         """);
-        var result = parseIngredient(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isFalse);
-        expect(
-          result.ingredients.first,
-          equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
-        );
-      },
-    );
+      var result = parseIngredient(ingredientElement);
+      expect(hasIngredientParsingErrors(result), isFalse);
+      expect(
+        result.ingredients.first,
+        equals(const Ingredient(amount: 0.5, unit: "", name: "Brokkoli")),
+      );
+    });
 
-    test(
-      'When element with invalid amount is parsed, then parsing returns '
-      'errors',
-      () {
-        var ingredientElement = Element.html("""
+    test('When element with invalid amount is parsed, then parsing returns '
+        'errors', () {
+      var ingredientElement = Element.html("""
         <div>
           <div class="kptn-ingredient-measure">
             measure
@@ -159,10 +134,9 @@ void main() {
           </div>
         </div>
         """);
-        var result = parseIngredient(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isTrue);
-      },
-    );
+      var result = parseIngredient(ingredientElement);
+      expect(hasIngredientParsingErrors(result), isTrue);
+    });
   });
 
   test(
@@ -195,6 +169,7 @@ void main() {
 
       expect(recipe, equals(redirectRecipe));
     },
+    timeout: const Timeout(Duration(seconds: 30)),
     tags: ["parsing-test"],
   );
 }

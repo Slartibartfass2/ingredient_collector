@@ -13,6 +13,5 @@ class ParserTestCase with _$ParserTestCase {
     required ParserTestResult result,
   }) = _ParserTestCase;
 
-  factory ParserTestCase.fromJson(Map<String, dynamic> json) =>
-      _$ParserTestCaseFromJson(json);
+  factory ParserTestCase.fromJson(Map<String, dynamic> json) => _$ParserTestCaseFromJson(json);
 }

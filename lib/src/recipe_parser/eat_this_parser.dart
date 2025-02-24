@@ -12,13 +12,10 @@ class EatThisParser extends RecipeParser {
   ];
 
   /// Pattern for the amount information of an ingredient.
-  static const _servingsPattern =
-      "(?<servings>[0-9]+(-[0-9]+)?|einen|eine|ein)";
+  static const _servingsPattern = "(?<servings>[0-9]+(-[0-9]+)?|einen|eine|ein)";
   static const _umlautPattern = "(\u00FC|\u0075\u0308)";
   static final _servingsTextPatterns = [
-    RegExp(
-      "Zutaten\\sf${_umlautPattern}r(\\s(ca\\.|etwa))?\\s$_servingsPattern\\s",
-    ),
+    RegExp("Zutaten\\sf${_umlautPattern}r(\\s(ca\\.|etwa))?\\s$_servingsPattern\\s"),
     RegExp("F${_umlautPattern}r\\s$_servingsPattern\\s"),
   ];
 
@@ -53,10 +50,7 @@ class EatThisParser extends RecipeParser {
   const EatThisParser();
 
   @override
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  ) {
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob) {
     if (_notSupportedUrls.contains(recipeParsingJob.url.toString())) {
       return RecipeParsingResult(
         logs: [
@@ -108,8 +102,7 @@ class EatThisParser extends RecipeParser {
       var splitFirstPart = _breakUpNumberAndText(parts.first);
       parts = splitFirstPart + parts.skip(1).toList();
     }
-    var parsedParts =
-        parts.map((part) => tryParseAmountString(part, language: language));
+    var parsedParts = parts.map((part) => tryParseAmountString(part, language: language));
 
     var amount = 0.0;
     var checkIndex = -1;
@@ -123,8 +116,7 @@ class EatThisParser extends RecipeParser {
     }
 
     var unit = "";
-    if (checkIndex + 1 < parts.length &&
-        _units.contains(parts[checkIndex + 1].toLowerCase())) {
+    if (checkIndex + 1 < parts.length && _units.contains(parts[checkIndex + 1].toLowerCase())) {
       unit = parts[checkIndex + 1];
       checkIndex++;
     }
@@ -132,30 +124,16 @@ class EatThisParser extends RecipeParser {
     var name = parts.skip(checkIndex + 1).join(" ");
     if (name.isEmpty) {
       return IngredientParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.ingredientParsingFailure,
-            recipeUrl: recipeUrl,
-          ),
-        ],
+        logs: [SimpleJobLog(subType: JobLogSubType.ingredientParsingFailure, recipeUrl: recipeUrl)],
       );
     }
 
     return IngredientParsingResult(
-      ingredients: [
-        Ingredient(
-          amount: amount * servingsMultiplier,
-          unit: unit,
-          name: name,
-        ),
-      ],
+      ingredients: [Ingredient(amount: amount * servingsMultiplier, unit: unit, name: name)],
     );
   }
 
-  RecipeParsingResult _parseRecipeOldDesign(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  ) {
+  RecipeParsingResult _parseRecipeOldDesign(Document document, RecipeParsingJob recipeParsingJob) {
     var recipeNameElements = document
         .getElementsByClassName("entry-title")
         .map((element) => element.text.trim())
@@ -171,24 +149,18 @@ class EatThisParser extends RecipeParser {
         )
         .expand((element) => element)
         .where(
-          (element) => _servingsTextPatterns.any(
-            (pattern) => element.text.startsWith(pattern),
-          ),
+          (element) => _servingsTextPatterns.any((pattern) => element.text.startsWith(pattern)),
         );
-    var ingredientElements = recipeContainerElements
-        .map((element) => element.getElementsByTagName("li"))
-        .expand((element) => element)
-        .toList();
+    var ingredientElements =
+        recipeContainerElements
+            .map((element) => element.getElementsByTagName("li"))
+            .expand((element) => element)
+            .toList();
 
-    if (recipeNameElements.isEmpty ||
-        servingsElements.isEmpty ||
-        ingredientElements.isEmpty) {
+    if (recipeNameElements.isEmpty || servingsElements.isEmpty || ingredientElements.isEmpty) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -198,16 +170,12 @@ class EatThisParser extends RecipeParser {
 
     // Retrieve amount of servings
     var servingsDescriptionText = servingsElement.text;
-    var recipeServingsMatch =
-        RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
+    var recipeServingsMatch = RegExp(_servingsPattern).firstMatch(servingsDescriptionText);
     var matchGroup = recipeServingsMatch?.namedGroup("servings");
     if (matchGroup == null) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -231,7 +199,9 @@ class EatThisParser extends RecipeParser {
     Uri recipeUrl,
     String? language,
   ) {
-    var ingredients = ingredientText.split("+").map(
+    var ingredients = ingredientText
+        .split("+")
+        .map(
           (ingredient) => parseIngredientOldDesign(
             Element.html("<li>${ingredient.trim()}</li>"),
             servingsMultiplier,
@@ -241,23 +211,19 @@ class EatThisParser extends RecipeParser {
         );
     if (ingredients.every((ingredient) => ingredient.ingredients.isNotEmpty)) {
       return IngredientParsingResult(
-        ingredients: ingredients
-            .map((result) => result.ingredients)
-            .expand((ingredient) => ingredient)
-            .toList(),
-        logs: ingredients
-            .map((result) => result.logs)
-            .expand((log) => log)
-            .toList(),
+        ingredients:
+            ingredients
+                .map((result) => result.ingredients)
+                .expand((ingredient) => ingredient)
+                .toList(),
+        logs: ingredients.map((result) => result.logs).expand((log) => log).toList(),
       );
     }
     return null;
   }
 
   List<String> _breakUpNumberAndText(String numberAndTextString) {
-    var result = <String>[
-      "",
-    ];
+    var result = <String>[""];
     var unitIndex = 0;
     for (var i = 0; i < numberAndTextString.length; i++) {
       var number = num.tryParse(numberAndTextString[i]);

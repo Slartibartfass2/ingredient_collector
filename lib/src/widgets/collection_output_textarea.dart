@@ -19,9 +19,7 @@ class CollectionOutputTextArea extends StatelessWidget {
     await Clipboard.setData(ClipboardData(text: controller.text)).then((value) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text(LocaleKeys.collection_result_copy_snackbar).tr(),
-        ),
+        SnackBar(content: const Text(LocaleKeys.collection_result_copy_snackbar).tr()),
       );
     });
   }
@@ -45,14 +43,6 @@ class CollectionOutputTextArea extends StatelessWidget {
       maxLines: 10,
     );
 
-    return Stack(
-      children: [
-        textArea,
-        Positioned(
-          right: 0,
-          child: copyButton,
-        ),
-      ],
-    );
+    return Stack(children: [textArea, Positioned(right: 0, child: copyButton)]);
   }
 }

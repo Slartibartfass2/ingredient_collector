@@ -16,9 +16,7 @@ sealed class JobLog {
   final JobLogType type;
 
   /// Creates a [JobLog] object.
-  const JobLog({
-    required this.type,
-  });
+  const JobLog({required this.type});
 
   @override
   String toString() => "JobLog(type=$type)";

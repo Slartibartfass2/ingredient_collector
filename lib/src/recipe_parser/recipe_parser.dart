@@ -32,8 +32,5 @@ abstract class RecipeParser {
   ///
   /// The [RecipeParsingResult] that is returned contains the parsed recipe or
   /// an error message if the recipe couldn't be parsed.
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  );
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob);
 }

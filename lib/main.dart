@@ -12,9 +12,8 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
-      supportedLocales: SupportedLocale.values
-          .map((supportedLocale) => supportedLocale.locale)
-          .toList(),
+      supportedLocales:
+          SupportedLocale.values.map((supportedLocale) => supportedLocale.locale).toList(),
       path: 'resources/langs',
       fallbackLocale: SupportedLocale.english.locale,
       useOnlyLangCode: true,
@@ -30,15 +29,12 @@ class IngredientCollectorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-        home: const HomePage(),
-        title: appTitle,
-        theme: ThemeData(
-          useMaterial3: false,
-          primarySwatch: Colors.blue,
-        ),
-        locale: context.locale,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        debugShowCheckedModeBanner: false,
-      );
+    home: const HomePage(),
+    title: appTitle,
+    theme: ThemeData(useMaterial3: false, primarySwatch: Colors.blue),
+    locale: context.locale,
+    localizationsDelegates: context.localizationDelegates,
+    supportedLocales: context.supportedLocales,
+    debugShowCheckedModeBanner: false,
+  );
 }

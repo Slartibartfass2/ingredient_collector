@@ -15,7 +15,5 @@ abstract class RedirectParser {
   /// The [Document] is the parsed html document of the website.
   /// The [Uri] that is returned contains the parsed redirect url or
   /// null if the redirect url couldn't be parsed.
-  Uri? getRedirectUrl(
-    Document document,
-  );
+  Uri? getRedirectUrl(Document document);
 }

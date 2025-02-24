@@ -5,8 +5,7 @@ import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_cache.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
-import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart'
-    show EatThisParser;
+import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart' show EatThisParser;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'parser_test_helper.dart';
@@ -20,20 +19,13 @@ void main() {
   });
 
   IngredientParsingResult parseIngredientOldDesign(Element ingredientElement) =>
-      parser.parseIngredientOldDesign(
-        ingredientElement,
-        1.0,
-        Uri.parse("www.example.org"),
-        "de",
-      );
+      parser.parseIngredientOldDesign(ingredientElement, 1.0, Uri.parse("www.example.org"), "de");
 
   test(
     'When unsupported recipe is collected, then correct error is returned',
     () async {
       var recipeJob = RecipeController().createRecipeParsingJob(
-        url: Uri.parse(
-          "https://www.eat-this.org/veganes-raclette/",
-        ),
+        url: Uri.parse("https://www.eat-this.org/veganes-raclette/"),
         servings: 4,
         language: "de",
       );
@@ -46,21 +38,18 @@ void main() {
       expect(hasRecipeParsingErrors(result.first), isTrue);
       expect(
         result.first.logs.any(
-          (log) =>
-              log is SimpleJobLog &&
-              log.subType == JobLogSubType.deliberatelyNotSupportedUrl,
+          (log) => log is SimpleJobLog && log.subType == JobLogSubType.deliberatelyNotSupportedUrl,
         ),
         isTrue,
       );
     },
+    timeout: const Timeout(Duration(seconds: 30)),
     tags: ["parsing-test"],
   );
 
   test(
     'When test files are parsed, then expected results are met',
-    () async => testParsingTestFiles(
-      "./test/recipe_parser_tests/parser_test_files/eat_this",
-    ),
+    () async => testParsingTestFiles("./test/recipe_parser_tests/parser_test_files/eat_this"),
     timeout: const Timeout(Duration(minutes: 5)),
     tags: ["parsing-test"],
   );
@@ -80,34 +69,26 @@ void main() {
     </div>
   	""";
 
-    test(
-      'When the recipe name element is missing, then parsing returns errors',
-      () {
-        var document1 = Document.html("""
+    test('When the recipe name element is missing, then parsing returns errors', () {
+      var document1 = Document.html("""
         $recipeContainerOld
         """);
-        var document2 = Document.html("""
+      var document2 = Document.html("""
         $recipeContainerOld
         <div class="entry-title"></div>
         """);
-        expectRecipeParsingErrors(parser, [document1, document2]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document1, document2]);
+    });
 
-    test(
-      'When the recipe container is missing, then parsing returns errors',
-      () {
-        var document = Document.html("""
+    test('When the recipe container is missing, then parsing returns errors', () {
+      var document = Document.html("""
         $recipeNameElement
         """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document]);
+    });
 
-    test(
-      'When the servings element is missing, then parsing returns errors',
-      () {
-        var document = Document.html("""
+    test('When the servings element is missing, then parsing returns errors', () {
+      var document = Document.html("""
         $recipeNameElement
         <div class="zutaten">
           <ul>
@@ -115,14 +96,11 @@ void main() {
           </ul>
         </div>
         """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document]);
+    });
 
-    test(
-      'When the ingredients element is missing, then parsing returns errors',
-      () {
-        var document = Document.html("""
+    test('When the ingredients element is missing, then parsing returns errors', () {
+      var document = Document.html("""
         $recipeNameElement
         <div class="zutaten">
           <ul>
@@ -130,9 +108,8 @@ void main() {
           </ul>
         </div>
         """);
-        expectRecipeParsingErrors(parser, [document]);
-      },
-    );
+      expectRecipeParsingErrors(parser, [document]);
+    });
   });
 
   group('Ingredient parsing', () {
@@ -142,28 +119,19 @@ void main() {
       expect(hasIngredientParsingErrors(result), isTrue);
     });
 
-    test(
-      'When element with amount and unit is parsed, then parsing is '
-      'successful (old design)',
-      () {
-        var ingredientElement = Element.html("""
+    test('When element with amount and unit is parsed, then parsing is '
+        'successful (old design)', () {
+      var ingredientElement = Element.html("""
         <li>
           1 1/2 EL Reis- oder Ahornsirup
         </li>
         """);
-        var result = parseIngredientOldDesign(ingredientElement);
-        expect(hasIngredientParsingErrors(result), isFalse);
-        expect(
-          result.ingredients.first,
-          equals(
-            const Ingredient(
-              amount: 1.5,
-              unit: "EL",
-              name: "Reis- oder Ahornsirup",
-            ),
-          ),
-        );
-      },
-    );
+      var result = parseIngredientOldDesign(ingredientElement);
+      expect(hasIngredientParsingErrors(result), isFalse);
+      expect(
+        result.ingredients.first,
+        equals(const Ingredient(amount: 1.5, unit: "EL", name: "Reis- oder Ahornsirup")),
+      );
+    });
   });
 }

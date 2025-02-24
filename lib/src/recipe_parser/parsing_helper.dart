@@ -42,9 +42,7 @@ double? tryParseAmountString(
   decimalSeparatorLocale ??= language;
 
   try {
-    return NumberFormat.decimalPattern(decimalSeparatorLocale)
-        .parse(amountString)
-        .toDouble();
+    return NumberFormat.decimalPattern(decimalSeparatorLocale).parse(amountString).toDouble();
   } on FormatException {
     // When the string can't be parsed, try other parsing methods
   }
@@ -85,9 +83,8 @@ double? _tryParseSingleWordAmount(String word) {
 }
 
 double? _tryParseMultipleWordsAmount(List<String> words, String? language) {
-  var parsedWords = words
-      .map((word) => tryParseAmountString(word, language: language))
-      .whereType<double>();
+  var parsedWords =
+      words.map((word) => tryParseAmountString(word, language: language)).whereType<double>();
 
   // Sum up values
   if (parsedWords.length == words.length) {
@@ -152,36 +149,26 @@ RecipeParsingResult createResultFromIngredientParsing(
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
-  IngredientParsingResult Function(Element, double, Uri, String?)
-      parseIngredientMethod,
+  IngredientParsingResult Function(Element, double, Uri, String?) parseIngredientMethod,
 ) {
-  var ingredientParsingResults = elements
-      .map(
-        (element) => parseIngredientMethod(
-          element,
-          servingsMultiplier,
-          job.url,
-          job.language,
-        ),
-      )
-      .toList();
+  var ingredientParsingResults =
+      elements
+          .map(
+            (element) => parseIngredientMethod(element, servingsMultiplier, job.url, job.language),
+          )
+          .toList();
 
-  var logs = ingredientParsingResults
-      .map((result) => result.logs)
-      .expand((jobLogs) => jobLogs)
-      .toList();
+  var logs =
+      ingredientParsingResults.map((result) => result.logs).expand((jobLogs) => jobLogs).toList();
 
-  var ingredients = ingredientParsingResults
-      .map((result) => result.ingredients)
-      .expand((ingredient) => ingredient)
-      .toList();
+  var ingredients =
+      ingredientParsingResults
+          .map((result) => result.ingredients)
+          .expand((ingredient) => ingredient)
+          .toList();
 
   return RecipeParsingResult(
-    recipe: Recipe(
-      ingredients: ingredients,
-      name: recipeName,
-      servings: job.servings,
-    ),
+    recipe: Recipe(ingredients: ingredients, name: recipeName, servings: job.servings),
     logs: logs,
   );
 }

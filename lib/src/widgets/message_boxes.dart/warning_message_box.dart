@@ -8,14 +8,11 @@ import 'message_box.dart';
 /// [MessageBox] that represents a warning.
 class WarningMessageBox extends MessageBox {
   /// Creates a [WarningMessageBox].
-  WarningMessageBox({
-    super.key,
-    required super.title,
-    required super.message,
-  }) : super(
-          textColor: warningColor,
-          backgroundColor: warningBackgroundColor,
-          iconData: Icons.warning,
-          titleTag: LocaleKeys.message_box_title_warning.tr(),
-        );
+  WarningMessageBox({super.key, required super.title, required super.message})
+    : super(
+        textColor: warningColor,
+        backgroundColor: warningBackgroundColor,
+        iconData: Icons.warning,
+        titleTag: LocaleKeys.message_box_title_warning.tr(),
+      );
 }

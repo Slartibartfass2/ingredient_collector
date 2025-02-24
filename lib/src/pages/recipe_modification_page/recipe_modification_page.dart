@@ -18,24 +18,17 @@ class RecipeModificationPage extends StatelessWidget {
   final String recipeUrlOrigin;
 
   /// Creates a recipe modification page.
-  const RecipeModificationPage({
-    super.key,
-    required this.recipe,
-    required this.recipeUrlOrigin,
-  });
+  const RecipeModificationPage({super.key, required this.recipe, required this.recipeUrlOrigin});
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text(LocaleKeys.recipe_modification_page_title).tr(
-            namedArgs: {
-              "recipeName": recipe.name,
-              "servings": recipe.servings.toString(),
-            },
-          ),
-        ),
-        body: _PageBody(recipe: recipe, recipeUrlOrigin: recipeUrlOrigin),
-      );
+    appBar: AppBar(
+      title: const Text(
+        LocaleKeys.recipe_modification_page_title,
+      ).tr(namedArgs: {"recipeName": recipe.name, "servings": recipe.servings.toString()}),
+    ),
+    body: _PageBody(recipe: recipe, recipeUrlOrigin: recipeUrlOrigin),
+  );
 }
 
 class _PageBody extends StatelessWidget {
@@ -43,19 +36,12 @@ class _PageBody extends StatelessWidget {
 
   final String recipeUrlOrigin;
 
-  Widget _builder(
-    BuildContext _,
-    AsyncSnapshot<List<RecipeModification?>> snapshot,
-  ) {
+  Widget _builder(BuildContext _, AsyncSnapshot<List<RecipeModification?>> snapshot) {
     var data = snapshot.data;
     if (snapshot.hasData && data != null) {
       var modification = data.isEmpty ? null : data.first;
-      var modifiedRecipe = modification != null
-          ? modifyRecipe(
-              recipe: recipe,
-              modification: modification,
-            )
-          : recipe;
+      var modifiedRecipe =
+          modification != null ? modifyRecipe(recipe: recipe, modification: modification) : recipe;
 
       return RecipeModificationForm(
         originalRecipe: recipe,
@@ -79,19 +65,18 @@ class _PageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.topCenter,
-          child: AdaptiveContainer(
-            child: FutureBuilder(
-              future: Future(
-                () async => [
-                  await LocalStorageController()
-                      .getRecipeModification(recipeUrlOrigin, recipe.name),
-                ],
-              ),
-              builder: _builder,
-            ),
+    child: Container(
+      alignment: Alignment.topCenter,
+      child: AdaptiveContainer(
+        child: FutureBuilder(
+          future: Future(
+            () async => [
+              await LocalStorageController().getRecipeModification(recipeUrlOrigin, recipe.name),
+            ],
           ),
+          builder: _builder,
         ),
-      );
+      ),
+    ),
+  );
 }

@@ -6,10 +6,7 @@ class AdaptiveContainer extends StatelessWidget {
   final Widget child;
 
   /// Creates a new [AdaptiveContainer].
-  const AdaptiveContainer({
-    super.key,
-    required this.child,
-  });
+  const AdaptiveContainer({super.key, required this.child});
 
   double _getContainerWidth(double width) {
     if (width >= 1400) return 1320;

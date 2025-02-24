@@ -12,37 +12,31 @@ void main() {
       expect(mergedJobs, isEmpty);
     });
 
-    test(
-      'When list with no duplicates is merged, then equal list is returned',
-      () {
-        var jobs = [
-          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
-          RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
-          RecipeParsingJob(id: 0, url: Uri.parse("url3"), servings: 3),
-        ];
-        var mergedJobs = mergeRecipeParsingJobs(jobs);
-        expect(mergedJobs, equals(jobs));
-      },
-    );
+    test('When list with no duplicates is merged, then equal list is returned', () {
+      var jobs = [
+        RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
+        RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
+        RecipeParsingJob(id: 0, url: Uri.parse("url3"), servings: 3),
+      ];
+      var mergedJobs = mergeRecipeParsingJobs(jobs);
+      expect(mergedJobs, equals(jobs));
+    });
 
-    test(
-      'When duplicates are merged, then duplicates result in one job',
-      () {
-        var jobs = [
-          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
+    test('When duplicates are merged, then duplicates result in one job', () {
+      var jobs = [
+        RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 1),
+        RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
+        RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 3),
+      ];
+      var mergedJobs = mergeRecipeParsingJobs(jobs);
+      expect(
+        mergedJobs,
+        equals([
+          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 4),
           RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
-          RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 3),
-        ];
-        var mergedJobs = mergeRecipeParsingJobs(jobs);
-        expect(
-          mergedJobs,
-          equals([
-            RecipeParsingJob(id: 0, url: Uri.parse("url1"), servings: 4),
-            RecipeParsingJob(id: 0, url: Uri.parse("url2"), servings: 2),
-          ]),
-        );
-      },
-    );
+        ]),
+      );
+    });
   });
 
   group('Test modifyRecipe', () {
@@ -68,10 +62,7 @@ void main() {
         ],
       );
 
-      var modifiedRecipe = modifyRecipe(
-        recipe: recipe,
-        modification: modification,
-      );
+      var modifiedRecipe = modifyRecipe(recipe: recipe, modification: modification);
 
       expect(modifiedRecipe.name, "Test Recipe");
       expect(modifiedRecipe.servings, 4);
@@ -90,74 +81,56 @@ void main() {
       }
     });
 
-    test(
-      'When modification contains ingredient with negative amount, then the '
-      'ingredient is removed from the recipe',
-      () {
-        var recipe = const Recipe(
-          ingredients: [
-            Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
-          ],
-          name: "Test Recipe",
-          servings: 2,
-        );
+    test('When modification contains ingredient with negative amount, then the '
+        'ingredient is removed from the recipe', () {
+      var recipe = const Recipe(
+        ingredients: [Ingredient(amount: 1, unit: "g", name: "Test Ingredient")],
+        name: "Test Recipe",
+        servings: 2,
+      );
 
-        var modification = const RecipeModification(
-          servings: 4,
-          modifiedIngredients: [
-            Ingredient(amount: -1, unit: "kg", name: "Test Ingredient"),
-          ],
-        );
+      var modification = const RecipeModification(
+        servings: 4,
+        modifiedIngredients: [Ingredient(amount: -1, unit: "kg", name: "Test Ingredient")],
+      );
 
-        var modifiedRecipe = modifyRecipe(
-          recipe: recipe,
-          modification: modification,
-        );
+      var modifiedRecipe = modifyRecipe(recipe: recipe, modification: modification);
 
-        expect(modifiedRecipe.name, "Test Recipe");
-        expect(modifiedRecipe.servings, 2);
-        expect(modifiedRecipe.ingredients, isEmpty);
-      },
-    );
+      expect(modifiedRecipe.name, "Test Recipe");
+      expect(modifiedRecipe.servings, 2);
+      expect(modifiedRecipe.ingredients, isEmpty);
+    });
 
-    test(
-      'When the modifications contains new ingredients, then they are added to '
-      'the recipe',
-      () {
-        var recipe = const Recipe(
-          ingredients: [
-            Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
-          ],
-          name: "Test Recipe",
-          servings: 2,
-        );
+    test('When the modifications contains new ingredients, then they are added to '
+        'the recipe', () {
+      var recipe = const Recipe(
+        ingredients: [Ingredient(amount: 1, unit: "g", name: "Test Ingredient")],
+        name: "Test Recipe",
+        servings: 2,
+      );
 
-        var modification = const RecipeModification(
-          servings: 4,
-          modifiedIngredients: [
-            Ingredient(amount: 10, unit: "kg", name: "Test Ingredient"),
-            Ingredient(amount: 1, unit: "kg", name: "New Ingredient"),
-          ],
-        );
+      var modification = const RecipeModification(
+        servings: 4,
+        modifiedIngredients: [
+          Ingredient(amount: 10, unit: "kg", name: "Test Ingredient"),
+          Ingredient(amount: 1, unit: "kg", name: "New Ingredient"),
+        ],
+      );
 
-        var modifiedRecipe = modifyRecipe(
-          recipe: recipe,
-          modification: modification,
-        );
+      var modifiedRecipe = modifyRecipe(recipe: recipe, modification: modification);
 
-        expect(modifiedRecipe.name, "Test Recipe");
-        expect(modifiedRecipe.servings, 2);
-        expect(modifiedRecipe.ingredients.length, 2);
-        var ingredient = modifiedRecipe.ingredients.first;
-        expect(ingredient.name, "Test Ingredient");
-        expect(ingredient.amount, 5);
-        expect(ingredient.unit, "kg");
-        ingredient = modifiedRecipe.ingredients.last;
-        expect(ingredient.name, "New Ingredient");
-        expect(ingredient.amount, 0.5);
-        expect(ingredient.unit, "kg");
-      },
-    );
+      expect(modifiedRecipe.name, "Test Recipe");
+      expect(modifiedRecipe.servings, 2);
+      expect(modifiedRecipe.ingredients.length, 2);
+      var ingredient = modifiedRecipe.ingredients.first;
+      expect(ingredient.name, "Test Ingredient");
+      expect(ingredient.amount, 5);
+      expect(ingredient.unit, "kg");
+      ingredient = modifiedRecipe.ingredients.last;
+      expect(ingredient.name, "New Ingredient");
+      expect(ingredient.amount, 0.5);
+      expect(ingredient.unit, "kg");
+    });
   });
 
   group('Test mergeIngredients', () {
@@ -212,50 +185,43 @@ void main() {
       expect(mergedIngredients.length, 1);
       expect(mergedIngredients.contains(ingredients.first), isFalse);
       expect(mergedIngredients.contains(ingredients[1]), isFalse);
-      const expectedIngredient = Ingredient(
-        amount: 600,
-        unit: "g",
-        name: "Sugar",
-      );
+      const expectedIngredient = Ingredient(amount: 600, unit: "g", name: "Sugar");
       expect(mergedIngredients.first, equals(expectedIngredient));
     });
   });
 
   group('Test getModification', () {
-    test(
-      'When getModification is called, then a correct RecipeModification is '
-      'created',
-      () {
-        var modifiedIngredients = [
-          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
-          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
-        ];
+    test('When getModification is called, then a correct RecipeModification is '
+        'created', () {
+      var modifiedIngredients = [
+        const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
+        const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
+      ];
 
-        var removedIngredients = [
-          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient 3"),
-          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 4"),
-        ];
+      var removedIngredients = [
+        const Ingredient(amount: 1, unit: "g", name: "Test Ingredient 3"),
+        const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 4"),
+      ];
 
-        var modification = getModification(
-          servings: 4,
-          modifiedIngredients: modifiedIngredients,
-          removedIngredients: removedIngredients,
-        );
+      var modification = getModification(
+        servings: 4,
+        modifiedIngredients: modifiedIngredients,
+        removedIngredients: removedIngredients,
+      );
 
-        expect(modification.servings, 4);
-        expect(modification.modifiedIngredients.length, 4);
+      expect(modification.servings, 4);
+      expect(modification.modifiedIngredients.length, 4);
 
-        var expectedIngredients = [
-          const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
-          const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
-          const Ingredient(amount: -1, unit: "g", name: "Test Ingredient 3"),
-          const Ingredient(amount: -1, unit: "kg", name: "Test Ingredient 4"),
-        ];
+      var expectedIngredients = [
+        const Ingredient(amount: 1, unit: "g", name: "Test Ingredient"),
+        const Ingredient(amount: 10, unit: "kg", name: "Test Ingredient 2"),
+        const Ingredient(amount: -1, unit: "g", name: "Test Ingredient 3"),
+        const Ingredient(amount: -1, unit: "kg", name: "Test Ingredient 4"),
+      ];
 
-        for (var ingredient in modification.modifiedIngredients) {
-          expect(expectedIngredients.contains(ingredient), isTrue);
-        }
-      },
-    );
+      for (var ingredient in modification.modifiedIngredients) {
+        expect(expectedIngredients.contains(ingredient), isTrue);
+      }
+    });
   });
 }

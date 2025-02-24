@@ -48,10 +48,10 @@ class IngredientRow extends StatefulWidget {
 
   /// The modified ingredient.
   Ingredient get modifiedIngredient => Ingredient(
-        amount: double.tryParse(amountController.text) ?? 0,
-        unit: unitController.text.trim(),
-        name: nameController.text.trim(),
-      );
+    amount: double.tryParse(amountController.text) ?? 0,
+    unit: unitController.text.trim(),
+    name: nameController.text.trim(),
+  );
 
   @override
   State<IngredientRow> createState() => _IngredientRowState();
@@ -65,26 +65,21 @@ class _IngredientRowState extends State<IngredientRow> {
   void initState() {
     super.initState();
     amountColor =
-        widget.modifiedIngredient.amount != widget.originalIngredient.amount
-            ? Colors.orange
-            : null;
-    unitColor = widget.modifiedIngredient.unit != widget.originalIngredient.unit
-        ? Colors.orange
-        : null;
+        widget.modifiedIngredient.amount != widget.originalIngredient.amount ? Colors.orange : null;
+    unitColor =
+        widget.modifiedIngredient.unit != widget.originalIngredient.unit ? Colors.orange : null;
   }
 
   void _onAmountChange(String? newText) {
     var newAmount = double.tryParse(newText ?? "") ?? 0;
     setState(() {
-      amountColor =
-          newAmount != widget.originalIngredient.amount ? Colors.orange : null;
+      amountColor = newAmount != widget.originalIngredient.amount ? Colors.orange : null;
     });
   }
 
   void _onUnitChange(String? newUnit) {
     setState(() {
-      unitColor =
-          newUnit != widget.originalIngredient.unit ? Colors.orange : null;
+      unitColor = newUnit != widget.originalIngredient.unit ? Colors.orange : null;
     });
   }
 
@@ -111,9 +106,7 @@ class _IngredientRowState extends State<IngredientRow> {
         isEnabled: widget.isEnabled,
         keyboardType: TextInputType.number,
         inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.allow(
-            RegExp(r'[0-9]+(\.[0-9]*){0,1}'),
-          ),
+          FilteringTextInputFormatter.allow(RegExp(r'[0-9]+(\.[0-9]*){0,1}')),
         ],
         color: color ?? amountColor,
         onChanged: _onAmountChange,
@@ -149,9 +142,7 @@ class _IngredientRowState extends State<IngredientRow> {
       padding: const EdgeInsets.only(top: 6),
       child: IconButton(
         onPressed: () => widget.onPressed(widget),
-        icon: widget.isEnabled
-            ? const Icon(Icons.delete)
-            : const Icon(Icons.restore_from_trash),
+        icon: widget.isEnabled ? const Icon(Icons.delete) : const Icon(Icons.restore_from_trash),
       ),
     );
 
@@ -160,12 +151,7 @@ class _IngredientRowState extends State<IngredientRow> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          amountField,
-          unitField,
-          nameField,
-          deleteButton,
-        ],
+        children: [amountField, unitField, nameField, deleteButton],
       ),
     );
   }
@@ -196,30 +182,24 @@ class _CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: labelText,
-          errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue, width: 2),
-          ),
-          focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 2),
-          ),
-          disabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFCBCBCB), width: 2),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: color ?? Colors.grey),
-          ),
-        ),
-        keyboardType: keyboardType,
-        readOnly: isReadOnly,
-        onChanged: onChanged,
-        validator: validator,
-        inputFormatters: inputFormatters,
-        enabled: isEnabled,
-      );
+    controller: controller,
+    decoration: InputDecoration(
+      labelText: labelText,
+      errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
+      focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue, width: 2)),
+      focusedErrorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red, width: 2),
+      ),
+      disabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xFFCBCBCB), width: 2),
+      ),
+      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: color ?? Colors.grey)),
+    ),
+    keyboardType: keyboardType,
+    readOnly: isReadOnly,
+    onChanged: onChanged,
+    validator: validator,
+    inputFormatters: inputFormatters,
+    enabled: isEnabled,
+  );
 }
