@@ -60,9 +60,7 @@ void main() {
     "result": ${recipeToJson(recipe)}\n}\n""";
 
   Future<void> write(String text, String fileName) async {
-    var file = File(
-      './test/recipe_parser_tests/parser_test_files/$fileDirectory/$fileName.json',
-    );
+    var file = File('./test/recipe_parser_tests/parser_test_files/$fileDirectory/$fileName.json');
     await file.writeAsString(text);
   }
 
@@ -96,29 +94,25 @@ void main() {
     }
     var duplicates = map.entries.where((element) => element.value > 1).toList();
 
-    expect(
-      duplicates.isEmpty,
-      true,
-      reason: "Duplicates:\n${duplicates.join(",\n")}",
-    );
+    expect(duplicates.isEmpty, true, reason: "Duplicates:\n${duplicates.join(",\n")}");
 
-    var jobs = urls
-        .map(
-          (url) => RecipeController().createRecipeParsingJob(
-            url: Uri.parse(url),
-            servings: 2,
-            language: "de",
-          ),
-        )
-        .toList();
+    var jobs =
+        urls
+            .map(
+              (url) => RecipeController().createRecipeParsingJob(
+                url: Uri.parse(url),
+                servings: 2,
+                language: "de",
+              ),
+            )
+            .toList();
 
     var notWorkingUrls = <String>[];
     var results = <(RecipeParsingJob, Recipe)>[];
     for (var job in jobs) {
-      var result = await RecipeController().collectRecipes(
-        recipeParsingJobs: [job],
-        language: job.language,
-      ).then((value) => value.first);
+      var result = await RecipeController()
+          .collectRecipes(recipeParsingJobs: [job], language: job.language)
+          .then((value) => value.first);
       var recipe = result.recipe;
       if (hasRecipeParsingErrors(result) || recipe == null) {
         notWorkingUrls.add("${job.url}: ${result.logs.join(", ")}");

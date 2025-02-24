@@ -62,8 +62,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       RecipeInputRow(
         id: _nextRowId++,
         onRemove: _removeRow,
-        recipeParsingStateWrapper:
-            RecipeParsingStateWrapper(state: RecipeParsingState.notStarted),
+        recipeParsingStateWrapper: RecipeParsingStateWrapper(state: RecipeParsingState.notStarted),
         urlController: TextEditingController(),
         servingsController: TextEditingController(),
       ),
@@ -86,34 +85,23 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   void _onSuccessfullyParsedRecipe(RecipeInputRow row, String recipeName) {
     _updateRowState(
       row,
-      RecipeParsingStateWrapper(
-        state: RecipeParsingState.successful,
-        recipeName: recipeName,
-      ),
+      RecipeParsingStateWrapper(state: RecipeParsingState.successful, recipeName: recipeName),
     );
   }
 
   void _onFailedParsedRecipe(RecipeInputRow row) {
-    _updateRowState(
-      row,
-      RecipeParsingStateWrapper(state: RecipeParsingState.failed),
-    );
+    _updateRowState(row, RecipeParsingStateWrapper(state: RecipeParsingState.failed));
   }
 
   void _onRecipeParsingStarted(RecipeInputRow row) {
-    _updateRowState(
-      row,
-      RecipeParsingStateWrapper(state: RecipeParsingState.inProgress),
-    );
+    _updateRowState(row, RecipeParsingStateWrapper(state: RecipeParsingState.inProgress));
   }
 
   Future<void> _submitForm() async {
     var language = context.locale.languageCode;
 
     var validRows = recipeInputRows.where(
-      (row) =>
-          row.urlController.text.isNotEmpty &&
-          row.servingsController.text.isNotEmpty,
+      (row) => row.urlController.text.isNotEmpty && row.servingsController.text.isNotEmpty,
     );
 
     // Create recipe parsing jobs from the valid rows.
@@ -129,9 +117,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
     var recipeJobIdToRows = {
       for (var job in recipeJobs)
-        job.id: validRows.where(
-          (row) => row.urlController.text.trim() == job.url.toString(),
-        ),
+        job.id: validRows.where((row) => row.urlController.text.trim() == job.url.toString()),
     };
 
     var formState = _formKey.currentState;
@@ -143,35 +129,27 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
       _messageBoxes.clear();
     });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: const Text(LocaleKeys.processing_recipes_text).tr()));
 
     var parsingResults = await RecipeController().collectRecipes(
       recipeParsingJobs: recipeJobs,
       language: language,
-      onSuccessfullyParsedRecipe: (job, recipeName) => recipeJobIdToRows[
-              job.id]!
+      onSuccessfullyParsedRecipe:
+          (job, recipeName) => recipeJobIdToRows[job.id]!
           // ignore: avoid_function_literals_in_foreach_calls, makes sense here
           .forEach((row) => _onSuccessfullyParsedRecipe(row, recipeName)),
-      onFailedParsedRecipe: (job) =>
-          recipeJobIdToRows[job.id]!.forEach(_onFailedParsedRecipe),
-      onRecipeParsingStarted: (job) =>
-          recipeJobIdToRows[job.id]!.forEach(_onRecipeParsingStarted),
+      onFailedParsedRecipe: (job) => recipeJobIdToRows[job.id]!.forEach(_onFailedParsedRecipe),
+      onRecipeParsingStarted: (job) => recipeJobIdToRows[job.id]!.forEach(_onRecipeParsingStarted),
     );
 
-    var logs = parsingResults
-        .map((result) => result.logs)
-        .expand((jobLogs) => jobLogs)
-        .toList();
-    var parsedRecipes = parsingResults
-        .map((result) => result.recipe)
-        .whereType<Recipe>()
-        .toList();
+    var logs = parsingResults.map((result) => result.logs).expand((jobLogs) => jobLogs).toList();
+    var parsedRecipes = parsingResults.map((result) => result.recipe).whereType<Recipe>().toList();
     var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
 
     // If context is still valid, update the state.
-    if (context.mounted) {
+    if (mounted) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       setState(() {
         _messageBoxes = logs.map(MessageBox.fromJobLog).toList();
@@ -182,23 +160,20 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   @override
   Widget build(BuildContext context) => Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            ..._messageBoxes
-                .map((box) => [box, const SizedBox(height: 10)])
-                .expand((element) => element),
-            ...recipeInputRows,
-            FormButton(
-              buttonText: LocaleKeys.add_recipe_button_text.tr(),
-              onPressed: () => setState(_addRow),
-            ),
-            FormButton(
-              buttonText: LocaleKeys.submit_button_text.tr(),
-              onPressed: _submitForm,
-            ),
-            textArea,
-          ],
+    key: _formKey,
+    child: Column(
+      children: [
+        ..._messageBoxes
+            .map((box) => [box, const SizedBox(height: 10)])
+            .expand((element) => element),
+        ...recipeInputRows,
+        FormButton(
+          buttonText: LocaleKeys.add_recipe_button_text.tr(),
+          onPressed: () => setState(_addRow),
         ),
-      );
+        FormButton(buttonText: LocaleKeys.submit_button_text.tr(), onPressed: _submitForm),
+        textArea,
+      ],
+    ),
+  );
 }

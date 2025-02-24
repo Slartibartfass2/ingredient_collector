@@ -9,10 +9,7 @@ class SimpleJobLog extends JobLog {
   final Uri recipeUrl;
 
   /// Creates a [SimpleJobLog] object.
-  SimpleJobLog({
-    required this.subType,
-    required this.recipeUrl,
-  }) : super(type: subType.type);
+  SimpleJobLog({required this.subType, required this.recipeUrl}) : super(type: subType.type);
 
   @override
   String toString() => "SimpleJobLog(subType=$subType, url=$recipeUrl)";

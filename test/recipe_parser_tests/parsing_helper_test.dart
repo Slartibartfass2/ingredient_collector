@@ -20,10 +20,7 @@ void main() {
     expect(tryParseAmountString("1 1/2", language: "en"), equals(1.5));
   });
 
-  test(
-    'When amount with leading word is parsed, then correct value is returned',
-    () {
-      expect(tryParseAmountString("ca. 240", language: "en"), equals(240));
-    },
-  );
+  test('When amount with leading word is parsed, then correct value is returned', () {
+    expect(tryParseAmountString("ca. 240", language: "en"), equals(240));
+  });
 }

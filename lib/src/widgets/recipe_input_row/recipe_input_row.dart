@@ -36,8 +36,7 @@ class RecipeInputRow extends StatefulWidget {
   /// parsing.
   final RecipeParsingStateWrapper recipeParsingStateWrapper;
 
-  final _ModificationWrapper _modificationEnabledWrapper =
-      _ModificationWrapper(isEnabled: false);
+  final _ModificationWrapper _modificationEnabledWrapper = _ModificationWrapper(isEnabled: false);
 
   /// Creates a new [RecipeInputRow].
   RecipeInputRow({
@@ -72,10 +71,8 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     if (context.mounted) {
       await showDialog<void>(
         context: context,
-        builder: (context) => RecipeNoteDialog(
-          recipeUrlOrigin: url.origin,
-          recipeName: recipe.name,
-        ),
+        builder:
+            (context) => RecipeNoteDialog(recipeUrlOrigin: url.origin, recipeName: recipe.name),
       );
     }
   }
@@ -96,10 +93,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     if (context.mounted) {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
-          builder: (context) => RecipeModificationPage(
-            recipe: recipe,
-            recipeUrlOrigin: url.origin,
-          ),
+          builder: (context) => RecipeModificationPage(recipe: recipe, recipeUrlOrigin: url.origin),
         ),
       );
     }
@@ -112,11 +106,9 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
     }
 
     var language = context.locale.languageCode;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text(LocaleKeys.recipe_row_parsing_snackbar).tr(),
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: const Text(LocaleKeys.recipe_row_parsing_snackbar).tr()));
     var result = await RecipeController().collectRecipes(
       recipeParsingJobs: [
         RecipeController().createRecipeParsingJob(
@@ -153,12 +145,9 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
         onValidated: _onValidated,
         helperText: switch (parsingState) {
           RecipeParsingState.notStarted => null,
-          RecipeParsingState.inProgress =>
-            LocaleKeys.recipe_row_helper_text_in_progress.tr(),
-          RecipeParsingState.successful =>
-            recipeName.isEmpty ? null : recipeName,
-          RecipeParsingState.failed =>
-            LocaleKeys.recipe_row_helper_text_failed.tr(),
+          RecipeParsingState.inProgress => LocaleKeys.recipe_row_helper_text_in_progress.tr(),
+          RecipeParsingState.successful => recipeName.isEmpty ? null : recipeName,
+          RecipeParsingState.failed => LocaleKeys.recipe_row_helper_text_failed.tr(),
         },
         helperColor: switch (parsingState) {
           RecipeParsingState.notStarted => const Color(0xFF0DCAF0),
@@ -171,39 +160,39 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
 
     var servingsField = Padding(
       padding: const EdgeInsets.only(left: 8, right: 2),
-      child: SizedBox(
-        width: 95,
-        child: ServingsInputField(controller: widget.servingsController),
-      ),
+      child: SizedBox(width: 95, child: ServingsInputField(controller: widget.servingsController)),
     );
 
     var settingsButton = PopupMenuButton(
-      itemBuilder: (context) => [
-        PopupMenuItem<void>(
-          onTap: () => widget.onRemove(widget),
-          child: const Text(LocaleKeys.recipe_row_remove_recipe_text).tr(),
-        ),
-        PopupMenuItem<void>(
-          onTap: () async => _onAddNote(context),
-          enabled: modificationEnabledWrapper.isEnabled,
-          child: Tooltip(
-            message: modificationEnabledWrapper.isEnabled
-                ? ""
-                : LocaleKeys.recipe_row_add_note_disabled_tooltip.tr(),
-            child: const Text(LocaleKeys.recipe_row_add_note_text).tr(),
-          ),
-        ),
-        PopupMenuItem<void>(
-          onTap: () async => _onModifyRecipe(context),
-          enabled: modificationEnabledWrapper.isEnabled,
-          child: Tooltip(
-            message: modificationEnabledWrapper.isEnabled
-                ? ""
-                : LocaleKeys.recipe_row_modify_recipe_disabled_tooltip.tr(),
-            child: const Text(LocaleKeys.recipe_row_modify_recipe_text).tr(),
-          ),
-        ),
-      ],
+      itemBuilder:
+          (context) => [
+            PopupMenuItem<void>(
+              onTap: () => widget.onRemove(widget),
+              child: const Text(LocaleKeys.recipe_row_remove_recipe_text).tr(),
+            ),
+            PopupMenuItem<void>(
+              onTap: () async => _onAddNote(context),
+              enabled: modificationEnabledWrapper.isEnabled,
+              child: Tooltip(
+                message:
+                    modificationEnabledWrapper.isEnabled
+                        ? ""
+                        : LocaleKeys.recipe_row_add_note_disabled_tooltip.tr(),
+                child: const Text(LocaleKeys.recipe_row_add_note_text).tr(),
+              ),
+            ),
+            PopupMenuItem<void>(
+              onTap: () async => _onModifyRecipe(context),
+              enabled: modificationEnabledWrapper.isEnabled,
+              child: Tooltip(
+                message:
+                    modificationEnabledWrapper.isEnabled
+                        ? ""
+                        : LocaleKeys.recipe_row_modify_recipe_disabled_tooltip.tr(),
+                child: const Text(LocaleKeys.recipe_row_modify_recipe_text).tr(),
+              ),
+            ),
+          ],
       offset: const Offset(0, 40),
       child: const Icon(Icons.more_vert),
     );
@@ -214,12 +203,7 @@ class _RecipeInputRowState extends State<RecipeInputRow> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           urlField,
-          Row(
-            children: [
-              servingsField,
-              settingsButton,
-            ],
-          ),
+          Row(children: [servingsField, settingsButton]),
         ],
       ),
     );

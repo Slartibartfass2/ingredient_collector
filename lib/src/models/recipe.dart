@@ -28,12 +28,10 @@ class Recipe with _$Recipe {
   factory Recipe.withServings(Recipe recipe, int servings) {
     var ratio = servings / recipe.servings;
     return recipe.copyWith(
-      ingredients: recipe.ingredients
-          .map(
-            (ingredient) =>
-                ingredient.copyWith(amount: ingredient.amount * ratio),
-          )
-          .toList(),
+      ingredients:
+          recipe.ingredients
+              .map((ingredient) => ingredient.copyWith(amount: ingredient.amount * ratio))
+              .toList(),
       servings: servings,
     );
   }

@@ -107,8 +107,6 @@ linter:
   rules:
     # Effective Dart rules
     - directives_ordering
-    - lines_longer_than_80_chars
-    - package_api_docs
     - public_member_api_docs
     - comment_references
     - prefer_relative_imports

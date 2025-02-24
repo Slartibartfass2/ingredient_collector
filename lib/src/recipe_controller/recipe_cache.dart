@@ -10,14 +10,14 @@ class RecipeCache {
   /// Cache that stores the recipes with the url origin and url path as key.
   ///
   /// The url origin is the url without the path and query parameters.
-  /// The key is build as follows: "<url origin><url path>".
+  /// The key is build as follows: "\<url origin\>\<url path\>".
   @visibleForTesting
   final Map<String, Recipe> cache = {};
 
   /// Cache that stores the redirects with the url origin and url path as key.
   ///
   /// The url origin is the url without the path and query parameters.
-  /// The key is build as follows: "<url origin><url path>".
+  /// The key is build as follows: "\<url origin\>\<url path\>".
   @visibleForTesting
   final Map<String, Uri> redirects = {};
 

@@ -6,12 +6,8 @@ class KptnCookParser extends RecipeParser {
   const KptnCookParser();
 
   @override
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  ) {
-    var recipeNameElements =
-        document.getElementsByClassName("kptn-recipetitle");
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob) {
+    var recipeNameElements = document.getElementsByClassName("kptn-recipetitle");
     var servingsElements = document.getElementsByClassName("kptn-person-count");
     var listContainers = document.getElementsByClassName("col-md-offset-3");
 
@@ -22,10 +18,7 @@ class KptnCookParser extends RecipeParser {
         listContainers[2].children.length < 3) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -35,16 +28,12 @@ class KptnCookParser extends RecipeParser {
     // Retrieve amount of servings
     var servingsPattern = RegExp("[0-9]+");
     var servingsDescriptionText = servingsElements.first.text;
-    var recipeServingsMatch =
-        servingsPattern.firstMatch(servingsDescriptionText);
+    var recipeServingsMatch = servingsPattern.firstMatch(servingsDescriptionText);
     var matchGroup = recipeServingsMatch?.group(0);
     if (matchGroup == null) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
@@ -80,12 +69,7 @@ class KptnCookParser extends RecipeParser {
       name = nameElements.first.text.trim();
     } else {
       return IngredientParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.ingredientParsingFailure,
-            recipeUrl: recipeUrl,
-          ),
-        ],
+        logs: [SimpleJobLog(subType: JobLogSubType.ingredientParsingFailure, recipeUrl: recipeUrl)],
       );
     }
 
@@ -93,11 +77,9 @@ class KptnCookParser extends RecipeParser {
 
     var amount = 0.0;
     var unit = "";
-    var measureElements =
-        element.getElementsByClassName("kptn-ingredient-measure");
+    var measureElements = element.getElementsByClassName("kptn-ingredient-measure");
     if (measureElements.isNotEmpty) {
-      var amountUnitStrings =
-          measureElements.first.text.trim().split(RegExp(r"\s"));
+      var amountUnitStrings = measureElements.first.text.trim().split(RegExp(r"\s"));
       var amountString = amountUnitStrings.first;
       var parsedAmount = tryParseAmountString(
         amountString,
@@ -122,9 +104,7 @@ class KptnCookParser extends RecipeParser {
     }
 
     return IngredientParsingResult(
-      ingredients: [
-        Ingredient(amount: amount, unit: unit, name: name),
-      ],
+      ingredients: [Ingredient(amount: amount, unit: unit, name: name)],
       logs: logs,
     );
   }

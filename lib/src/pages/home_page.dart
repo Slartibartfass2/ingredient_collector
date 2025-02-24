@@ -34,16 +34,11 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       key: ValueKey(context.locale.languageCode),
-      appBar: AppBar(
-        title: const Text(appTitle),
-        actions: [localeDropdownButton],
-      ),
+      appBar: AppBar(title: const Text(appTitle), actions: [localeDropdownButton]),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topCenter,
-          child: const AdaptiveContainer(
-            child: RecipeInputForm(),
-          ),
+          child: const AdaptiveContainer(child: RecipeInputForm()),
         ),
       ),
     );

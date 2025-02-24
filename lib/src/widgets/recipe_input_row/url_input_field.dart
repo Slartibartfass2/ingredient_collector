@@ -26,37 +26,36 @@ class UrlInputField extends TextFormField {
     this.helperText,
     this.helperColor,
   }) : super(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          decoration: InputDecoration(
-            iconColor: helperColor,
-            labelText: LocaleKeys.url_input_field_label.tr(),
-            helperText: helperText,
-            helperStyle:
-                helperColor != null ? TextStyle(color: helperColor) : null,
-            border: const OutlineInputBorder(),
-          ),
-          keyboardType: TextInputType.url,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              onValidated(isValid: false);
-              return null;
-            }
+         autovalidateMode: AutovalidateMode.onUserInteraction,
+         decoration: InputDecoration(
+           iconColor: helperColor,
+           labelText: LocaleKeys.url_input_field_label.tr(),
+           helperText: helperText,
+           helperStyle: helperColor != null ? TextStyle(color: helperColor) : null,
+           border: const OutlineInputBorder(),
+         ),
+         keyboardType: TextInputType.url,
+         validator: (value) {
+           if (value == null || value.isEmpty) {
+             onValidated(isValid: false);
+             return null;
+           }
 
-            var url = Uri.tryParse(value.trim());
+           var url = Uri.tryParse(value.trim());
 
-            var isUrl = url?.hasAbsolutePath ?? false;
-            if (!isUrl) {
-              onValidated(isValid: false);
-              return LocaleKeys.url_input_field_invalid_url_text.tr();
-            }
+           var isUrl = url?.hasAbsolutePath ?? false;
+           if (!isUrl) {
+             onValidated(isValid: false);
+             return LocaleKeys.url_input_field_invalid_url_text.tr();
+           }
 
-            if (url != null && !RecipeController().isUrlSupported(url)) {
-              onValidated(isValid: false);
-              return LocaleKeys.url_input_field_unsupported_url_text.tr();
-            }
+           if (url != null && !RecipeController().isUrlSupported(url)) {
+             onValidated(isValid: false);
+             return LocaleKeys.url_input_field_unsupported_url_text.tr();
+           }
 
-            onValidated(isValid: true);
-            return null;
-          },
-        );
+           onValidated(isValid: true);
+           return null;
+         },
+       );
 }

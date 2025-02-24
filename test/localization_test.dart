@@ -26,27 +26,26 @@ void main() {
     }
   });
 
-  test(
-    'For each SupportedLocale enum value, there must be a localization file',
-    () {
-      var localizationFileNames = io.Directory('resources/langs')
-          .listSync()
-          .map((file) => path.basenameWithoutExtension(file.path));
+  test('For each SupportedLocale enum value, there must be a localization file', () {
+    var localizationFileNames = io.Directory(
+      'resources/langs',
+    ).listSync().map((file) => path.basenameWithoutExtension(file.path));
 
-      for (var supportedLocale in SupportedLocale.values) {
-        var isLocalizationFileAvailable = localizationFileNames
-            .any((fileName) => fileName == supportedLocale.locale.languageCode);
+    for (var supportedLocale in SupportedLocale.values) {
+      var isLocalizationFileAvailable = localizationFileNames.any(
+        (fileName) => fileName == supportedLocale.locale.languageCode,
+      );
 
-        var languageCode = supportedLocale.locale.languageCode;
-        expect(
-          isLocalizationFileAvailable,
-          isTrue,
-          reason: 'There must be a localization file '
-              '"./resources/langs/$languageCode.json" for $supportedLocale.',
-        );
-      }
-    },
-  );
+      var languageCode = supportedLocale.locale.languageCode;
+      expect(
+        isLocalizationFileAvailable,
+        isTrue,
+        reason:
+            'There must be a localization file '
+            '"./resources/langs/$languageCode.json" for $supportedLocale.',
+      );
+    }
+  });
 }
 
 Future<Map<dynamic, dynamic>> readJsonFile(String path) async {

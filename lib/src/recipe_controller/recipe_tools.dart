@@ -43,15 +43,11 @@ import '../models/recipe_parsing_job.dart';
 ///   ),
 /// ]
 /// ```
-Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
-  Iterable<RecipeParsingJob> jobs,
-) {
+Iterable<RecipeParsingJob> mergeRecipeParsingJobs(Iterable<RecipeParsingJob> jobs) {
   var mergedJobs = <RecipeParsingJob>[];
 
   for (var job in jobs) {
-    var existingJobIndex = mergedJobs.indexWhere(
-      (mergedJob) => mergedJob.url == job.url,
-    );
+    var existingJobIndex = mergedJobs.indexWhere((mergedJob) => mergedJob.url == job.url);
 
     if (existingJobIndex == -1) {
       mergedJobs.add(job);
@@ -114,10 +110,7 @@ Iterable<RecipeParsingJob> mergeRecipeParsingJobs(
 ///   servings: 2,
 /// );
 /// ```
-Recipe modifyRecipe({
-  required Recipe recipe,
-  required RecipeModification modification,
-}) {
+Recipe modifyRecipe({required Recipe recipe, required RecipeModification modification}) {
   var ratio = recipe.servings / modification.servings;
 
   var recipeIngredients = recipe.ingredients.toList();
@@ -128,22 +121,22 @@ Recipe modifyRecipe({
   recipeIngredients.removeWhere(
     (ingredient) => modifiedIngredients.any(
       (modifiedIngredient) =>
-          modifiedIngredient.name == ingredient.name &&
-          modifiedIngredient.amount < 0,
+          modifiedIngredient.name == ingredient.name && modifiedIngredient.amount < 0,
     ),
   );
 
   // Fetch all ingredients from the recipe and multiply them with the ratio or
   // replace them with the modified ingredient if available.
-  var ingredients = recipeIngredients
-      .map(
-        (ingredient) => modifiedIngredients.firstWhere(
-          (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
-          orElse: () => ingredient.copyWith(amount: ingredient.amount / ratio),
-        ),
-      )
-      .map((ingredient) => _multiplyIngredient(ingredient, ratio))
-      .toList();
+  var ingredients =
+      recipeIngredients
+          .map(
+            (ingredient) => modifiedIngredients.firstWhere(
+              (modifiedIngredient) => modifiedIngredient.name == ingredient.name,
+              orElse: () => ingredient.copyWith(amount: ingredient.amount / ratio),
+            ),
+          )
+          .map((ingredient) => _multiplyIngredient(ingredient, ratio))
+          .toList();
 
   // Add all ingredients from the modification that are not in the recipe.
   ingredients.addAll(
@@ -153,8 +146,7 @@ Recipe modifyRecipe({
               ingredient.amount >= 0 &&
               !ingredients.any(
                 (modifiedIngredient) =>
-                    modifiedIngredient.name == ingredient.name &&
-                    modifiedIngredient.amount >= 0,
+                    modifiedIngredient.name == ingredient.name && modifiedIngredient.amount >= 0,
               ),
         )
         .map((ingredient) => _multiplyIngredient(ingredient, ratio)),
@@ -189,8 +181,7 @@ Iterable<Ingredient> mergeIngredients(Iterable<Ingredient> ingredients) {
 
   for (var ingredient in ingredients) {
     var index = mergedIngredients.indexWhere(
-      (element) =>
-          ingredient.name == element.name && ingredient.unit == element.unit,
+      (element) => ingredient.name == element.name && ingredient.unit == element.unit,
     );
 
     if (index == -1) {
@@ -243,13 +234,9 @@ RecipeModification getModification({
   required Iterable<Ingredient> modifiedIngredients,
   required Iterable<Ingredient> removedIngredients,
 }) {
-  var ingredients = modifiedIngredients.toList()
-    ..addAll(
-      removedIngredients.map((ingredient) => ingredient.copyWith(amount: -1)),
-    );
+  var ingredients =
+      modifiedIngredients.toList()
+        ..addAll(removedIngredients.map((ingredient) => ingredient.copyWith(amount: -1)));
 
-  return RecipeModification(
-    servings: servings,
-    modifiedIngredients: ingredients,
-  );
+  return RecipeModification(servings: servings, modifiedIngredients: ingredients);
 }

@@ -15,10 +15,7 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart';
 import 'models/parser_test_case.dart';
 import 'models/parser_test_result.dart';
 
-void expectIngredient(
-  Recipe recipe,
-  Ingredient ingredient,
-) {
+void expectIngredient(Recipe recipe, Ingredient ingredient) {
   var isInRecipe = recipe.ingredients.contains(ingredient);
   if (!isInRecipe) {
     fail("$ingredient was not found in the recipe '${recipe.name}'");
@@ -71,10 +68,7 @@ Future<void> testParsingTestFiles(String directory) async {
   );
   var expectedResults = tests.map((test) => test.result).toList();
 
-  var results = await RecipeController().collectRecipes(
-    recipeParsingJobs: jobs,
-    language: "de",
-  );
+  var results = await RecipeController().collectRecipes(recipeParsingJobs: jobs, language: "de");
   var resultsList = results.toList();
 
   for (var i = 0; i < resultsList.length; i++) {

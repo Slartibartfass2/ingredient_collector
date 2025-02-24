@@ -27,6 +27,5 @@ class Ingredient with _$Ingredient {
   }) = _Ingredient;
 
   /// Creates [Ingredient] object from JSON.
-  factory Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$IngredientFromJson(json);
+  factory Ingredient.fromJson(Map<String, dynamic> json) => _$IngredientFromJson(json);
 }

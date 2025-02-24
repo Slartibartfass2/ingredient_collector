@@ -11,11 +11,7 @@ class FormButton extends StatelessWidget {
   final void Function() onPressed;
 
   /// Creates a new [FormButton].
-  const FormButton({
-    super.key,
-    required this.buttonText,
-    required this.onPressed,
-  });
+  const FormButton({super.key, required this.buttonText, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +21,7 @@ class FormButton extends StatelessWidget {
       width: width,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: ElevatedButton(
-          onPressed: onPressed,
-          child: Text(buttonText),
-        ),
+        child: ElevatedButton(onPressed: onPressed, child: Text(buttonText)),
       ),
     );
   }

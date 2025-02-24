@@ -20,9 +20,8 @@ enum RecipeWebsite {
   /// Returns the [RecipeWebsite] for the passed [url].
   ///
   /// Returns null if the passed [url] is not supported.
-  static RecipeWebsite? fromUrl(Uri url) => RecipeWebsite.values
-      .where((website) => website.urlHost == url.host)
-      .firstOrNull;
+  static RecipeWebsite? fromUrl(Uri url) =>
+      RecipeWebsite.values.where((website) => website.urlHost == url.host).firstOrNull;
 
   const RecipeWebsite(this.urlHost, this.recipeParser);
 

@@ -1,4 +1,4 @@
-library recipe_parser;
+library;
 
 import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:html/dom.dart' show Document, Element;
@@ -32,8 +32,5 @@ abstract class RecipeParser {
   ///
   /// The [RecipeParsingResult] that is returned contains the parsed recipe or
   /// an error message if the recipe couldn't be parsed.
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  );
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob);
 }

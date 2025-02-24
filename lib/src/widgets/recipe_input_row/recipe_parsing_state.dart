@@ -10,5 +10,5 @@ enum RecipeParsingState {
   successful,
 
   /// The recipe parsing failed.
-  failed;
+  failed,
 }

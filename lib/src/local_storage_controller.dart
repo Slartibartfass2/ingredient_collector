@@ -11,8 +11,7 @@ import 'models/recipe_modification.dart';
 /// The local storage is used to save [AdditionalRecipeInformation]s.
 class LocalStorageController {
   /// Key for the additional recipe information in the local storage.
-  static const additionalRecipeInformationKey =
-      "additional_recipe_informations";
+  static const additionalRecipeInformationKey = "additional_recipe_informations";
 
   /// Returns the note for the recipe with the given [recipeUrlOrigin] and
   /// [recipeName].
@@ -20,12 +19,11 @@ class LocalStorageController {
   /// Returns an empty string if no note is found.
   /// If the content of the local storage is invalid, it is cleared and an empty
   /// string is returned.
-  Future<String> getRecipeNote(
-    String recipeUrlOrigin,
-    String recipeName,
-  ) async {
-    var additionalRecipeInformation =
-        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+  Future<String> getRecipeNote(String recipeUrlOrigin, String recipeName) async {
+    var additionalRecipeInformation = await getAdditionalRecipeInformation(
+      recipeUrlOrigin,
+      recipeName,
+    );
     return additionalRecipeInformation?.note ?? "";
   }
 
@@ -34,21 +32,20 @@ class LocalStorageController {
   ///
   /// If the given [note] is empty, nothing is saved, otherwise it is saved.
   /// If there is already a note saved for the given recipe, it is overwritten.
-  Future<void> setRecipeNote(
-    String recipeUrlOrigin,
-    String recipeName,
-    String note,
-  ) async {
-    var additionalRecipeInformation =
-        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+  Future<void> setRecipeNote(String recipeUrlOrigin, String recipeName, String note) async {
+    var additionalRecipeInformation = await getAdditionalRecipeInformation(
+      recipeUrlOrigin,
+      recipeName,
+    );
 
-    additionalRecipeInformation = additionalRecipeInformation == null
-        ? AdditionalRecipeInformation(
-            recipeUrlOrigin: recipeUrlOrigin,
-            recipeName: recipeName,
-            note: note,
-          )
-        : additionalRecipeInformation.copyWith(note: note);
+    additionalRecipeInformation =
+        additionalRecipeInformation == null
+            ? AdditionalRecipeInformation(
+              recipeUrlOrigin: recipeUrlOrigin,
+              recipeName: recipeName,
+              note: note,
+            )
+            : additionalRecipeInformation.copyWith(note: note);
 
     await setAdditionalRecipeInformation(additionalRecipeInformation);
   }
@@ -63,8 +60,10 @@ class LocalStorageController {
     String recipeUrlOrigin,
     String recipeName,
   ) async {
-    var additionalRecipeInformation =
-        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+    var additionalRecipeInformation = await getAdditionalRecipeInformation(
+      recipeUrlOrigin,
+      recipeName,
+    );
     return additionalRecipeInformation?.recipeModification;
   }
 
@@ -80,18 +79,19 @@ class LocalStorageController {
     String recipeName,
     RecipeModification modification,
   ) async {
-    var additionalRecipeInformation =
-        await getAdditionalRecipeInformation(recipeUrlOrigin, recipeName);
+    var additionalRecipeInformation = await getAdditionalRecipeInformation(
+      recipeUrlOrigin,
+      recipeName,
+    );
 
-    additionalRecipeInformation = additionalRecipeInformation == null
-        ? AdditionalRecipeInformation(
-            recipeUrlOrigin: recipeUrlOrigin,
-            recipeName: recipeName,
-            recipeModification: modification,
-          )
-        : additionalRecipeInformation.copyWith(
-            recipeModification: modification,
-          );
+    additionalRecipeInformation =
+        additionalRecipeInformation == null
+            ? AdditionalRecipeInformation(
+              recipeUrlOrigin: recipeUrlOrigin,
+              recipeName: recipeName,
+              recipeModification: modification,
+            )
+            : additionalRecipeInformation.copyWith(recipeModification: modification);
     await setAdditionalRecipeInformation(additionalRecipeInformation);
   }
 
@@ -113,17 +113,12 @@ class LocalStorageController {
       return null;
     }
 
-    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(
-      jsonList,
-      () async {
-        await store.remove(additionalRecipeInformationKey);
-      },
-    );
+    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(jsonList, () async {
+      await store.remove(additionalRecipeInformationKey);
+    });
 
     var matches = additionalRecipeInformationList.where(
-      (element) =>
-          element.recipeUrlOrigin == recipeUrlOrigin &&
-          element.recipeName == recipeName,
+      (element) => element.recipeUrlOrigin == recipeUrlOrigin && element.recipeName == recipeName,
     );
 
     return matches.isEmpty ? null : matches.first;
@@ -144,24 +139,19 @@ class LocalStorageController {
     // If there was no additional recipe information saved yet, save the given
     // additional recipe information.
     if (jsonList == null || jsonList.isEmpty) {
-      await store.setStringList(
-        additionalRecipeInformationKey,
-        [jsonEncode(additionalRecipeInformation.toJson())],
-      );
+      await store.setStringList(additionalRecipeInformationKey, [
+        jsonEncode(additionalRecipeInformation.toJson()),
+      ]);
       return;
     }
 
-    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(
-      jsonList,
-      () async {
-        await store.remove(additionalRecipeInformationKey);
-      },
-    );
+    var additionalRecipeInformationList = _getAdditionalRecipeInformationList(jsonList, () async {
+      await store.remove(additionalRecipeInformationKey);
+    });
 
     var matches = additionalRecipeInformationList.where(
       (element) =>
-          element.recipeUrlOrigin ==
-              additionalRecipeInformation.recipeUrlOrigin &&
+          element.recipeUrlOrigin == additionalRecipeInformation.recipeUrlOrigin &&
           element.recipeName == additionalRecipeInformation.recipeName,
     );
 
@@ -173,17 +163,15 @@ class LocalStorageController {
     // If the information is empty, it is not stored.
     var note = additionalRecipeInformation.note;
     var modification = additionalRecipeInformation.recipeModification;
-    var isEmptyInformation = note.isEmpty &&
-        (modification == null || modification.modifiedIngredients.isEmpty);
+    var isEmptyInformation =
+        note.isEmpty && (modification == null || modification.modifiedIngredients.isEmpty);
     if (!isEmptyInformation) {
       additionalRecipeInformationList.add(additionalRecipeInformation);
     }
 
     await store.setStringList(
       additionalRecipeInformationKey,
-      additionalRecipeInformationList
-          .map((e) => jsonEncode(e.toJson()))
-          .toList(),
+      additionalRecipeInformationList.map((e) => jsonEncode(e.toJson())).toList(),
     );
   }
 
@@ -195,9 +183,7 @@ class LocalStorageController {
     for (var jsonString in jsonList) {
       try {
         additionalRecipeInformationList.add(
-          AdditionalRecipeInformation.fromJson(
-            jsonDecode(jsonString),
-          ),
+          AdditionalRecipeInformation.fromJson(jsonDecode(jsonString)),
         );
       } on FormatException {
         onFormatException();

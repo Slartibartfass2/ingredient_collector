@@ -6,10 +6,7 @@ class ChefkochParser extends RecipeParser {
   const ChefkochParser();
 
   @override
-  RecipeParsingResult parseRecipe(
-    Document document,
-    RecipeParsingJob recipeParsingJob,
-  ) {
+  RecipeParsingResult parseRecipe(Document document, RecipeParsingJob recipeParsingJob) {
     var recipeNameElements = document
         .getElementsByClassName("recipe-header")
         .map((e) => e.getElementsByTagName("h1"))
@@ -19,30 +16,25 @@ class ChefkochParser extends RecipeParser {
         .map((e) => e.getElementsByTagName("input"))
         .expand((element) => element)
         .where(_hasIntValueAttribute);
-    var ingredientElements = document
-        .getElementsByClassName("ingredients")
-        .map((e) => e.getElementsByTagName("tbody"))
-        .expand((element) => element)
-        .map((e) => e.getElementsByTagName("tr"))
-        .expand((element) => element)
-        .toList();
+    var ingredientElements =
+        document
+            .getElementsByClassName("ingredients")
+            .map((e) => e.getElementsByTagName("tbody"))
+            .expand((element) => element)
+            .map((e) => e.getElementsByTagName("tr"))
+            .expand((element) => element)
+            .toList();
 
-    if (recipeNameElements.isEmpty ||
-        servingElements.isEmpty ||
-        ingredientElements.isEmpty) {
+    if (recipeNameElements.isEmpty || servingElements.isEmpty || ingredientElements.isEmpty) {
       return RecipeParsingResult(
         logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.completeFailure,
-            recipeUrl: recipeParsingJob.url,
-          ),
+          SimpleJobLog(subType: JobLogSubType.completeFailure, recipeUrl: recipeParsingJob.url),
         ],
       );
     }
 
     var recipeName = recipeNameElements.first.text.trim();
-    var recipeServings =
-        int.parse(servingElements.first.attributes["value"] ?? "");
+    var recipeServings = int.parse(servingElements.first.attributes["value"] ?? "");
     var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
     return createResultFromIngredientParsing(
@@ -65,16 +57,10 @@ class ChefkochParser extends RecipeParser {
     Uri recipeUrl,
     String? language,
   ) {
-    var ingredientInfo =
-        element.getElementsByTagName("span").map((e) => e.text.trim());
+    var ingredientInfo = element.getElementsByTagName("span").map((e) => e.text.trim());
     if (ingredientInfo.isEmpty || ingredientInfo.length > 2) {
       return IngredientParsingResult(
-        logs: [
-          SimpleJobLog(
-            subType: JobLogSubType.ingredientParsingFailure,
-            recipeUrl: recipeUrl,
-          ),
-        ],
+        logs: [SimpleJobLog(subType: JobLogSubType.ingredientParsingFailure, recipeUrl: recipeUrl)],
       );
     }
 
@@ -100,16 +86,12 @@ class ChefkochParser extends RecipeParser {
         splitIndex++;
         amount = parsedAmount;
       }
-      unit = amountUnitStrings
-          .getRange(splitIndex, amountUnitStrings.length)
-          .join(" ");
+      unit = amountUnitStrings.getRange(splitIndex, amountUnitStrings.length).join(" ");
     }
 
     amount *= servingsMultiplier;
     return IngredientParsingResult(
-      ingredients: [
-        Ingredient(amount: amount, unit: unit, name: name),
-      ],
+      ingredients: [Ingredient(amount: amount, unit: unit, name: name)],
       logs: <JobLog>[],
     );
   }
