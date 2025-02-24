@@ -17,6 +17,7 @@ class CollectionOutputTextArea extends StatelessWidget {
 
   Future<void> _onCopyButtonPressed(BuildContext context) async {
     await Clipboard.setData(ClipboardData(text: controller.text)).then((value) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text(LocaleKeys.collection_result_copy_snackbar).tr(),

@@ -1,4 +1,4 @@
-library redirect_parser;
+library;
 
 import 'package:html/dom.dart' show Document;
 

@@ -1,4 +1,4 @@
-library job_log;
+library;
 
 import '../models/recipe_parsing_job.dart';
 

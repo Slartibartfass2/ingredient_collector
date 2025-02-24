@@ -1,4 +1,4 @@
-library recipe_parser;
+library;
 
 import 'package:flutter/material.dart' show visibleForTesting;
 import 'package:html/dom.dart' show Document, Element;

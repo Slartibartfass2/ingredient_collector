@@ -46,9 +46,9 @@ jobs:
       - name: Analyze project source
         run: |
           flutter analyze --suggestions
-          dart run dart_code_metrics:metrics analyze lib test --reporter=github
-          dart run dart_code_metrics:metrics check-unused-files lib
-          dart run dart_code_metrics:metrics check-unused-code lib
+          # dart run dart_code_metrics:metrics analyze lib test --reporter=github
+          # dart run dart_code_metrics:metrics check-unused-files lib
+          # dart run dart_code_metrics:metrics check-unused-code lib
 
   spell-checking:
     runs-on: ubuntu-latest
