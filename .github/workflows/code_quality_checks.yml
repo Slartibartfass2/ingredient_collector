@@ -26,7 +26,7 @@ jobs:
 
       - name: Verify formatting
         run: |
-          dart format . --page-width 100 --follow-links
+          dart format . --follow-links
           # Check with git whether files changed because formatter can't ignore generated files
           git diff --exit-code
 
