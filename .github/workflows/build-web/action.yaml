@@ -1,0 +1,17 @@
+name: Build Web
+description: Build release for Web
+inputs:
+  flutter_version:
+    description: "Flutter SDK version"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      uses: ./.github/workflows/setup/
+      with:
+        flutter_version: ${{ inputs.flutter_version }}
+
+    - name: Build for Web
+      shell: bash
+      run: flutter build web --base-href="/ingredient_collector/"

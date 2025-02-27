@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  pull_request:
+
+env:
+  flutter_version: ${{ vars.FLUTTER_VERSION }}
+  java_version: ${{ vars.JAVA_VERSION }}
+  java_distribution: ${{ vars.JAVA_DISTRIBUTION }}
+
+jobs:
+  build-windows:
+    name: Build release for Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Windows release
+        uses: ./.github/workflows/build-windows/
+        with:
+          flutter_version: ${{ env.flutter_version }}
+
+  build-web:
+    name: Build release for Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Web release
+        uses: ./.github/workflows/build-web/
+        with:
+          flutter_version: ${{ env.flutter_version }}
+
+  build-android:
+    name: Build release for Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Android release
+        uses: ./.github/workflows/build-android/
+        with:
+          flutter_version: ${{ env.flutter_version }}
+          java_version: ${{ env.java_version }}
+          java_distribution: ${{ env.java_distribution }}

@@ -8,84 +8,61 @@ on:
 
 env:
   flutter_version: ${{ vars.FLUTTER_VERSION }}
+  java_version: ${{ vars.JAVA_VERSION }}
+  java_distribution: ${{ vars.JAVA_DISTRIBUTION }}
 
 jobs:
   build-windows-release:
-    name: Build release for Windows
+    name: Release build for Windows
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Build Windows release
+        uses: ./.github/workflows/build-windows/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
-
-      - name: Build for Windows
-        run: flutter build windows
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
           name: windows-release-artifacts
-          path: 'build/windows/x64/runner/Release/**'
+          path: "build/windows/x64/runner/Release/**"
           if-no-files-found: error
 
   build-web-release:
-    name: Build release for Web
+    name: Release build for Web
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Build Web release
+        uses: ./.github/workflows/build-web/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
-
-      - name: Build for Web
-        run: flutter build web --base-href="/ingredient_collector/"
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
           name: web-release-artifacts
-          path: 'build/web/**'
+          path: "build/web/**"
           if-no-files-found: error
 
   build-android-release:
-    name: Build release for Android
+    name: Release build for Android
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - name: Build Android release
+        uses: ./.github/workflows/build-android/
         with:
-          distribution: 'zulu'
-          java-version: '11'
-          cache: 'gradle'
-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
-
-      - name: Build for Android app bundle
-        run: flutter build appbundle
-
-      - name: Build for Android apk
-        run: flutter build apk
+          flutter_version: ${{ env.flutter_version }}
+          java_version: ${{ env.java_version }}
+          java_distribution: ${{ env.java_distribution }}
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
@@ -183,7 +160,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: "."
 
       - name: Deploy to GitHub Pages
         id: deployment

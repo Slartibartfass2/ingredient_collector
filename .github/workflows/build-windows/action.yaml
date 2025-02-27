@@ -1,0 +1,17 @@
+name: Build Windows
+description: Build release for Windows
+inputs:
+  flutter_version:
+    description: "Flutter SDK version"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      uses: ./.github/workflows/setup/
+      with:
+        flutter_version: ${{ inputs.flutter_version }}
+
+    - name: Build for Windows
+      shell: bash
+      run: flutter build windows

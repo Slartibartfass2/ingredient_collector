@@ -4,7 +4,6 @@ on:
   push:
     branches: ["main"]
   pull_request:
-    branches: ["main"]
 
 env:
   flutter_version: ${{ vars.FLUTTER_VERSION }}
@@ -13,16 +12,13 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup
+        uses: ./.github/workflows/setup/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Verify formatting
         run: |
@@ -33,16 +29,13 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup
+        uses: ./.github/workflows/setup/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Analyze project source
         run: |
@@ -54,16 +47,13 @@ jobs:
   spell-checking:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup
+        uses: ./.github/workflows/setup/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Check spelling
         uses: crate-ci/typos@v1.29.9
@@ -73,16 +63,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+      - name: Setup
+        uses: ./.github/workflows/setup/
         with:
-          flutter-version: ${{ env.flutter_version }}
-          channel: 'stable'
-          cache: true
-
-      - name: Run setup script
-        run: bash setup.ps1
+          flutter_version: ${{ env.flutter_version }}
 
       - name: Run tests
         run: |
