@@ -11,7 +11,7 @@
     <a href="https://github.com/Slartibartfass2/ingredient_collector">
         <img src="https://cdn-images-1.medium.com/max/1200/1*5-aoK8IBmXve5whBQM90GA.png" alt="Logo" width="80" height="80">
     </a>
-    <h3 align="center">ingredient_collector - 0.7.0</h3>
+    <h3 align="center">ingredient_collector - 0.8.0</h3>
     <p align="center">
         An app that collects ingredients from recipe websites and combines them into a shopping list.
     </p>
@@ -57,7 +57,7 @@
 
 ### Built with
 
-* [![Flutter][flutter-icon]][flutter-url]
+- [![Flutter][flutter-icon]][flutter-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -108,7 +108,7 @@
 
 4. Run the following commands to build the release version
 
-    * For the Web release run:
+    - For the Web release run:
 
         ```sh
         flutter build web --base-href="/ingredient_collector/"
@@ -116,7 +116,7 @@
 
         [More information on releasing for Web](https://docs.flutter.dev/get-started/web)
 
-    * For the Windows release run:
+    - For the Windows release run:
 
         ```sh
         flutter build windows
@@ -124,7 +124,7 @@
 
         [More information on releasing for Windows](https://docs.flutter.dev/development/platform-integration/windows/building)
 
-    * For the Android release run:
+    - For the Android release run:
 
         ```sh
         flutter build apk
