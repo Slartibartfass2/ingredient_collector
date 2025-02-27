@@ -15,7 +15,3 @@ runs:
     - name: Build for Web
       shell: bash
       run: flutter build web --base-href="/ingredient_collector/"
-
-    - name: List artifacts
-      shell: bash
-      run: ls -alF build/web/

@@ -24,9 +24,6 @@ jobs:
         with:
           flutter_version: ${{ env.flutter_version }}
 
-      - name: List artifacts
-        run: ls -alF build/windows/x64/runner/Release/
-
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -45,9 +42,6 @@ jobs:
         uses: ./.github/workflows/build-web/
         with:
           flutter_version: ${{ env.flutter_version }}
-
-      - name: List artifacts
-        run: ls -alF build/web/
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
@@ -69,9 +63,6 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
           java-version: ${{ env.java_version }}
           distribution: ${{ env.java_distribution }}
-
-      - name: List artifacts
-        run: ls -alF build/app/outputs/
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
