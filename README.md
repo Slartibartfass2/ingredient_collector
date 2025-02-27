@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Slartibartfass2/ingredient_collector/branch/main/graph/badge.svg?token=2HK4E1N7PO)](https://codecov.io/gh/Slartibartfass2/ingredient_collector)
 ![GitHub issues](https://img.shields.io/github/issues-raw/Slartibartfass2/ingredient_collector?logo=github)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Slartibartfass2/ingredient_collector?logo=github)
-![MIT License](https://img.shields.io/github/license/slartibartfass2/ingredient_collector)
+![GPLv3 License](https://img.shields.io/github/license/slartibartfass2/ingredient_collector)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/slartibartfass2/ingredient_collector)](CHANGELOG.md)
 [![Report Issue](https://img.shields.io/badge/-Report%20issue-red?style=flat&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAsklEQVR4Ae3UEQzEQBCF4YVzd66nrvWs0+JBPeNUdzzPYT11Onen/3TwLbyl+ZPBSb5sstOq1VXAAEKc7sZczPf2Y3woPyajfBg/yo/JKDfmTr/qVlHOl4m0F+hpKGAAGEG5roBiISgKVKACGQ6jFyRUoAc4gA78HKCTufa025lrKKAX8EFvS7sHeleTmkd9gQ3YgWcWY0ClDBgvKmEMKCNGR/kxflTCuFAnEOKMVlWL+wNsSof8wQFurAAAAABJRU5ErkJggg==)](https://github.com/Slartibartfass2/ingredient_collector/issues/new/choose "Click to report issue")
 
@@ -223,7 +223,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the GPLv3 License (before v0.8.0 under MIT). See [LICENSE](LICENSE) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
