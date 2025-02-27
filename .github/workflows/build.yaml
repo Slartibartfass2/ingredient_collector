@@ -22,7 +22,7 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
 
       - name: List artifacts
-        run: ls -alF build/windows/x64/runner/Release/
+        run: dir /a /s build\windows\x64\runner\Release\
 
   build-web:
     name: Build release for Web

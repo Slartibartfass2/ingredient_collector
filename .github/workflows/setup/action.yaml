@@ -13,6 +13,10 @@ runs:
         channel: "stable"
         cache: true
 
+    - name: Disable Google Analytics
+      shell: bash
+      run: flutter config --no-analytics
+
     - name: Run setup script
       shell: bash
       run: bash setup.ps1
