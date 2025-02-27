@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.0] - 2025-02-27
+
+### Added
+
+- Add Markdown output format ([#202](https://github.com/Slartibartfass2/ingredient_collector/pull/202))
+
 ## [0.7.0] - 2024-06-22
 
 ### Added
@@ -78,6 +84,8 @@
 ## [0.1.0] - 2023-01-30
 
 _Initial release._
+
+[0.8.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.8.0
 
 [0.7.0]: https://github.com/Slartibartfass2/ingredient_collector/releases/tag/v0.7.0
 
