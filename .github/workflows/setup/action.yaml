@@ -1,0 +1,18 @@
+name: Setup
+description: Setup CI/CD pipeline
+inputs:
+  flutter_version:
+    description: "Flutter SDK version"
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ inputs.flutter_version }}
+        channel: "stable"
+        cache: true
+
+    - name: Run setup script
+      shell: bash
+      run: bash setup.ps1

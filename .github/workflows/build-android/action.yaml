@@ -1,0 +1,37 @@
+name: Build Android
+description: Build release for Android
+inputs:
+  flutter_version:
+    description: "Flutter SDK version"
+    required: true
+  java_version:
+    description: "Java version"
+    required: true
+  java_distribution:
+    description: "Java distribution"
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with:
+        distribution: ${{ inputs.java_distribution }}
+        java-version: ${{ inputs.java_version }}
+        cache: "gradle"
+
+    - name: Setup
+      uses: ./.github/workflows/setup/
+      with:
+        flutter_version: ${{ inputs.flutter_version }}
+
+    - name: Build for Android app bundle
+      shell: bash
+      run: flutter build appbundle
+
+    - name: Build for Android apk
+      shell: bash
+      run: flutter build apk
+
+    - name: List artifacts
+      shell: bash
+      run: ls -alF build/app/outputs/
