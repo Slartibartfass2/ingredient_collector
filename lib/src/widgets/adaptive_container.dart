@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 /// A container that adapts its width to the screen size.
@@ -14,7 +16,7 @@ class AdaptiveContainer extends StatelessWidget {
     if (width >= 992) return 960;
     if (width >= 768) return 720;
     if (width >= 576) return 540;
-    return width - 20;
+    return max(0, width - 20);
   }
 
   @override

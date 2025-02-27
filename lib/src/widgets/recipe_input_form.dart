@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
+import '../models/output_format.dart';
 import '../models/recipe.dart';
+import '../models/recipe_collection_result.dart';
 import '../recipe_controller/recipe_controller.dart';
 import '../recipe_controller/recipe_tools.dart';
 import 'collection_output_textarea.dart';
@@ -42,6 +44,10 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   final textArea = CollectionOutputTextArea();
 
   int _nextRowId = 0;
+
+  RecipeCollectionResult? collectionResult;
+
+  Set<OutputFormat> _selectedFormat = {OutputFormat.plaintext};
 
   @override
   void initState() {
@@ -146,16 +152,20 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
     var logs = parsingResults.map((result) => result.logs).expand((jobLogs) => jobLogs).toList();
     var parsedRecipes = parsingResults.map((result) => result.recipe).whereType<Recipe>().toList();
-    var collectionResult = createCollectionResultFromRecipes(parsedRecipes);
+    collectionResult = createCollectionResultFromRecipes(parsedRecipes);
 
     // If context is still valid, update the state.
     if (mounted) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       setState(() {
         _messageBoxes = logs.map(MessageBox.fromJobLog).toList();
-        textArea.controller.text = collectionResult.resultSortedByAmount;
+        _setTextAreaOutput();
       });
     }
+  }
+
+  void _setTextAreaOutput() {
+    textArea.controller.text = collectionResult?.outputFormats[_selectedFormat.first] ?? "";
   }
 
   @override
@@ -172,6 +182,39 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
           onPressed: () => setState(_addRow),
         ),
         FormButton(buttonText: LocaleKeys.submit_button_text.tr(), onPressed: _submitForm),
+        SizedBox(height: 10),
+        Row(
+          children: [
+            SegmentedButton<OutputFormat>(
+              segments: [
+                ButtonSegment(
+                  value: OutputFormat.plaintext,
+                  label: Text(LocaleKeys.output_formats_plaintext).tr(),
+                  tooltip: LocaleKeys.output_formats_plaintext_tooltip.tr(),
+                ),
+                ButtonSegment(
+                  value: OutputFormat.markdown,
+                  label: Text(LocaleKeys.output_formats_markdown).tr(),
+                  tooltip: LocaleKeys.output_formats_markdown_tooltip.tr(),
+                ),
+              ],
+              selected: _selectedFormat,
+              onSelectionChanged: (newSelection) {
+                setState(() {
+                  _selectedFormat = newSelection.cast<OutputFormat>();
+                  _setTextAreaOutput();
+                });
+              },
+              showSelectedIcon: false,
+              style: ButtonStyle(
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6.0))),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 5),
         textArea,
       ],
     ),

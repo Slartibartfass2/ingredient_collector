@@ -1,12 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ingredient_collector/src/ingredient_output_generator.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
+import 'package:ingredient_collector/src/models/output_format.dart';
 import 'package:ingredient_collector/src/models/recipe.dart';
 
 void main() {
   test('create collection result with empty list of recipes', () {
     var result = createCollectionResultFromRecipes([]);
-    expect(result.resultSortedByAmount, isEmpty);
+    for (var output in result.outputFormats.values) {
+      expect(output, isEmpty);
+    }
   });
 
   test('create collection result with single recipe', () {
@@ -21,7 +24,23 @@ void main() {
       servings: 2,
     );
     var result = createCollectionResultFromRecipes([recipe]);
-    expect(result.resultSortedByAmount, equals("300 g Salt\n2 Apples\nWater"));
+    for (var MapEntry(:key, :value) in result.outputFormats.entries) {
+      switch (key) {
+        case OutputFormat.plaintext:
+          expect(value, equals("300 g Salt\n2 Apples\nWater"));
+          break;
+        case OutputFormat.markdown:
+          expect(
+            value,
+            equals(
+              "- [ ] 300 g Salt\n"
+              "- [ ] 2 Apples\n"
+              "- [ ] Water",
+            ),
+          );
+          break;
+      }
+    }
   });
 
   test('create collection result with many recipes', () {
@@ -57,20 +76,43 @@ void main() {
       ),
     ];
     var result = createCollectionResultFromRecipes(recipes);
-    expect(
-      result.resultSortedByAmount,
-      equals(
-        "500 g Sugar\n"
-        "300 g Salt\n"
-        "300 ml Water\n"
-        "250 g Flour\n"
-        "5 Potatoes\n"
-        "3 Tomatoes\n"
-        "2 Apples\n"
-        "Water\n"
-        "Pepper\n"
-        "Salt",
-      ),
-    );
+    for (var MapEntry(:key, :value) in result.outputFormats.entries) {
+      switch (key) {
+        case OutputFormat.plaintext:
+          expect(
+            value,
+            equals(
+              "500 g Sugar\n"
+              "300 g Salt\n"
+              "300 ml Water\n"
+              "250 g Flour\n"
+              "5 Potatoes\n"
+              "3 Tomatoes\n"
+              "2 Apples\n"
+              "Water\n"
+              "Pepper\n"
+              "Salt",
+            ),
+          );
+          break;
+        case OutputFormat.markdown:
+          expect(
+            value,
+            equals(
+              "- [ ] 500 g Sugar\n"
+              "- [ ] 300 g Salt\n"
+              "- [ ] 300 ml Water\n"
+              "- [ ] 250 g Flour\n"
+              "- [ ] 5 Potatoes\n"
+              "- [ ] 3 Tomatoes\n"
+              "- [ ] 2 Apples\n"
+              "- [ ] Water\n"
+              "- [ ] Pepper\n"
+              "- [ ] Salt",
+            ),
+          );
+          break;
+      }
+    }
   });
 }
