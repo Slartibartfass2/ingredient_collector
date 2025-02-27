@@ -82,5 +82,11 @@
         "text_area_label": "Recipe note",
         "text_area_helper": "This note will be saved and displayed when the ingredients for this recipe are collected in the future.",
         "text_area_hint": "e.g. \"4 servings is not enough for two people, use 8 instead!\""
+    },
+    "output_formats": {
+        "plaintext": "Plaintext",
+        "plaintext_tooltip": "Just the raw data without any formatting.",
+        "markdown": "Markdown",
+        "markdown_tooltip": "Ingredients formatted as Markdown task list."
     }
 }
