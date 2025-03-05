@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'recipe_modification.dart';
@@ -17,7 +18,7 @@ part 'additional_recipe_information.g.dart';
 /// A modification is applied to an ingredient with the same name.
 /// For example this could be doubling the amount of an ingredient.
 @freezed
-class AdditionalRecipeInformation with _$AdditionalRecipeInformation {
+sealed class AdditionalRecipeInformation with _$AdditionalRecipeInformation {
   /// Creates [AdditionalRecipeInformation] object.
   const factory AdditionalRecipeInformation({
     /// URL of the recipe website this additional information belongs to.

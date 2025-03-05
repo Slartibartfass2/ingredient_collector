@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../job_logs/job_log.dart';
@@ -8,7 +9,7 @@ part 'recipe_parsing_result.freezed.dart';
 
 /// Data class that represents the result of a [RecipeParsingJob].
 @freezed
-class RecipeParsingResult with _$RecipeParsingResult {
+sealed class RecipeParsingResult with _$RecipeParsingResult {
   /// Creates [RecipeParsingResult] object.
   const factory RecipeParsingResult({
     /// Optionally parsed recipe.

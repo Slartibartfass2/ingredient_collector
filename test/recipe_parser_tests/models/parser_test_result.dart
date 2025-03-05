@@ -5,7 +5,7 @@ part 'parser_test_result.freezed.dart';
 part 'parser_test_result.g.dart';
 
 @freezed
-class ParserTestResult with _$ParserTestResult {
+sealed class ParserTestResult with _$ParserTestResult {
   const factory ParserTestResult({required String name, required List<Ingredient> ingredients}) =
       _ParserTestResult;
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'ingredient.dart';
@@ -9,7 +10,7 @@ part 'recipe.freezed.dart';
 /// The information consists of a list of [ingredients], the [name] of the
 /// recipe and the amount of [servings].
 @freezed
-class Recipe with _$Recipe {
+sealed class Recipe with _$Recipe {
   /// Creates [Recipe] object.
   const factory Recipe({
     /// List of ingredients.

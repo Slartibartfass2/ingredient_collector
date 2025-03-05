@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'ingredient.freezed.dart';
@@ -7,7 +8,7 @@ part 'ingredient.g.dart';
 ///
 /// The information consists of the [amount], the [unit] and the [name].
 @freezed
-class Ingredient with _$Ingredient {
+sealed class Ingredient with _$Ingredient {
   /// Creates [Ingredient] object.
   const factory Ingredient({
     /// Amount of ingredient.
