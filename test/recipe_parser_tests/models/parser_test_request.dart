@@ -4,7 +4,7 @@ part 'parser_test_request.freezed.dart';
 part 'parser_test_request.g.dart';
 
 @freezed
-class ParserTestRequest with _$ParserTestRequest {
+sealed class ParserTestRequest with _$ParserTestRequest {
   const factory ParserTestRequest({required String url, required int servings}) =
       _ParserTestRequest;
 

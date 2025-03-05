@@ -7,7 +7,7 @@ part 'parser_test_case.freezed.dart';
 part 'parser_test_case.g.dart';
 
 @freezed
-class ParserTestCase with _$ParserTestCase {
+sealed class ParserTestCase with _$ParserTestCase {
   const factory ParserTestCase({
     required ParserTestRequest request,
     required ParserTestResult result,

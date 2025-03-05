@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'ingredient.dart';
@@ -7,7 +8,7 @@ part 'recipe_modification.g.dart';
 
 /// Data class that represents a modification to a recipe.
 @freezed
-class RecipeModification with _$RecipeModification {
+sealed class RecipeModification with _$RecipeModification {
   /// Creates [RecipeModification] object.
   const factory RecipeModification({
     /// The number of servings as reference for this modification.
