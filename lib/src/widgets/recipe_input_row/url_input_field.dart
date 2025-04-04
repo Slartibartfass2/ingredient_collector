@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../l10n/locale_keys.g.dart';
 import '../../recipe_controller/recipe_controller.dart';
@@ -30,10 +31,15 @@ class UrlInputField extends TextFormField {
          decoration: InputDecoration(
            iconColor: helperColor,
            labelText: LocaleKeys.url_input_field_label.tr(),
+           labelStyle: TextStyle(color: ShadColorScheme.fromName('slate').primary),
+           focusedBorder: OutlineInputBorder(
+             borderSide: BorderSide(color: ShadColorScheme.fromName('slate').primary),
+           ),
            helperText: helperText,
            helperStyle: helperColor != null ? TextStyle(color: helperColor) : null,
            border: const OutlineInputBorder(),
          ),
+         cursorColor: ShadColorScheme.fromName('slate').primary,
          keyboardType: TextInputType.url,
          validator: (value) {
            if (value == null || value.isEmpty) {

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'src/pages/home_page.dart';
 import 'src/supported_locale.dart';
@@ -28,10 +29,11 @@ class IngredientCollectorApp extends StatelessWidget {
   const IngredientCollectorApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => ShadApp.material(
     home: const HomePage(),
     title: appTitle,
-    theme: ThemeData(useMaterial3: false, primarySwatch: Colors.blue),
+    materialThemeBuilder:
+        (context, theme) => ThemeData(useMaterial3: false, primarySwatch: Colors.blue),
     locale: context.locale,
     localizationsDelegates: context.localizationDelegates,
     supportedLocales: context.supportedLocales,
