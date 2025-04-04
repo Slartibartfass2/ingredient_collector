@@ -1,0 +1,21 @@
+name: Build Linux
+description: Build release for Linux
+inputs:
+  flutter_version:
+    description: "Flutter SDK version"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      uses: ./.github/workflows/setup/
+      with:
+        flutter_version: ${{ inputs.flutter_version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: sudo apt-get install libgtk-3-dev
+
+    - name: Build for Linux
+      shell: bash
+      run: flutter build linux
