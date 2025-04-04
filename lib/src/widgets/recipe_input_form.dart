@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../l10n/locale_keys.g.dart';
 import '../ingredient_output_generator.dart';
@@ -47,7 +48,7 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
 
   RecipeCollectionResult? collectionResult;
 
-  Set<OutputFormat> _selectedFormat = {OutputFormat.plaintext};
+  OutputFormat _selectedFormat = OutputFormat.plaintext;
 
   @override
   void initState() {
@@ -165,56 +166,66 @@ class _RecipeInputFormState extends State<RecipeInputForm> {
   }
 
   void _setTextAreaOutput() {
-    textArea.controller.text = collectionResult?.outputFormats[_selectedFormat.first] ?? "";
+    textArea.controller.text = collectionResult?.outputFormats[_selectedFormat] ?? "";
   }
+
+  List<Widget> _buildFormButtons() => [
+    Padding(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      child: ShadButton(
+        height: 34,
+        onPressed: () => setState(_addRow),
+        child: Text(LocaleKeys.add_recipe_button_text).tr(),
+      ),
+    ),
+    Padding(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      child: ShadButton(
+        height: 34,
+        onPressed: _submitForm,
+        child: Text(LocaleKeys.submit_button_text).tr(),
+      ),
+    ),
+  ];
+
+  Widget _buildOutputFormatTabs() => Row(
+    children: [
+      ShadTabs<OutputFormat>(
+        value: _selectedFormat,
+        tabBarConstraints: const BoxConstraints(maxWidth: 220),
+        tabs: [
+          ShadTab(
+            value: OutputFormat.plaintext,
+            child: Text(LocaleKeys.output_formats_plaintext).tr(),
+          ),
+          ShadTab(
+            value: OutputFormat.markdown,
+            child: Text(LocaleKeys.output_formats_markdown).tr(),
+          ),
+        ],
+        onChanged: (newSelection) {
+          setState(() {
+            _selectedFormat = newSelection;
+            _setTextAreaOutput();
+          });
+        },
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) => Form(
     key: _formKey,
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ..._messageBoxes
             .map((box) => [box, const SizedBox(height: 10)])
             .expand((element) => element),
         ...recipeInputRows,
-        FormButton(
-          buttonText: LocaleKeys.add_recipe_button_text.tr(),
-          onPressed: () => setState(_addRow),
-        ),
-        FormButton(buttonText: LocaleKeys.submit_button_text.tr(), onPressed: _submitForm),
+        ..._buildFormButtons(),
         SizedBox(height: 10),
-        Row(
-          children: [
-            SegmentedButton<OutputFormat>(
-              segments: [
-                ButtonSegment(
-                  value: OutputFormat.plaintext,
-                  label: Text(LocaleKeys.output_formats_plaintext).tr(),
-                  tooltip: LocaleKeys.output_formats_plaintext_tooltip.tr(),
-                ),
-                ButtonSegment(
-                  value: OutputFormat.markdown,
-                  label: Text(LocaleKeys.output_formats_markdown).tr(),
-                  tooltip: LocaleKeys.output_formats_markdown_tooltip.tr(),
-                ),
-              ],
-              selected: _selectedFormat,
-              onSelectionChanged: (newSelection) {
-                setState(() {
-                  _selectedFormat = newSelection.cast<OutputFormat>();
-                  _setTextAreaOutput();
-                });
-              },
-              showSelectedIcon: false,
-              style: ButtonStyle(
-                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(6.0))),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 5),
+        _buildOutputFormatTabs(),
         textArea,
       ],
     ),
