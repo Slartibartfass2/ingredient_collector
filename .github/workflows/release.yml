@@ -73,6 +73,25 @@ jobs:
             build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
 
+  build-linux-release:
+    name: Release build for Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Linux release
+        uses: ./.github/workflows/build-linux/
+        with:
+          flutter_version: ${{ env.flutter_version }}
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-release-artifacts
+          path: build/linux/x64/release/bundle/**
+          if-no-files-found: error
+
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -80,6 +99,7 @@ jobs:
       - build-windows-release
       - build-web-release
       - build-android-release
+      - build-linux-release
     permissions:
       contents: write
     steps:
@@ -122,6 +142,19 @@ jobs:
         with:
           args: zip -qq -r android-release.zip android-release
 
+      # Linux
+      - name: Get linux release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-release-artifacts
+          path: linux-release/
+
+      - name: Zip linux build files
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r linux-release.zip linux-release
+
+      # Release
       - name: Release
         uses: docker://antonyurchenko/git-release:v5
         env:
@@ -131,6 +164,7 @@ jobs:
             windows-release.zip
             web-release.zip
             android-release.zip
+            linux-release.zip
 
   deploy-web:
     name: Deploy web release on GitHub Pages

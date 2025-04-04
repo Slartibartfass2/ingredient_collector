@@ -3,8 +3,8 @@ description: An app that collects ingredients from recipe websites and combines 
 version: 0.8.0
 
 environment:
-  sdk: '3.7.0'
-  flutter: '3.29.0'
+  sdk: '3.7.2'
+  flutter: '3.29.2'
 
 dependencies:
   easy_localization: ^3.0.7

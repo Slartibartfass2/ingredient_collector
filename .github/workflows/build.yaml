@@ -46,3 +46,15 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
           java_version: ${{ env.java_version }}
           java_distribution: ${{ env.java_distribution }}
+
+  build-linux:
+    name: Build release for Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Linux release
+        uses: ./.github/workflows/build-linux/
+        with:
+          flutter_version: ${{ env.flutter_version }}
