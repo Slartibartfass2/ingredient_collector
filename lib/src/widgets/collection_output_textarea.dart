@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../l10n/locale_keys.g.dart';
 
@@ -34,15 +35,13 @@ class CollectionOutputTextArea extends StatelessWidget {
       icon: const Icon(Icons.copy),
     );
 
-    var textArea = TextField(
+    var textArea = ShadInput(
       controller: controller,
-      decoration: InputDecoration(
-        hintText: LocaleKeys.collection_result_text_hint.tr(),
-        border: const OutlineInputBorder(),
-      ),
+      placeholder: Text(LocaleKeys.collection_result_text_hint).tr(),
+      decoration: ShadDecoration(secondaryFocusedBorder: ShadBorder.all(color: Colors.transparent)),
       maxLines: 10,
     );
 
-    return Stack(children: [textArea, Positioned(right: 0, child: copyButton)]);
+    return Stack(children: [textArea, Positioned(right: 4, top: 4, child: copyButton)]);
   }
 }
