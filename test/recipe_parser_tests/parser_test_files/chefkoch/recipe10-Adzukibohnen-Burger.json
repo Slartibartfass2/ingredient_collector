@@ -58,18 +58,18 @@
             },
             {
                 "amount": 16.0,
-                "unit": "Blätter",
-                "name": "Blattsalat"
+                "unit": "",
+                "name": "Salatblätter"
             },
             {
                 "amount": 16.0,
-                "unit": "Scheibe/n",
-                "name": "Gurke(n)"
+                "unit": "",
+                "name": "Gurkenscheibe(n)"
             },
             {
                 "amount": 16.0,
-                "unit": "Scheibe/n",
-                "name": "Tomate(n)"
+                "unit": "",
+                "name": "Tomatenscheiben"
             },
             {
                 "amount": 0.0,

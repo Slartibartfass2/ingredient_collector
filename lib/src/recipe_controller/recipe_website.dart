@@ -3,30 +3,30 @@ import '../recipe_parser/recipe_parser.dart';
 /// Enum for the supported recipe websites.
 enum RecipeWebsite {
   /// KptnCook.
-  kptnCook("mobile.kptncook.com", KptnCookParser()),
+  kptnCook(["mobile.kptncook.com", "share.kptncook.com"], KptnCookParser()),
 
   /// Bianca Zapatka.
-  biancaZapatka("biancazapatka.com", BiancaZapatkaParser()),
+  biancaZapatka(["biancazapatka.com"], BiancaZapatkaParser()),
 
   /// Eat This.
-  eatThis("www.eat-this.org", EatThisParser()),
+  eatThis(["www.eat-this.org"], EatThisParser()),
 
   /// Chefkoch.
-  chefkoch("www.chefkoch.de", ChefkochParser()),
+  chefkoch(["www.chefkoch.de"], ChefkochParser()),
 
   /// Nora Cooks.
-  noraCooks("www.noracooks.com", NoraCooksParser());
+  noraCooks(["www.noracooks.com"], NoraCooksParser());
 
   /// Returns the [RecipeWebsite] for the passed [url].
   ///
   /// Returns null if the passed [url] is not supported.
   static RecipeWebsite? fromUrl(Uri url) =>
-      RecipeWebsite.values.where((website) => website.urlHost == url.host).firstOrNull;
+      RecipeWebsite.values.where((website) => website.urlHosts.contains(url.host)).firstOrNull;
 
-  const RecipeWebsite(this.urlHost, this.recipeParser);
+  const RecipeWebsite(this.urlHosts, this.recipeParser);
 
   /// The host of the website url.
-  final String urlHost;
+  final List<String> urlHosts;
 
   /// The [RecipeParser] for this website.
   final RecipeParser recipeParser;

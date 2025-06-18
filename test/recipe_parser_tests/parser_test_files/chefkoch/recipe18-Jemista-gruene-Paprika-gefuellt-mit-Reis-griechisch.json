@@ -14,12 +14,12 @@
             {
                 "amount": 48.0,
                 "unit": "EL, gehäuft",
-                "name": "Reis, roh, ich verwende Basmati, man kann jede Sorte nehmen"
+                "name": "Basmatireis (jede andere Sorte geht auch)"
             },
             {
                 "amount": 8.0,
                 "unit": "große",
-                "name": "Zwiebel(n), klein geschnitten"
+                "name": "Zwiebel(n)"
             },
             {
                 "amount": 16.0,
@@ -29,7 +29,7 @@
             {
                 "amount": 4.0,
                 "unit": "Dose/n",
-                "name": "Pizzatomaten"
+                "name": "Pizzatomaten, ca. 400 g"
             },
             {
                 "amount": 4.0,
@@ -44,12 +44,12 @@
             {
                 "amount": 0.0,
                 "unit": "etwas",
-                "name": "Petersilie, frisch, klein geschnitten oder getrocknet"
+                "name": "Petersilie, frische oder getrocknete"
             },
             {
                 "amount": 0.0,
                 "unit": "etwas",
-                "name": "Dill, frisch, klein geschnitten oder getrocknet"
+                "name": "Dill, frische oder getrocknete"
             },
             {
                 "amount": 320.0,
@@ -68,13 +68,8 @@
             },
             {
                 "amount": 0.0,
-                "unit": "etwas",
+                "unit": "",
                 "name": "Salz und Pfeffer"
-            },
-            {
-                "amount": 0.0,
-                "unit": "etwas",
-                "name": "Alufolie"
             }
         ]
     }

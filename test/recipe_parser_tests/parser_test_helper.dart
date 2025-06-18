@@ -6,7 +6,6 @@ import 'package:html/dom.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
-import 'package:ingredient_collector/src/models/recipe.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_job.dart';
 import 'package:ingredient_collector/src/models/recipe_parsing_result.dart';
 import 'package:ingredient_collector/src/recipe_controller/recipe_controller.dart';
@@ -14,13 +13,6 @@ import 'package:ingredient_collector/src/recipe_parser/recipe_parser.dart';
 
 import 'models/parser_test_case.dart';
 import 'models/parser_test_result.dart';
-
-void expectIngredient(Recipe recipe, Ingredient ingredient) {
-  var isInRecipe = recipe.ingredients.contains(ingredient);
-  if (!isInRecipe) {
-    fail("$ingredient was not found in the recipe '${recipe.name}'");
-  }
-}
 
 bool hasRecipeParsingErrors(RecipeParsingResult result) =>
     result.logs.where((log) => log.type == JobLogType.error).isNotEmpty;
@@ -50,10 +42,34 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
     fail("The recipe failed to parse: ${result.logs.join(", ")}");
   }
   var recipe = result.recipe!;
-  expect(recipe.name, expected.name);
-  expect(recipe.ingredients.length, expected.ingredients.length);
+  expect(
+    recipe.name,
+    expected.name,
+    reason:
+        "Actual recipe name '${recipe.name}' didn't match the expected name"
+        " '${expected.name}'",
+  );
+  expect(
+    recipe.ingredients.length,
+    expected.ingredients.length,
+    reason:
+        "Number of ingredients of recipe '${recipe.name}' didn't match:\n"
+        "- actual: [${recipe.ingredients.map((e) => "'${e.name}'").join(", ")}]\n"
+        "- expected: [${expected.ingredients.map((e) => "'${e.name}'").join(", ")}]",
+  );
+  var missingIngredients = <Ingredient>[];
   for (var ingredient in expected.ingredients) {
-    expectIngredient(recipe, ingredient);
+    var isInRecipe = recipe.ingredients.contains(ingredient);
+    if (!isInRecipe) {
+      missingIngredients.add(ingredient);
+    }
+  }
+  if (missingIngredients.isNotEmpty) {
+    var missingIngredientsString = missingIngredients.map((e) => "- $e").join("\n");
+    fail(
+      "The following ingredients weren't found in the recipe "
+      "'${result.recipe?.name}':\n$missingIngredientsString",
+    );
   }
 }
 
