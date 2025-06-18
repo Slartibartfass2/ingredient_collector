@@ -140,7 +140,51 @@ void main() {
   });
 
   test(
-    'When sharing url is parsed, then url is redirected and correct recipe '
+    'When sharing url 1 is parsed, then url is redirected and correct recipe '
+    'parsed',
+    () async {
+      var recipeJob = RecipeController().createRecipeParsingJob(
+        url: Uri.parse("https://mobile.kptncook.com/recipe/pinterest/pinterest/4b596ab7?lang=en"),
+        servings: 2,
+        language: "en",
+      );
+
+      var result = await RecipeController().collectRecipes(
+        recipeParsingJobs: [recipeJob],
+        language: "en",
+      );
+      var recipe = result.first.recipe!;
+
+      var redirectJob = RecipeController().createRecipeParsingJob(
+        url: Uri.parse("https://sharing.kptncook.com/uSnuwfRkhsb"),
+        servings: 2,
+        language: "en",
+      );
+
+      var redirectResult = await RecipeController().collectRecipes(
+        recipeParsingJobs: [redirectJob],
+        language: "en",
+      );
+      expect(
+        redirectResult.isNotEmpty,
+        isTrue,
+        reason: "Recipe result of '${redirectJob.url}' is empty",
+      );
+      expect(
+        redirectResult.first.recipe,
+        isNotNull,
+        reason: "Recipe result of '${redirectJob.url}' couldn't be parsed",
+      );
+      var redirectRecipe = redirectResult.first.recipe!;
+
+      expect(recipe, equals(redirectRecipe));
+    },
+    timeout: const Timeout(Duration(seconds: 30)),
+    tags: ["parsing-test"],
+  );
+
+  test(
+    'When sharing url 2 is parsed, then url is redirected and correct recipe '
     'parsed',
     () async {
       var recipeJob = RecipeController().createRecipeParsingJob(
@@ -156,7 +200,7 @@ void main() {
       var recipe = result.first.recipe!;
 
       var redirectJob = RecipeController().createRecipeParsingJob(
-        url: Uri.parse("https://sharing.kptncook.com/uSnuwfRkhsb"),
+        url: Uri.parse("https://share.kptncook.com/Dh4a/ki6s0ve3"),
         servings: 2,
         language: "de",
       );
@@ -164,6 +208,16 @@ void main() {
       var redirectResult = await RecipeController().collectRecipes(
         recipeParsingJobs: [redirectJob],
         language: "de",
+      );
+      expect(
+        redirectResult.isNotEmpty,
+        isTrue,
+        reason: "Recipe result of '${redirectJob.url}' is empty",
+      );
+      expect(
+        redirectResult.first.recipe,
+        isNotNull,
+        reason: "Recipe result of '${redirectJob.url}' couldn't be parsed",
       );
       var redirectRecipe = redirectResult.first.recipe!;
 
