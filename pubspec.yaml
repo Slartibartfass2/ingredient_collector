@@ -21,7 +21,7 @@ dependencies:
   shared_preferences: ^2.5.3
 
 dev_dependencies:
-  analyzer: ^7.3.0
+  analyzer: ^7.4.5
   build_runner: ^2.4.9
   flutter_test:
     sdk: flutter
