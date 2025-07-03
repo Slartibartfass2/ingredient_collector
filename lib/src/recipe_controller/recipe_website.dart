@@ -15,7 +15,10 @@ enum RecipeWebsite {
   chefkoch(["www.chefkoch.de"], ChefkochParser()),
 
   /// Nora Cooks.
-  noraCooks(["www.noracooks.com"], NoraCooksParser());
+  noraCooks(["www.noracooks.com"], NoraCooksParser()),
+
+  /// Simple Veganista.
+  simpleVeganista(["simple-veganista.com"], SimpleVeganistaParser());
 
   /// Returns the [RecipeWebsite] for the passed [url].
   ///
