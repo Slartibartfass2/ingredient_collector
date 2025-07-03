@@ -7,27 +7,27 @@
         "name": "Der beste Pizzateig",
         "ingredients": [
             {
-                "amount": 1500.0,
+                "amount": 6000.0,
                 "unit": "g",
                 "name": "Weizenmehl Type 405"
             },
             {
-                "amount": 900.0,
+                "amount": 3600.0,
                 "unit": "ml",
                 "name": "Wasser"
             },
             {
-                "amount": 6.0,
+                "amount": 24.0,
                 "unit": "TL",
                 "name": "Salz"
             },
             {
-                "amount": 15.0,
+                "amount": 60.0,
                 "unit": "g",
                 "name": "Frischhefe"
             },
             {
-                "amount": 3.0,
+                "amount": 12.0,
                 "unit": "Dose/n",
                 "name": "Pizzatomaten"
             },

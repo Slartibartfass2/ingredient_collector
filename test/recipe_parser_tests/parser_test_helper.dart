@@ -57,19 +57,44 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
         "- actual: [${recipe.ingredients.map((e) => "'${e.name}'").join(", ")}]\n"
         "- expected: [${expected.ingredients.map((e) => "'${e.name}'").join(", ")}]",
   );
-  var missingIngredients = <Ingredient>[];
+
+  // Check expected for missing ingredients in actual
+  var missingExpected = <Ingredient>[];
   for (var ingredient in expected.ingredients) {
-    var isInRecipe = recipe.ingredients.contains(ingredient);
-    if (!isInRecipe) {
-      missingIngredients.add(ingredient);
+    var isInActual = recipe.ingredients.contains(ingredient);
+    if (!isInActual) {
+      missingExpected.add(ingredient);
     }
   }
-  if (missingIngredients.isNotEmpty) {
-    var missingIngredientsString = missingIngredients.map((e) => "- $e").join("\n");
-    fail(
-      "The following ingredients weren't found in the recipe "
-      "'${result.recipe?.name}':\n$missingIngredientsString",
-    );
+
+  // Check actual for missing ingredients in expected
+  var missingActual = <Ingredient>[];
+  for (var ingredient in recipe.ingredients) {
+    var isInExpected = expected.ingredients.contains(ingredient);
+    if (!isInExpected) {
+      missingActual.add(ingredient);
+    }
+  }
+
+  var message = "";
+
+  if (missingExpected.isNotEmpty) {
+    var missingExpectedIngredientsString = missingExpected.map((e) => "- $e").join("\n");
+    message +=
+        "The following ingredients weren't found in the actual recipe "
+        "'${result.recipe?.name}':\n$missingExpectedIngredientsString";
+  }
+
+  if (missingActual.isNotEmpty) {
+    if (message.isNotEmpty) message += "\n";
+    var missingActualIngredientsString = missingActual.map((e) => "- $e").join("\n");
+    message +=
+        "The following ingredients weren't found in the expected recipe "
+        "'${result.recipe?.name}':\n$missingActualIngredientsString";
+  }
+
+  if (message.isNotEmpty) {
+    fail(message);
   }
 }
 
