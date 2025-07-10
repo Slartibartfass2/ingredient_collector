@@ -10,6 +10,11 @@ updates:
     schedule:
       interval: "weekly"
     versioning-strategy: increase
+    groups:
+      freezed:
+        patterns:
+          - "freezed$"
+          - "freezed_annotation"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
