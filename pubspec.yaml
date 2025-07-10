@@ -29,7 +29,7 @@ dev_dependencies:
   freezed: ^3.0.6
   json_serializable: ^6.9.5
   custom_lint: ^0.7.5
-  freezed_lint: ^0.0.9
+  freezed_lint: ^0.0.10
   # dart_code_metrics: ^5.7.2
 
 flutter:
