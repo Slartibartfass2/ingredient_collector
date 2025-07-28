@@ -7,7 +7,7 @@ environment:
   flutter: '3.29.2'
 
 dependencies:
-  easy_localization: ^3.0.7
+  easy_localization: ^3.0.8
   flutter:
     sdk: flutter
   freezed_annotation: ^3.1.0
