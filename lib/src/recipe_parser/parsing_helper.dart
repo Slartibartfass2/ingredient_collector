@@ -56,7 +56,7 @@ double? tryParseAmountString(
 
 double? _tryParseSingleWordAmount(String word) {
   // When string is range return middle
-  var range = _tryGetRange(word);
+  var range = tryGetRange(word);
   if (range != null) {
     return range;
   }
@@ -99,11 +99,25 @@ double? _tryParseMultipleWordsAmount(List<String> words, String? language) {
   return null;
 }
 
-/// Tries to parse a range from the passed [text] e.g. 1-3.
-double? _tryGetRange(String text) {
-  var parts = text.split("-");
+const _rangeChars = ["-", "–"];
 
-  if (parts.length != 2) {
+/// Tries to parse a range from the passed [text] e.g. 1-3.
+double? tryGetRange(String text) {
+  for (var separator in _rangeChars) {
+    var rangeValue = _tryGetRangeForSeparator(text, separator);
+    if (rangeValue != null) {
+      return rangeValue;
+    }
+  }
+
+  return null;
+}
+
+/// Tries to parse a range from the passed [text] according to a [separator].
+double? _tryGetRangeForSeparator(String text, String separator) {
+  var parts = text.split(separator);
+
+  if (parts.length != 2 || parts.join("").isEmpty) {
     return null;
   }
 
@@ -145,7 +159,7 @@ double? _tryGetNumberInParentheses(String text) {
 
 /// Parses the passed [elements] using the [parseIngredientMethod].
 RecipeParsingResult createResultFromIngredientParsing(
-  List<Element> elements,
+  Iterable<Element> elements,
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
@@ -172,3 +186,13 @@ RecipeParsingResult createResultFromIngredientParsing(
     logs: logs,
   );
 }
+
+/// Converts a text in all Caps to title case.
+String allCapsTextToTitleCase(String input) => input
+    .toLowerCase() // Convert entire string to lowercase
+    .split(' ') // Split by spaces
+    .map((word) => word[0].toUpperCase() + word.substring(1)) // Capitalize first letter
+    .join(' '); // Join with spaces
+
+/// Checks whether the [input] is a separator char for a range, e.g. '-' in '1-2'.
+bool isRangeSeparator(String input) => _rangeChars.contains(input);
