@@ -8,7 +8,7 @@ part 'recipe.freezed.dart';
 /// Data class that holds information about a single recipe.
 ///
 /// The information consists of a list of [ingredients], the [name] of the
-/// recipe and the amount of [servings].
+/// recipe and the number of [servings].
 @freezed
 sealed class Recipe with _$Recipe {
   /// Creates [Recipe] object.
@@ -19,13 +19,13 @@ sealed class Recipe with _$Recipe {
     /// Name of this recipe.
     required String name,
 
-    /// Amount of servings.
+    /// Number of servings.
     required int servings,
   }) = _Recipe;
 
   /// Creates a copy of this recipe with the passed [servings].
   ///
-  /// The ingredients are adjusted to the new amount of servings.
+  /// The ingredients are adjusted to the new number of servings.
   factory Recipe.withServings(Recipe recipe, int servings) {
     var ratio = servings / recipe.servings;
     return recipe.copyWith(
