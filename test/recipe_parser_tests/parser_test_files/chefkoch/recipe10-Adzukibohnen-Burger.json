@@ -34,7 +34,7 @@
             {
                 "amount": 0.0,
                 "unit": "n. B.",
-                "name": "Gewürz(e) (Oregano, Paprikapulver, Chilipulver, Kräuter der Provence)"
+                "name": "Gewürz(e), Oregano, Paprikapulver, Chilipulver, Kräuter der Provence"
             },
             {
                 "amount": 4.0,
@@ -54,7 +54,7 @@
             {
                 "amount": 16.0,
                 "unit": "",
-                "name": "Burgerbrötchen (z. B. Vollkornbuns zum Toasten)"
+                "name": "Burgerbrötchen, z. B. Vollkornbuns zum Toasten"
             },
             {
                 "amount": 16.0,
@@ -84,7 +84,7 @@
             {
                 "amount": 32.0,
                 "unit": "EL",
-                "name": "Ketchup oder BBQ-Sauce"
+                "name": "Ketchup, oder BBQ-Sauce"
             }
         ]
     }

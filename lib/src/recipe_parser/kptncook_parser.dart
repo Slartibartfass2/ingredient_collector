@@ -81,11 +81,7 @@ class KptnCookParser extends RecipeParser {
     if (measureElements.isNotEmpty) {
       var amountUnitStrings = measureElements.first.text.trim().split(RegExp(r"\s"));
       var amountString = amountUnitStrings.first;
-      var parsedAmount = tryParseAmountString(
-        amountString,
-        language: language,
-        decimalSeparatorLocale: "en",
-      );
+      var parsedAmount = tryParseAmountString(amountString, "en");
       if (parsedAmount != null) {
         amount = parsedAmount * servingsMultiplier;
       } else {
