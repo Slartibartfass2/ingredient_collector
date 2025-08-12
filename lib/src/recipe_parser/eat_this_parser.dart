@@ -78,7 +78,7 @@ class EatThisParser extends RecipeParser {
     Element element,
     double servingsMultiplier,
     Uri recipeUrl,
-    String? language,
+    String language,
   ) {
     var ingredientText = element.text.trim();
 
@@ -98,11 +98,11 @@ class EatThisParser extends RecipeParser {
     var parts = ingredientText.split(RegExp(r"\s"));
     // If first part is not already a number, check whether the amount and unit
     // are concatenated
-    if (tryParseAmountString(parts.first) == null) {
+    if (tryParseAmountString(parts.first, language) == null) {
       var splitFirstPart = _breakUpNumberAndText(parts.first);
       parts = splitFirstPart + parts.skip(1).toList();
     }
-    var parsedParts = parts.map((part) => tryParseAmountString(part, language: language));
+    var parsedParts = parts.map((part) => tryParseAmountString(part, language));
 
     var amount = 0.0;
     var checkIndex = -1;
@@ -180,7 +180,7 @@ class EatThisParser extends RecipeParser {
       );
     }
 
-    var recipeServings = tryParseAmountString(matchGroup);
+    var recipeServings = tryParseAmountString(matchGroup, recipeParsingJob.language);
     recipeServings ??= 1;
     var servingsMultiplier = recipeParsingJob.servings / recipeServings;
 
@@ -197,7 +197,7 @@ class EatThisParser extends RecipeParser {
     String ingredientText,
     double servingsMultiplier,
     Uri recipeUrl,
-    String? language,
+    String language,
   ) {
     var ingredients = ingredientText
         .split("+")

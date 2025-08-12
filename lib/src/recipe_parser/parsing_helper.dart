@@ -32,36 +32,28 @@ const fractions = {
 ///
 /// This includes parsing of ranges e.g. 2-3 -> 2.5 and fractions e.g. ⅕ -> 0.2.
 /// The [amountString] is parsed according to the [language].
-/// [decimalSeparatorLocale] is the local to which the [amountString] is parsed
-/// to. If it's null [language] will be used instead.
-double? tryParseAmountString(
-  String amountString, {
-  String? language,
-  String? decimalSeparatorLocale,
-}) {
-  decimalSeparatorLocale ??= language;
-
+double? tryParseAmountString(String amountString, String language) {
   try {
-    return NumberFormat.decimalPattern(decimalSeparatorLocale).parse(amountString).toDouble();
+    return NumberFormat.decimalPattern(language).parse(amountString).toDouble();
   } on FormatException {
     // When the string can't be parsed, try other parsing methods
   }
 
   var words = amountString.split(RegExp(r"\s+"));
   if (words.length == 1) {
-    return _tryParseSingleWordAmount(words.first);
+    return _tryParseSingleWordAmount(words.first, language);
   }
   return _tryParseMultipleWordsAmount(words, language);
 }
 
-double? _tryParseSingleWordAmount(String word) {
+double? _tryParseSingleWordAmount(String word, String language) {
   // When string is range return middle
-  var range = _tryGetRange(word);
+  var range = _tryGetRange(word, language);
   if (range != null) {
     return range;
   }
 
-  var fractionWithSlash = _tryGetFractionWithSlash(word);
+  var fractionWithSlash = _tryGetFractionWithSlash(word, language);
   if (fractionWithSlash != null) {
     return fractionWithSlash;
   }
@@ -70,7 +62,7 @@ double? _tryParseSingleWordAmount(String word) {
     return fractions[word];
   }
 
-  var numberInParentheses = _tryGetNumberInParentheses(word);
+  var numberInParentheses = _tryGetNumberInParentheses(word, language);
   if (numberInParentheses != null) {
     return numberInParentheses;
   }
@@ -82,9 +74,8 @@ double? _tryParseSingleWordAmount(String word) {
   return null;
 }
 
-double? _tryParseMultipleWordsAmount(List<String> words, String? language) {
-  var parsedWords =
-      words.map((word) => tryParseAmountString(word, language: language)).whereType<double>();
+double? _tryParseMultipleWordsAmount(List<String> words, String language) {
+  var parsedWords = words.map((word) => tryParseAmountString(word, language)).whereType<double>();
 
   // Sum up values
   if (parsedWords.length == words.length) {
@@ -100,15 +91,15 @@ double? _tryParseMultipleWordsAmount(List<String> words, String? language) {
 }
 
 /// Tries to parse a range from the passed [text] e.g. 1-3.
-double? _tryGetRange(String text) {
+double? _tryGetRange(String text, String language) {
   var parts = text.split("-");
 
   if (parts.length != 2) {
     return null;
   }
 
-  var start = tryParseAmountString(parts.first.trim());
-  var end = tryParseAmountString(parts[1].trim());
+  var start = tryParseAmountString(parts.first.trim(), language);
+  var end = tryParseAmountString(parts[1].trim(), language);
 
   if (start == null || end == null) {
     return null;
@@ -118,15 +109,15 @@ double? _tryGetRange(String text) {
 }
 
 /// Tries to parse a fraction with '/' from the passed [text] e.g. 1/3.
-double? _tryGetFractionWithSlash(String text) {
+double? _tryGetFractionWithSlash(String text, String language) {
   var parts = text.split(RegExp("[/⁄]"));
 
   if (parts.length != 2) {
     return null;
   }
 
-  var numerator = tryParseAmountString(parts.first.trim());
-  var denominator = tryParseAmountString(parts[1].trim());
+  var numerator = tryParseAmountString(parts.first.trim(), language);
+  var denominator = tryParseAmountString(parts[1].trim(), language);
 
   if (numerator == null || denominator == null) {
     return null;
@@ -136,11 +127,11 @@ double? _tryGetFractionWithSlash(String text) {
 }
 
 /// Tries to parse a number in parentheses from the passed [text] e.g. (2).
-double? _tryGetNumberInParentheses(String text) {
+double? _tryGetNumberInParentheses(String text, String language) {
   var pattern = RegExp("([0-9]+)");
   var match = pattern.firstMatch(text)?.group(0);
   if (match == null) return null;
-  return tryParseAmountString(match);
+  return tryParseAmountString(match, language);
 }
 
 /// Parses the passed [elements] using the [parseIngredientMethod].
@@ -149,7 +140,7 @@ RecipeParsingResult createResultFromIngredientParsing(
   RecipeParsingJob job,
   double servingsMultiplier,
   String recipeName,
-  IngredientParsingResult Function(Element, double, Uri, String?) parseIngredientMethod,
+  IngredientParsingResult Function(Element, double, Uri, String) parseIngredientMethod,
 ) {
   var ingredientParsingResults =
       elements

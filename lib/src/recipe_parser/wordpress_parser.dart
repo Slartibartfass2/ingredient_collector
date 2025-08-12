@@ -47,7 +47,7 @@ class WordPressParser extends RecipeParser {
     Element element,
     double servingsMultiplier,
     Uri recipeUrl,
-    String? language,
+    String language,
   ) {
     var name = "";
     var nameElements = element.getElementsByClassName("wprm-recipe-ingredient-name");
@@ -71,7 +71,7 @@ class WordPressParser extends RecipeParser {
     if (amountElements.isNotEmpty) {
       var amountElement = amountElements.first;
       var amountString = amountElement.text.trim();
-      var parsedAmount = tryParseAmountString(amountString, language: language);
+      var parsedAmount = tryParseAmountString(amountString, language);
       if (parsedAmount != null) {
         amount = parsedAmount * servingsMultiplier;
       } else {
