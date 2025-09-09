@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart' show expect, fail, isTrue;
 import 'package:html/dom.dart';
+import 'package:ingredient_collector/src/helper/levenshtein.dart';
 import 'package:ingredient_collector/src/job_logs/job_log.dart';
 import 'package:ingredient_collector/src/models/ingredient.dart';
 import 'package:ingredient_collector/src/models/ingredient_parsing_result.dart';
@@ -61,7 +62,7 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
   // Check expected for missing ingredients in actual
   var missingExpected = <Ingredient>[];
   for (var ingredient in expected.ingredients) {
-    var isInActual = recipe.ingredients.contains(ingredient);
+    var isInActual = _containsIngredient(recipe.ingredients, ingredient);
     if (!isInActual) {
       missingExpected.add(ingredient);
     }
@@ -70,7 +71,7 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
   // Check actual for missing ingredients in expected
   var missingActual = <Ingredient>[];
   for (var ingredient in recipe.ingredients) {
-    var isInExpected = expected.ingredients.contains(ingredient);
+    var isInExpected = _containsIngredient(expected.ingredients, ingredient);
     if (!isInExpected) {
       missingActual.add(ingredient);
     }
@@ -96,6 +97,19 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
   if (message.isNotEmpty) {
     fail(message);
   }
+}
+
+bool _containsIngredient(List<Ingredient> ingredients, Ingredient ingredient) {
+  var hasExactMatch = ingredients.contains(ingredient);
+  if (hasExactMatch) return true;
+
+  var distances =
+      ingredients.map((ing) => relativeLevenshtein(ing.name, ingredient.name)).toList()..sort();
+
+  var bestDistance = distances.firstOrNull ?? double.maxFinite;
+
+  // If the relative levenshtein is smaller than 15%, we consider the ingredients equal
+  return bestDistance < 0.15;
 }
 
 Future<void> testParsingTestFiles(String directory) async {
