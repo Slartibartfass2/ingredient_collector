@@ -144,26 +144,26 @@ void main() {
     'parsed',
     () async {
       var recipeJob = RecipeController().createRecipeParsingJob(
-        url: Uri.parse("https://mobile.kptncook.com/recipe/pinterest/pinterest/4b596ab7?lang=en"),
+        url: Uri.parse("https://mobile.kptncook.com/recipe/pinterest/pinterest/4b596ab7"),
         servings: 2,
-        language: "en",
+        language: "de",
       );
 
       var result = await RecipeController().collectRecipes(
         recipeParsingJobs: [recipeJob],
-        language: "en",
+        language: "de",
       );
       var recipe = result.first.recipe!;
 
       var redirectJob = RecipeController().createRecipeParsingJob(
         url: Uri.parse("https://sharing.kptncook.com/uSnuwfRkhsb"),
         servings: 2,
-        language: "en",
+        language: "de",
       );
 
       var redirectResult = await RecipeController().collectRecipes(
         recipeParsingJobs: [redirectJob],
-        language: "en",
+        language: "de",
       );
       expect(
         redirectResult.isNotEmpty,
