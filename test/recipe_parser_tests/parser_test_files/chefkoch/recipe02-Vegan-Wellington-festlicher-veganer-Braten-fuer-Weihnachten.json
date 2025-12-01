@@ -9,7 +9,7 @@
             {
                 "amount": 5.0,
                 "unit": "Pck.",
-                "name": "Blätterteig, aus dem Kühlregal (die meisten sind vegan)"
+                "name": "Blätterteig, veganer, aus dem Kühlregal"
             },
             {
                 "amount": 10.0,
@@ -29,22 +29,22 @@
             {
                 "amount": 650.0,
                 "unit": "g",
-                "name": "Zwiebel(n), gewürfelt (ca. 1 mittelgroße)"
+                "name": "Zwiebel(n), ca. 1 mittelgroße"
             },
             {
                 "amount": 750.0,
                 "unit": "g",
-                "name": "Karotte(n), gewürfelt"
+                "name": "Karotte(n)"
             },
             {
                 "amount": 500.0,
                 "unit": "g",
-                "name": "Staudensellerie, gewürfelt (ca. 2 Stangen)"
+                "name": "Staudensellerie, ca. 2 Stangen"
             },
             {
                 "amount": 20.0,
                 "unit": "",
-                "name": "Knoblauchzehe(n), gehackt"
+                "name": "Knoblauchzehe(n)"
             },
             {
                 "amount": 5.0,
@@ -64,7 +64,7 @@
             {
                 "amount": 1750.0,
                 "unit": "g",
-                "name": "Champignons, braune, klein geschnitten"
+                "name": "Champignons, braune"
             },
             {
                 "amount": 7.5,
@@ -74,32 +74,32 @@
             {
                 "amount": 500.0,
                 "unit": "g",
-                "name": "Walnüsse, fein gehackt"
+                "name": "Walnüsse"
             },
             {
                 "amount": 1000.0,
                 "unit": "g",
-                "name": "Mandel(n), fein gehackt"
+                "name": "Mandel(n)"
             },
             {
                 "amount": 1000.0,
                 "unit": "g",
-                "name": "Marone(n), vorgekochte, fein gehackt"
+                "name": "Marone(n), vorgekochte"
             },
             {
                 "amount": 375.0,
                 "unit": "g",
-                "name": "Dattel(n), getrocknete, oder Soft-Datteln, fein gehackt"
+                "name": "Dattel(n), getrocknete, oder Soft-Datteln"
             },
             {
                 "amount": 150.0,
                 "unit": "g",
-                "name": "Panko, grob"
+                "name": "Panko, grobes"
             },
             {
                 "amount": 7.5,
                 "unit": "EL",
-                "name": "Worcestershiresauce, vegan (z. B. von „Appel“)"
+                "name": "Worcestershiresauce, vegane"
             },
             {
                 "amount": 10.0,
@@ -114,7 +114,7 @@
             {
                 "amount": 5.0,
                 "unit": "TL",
-                "name": "Flüssigrauch, Liquid Smoke (z. B. von „Painmaker“ oder „Stubb’s“) optional"
+                "name": "Flüssigrauch, (Liquid Smoke), optional"
             },
             {
                 "amount": 10.0,
