@@ -25,7 +25,7 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: windows-release-artifacts
           path: "build/windows/x64/runner/Release/**"
@@ -44,7 +44,7 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: web-release-artifacts
           path: "build/web/**"
@@ -65,7 +65,7 @@ jobs:
           java_distribution: ${{ env.java_distribution }}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: android-release-artifacts
           path: |
@@ -86,7 +86,7 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
 
       - name: Archive artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: linux-release-artifacts
           path: build/linux/x64/release/bundle/**
