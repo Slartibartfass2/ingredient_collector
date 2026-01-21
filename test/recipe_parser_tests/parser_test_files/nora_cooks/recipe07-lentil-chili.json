@@ -7,6 +7,11 @@
         "name": "Lentil Chili",
         "ingredients": [
             {
+                "amount": 2,
+                "unit": "tablespoon",
+                "name": "olive oil"
+            },
+            {
                 "amount": 2.0,
                 "unit": "medium",
                 "name": "yellow onion"
