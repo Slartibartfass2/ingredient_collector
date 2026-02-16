@@ -56,7 +56,7 @@ jobs:
           flutter_version: ${{ env.flutter_version }}
 
       - name: Check spelling
-        uses: crate-ci/typos@v1.43.4
+        uses: crate-ci/typos@v1.43.5
         with:
           config: .github/typos.toml
 
