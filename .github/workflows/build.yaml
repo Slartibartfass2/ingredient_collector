@@ -9,18 +9,6 @@ env:
   java_distribution: ${{ vars.JAVA_DISTRIBUTION }}
 
 jobs:
-  build-windows:
-    name: Build release for Windows
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Build Windows release
-        uses: ./.github/workflows/build-windows/
-        with:
-          flutter_version: ${{ env.flutter_version }}
-
   build-web:
     name: Build release for Web
     runs-on: ubuntu-latest

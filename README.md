@@ -116,14 +116,6 @@
 
         [More information on releasing for Web](https://docs.flutter.dev/get-started/web)
 
-    - For the Windows release run:
-
-        ```sh
-        flutter build windows
-        ```
-
-        [More information on releasing for Windows](https://docs.flutter.dev/development/platform-integration/windows/building)
-
     - For the Android release run:
 
         ```sh
