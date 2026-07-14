@@ -56,12 +56,13 @@ void main() {
     parameterizedTest(
       "When the source and target are different, then the distance is correct",
       [
-        ["AppleAppleAppleAppleApple", "PappleAppleAppleAppleApple", 0.0769],
-        ["Apple", "Papple", 0.3333],
-        ["Hello", "World", 0.8],
-        ["ABCDEF", "GHIJKL", 1.0],
-        ["ABCDEF", "GHIJKLMNOPQRSTUVW", 1.0],
-        ["ABCDEFGHIJKLMNOPQ", "RSTUVW", 2.8333],
+        ["AppleAppleAppleAppleApple", "PappleAppleAppleAppleApple", 0.9231],
+        ["Apple", "Papple", 0.6667],
+        ["Hello", "World", 0.2],
+        ["ABCDEF", "GHIJKL", 0.0],
+        ["ABCDEF", "GHIJKLMNOPQRSTUVW", 0.0],
+        ["ABCDEFGHIJKLMNOPQ", "RSTUVW", 0.0],
+        ["", "", 1.0],
       ],
       (String source, String target, double expectedRelDistance) {
         var relativeDistance = relativeLevenshtein(source, target);

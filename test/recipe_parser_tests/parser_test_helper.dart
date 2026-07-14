@@ -28,36 +28,37 @@ Future<ParserTestCase> _getTestFromFile(String path) async {
   return ParserTestCase.fromJson(json);
 }
 
-Future<List<ParserTestCase>> _getTestsFromDirectory(String directory) async {
+/// A [ParserTestCase] paired with the path of the file it was read from.
+typedef _PathedTestCase = (String path, ParserTestCase testCase);
+
+Future<List<_PathedTestCase>> _getTestsFromDirectory(String directory) async {
   var files = Directory(directory).listSync();
-  var tests = <ParserTestCase>[];
+  var tests = <_PathedTestCase>[];
   for (var file in files) {
     var test = await _getTestFromFile(file.path);
-    tests.add(test);
+    tests.add((file.path, test));
   }
   return tests;
 }
 
-void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
+/// Returns an error message describing how [result] doesn't match [expected],
+/// or `null` if they match.
+String? _getParserTestFailureMessage(RecipeParsingResult result, ParserTestResult expected) {
   if (hasRecipeParsingErrors(result) || result.recipe == null) {
-    fail("The recipe failed to parse: ${result.logs.join(", ")}");
+    return "The recipe failed to parse: ${result.logs.join(", ")}";
   }
   var recipe = result.recipe!;
-  expect(
-    recipe.name,
-    expected.name,
-    reason:
-        "Actual recipe name '${recipe.name}' didn't match the expected name"
-        " '${expected.name}'",
-  );
-  expect(
-    recipe.ingredients.length,
-    expected.ingredients.length,
-    reason:
-        "Number of ingredients of recipe '${recipe.name}' didn't match:\n"
+
+  if (recipe.name != expected.name) {
+    return "Actual recipe name '${recipe.name}' didn't match the expected name"
+        " '${expected.name}'";
+  }
+
+  if (recipe.ingredients.length != expected.ingredients.length) {
+    return "Number of ingredients of recipe '${recipe.name}' didn't match:\n"
         "- actual: [${recipe.ingredients.map((e) => "'${e.name}'").join(", ")}]\n"
-        "- expected: [${expected.ingredients.map((e) => "'${e.name}'").join(", ")}]",
-  );
+        "- expected: [${expected.ingredients.map((e) => "'${e.name}'").join(", ")}]";
+  }
 
   // Check expected for missing ingredients in actual
   var missingExpected = <Ingredient>[];
@@ -94,42 +95,54 @@ void _testParserTest(RecipeParsingResult result, ParserTestResult expected) {
         "'${result.recipe?.name}':\n$missingActualIngredientsString";
   }
 
-  if (message.isNotEmpty) {
-    fail(message);
-  }
+  return message.isEmpty ? null : message;
 }
 
 bool _containsIngredient(List<Ingredient> ingredients, Ingredient ingredient) {
+  if (ingredients.isEmpty) return false;
+
   var hasExactMatch = ingredients.contains(ingredient);
   if (hasExactMatch) return true;
 
-  var distances =
-      ingredients.map((ing) => relativeLevenshtein(ing.name, ingredient.name)).toList()..sort();
+  var ingredientsByDistance =
+      ingredients.map((ing) => (ing, relativeLevenshtein(ing.name, ingredient.name))).toList()
+        ..sort((a, b) => a.$2.compareTo(b.$2));
 
-  var bestDistance = distances.firstOrNull ?? double.maxFinite;
+  var (bestMatch, distance) = ingredientsByDistance.first;
 
-  // If the relative levenshtein is smaller than 15%, we consider the ingredients equal
-  return bestDistance < 0.15;
+  // If the similarity is smaller than 85%, we consider the ingredients non-equal
+  if (distance < 0.85) return false;
+
+  return bestMatch.amount == ingredient.amount && bestMatch.unit == ingredient.unit;
 }
 
 Future<void> testParsingTestFiles(String directory) async {
   var tests = await _getTestsFromDirectory(directory);
   var jobs = tests.map(
-    (test) => RecipeController().createRecipeParsingJob(
-      url: Uri.parse(test.request.url),
-      servings: test.request.servings,
+    (entry) => RecipeController().createRecipeParsingJob(
+      url: Uri.parse(entry.$2.request.url),
+      servings: entry.$2.request.servings,
       language: "de",
     ),
   );
-  var expectedResults = tests.map((test) => test.result).toList();
 
   var results = await RecipeController().collectRecipes(recipeParsingJobs: jobs, language: "de");
   var resultsList = results.toList();
 
+  var failureMessages = <String>[];
   for (var i = 0; i < resultsList.length; i++) {
-    var result = resultsList[i];
-    var expected = expectedResults[i];
-    _testParserTest(result, expected);
+    var (path, testCase) = tests[i];
+    var failureMessage = _getParserTestFailureMessage(resultsList[i], testCase.result);
+    if (failureMessage != null) {
+      failureMessages.add("$path:\n$failureMessage");
+    }
+  }
+
+  if (failureMessages.isNotEmpty) {
+    fail(
+      "${failureMessages.length} of ${resultsList.length} test file(s) failed:\n\n"
+      "${failureMessages.join("\n\n")}",
+    );
   }
 }
 

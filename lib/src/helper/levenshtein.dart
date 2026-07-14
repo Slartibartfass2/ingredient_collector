@@ -46,8 +46,11 @@ int levenshtein(String sourceString, String targetString, {bool caseSensitive = 
   return v1[targetString.length];
 }
 
-/// Relative Levenshtein meaning the levenshtein distance divided by the target's length.
+/// Relative Levenshtein meaning 1 - (levensthein / max(source.length, target.length)).
+/// Can be considered the similarity between the two strings in percent.
 double relativeLevenshtein(String sourceString, String targetString, {bool caseSensitive = true}) {
+  if (sourceString.isEmpty && targetString.isEmpty) return 1.0;
+
   var distance = levenshtein(sourceString, targetString, caseSensitive: caseSensitive);
-  return distance / targetString.length;
+  return 1 - (distance / max(sourceString.length, targetString.length));
 }
