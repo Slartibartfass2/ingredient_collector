@@ -19,7 +19,7 @@
             {
                 "amount": 550.0,
                 "unit": "g",
-                "name": "Kartoffeln"
+                "name": "Kartoffel"
             },
             {
                 "amount": 300.0,
@@ -64,7 +64,7 @@
             {
                 "amount": 100.0,
                 "unit": "g",
-                "name": "getrocknete Sojaschnetzel"
+                "name": "Sojaschnetzel"
             },
             {
                 "amount": 4.0,

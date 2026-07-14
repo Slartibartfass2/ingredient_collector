@@ -44,7 +44,7 @@
             {
                 "amount": 0.0,
                 "unit": "evtl.",
-                "name": "Wasser nach Bedarf"
+                "name": "Wasser, nach Bedarf"
             },
             {
                 "amount": 1500.0,
@@ -54,12 +54,12 @@
             {
                 "amount": 500.0,
                 "unit": "g",
-                "name": "Panko oder Paniermehl"
+                "name": "Panko, oder Paniermehl"
             },
             {
                 "amount": 0.0,
                 "unit": "n. B.",
-                "name": "BBQ-Sauce nach Wahl zum Bestreichen"
+                "name": "BBQ-Sauce, nach Wahl zum Bestreichen"
             }
         ]
     }
