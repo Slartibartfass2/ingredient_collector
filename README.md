@@ -114,15 +114,15 @@
         flutter build web --base-href="/ingredient_collector/"
         ```
 
-        [More information on releasing for Web](https://docs.flutter.dev/get-started/web)
+        [More information on releasing for Web](https://docs.flutter.dev/platform-integration/web/building)
 
-    - For the Android release run:
+    - For the Linux release run:
 
         ```sh
-        flutter build apk
+        flutter build linux
         ```
 
-        [More information on releasing for Android](https://docs.flutter.dev/deployment/android)
+        [More information on releasing for Linux](https://docs.flutter.dev/platform-integration/linux/building)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
